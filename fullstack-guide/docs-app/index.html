@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Docs</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>My Docs</h1>
+    <button id="logout" hidden>Log out</button>
+  </header>
+
+  <!-- Shown when logged out (same as the template) -->
+  <section id="login-view">
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button id="login">Log in</button>
+    <button id="signup">Sign up</button>
+    <p id="error"></p>
+  </section>
+
+  <!-- Shown when logged in -->
+  <section id="app-view" hidden>
+    <aside>
+      <button id="new-doc">+ New document</button>
+      <ul id="doc-list"></ul>
+    </aside>
+    <main>
+      <input id="title" placeholder="Untitled">
+      <small id="status"></small>
+      <div id="page" contenteditable="true"></div>
+    </main>
+  </section>
+</body>
+</html>

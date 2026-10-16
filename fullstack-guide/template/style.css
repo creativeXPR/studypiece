@@ -1,0 +1,25 @@
+body {
+  font-family: system-ui, sans-serif;
+  color: #1f2328;
+  max-width: 640px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+header { display: flex; justify-content: space-between; align-items: center; }
+
+input  { padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
+
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #e8710a;
+  color: white;
+  cursor: pointer;
+}
+
+ul     { padding: 0; }
+li     { display: flex; justify-content: space-between; padding: 10px 0;
+         border-bottom: 1px solid #eee; list-style: none; }
+#error { color: crimson; }

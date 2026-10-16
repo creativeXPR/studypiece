@@ -1,0 +1,33 @@
+rules_version = '2';
+
+// StudyPiece — Firestore rules for the quick-cbt project's (default) database.
+// (ex-cbt and examiner use their own named databases with their own rules.)
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Admins may list every user for the /admin page. email_verified stops
+    // someone registering an email/password account under an admin's address.
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in ['adedamolar96@gmail.com', 'adedamolarichard79@gmail.com'];
+    }
+
+    // users/{uid}: profile (department, level, name) and login history
+    // (loginDays). Keyed by Firebase Auth uid; each user writes only their own.
+    match /users/{userId} {
+      allow get: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow list: if isAdmin();
+      allow create, update: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.get('userid', userId) == userId;
+      allow delete: if false;
+    }
+
+    // Everything else is closed by default.
+  }
+}

@@ -1,0 +1,2534 @@
+{
+  "code": "GES 103",
+  "sets": [
+    {
+      "id": "QS024",
+      "title": "Introduction — The Object and Nature of the Social Sciences",
+      "questions": [
+        {
+          "question": "Social science is best defined as the study of:",
+          "options": [
+            "Human relationships within the socio-cultural environment",
+            "Physical objects and natural forces",
+            "Living organisms and their cells",
+            "Chemical reactions in the environment"
+          ],
+          "answer": 0,
+          "explanation": "Social science is the study of human relationships within the socio-cultural environment. The other options describe the natural sciences (physics, biology, chemistry)."
+        },
+        {
+          "question": "Charles Beard described social science as knowledge pertaining to human affairs as distinguished from:",
+          "options": [
+            "Laws, customs and traditions",
+            "Religious faiths and ethical values",
+            "Sticks, stones, stars and physical objects",
+            "Economic and political behaviour"
+          ],
+          "answer": 2,
+          "explanation": "Charles Beard (cited in Kochhar 1984) set human affairs against “sticks, stones, stars and physical objects”, the subject matter of the natural sciences. Laws, customs, religion and economic behaviour are part of what social science studies."
+        },
+        {
+          "question": "James High defined the social sciences as bodies of learning that recognise:",
+          "options": [
+            "The command of the sovereign over the commanded",
+            "The simultaneous and mutual action of physical and non-physical stimuli which produce social reaction",
+            "The relationship between ends and scarce means",
+            "The struggle over values, status, power and scarce resources"
+          ],
+          "answer": 1,
+          "explanation": "James High (cited in Singh 2008) stressed physical and non-physical stimuli acting together to produce social reaction. The other options are Austin's definition of law, Robbins' definition of economics and Coser's definition of conflict."
+        },
+        {
+          "question": "Hunt and Colander (2008) defined social science simply as:",
+          "options": [
+            "The study of human relations",
+            "The study of wealth",
+            "The study of the human mind",
+            "The study of government"
+          ],
+          "answer": 0,
+          "explanation": "Hunt and Colander gave the shortest definition in the text: social science is “the study of human relations”."
+        },
+        {
+          "question": "Social science is described as a product of which century?",
+          "options": [
+            "The 15th century",
+            "The 16th century",
+            "The 20th century",
+            "The 18th century"
+          ],
+          "answer": 3,
+          "explanation": "Social science is a product of the 18th century. It grew out of modernisation, industrialisation, the Renaissance, urbanisation and the growth of science, and then became a field of study in higher institutions."
+        },
+        {
+          "question": "Which of these is NOT listed as a historical trigger of social science?",
+          "options": [
+            "The American War of Independence (1776)",
+            "The French Revolution (1789)",
+            "The Industrial Revolution",
+            "The Second World War"
+          ],
+          "answer": 3,
+          "explanation": "The listed triggers are the Renaissance, the American War of Independence (1776), the French Revolution (1789), the Industrial Revolution (from 1767) and new forms of capitalism. The Second World War came much later, long after social science emerged in the 18th century."
+        },
+        {
+          "question": "Montesquieu's founding social science text was:",
+          "options": [
+            "Wealth of Nations (1776)",
+            "Ideas towards a Philosophy of History (1784–91)",
+            "Spirit of the Laws (1748)",
+            "Outline of an Historical View of the Progress of the Human Mind (1795)"
+          ],
+          "answer": 2,
+          "explanation": "Montesquieu wrote Spirit of the Laws (1748). Wealth of Nations is Adam Smith's, Ideas towards a Philosophy of History is J.G. Herder's, and the Outline is Condorcet's."
+        },
+        {
+          "question": "Adam Smith's Wealth of Nations, one of the exemplary founding texts, was published in:",
+          "options": [
+            "1748",
+            "1789",
+            "1795",
+            "1776"
+          ],
+          "answer": 3,
+          "explanation": "Wealth of Nations appeared in 1776, the same year as the American War of Independence. 1748 is Montesquieu's Spirit of the Laws and 1795 is Condorcet's Outline."
+        },
+        {
+          "question": "Who wrote Outline of an Historical View of the Progress of the Human Mind (1795)?",
+          "options": [
+            "Condorcet",
+            "Montesquieu",
+            "J.G. Herder",
+            "Adam Smith"
+          ],
+          "answer": 0,
+          "explanation": "Condorcet wrote the Outline (1795). Montesquieu wrote Spirit of the Laws, Herder wrote Ideas towards a Philosophy of History, and Smith wrote Wealth of Nations."
+        },
+        {
+          "question": "According to Ross (1991), social science developed as a response to the need to understand:",
+          "options": [
+            "Religion",
+            "Modernity",
+            "Ancient empires",
+            "The natural environment"
+          ],
+          "answer": 1,
+          "explanation": "Ross (1991) explains that social science arose to make sense of modernity: the new world created by industrialisation, revolutions and capitalism."
+        },
+        {
+          "question": "What does the Latin phrase “ceteris paribus” mean?",
+          "options": [
+            "Let the buyer beware",
+            "Hear the other side",
+            "All things being equal",
+            "The command of the sovereign"
+          ],
+          "answer": 2,
+          "explanation": "Ceteris paribus means “all things being equal” (Galavotti 2003). “Hear the other side” is audi alteram partem, a fair-hearing maxim from Chapter 4."
+        },
+        {
+          "question": "Why do social scientists rely on the assumption of ceteris paribus?",
+          "options": [
+            "Because social science uses no data",
+            "Because human beings change, so variables cannot be held constant as in the hard sciences",
+            "Because social science is not systematic",
+            "Because laboratory experiments are forbidden in social science"
+          ],
+          "answer": 1,
+          "explanation": "In the hard sciences variables can be held constant, but humans keep changing. Social scientists therefore assume “all things being equal” in order to study one relationship at a time."
+        },
+        {
+          "question": "In the early 1980s the British Government renamed the Social Science Research Council the Economic and Social Research Council. Halloran (1998) read this as implying that:",
+          "options": [
+            "If it is social, it cannot be scientific",
+            "Economics is not a social science",
+            "Social science should be abolished",
+            "Research councils should be private"
+          ],
+          "answer": 0,
+          "explanation": "Dropping “Science” from the council's name suggested the view that “if it's social it can't be scientific!” (Halloran 1998), a classic illustration of doubts about the scientific status of social science."
+        },
+        {
+          "question": "Gareau (1987) criticised social science on the grounds that:",
+          "options": [
+            "Social science is too mathematical",
+            "Social science ignores history",
+            "Social science is a product of the 20th century",
+            "Society is not susceptible to scientific study"
+          ],
+          "answer": 3,
+          "explanation": "Gareau (1987) represents the critics who argue that society cannot be studied scientifically, because human behaviour is too changeable to be measured like natural phenomena."
+        },
+        {
+          "question": "For social science knowledge to count as scientific, it must be:",
+          "options": [
+            "Based on common sense",
+            "Verifiable and open to verification at all times",
+            "Accepted without testing",
+            "Derived from religious authority"
+          ],
+          "answer": 1,
+          "explanation": "Scientific knowledge is acquired systematically and stepwise, and it must be verifiable and open to verification at all times, meeting the standards of the scientific community."
+        },
+        {
+          "question": "Hargittai (2009) described social science as:",
+          "options": [
+            "The disciplined and systematic study of society, its institutions, and how and why people behave as individuals and groups",
+            "The study of physical objects",
+            "The study of wealth and its distribution",
+            "The study of the brain and nervous system"
+          ],
+          "answer": 0,
+          "explanation": "Hargittai's definition emphasises discipline and system: the study of society, its institutions, and individual and group behaviour."
+        },
+        {
+          "question": "The University of Ibadan introduced GES 107 because:",
+          "options": [
+            "HIV is purely a biological problem",
+            "Most health problems, such as HIV, are products of human behaviour",
+            "Social science cannot address health issues",
+            "It replaced the study of economics"
+          ],
+          "answer": 1,
+          "explanation": "Since most health problems (for example HIV in Africa and Asia in the late 1990s–2000s) arise from human behaviour, UI introduced GES 107 on the causes, prevention and management of HIV. This shows social science solving practical problems."
+        },
+        {
+          "question": "The saying “the freedom of an individual ends where another's begins” relates to social science's study of:",
+          "options": [
+            "Natural laws of physics",
+            "Climate and weather",
+            "Animal behaviour",
+            "Man-made institutions that regulate behaviour"
+          ],
+          "answer": 3,
+          "explanation": "Social science studies man-made institutions (family, marriage, politics, economy) which regulate behaviour so that one person's freedom does not trample another's."
+        },
+        {
+          "question": "Which new-technology behaviour is given as an example that social science helps predict?",
+          "options": [
+            "Cybercrime",
+            "Volcanic eruptions",
+            "Earthquakes",
+            "Plant photosynthesis"
+          ],
+          "answer": 0,
+          "explanation": "Social science enables prediction of behaviour related to new technologies, with cybercrime as the example. The other options are natural phenomena."
+        },
+        {
+          "question": "Cooperation, morality and universal brotherhood are described as the hallmark of:",
+          "options": [
+            "The Ibadan School of Social Sciences",
+            "The Faculty of Arts",
+            "The Renaissance",
+            "The Industrial Revolution"
+          ],
+          "answer": 0,
+          "explanation": "Developing personality, cooperation, morality and universal brotherhood is called “the hallmark of the Ibadan School of Social Sciences”."
+        },
+        {
+          "question": "The Ibadan School of Social Sciences began with the Department of Economics in:",
+          "options": [
+            "1948",
+            "1967",
+            "1958",
+            "1960"
+          ],
+          "answer": 2,
+          "explanation": "IBSSS began with Economics in 1958. Geography started earlier (1948) but only joined Social Sciences in 1967."
+        },
+        {
+          "question": "Geography started at Ibadan in 1948 but joined the Social Sciences in:",
+          "options": [
+            "1958",
+            "1967",
+            "1960",
+            "1977"
+          ],
+          "answer": 1,
+          "explanation": "Geography sat in Arts and Science from 1948 until it moved into Social Sciences in 1967. Economics, which began in 1958, was the first social science department."
+        },
+        {
+          "question": "In the genealogy of the Ibadan School, Law and Psychology grew out of:",
+          "options": [
+            "Economics",
+            "Geography",
+            "Sociology",
+            "Political Science"
+          ],
+          "answer": 2,
+          "explanation": "The chain runs Economics → Political Science → Sociology → Law and Psychology. So Law and Psychology grew directly out of Sociology."
+        },
+        {
+          "question": "How many departments does the Faculty of the Social Sciences at Ibadan have?",
+          "options": [
+            "Four",
+            "Eight",
+            "Six",
+            "Ten"
+          ],
+          "answer": 2,
+          "explanation": "The Faculty has six departments, and two other faculties grew out of it: the Faculty of Economics and the Faculty of Environmental Design and Management."
+        },
+        {
+          "question": "According to the conclusion, social scientists must detach from common sense but avoid imposing the expert's perspective. In other words, they must be:",
+          "options": [
+            "Emotional",
+            "Partisan",
+            "Superstitious",
+            "Objective"
+          ],
+          "answer": 3,
+          "explanation": "Social scientists should rise above “person on the street” common sense without becoming so detached that they force the expert's view on reality. The goal is objectivity."
+        }
+      ]
+    },
+    {
+      "id": "QS025",
+      "title": "Chapter 3 — Political Socialisation and Participation",
+      "questions": [
+        {
+          "question": "Political socialisation is defined as:",
+          "options": [
+            "The deliberate inculcation of political information, values and practices by agents responsible for it",
+            "The removal of rulers by impeachment",
+            "The counting of votes in an election",
+            "The division of powers among tiers of government"
+          ],
+          "answer": 0,
+          "explanation": "Political socialisation is the deliberate inculcation of political information, values and practices by instructional agents, formally and informally, who are saddled with that responsibility."
+        },
+        {
+          "question": "The basic hypothesis of political socialisation holds that no political system can remain integrated unless its members share political knowledge, values and attitudes. Political socialisation is therefore a means of building:",
+          "options": [
+            "Political cohesion",
+            "Military strength",
+            "Economic recession",
+            "Ethnic division"
+          ],
+          "answer": 0,
+          "explanation": "Because a system holds together only when members share political knowledge, values and attitudes, political socialisation is the means of building political cohesion."
+        },
+        {
+          "question": "The intent or content of political socialisation is:",
+          "options": [
+            "The political culture",
+            "The national budget",
+            "The electoral register",
+            "The constitution alone"
+          ],
+          "answer": 0,
+          "explanation": "What political socialisation transmits is the political culture: the attitudes, cognitions, values and feelings towards the political system."
+        },
+        {
+          "question": "Gabriel Almond (Almond and Coleman 1960) described political socialisation as the process of:",
+          "options": [
+            "Removing leaders from office",
+            "Induction into the political culture",
+            "Writing a constitution",
+            "Collecting taxes"
+          ],
+          "answer": 1,
+          "explanation": "Almond defined it as “the process of induction into the political culture”. Its end product is a set of attitudes, cognitions, value standards and feelings towards the political system."
+        },
+        {
+          "question": "Among Dennis's (1973) five utilities, political socialisation acting as a “stress-absorber” means it:",
+          "options": [
+            "Increases the number of demands on government",
+            "Avoids or reduces stress on essential variables so the system can continue",
+            "Prepares citizens for military service",
+            "Replaces elections with appointments"
+          ],
+          "answer": 1,
+          "explanation": "As a stress-absorber, political socialisation reduces stress on the system's essential variables so that the political system continues to function."
+        },
+        {
+          "question": "On the input side, political socialisation helps the political system by:",
+          "options": [
+            "Making government decisions binding",
+            "Training bureaucrats only",
+            "Raising taxes",
+            "Streamlining the volume and variety of demands so the system is not overburdened"
+          ],
+          "answer": 3,
+          "explanation": "On the input side it controls the volume and variety of demands reaching government. Making decisions acceptable and binding is the output-side utility."
+        },
+        {
+          "question": "On the output side, political socialisation ensures that:",
+          "options": [
+            "Citizens make as many demands as possible",
+            "Elections are cancelled",
+            "Government decisions are acceptable and binding",
+            "Parties are banned"
+          ],
+          "answer": 2,
+          "explanation": "The output-side utility is to make government decisions acceptable and binding on citizens."
+        },
+        {
+          "question": "Which agent is the primary agency of political socialisation, giving the child its first cognitive map of the world?",
+          "options": [
+            "The school",
+            "The mass media",
+            "Parents/family",
+            "Political parties"
+          ],
+          "answer": 2,
+          "explanation": "The family is the primary agency: the child's first picture of the world, including authority and politics, comes from parents."
+        },
+        {
+          "question": "Learning Government and Civics, taking part in debates, class leadership and unionism are forms of political socialisation through:",
+          "options": [
+            "The family",
+            "The school system",
+            "The peer group",
+            "The bureaucracy"
+          ],
+          "answer": 1,
+          "explanation": "The school system provides formal political learning through subjects like Government and Civics, and through practice in debates, class leadership and unionism."
+        },
+        {
+          "question": "A peer group is made up of people with similar:",
+          "options": [
+            "Age, income, status and interests",
+            "Surnames only",
+            "Religious titles",
+            "Government appointments"
+          ],
+          "answer": 0,
+          "explanation": "Peer groups are formed by people of similar age, income, status and interests, such as friends, colleagues and clubs."
+        },
+        {
+          "question": "The Boys' Brigade, Girls' Guide, Boy Scouts and Red Cross are examples of which agent of political socialisation?",
+          "options": [
+            "Voluntary associations",
+            "The family",
+            "The mass media",
+            "The legislature"
+          ],
+          "answer": 0,
+          "explanation": "These are voluntary associations, an agent of political socialisation alongside interest groups, professional associations and parties."
+        },
+        {
+          "question": "The foremost avenue of political participation is:",
+          "options": [
+            "Public protests",
+            "Pressure groups",
+            "Elections",
+            "The bureaucracy"
+          ],
+          "answer": 2,
+          "explanation": "Elections are the foremost avenue: the formal process by which citizens choose public office holders."
+        },
+        {
+          "question": "In the bicameral legislatures of Nigeria and the USA, the Senate is based on:",
+          "options": [
+            "Population size",
+            "Hereditary membership",
+            "Equal representation of states",
+            "Appointment by the President"
+          ],
+          "answer": 2,
+          "explanation": "The House of Representatives is based on population, while the Senate gives each state equal representation."
+        },
+        {
+          "question": "Which of these does NOT sit in the British House of Lords?",
+          "options": [
+            "Elected constituency representatives",
+            "Hereditary peers",
+            "The Archbishops of Canterbury and York",
+            "Life peers appointed by the Crown"
+          ],
+          "answer": 0,
+          "explanation": "The Lords is unelected: hereditary peers, the Archbishops of Canterbury and York with 24 senior bishops, life peers and Law Lords. Elected constituency representatives sit in the House of Commons."
+        },
+        {
+          "question": "Amnesty International, consumer protection and environmental groups belong to which category of pressure groups?",
+          "options": [
+            "Economic interest groups",
+            "Cause groups",
+            "Non-associational groups",
+            "Public interest groups"
+          ],
+          "answer": 3,
+          "explanation": "Public interest groups pursue broad public goods such as human rights, consumer protection and the environment. The Red Cross and Amnesty International are examples."
+        },
+        {
+          "question": "Veterans' groups, disability groups and anti-abortion groups are examples of:",
+          "options": [
+            "Economic interest groups",
+            "Public interest groups",
+            "Cause groups",
+            "Institutional interests"
+          ],
+          "answer": 2,
+          "explanation": "Cause groups organise around a specific cause, for example religious, veterans, disability, anti-HIV or anti-abortion groups."
+        },
+        {
+          "question": "Government departments, agencies and the military are classified as:",
+          "options": [
+            "Economic interest groups",
+            "Cause groups",
+            "Non-associational groups",
+            "Public interest groups"
+          ],
+          "answer": 2,
+          "explanation": "These state bodies influence policy without being voluntary associations, so they are non-associational groups."
+        },
+        {
+          "question": "The Theory of Representative Bureaucracy holds that:",
+          "options": [
+            "Civil servants should all come from one ethnic group",
+            "Bureaucrats should be elected",
+            "Bureaucracy should be abolished",
+            "A workforce that reflects the population ensures all groups' interests are considered"
+          ],
+          "answer": 3,
+          "explanation": "Bradbury and Kellough (2014) and Krislov (2012) argue that a civil service mirroring the population (indigeneity, ethnicity, race, sex) keeps all groups' interests in view."
+        },
+        {
+          "question": "The most visible indicator of political socialisation and participation is:",
+          "options": [
+            "Paying tax",
+            "Voting",
+            "Watching the news",
+            "Joining a club"
+          ],
+          "answer": 1,
+          "explanation": "Voting is the most visible indicator. It shows directly whether citizens have been socialised into taking part."
+        },
+        {
+          "question": "Which Nigerian election recorded the highest turnout of registered voters, at 69.08%?",
+          "options": [
+            "1979",
+            "2003",
+            "1999",
+            "2011"
+          ],
+          "answer": 1,
+          "explanation": "2003 had the highest turnout, 69.08% of registered voters. 1979 had the lowest of the listed elections, at 35.25%."
+        },
+        {
+          "question": "The 1993 presidential election, presumed won by Chief M.K.O. Abiola, was annulled by:",
+          "options": [
+            "Gen. Ibrahim Babangida",
+            "Gen. Muhammadu Buhari",
+            "Gen. Olusegun Obasanjo",
+            "Alhaji Shehu Shagari"
+          ],
+          "answer": 0,
+          "explanation": "Gen. Ibrahim Babangida annulled the June 1993 election, presumed won by Chief M.K.O. Abiola."
+        },
+        {
+          "question": "According to International IDEA (2017), which of these countries had the highest average turnout in its last five elections?",
+          "options": [
+            "Nigeria",
+            "Ghana",
+            "USA",
+            "South Africa"
+          ],
+          "answer": 3,
+          "explanation": "South Africa led with 82.54%. France had 80.93%, the USA 80.04%, Ghana 74.98% and Nigeria only 58.13%."
+        },
+        {
+          "question": "The War Against Indiscipline (WAI) of 1984 was launched under:",
+          "options": [
+            "Gen. Ibrahim Babangida",
+            "Alhaji Shehu Shagari",
+            "Gen. Olusegun Obasanjo",
+            "Gen. Muhammadu Buhari"
+          ],
+          "answer": 3,
+          "explanation": "WAI (1984) came under Buhari. Its five phases were queue culture, work ethics, nationalism/patriotism, corruption/economic sabotage and environmental sanitation."
+        },
+        {
+          "question": "Edward Shils (1968) identified the two stages of social mobilisation as:",
+          "options": [
+            "Election, then impeachment",
+            "Withdrawal from old habits, then induction into new patterns of commitment",
+            "Registration, then voting",
+            "Taxation, then redistribution"
+          ],
+          "answer": 1,
+          "explanation": "Shils's stages are (1) withdrawal or disengagement from old negative habits and (2) induction into new, stable patterns of membership and commitment."
+        },
+        {
+          "question": "The three participatory skills in citizenship education are:",
+          "options": [
+            "Reading, writing and counting",
+            "Voting, protesting and striking",
+            "Saving, investing and spending",
+            "Interacting, monitoring and influencing"
+          ],
+          "answer": 3,
+          "explanation": "Citizenship education teaches interacting (communication and cooperation), monitoring (tracking leaders) and influencing (affecting outcomes)."
+        }
+      ]
+    },
+    {
+      "id": "QS026",
+      "title": "Chapter 4 — Law, Democracy and Good Governance",
+      "questions": [
+        {
+          "question": "John Austin (1832) defined law as:",
+          "options": [
+            "The study of human relations",
+            "A struggle over values and scarce resources",
+            "A rule laid down for the guidance of an intelligent being by an intelligent being having power over him",
+            "Government by the people through elected representatives"
+          ],
+          "answer": 2,
+          "explanation": "Austin saw law as the command of the sovereign to the commanded: a rule set by one with power over another. The other options are definitions of social science, conflict and democracy."
+        },
+        {
+          "question": "The principle that “right is correlative to duty” (no duty, no right) relates to which function of law?",
+          "options": [
+            "Maintaining public order",
+            "Upholding rights and duties",
+            "Facilitating co-operative actions",
+            "Communicating standards"
+          ],
+          "answer": 1,
+          "explanation": "Law upholds rights and duties, and the two go together: a right exists only where someone owes a corresponding duty."
+        },
+        {
+          "question": "Adultery and drinking alcohol are punishable in Northern Nigeria under:",
+          "options": [
+            "The Criminal Code",
+            "The Penal Code and Sharia",
+            "Customary law of the South",
+            "The Fundamental Objectives in Chapter II"
+          ],
+          "answer": 1,
+          "explanation": "These acts are morally wrong but not punishable in the South. In the North the Penal Code and Sharia make them offences, which illustrates the line between law and morality."
+        },
+        {
+          "question": "Rules governing jurisdiction, the form of trial and time limits make up:",
+          "options": [
+            "Substantive law",
+            "Customary law",
+            "International law",
+            "Procedural law"
+          ],
+          "answer": 3,
+          "explanation": "Procedural law sets out how civil and criminal cases are processed. Failing to comply with it can make a trial a nullity."
+        },
+        {
+          "question": "Contract, family law, torts and land law are branches of:",
+          "options": [
+            "Public law",
+            "Criminal law",
+            "Constitutional law",
+            "Private law"
+          ],
+          "answer": 3,
+          "explanation": "Private law governs relationships between persons. Public law covers relationships within government and between government and individuals."
+        },
+        {
+          "question": "Corporations are called “juristic persons” because they:",
+          "options": [
+            "Can sue and be sued",
+            "Are owned by the government",
+            "Make laws",
+            "Cannot own property"
+          ],
+          "answer": 0,
+          "explanation": "A corporation is a legal person: like a human being, it can sue and be sued in its own name."
+        },
+        {
+          "question": "Which case held that “it is the assent of the native community that gives a custom its validity”?",
+          "options": [
+            "Owonyin v. Omotosho",
+            "Lewis v. Bankole",
+            "Eshugbayi Eleko v. Government of Nigeria",
+            "Marbury v. Madison"
+          ],
+          "answer": 2,
+          "explanation": "Eshugbayi Eleko v. Government of Nigeria ties a custom's validity to community acceptance. Owonyin v. Omotosho called custom a “mirror of accepted usage”, and Lewis v. Bankole stressed its flexibility."
+        },
+        {
+          "question": "In Lewis v. Bankole, Osborne C.J. noted that one of the most striking features of West African native custom is its:",
+          "options": [
+            "Flexibility",
+            "Written form",
+            "Uniformity",
+            "Rigidity"
+          ],
+          "answer": 0,
+          "explanation": "Because customary law is unwritten, it is flexible. Osborne C.J. called this one of its most striking features."
+        },
+        {
+          "question": "Courts enforce customary law only if it is not repugnant to:",
+          "options": [
+            "The wishes of the President",
+            "Foreign law",
+            "Natural justice, equity and good conscience",
+            "Religious doctrine"
+          ],
+          "answer": 2,
+          "explanation": "Under the repugnancy test, courts apply a custom only if it is not repugnant to natural justice, equity and good conscience and not incompatible with any law."
+        },
+        {
+          "question": "Under Yoruba intestate inheritance, idi-igi refers to distribution:",
+          "options": [
+            "Per head of children",
+            "To the eldest son alone",
+            "To the state",
+            "Through the mothers/wives"
+          ],
+          "answer": 3,
+          "explanation": "Idi-igi shares the estate through the mothers (wives). Ori-ojori shares it per head, and in Benin the eldest son inherits."
+        },
+        {
+          "question": "According to Hood Phillips and Jackson, the “concrete” sense of a constitution refers to:",
+          "options": [
+            "The system of laws, customs and conventions",
+            "The document in which the most important laws are ordained",
+            "The judiciary alone",
+            "The ruling party's manifesto"
+          ],
+          "answer": 1,
+          "explanation": "In the abstract sense, a constitution is the whole system of laws, customs and conventions. In the concrete sense, it is the document itself."
+        },
+        {
+          "question": "Which country has an unwritten constitution?",
+          "options": [
+            "Britain",
+            "Nigeria",
+            "USA",
+            "South Africa"
+          ],
+          "answer": 0,
+          "explanation": "Britain's constitution is an “organic growth” of statutes, conventions and cases such as Magna Carta (1215). Nigeria, the USA and South Africa have written constitutions."
+        },
+        {
+          "question": "Under Section 9(2) of the 1999 Constitution, an amendment requires:",
+          "options": [
+            "Two-thirds of all members of each House of the National Assembly and approval by the Houses of Assembly of two-thirds of the states",
+            "A simple majority of the Senate only",
+            "The President's signature only",
+            "A referendum in every local government"
+          ],
+          "answer": 0,
+          "explanation": "This special procedure is what makes the 1999 Constitution rigid."
+        },
+        {
+          "question": "The Clifford (1922), Richards (1946) and Macpherson (1951) constitutions are examples of constitutions that were:",
+          "options": [
+            "Unwritten and rigid",
+            "Written but flexible",
+            "Federal and rigid",
+            "Republican"
+          ],
+          "answer": 1,
+          "explanation": "They were written documents but could be amended by ordinary legislation, so they were flexible."
+        },
+        {
+          "question": "In a presidential system such as Nigeria since 1979, a legislator appointed as a minister:",
+          "options": [
+            "Keeps their seat",
+            "Becomes Prime Minister",
+            "Must join the judiciary",
+            "Forfeits their seat in the legislature"
+          ],
+          "answer": 3,
+          "explanation": "The presidential system separates the executive from the legislature, so a legislator who becomes a minister forfeits their seat. In a parliamentary system, ministers must be members of the legislature."
+        },
+        {
+          "question": "In a confederation, the central government is:",
+          "options": [
+            "Weaker than, and subordinate to, the component units",
+            "Stronger than the component units",
+            "The only level of government",
+            "Elected by foreign states"
+          ],
+          "answer": 0,
+          "explanation": "A confederation reverses the federal balance: the component units are stronger and the centre is weaker and subordinate."
+        },
+        {
+          "question": "The 1963 Republican Constitution created which region, bringing Nigeria to four regions?",
+          "options": [
+            "The Eastern Region",
+            "The Mid-Western Region",
+            "The Northern Region",
+            "The Federal Capital Territory"
+          ],
+          "answer": 1,
+          "explanation": "The 1963 Republican Constitution added the Mid-Western Region to the North, East and West."
+        },
+        {
+          "question": "Chapter II of the Constitution (Fundamental Objectives and Directive Principles of State Policy) cannot be enforced by the courts because of:",
+          "options": [
+            "Section 36",
+            "Section 9(2)",
+            "Section 6(6)(c)",
+            "Section 214(1)"
+          ],
+          "answer": 2,
+          "explanation": "Section 6(6)(c) makes Chapter II non-justiciable. Section 36 is fair hearing, Section 9(2) is amendment and Section 214(1) establishes the Police."
+        },
+        {
+          "question": "The right to fair hearing is in which section of the 1999 Constitution?",
+          "options": [
+            "Section 36",
+            "Section 33",
+            "Section 39",
+            "Section 42"
+          ],
+          "answer": 0,
+          "explanation": "Section 36 guarantees fair hearing, the widest right. Section 33 is the right to life, 39 is expression and 42 is freedom from discrimination."
+        },
+        {
+          "question": "The fair-hearing maxim “nemo judex in causa sua” means:",
+          "options": [
+            "Hear the other side",
+            "All things being equal",
+            "Let the buyer beware",
+            "No one should be a judge in their own cause"
+          ],
+          "answer": 3,
+          "explanation": "Nemo judex in causa sua forbids a person from judging a case in which they have an interest. Its companion maxim, audi alteram partem, means “hear the other side”."
+        },
+        {
+          "question": "The rights to life (s.33) and personal liberty (s.35) may be derogated from only:",
+          "options": [
+            "In time of war or a declared emergency (s.305)",
+            "Whenever the police request it",
+            "During elections",
+            "By customary courts"
+          ],
+          "answer": 0,
+          "explanation": "Sections 33 and 35 are specially protected: derogation is allowed only in war or a declared state of emergency under s.305."
+        },
+        {
+          "question": "The two elements of a crime are:",
+          "options": [
+            "Audi alteram partem and nemo judex",
+            "Demos and kratos",
+            "Actus reus and mens rea",
+            "Ceteris paribus and homo economicus"
+          ],
+          "answer": 2,
+          "explanation": "A crime needs a guilty act (actus reus) and a guilty mind (mens rea). Strict liability offences such as drink driving are the exception, needing no guilty mind."
+        },
+        {
+          "question": "A felony is an offence punishable by:",
+          "options": [
+            "Six months to under three years",
+            "Death or imprisonment for three years or more",
+            "A small fine only",
+            "A warning"
+          ],
+          "answer": 1,
+          "explanation": "A felony carries death or three years or more. A misdemeanour carries six months to under three years, and simple offences are all the rest."
+        },
+        {
+          "question": "Under Nigerian criminal law, a child under seven is:",
+          "options": [
+            "Fully criminally responsible",
+            "Responsible only for felonies",
+            "Not criminally responsible",
+            "Tried as an adult"
+          ],
+          "answer": 2,
+          "explanation": "Under seven, there is no criminal responsibility. Under twelve, a child is not responsible unless capacity to know is proved."
+        },
+        {
+          "question": "The word democracy comes from the Greek “demos” and “kratos”, meaning:",
+          "options": [
+            "Law and order",
+            "Wealth and nations",
+            "Peace and justice",
+            "Common people and power"
+          ],
+          "answer": 3,
+          "explanation": "Demos means the common people and kratos means power, so democracy is rule by the people. The term dates from Greece in the 5th century BC."
+        }
+      ]
+    },
+    {
+      "id": "QS027",
+      "title": "Chapter 7 — Concept of Economics and Development",
+      "questions": [
+        {
+          "question": "Economics became a distinct discipline with the publication of:",
+          "options": [
+            "Montesquieu's Spirit of the Laws",
+            "Marshall's Principles",
+            "Adam Smith's Wealth of Nations (1776)",
+            "Kuznets's study of growth"
+          ],
+          "answer": 2,
+          "explanation": "Economics grew out of moral philosophy, law and religion, and became a distinct discipline with Adam Smith's Wealth of Nations in 1776."
+        },
+        {
+          "question": "The consensus subject matter, or basic problem, of economics is:",
+          "options": [
+            "Scarcity",
+            "Abundance",
+            "Inflation",
+            "Taxation"
+          ],
+          "answer": 0,
+          "explanation": "Wants are unlimited but resources are limited. This scarcity forces choice, and choice brings opportunity cost."
+        },
+        {
+          "question": "Opportunity cost is:",
+          "options": [
+            "The value of the next best alternative forgone",
+            "The money price of a good",
+            "The total cost of production",
+            "The profit from a sale"
+          ],
+          "answer": 0,
+          "explanation": "Opportunity cost is what you give up: the next best alternative not chosen, for example the schools forgone when government builds roads."
+        },
+        {
+          "question": "A list of wants ranked from the most to the least pressing is called a:",
+          "options": [
+            "Demand curve",
+            "Scale of preference",
+            "Budget deficit",
+            "Production possibility"
+          ],
+          "answer": 1,
+          "explanation": "A scale of preference ranks wants by urgency, so that limited means satisfy the most pressing wants first."
+        },
+        {
+          "question": "The most widely accepted definition of economics, describing human behaviour as a relationship between ends and scarce means which have alternative uses, is by:",
+          "options": [
+            "Adam Smith",
+            "J.S. Mill",
+            "Alfred Marshall",
+            "Lionel Robbins"
+          ],
+          "answer": 3,
+          "explanation": "Lionel Robbins gave this definition, built on scarcity and choice. Smith spoke of the wealth of nations, Mill of production and distribution of wealth, and Marshall of the ordinary business of life."
+        },
+        {
+          "question": "Who defined economics as “the study of mankind in the ordinary business of life”?",
+          "options": [
+            "Lionel Robbins",
+            "Alfred Marshall",
+            "Adam Smith",
+            "J.S. Mill"
+          ],
+          "answer": 1,
+          "explanation": "That welfare-oriented definition is Alfred Marshall's."
+        },
+        {
+          "question": "J.S. Mill defined economics as:",
+          "options": [
+            "The study of mankind in the ordinary business of life",
+            "An inquiry into the nature and causes of the wealth of nations",
+            "The study of human relations",
+            "The practical science of the production and distribution of wealth"
+          ],
+          "answer": 3,
+          "explanation": "Mill's definition centres on wealth: its production and distribution. The second option is Marshall's and the third is Smith's."
+        },
+        {
+          "question": "The law of demand states that, other things being equal:",
+          "options": [
+            "Higher prices increase quantity demanded",
+            "Price has no effect on demand",
+            "Price and quantity demanded are inversely related",
+            "Supply always equals demand"
+          ],
+          "answer": 2,
+          "explanation": "When price rises, quantity demanded falls, and when price falls, quantity demanded rises. This is an inverse relationship."
+        },
+        {
+          "question": "A change in a good's own price causes:",
+          "options": [
+            "A shift of the demand curve",
+            "A change in income",
+            "A change in tastes",
+            "A movement along the demand curve"
+          ],
+          "answer": 3,
+          "explanation": "Own-price changes move along the existing curve. Changes in income, tastes, taxes or the prices of related goods shift the whole curve."
+        },
+        {
+          "question": "Positive economics deals with:",
+          "options": [
+            "“What is”: statements that can be tested as true or false",
+            "“What ought to be”: value judgements",
+            "Only government policy",
+            "Religious economics"
+          ],
+          "answer": 0,
+          "explanation": "Positive economics describes what is and can be tested against data. Normative economics deals with what ought to be and rests on value judgements."
+        },
+        {
+          "question": "The statement “Government ought to reduce income inequality” is an example of:",
+          "options": [
+            "Normative economics",
+            "Positive economics",
+            "Microeconomics only",
+            "A model"
+          ],
+          "answer": 0,
+          "explanation": "The word “ought” signals a value judgement, which is the mark of normative economics."
+        },
+        {
+          "question": "Among the three economic agents, households:",
+          "options": [
+            "Produce goods and aim to maximise profit",
+            "Set rules and laws",
+            "Own the factors of production and aim to maximise utility",
+            "Print money"
+          ],
+          "answer": 2,
+          "explanation": "Households consume, own the factors of production and maximise utility. Firms produce and maximise profit, and government sets rules and redistributes."
+        },
+        {
+          "question": "Which of these is NOT one of the four factors of production?",
+          "options": [
+            "Land",
+            "Labour",
+            "Government",
+            "Entrepreneurship"
+          ],
+          "answer": 2,
+          "explanation": "The four factors are land, labour, capital and entrepreneurship. Government is an economic agent, not a factor of production."
+        },
+        {
+          "question": "Allocative efficiency means:",
+          "options": [
+            "Maximum output from inputs with no waste",
+            "Prices are fixed by government",
+            "All resources are left unused",
+            "Resources are used to produce the goods of highest value"
+          ],
+          "answer": 3,
+          "explanation": "Allocative efficiency concerns producing the right goods, those of highest value. Productive efficiency concerns producing maximum output without waste."
+        },
+        {
+          "question": "Macroeconomics studies:",
+          "options": [
+            "A single household's budget",
+            "One firm's pricing",
+            "One market in isolation",
+            "The economy as a whole: total output, price level, inflation and growth"
+          ],
+          "answer": 3,
+          "explanation": "Macroeconomics looks at aggregates, including the business cycle. Microeconomics looks at individuals, households, firms and single markets."
+        },
+        {
+          "question": "In a socialist (command) economy:",
+          "options": [
+            "The price mechanism allocates all resources",
+            "The state owns the means of production and a central planning authority replaces the price mechanism",
+            "Private enterprise is unlimited",
+            "There is no government"
+          ],
+          "answer": 1,
+          "explanation": "Socialism replaces the market with central planning; the defunct USSR is the example. The price mechanism is the hallmark of capitalism."
+        },
+        {
+          "question": "Nigeria and Ghana are examples of which economic system?",
+          "options": [
+            "Mixed economy",
+            "Pure capitalist economy",
+            "Communist economy",
+            "Command economy"
+          ],
+          "answer": 0,
+          "explanation": "Most countries, especially developing ones like Nigeria and Ghana, run mixed economies, where both the market and the state operate and government corrects market failure."
+        },
+        {
+          "question": "GNP is equal to:",
+          "options": [
+            "GDP minus taxes",
+            "Exports minus imports",
+            "GDP plus net factor income from abroad",
+            "Population times income"
+          ],
+          "answer": 2,
+          "explanation": "GNP counts what a country's residents produce at home and abroad, so it equals GDP plus net factor income from abroad."
+        },
+        {
+          "question": "Todaro (2015) defines economic growth as:",
+          "options": [
+            "The reduction of poverty, inequality and unemployment",
+            "A rise in prices",
+            "A steady process by which the productive capacity of the economy is increased over time to bring about rising levels of national income",
+            "A fall in population"
+          ],
+          "answer": 2,
+          "explanation": "Growth is about rising productive capacity and national income. Development is broader and includes reducing poverty, inequality and unemployment."
+        },
+        {
+          "question": "Which of these is NOT a component of the UNDP's Human Development Index?",
+          "options": [
+            "Life expectancy at birth",
+            "Educational attainment",
+            "Standard of living (per capita income)",
+            "Inflation rate"
+          ],
+          "answer": 3,
+          "explanation": "The HDI combines life expectancy, educational attainment and standard of living. Inflation is not part of it."
+        },
+        {
+          "question": "The traditional view saw economic development as a country's capacity to sustain annual growth of:",
+          "options": [
+            "5% or more",
+            "1% or less",
+            "50% or more",
+            "Exactly 2%"
+          ],
+          "answer": 0,
+          "explanation": "The old view equated development with sustained annual GNP growth of 5% or more. It was later redefined around reducing poverty, inequality and unemployment."
+        },
+        {
+          "question": "In the dependency burden of developing countries, the labour force is the population aged:",
+          "options": [
+            "0–14",
+            "15–64",
+            "65 and above",
+            "18–30"
+          ],
+          "answer": 1,
+          "explanation": "People aged 15–64 form the labour force. Children under 15 and the elderly over 64 are dependants."
+        },
+        {
+          "question": "The Millennium Development Goals (MDGs) had how many goals, with what target year?",
+          "options": [
+            "17 goals, 2030",
+            "8 goals, 2015",
+            "10 goals, 2020",
+            "5 goals, 2010"
+          ],
+          "answer": 1,
+          "explanation": "The MDGs came from the UN Millennium Summit (September 2000): 8 goals targeted for 2015."
+        },
+        {
+          "question": "The Sustainable Development Goals (SDGs) consist of:",
+          "options": [
+            "17 goals and 169 targets, to be achieved by 2030",
+            "8 goals and 21 targets, by 2015",
+            "12 goals and 100 targets, by 2025",
+            "17 goals and 19 targets, by 2020"
+          ],
+          "answer": 0,
+          "explanation": "The SDGs (“Transforming our World”) have 17 goals and 169 targets for 2030, adopted by 193 UN member states."
+        },
+        {
+          "question": "Which SDG is described as addressing “the single biggest threat to development”?",
+          "options": [
+            "Goal 1 — No poverty",
+            "Goal 13 — Climate action",
+            "Goal 4 — Quality education",
+            "Goal 17 — Partnerships"
+          ],
+          "answer": 1,
+          "explanation": "Goal 13, climate action, is described as tackling the single biggest threat to development. Goal 17 has the most targets (19)."
+        }
+      ]
+    },
+    {
+      "id": "QS028",
+      "title": "Chapter 8 — Growth and Development of the Nigerian Economy",
+      "questions": [
+        {
+          "question": "Simon Kuznets (1971) defined economic growth as:",
+          "options": [
+            "A fall in the general price level",
+            "The reduction of poverty alone",
+            "An increase in government spending",
+            "A long-term rise in capacity to supply increasingly diverse economic goods, based on advancing technology"
+          ],
+          "answer": 3,
+          "explanation": "Kuznets defined growth as a long-term rise in capacity to supply diverse goods, based on advancing technology and the institutional and ideological adjustments it demands."
+        },
+        {
+          "question": "Nigeria's highest average real GDP growth rate, 12.6%, was recorded in:",
+          "options": [
+            "2001–05",
+            "1976–80",
+            "1981–85",
+            "2011–15"
+          ],
+          "answer": 0,
+          "explanation": "2001–05 saw the highest average real GDP growth (12.6%). The lowest, −1%, came in 1981–85."
+        },
+        {
+          "question": "The −1% real GDP growth of 1981–85 was mainly due to:",
+          "options": [
+            "The civil war",
+            "Austerity after the oil glut",
+            "The oil boom",
+            "Debt relief"
+          ],
+          "answer": 1,
+          "explanation": "The early-1980s oil glut caused a crisis, and the austerity that followed produced the lowest growth period."
+        },
+        {
+          "question": "Agriculture's all-time low growth of −1.5% in 1976–80 is attributed to:",
+          "options": [
+            "Dutch disease",
+            "The Green Revolution",
+            "SAP",
+            "Debt relief"
+          ],
+          "answer": 0,
+          "explanation": "The oil boom pulled incentives away from farming. This is Dutch disease, where a booming resource sector crowds out other sectors."
+        },
+        {
+          "question": "Inflation in Nigeria peaked at 42% during:",
+          "options": [
+            "1976–80",
+            "2001–05",
+            "2011–15",
+            "1991–95"
+          ],
+          "answer": 3,
+          "explanation": "Inflation peaked at 42% in 1991–95 before falling to a single-digit 9.72% in 2011–15."
+        },
+        {
+          "question": "Over half of Nigeria's external debt (about 32 billion US dollars in 2000–04) was written off under the:",
+          "options": [
+            "SAP",
+            "NEEDS",
+            "HIPC (Heavily Indebted Poor Countries) initiative",
+            "Operation Feed the Nation"
+          ],
+          "answer": 2,
+          "explanation": "The HIPC debt relief cut Nigeria's debt to about 6.6 billion US dollars in 2005–08."
+        },
+        {
+          "question": "The naira was stronger than the US dollar until:",
+          "options": [
+            "1960",
+            "1999",
+            "2015",
+            "1985"
+          ],
+          "answer": 3,
+          "explanation": "The naira was stronger than the dollar until 1985. Under SAP in the late 1980s it fell to about ₦4.5/$1, and it was about ₦192.44/$1 by end-2015."
+        },
+        {
+          "question": "Agriculture in Nigeria employs about what share of the labour force?",
+          "options": [
+            "15%",
+            "35%",
+            "90%",
+            "65%"
+          ],
+          "answer": 3,
+          "explanation": "Agriculture employs about 65% of the labour force and is closely tied to the rural sector."
+        },
+        {
+          "question": "Operation Feed the Nation was launched in:",
+          "options": [
+            "1976",
+            "1980",
+            "1986",
+            "1999"
+          ],
+          "answer": 0,
+          "explanation": "Operation Feed the Nation began in 1976. The Green Revolution followed in 1980."
+        },
+        {
+          "question": "What is the correct order of names of Nigeria's electricity authority?",
+          "options": [
+            "NEPA → ECN → PHCN",
+            "PHCN → NEPA → ECN",
+            "ECN → PHCN → NEPA",
+            "ECN → NEPA → PHCN"
+          ],
+          "answer": 3,
+          "explanation": "The Electricity Corporation of Nigeria (ECN) became the National Electric Power Authority (NEPA), then the Power Holding Company of Nigeria (PHCN), which was later unbundled for privatisation."
+        },
+        {
+          "question": "Which of these is NOT the location of a government-owned refinery in Nigeria?",
+          "options": [
+            "Warri",
+            "Ajaokuta",
+            "Kaduna",
+            "Port Harcourt"
+          ],
+          "answer": 1,
+          "explanation": "The four refineries are at Warri, Kaduna and two in Port Harcourt. Ajaokuta is a steel plant."
+        },
+        {
+          "question": "Which of these is one of Nigeria's three inland rolling mills?",
+          "options": [
+            "Aladja",
+            "Itakpe",
+            "Osogbo",
+            "Warri"
+          ],
+          "answer": 2,
+          "explanation": "The inland rolling mills are at Osogbo, Jos and Katsina. Aladja, Itakpe and Ajaokuta are the steel plants."
+        },
+        {
+          "question": "Which projects belong to the First National Development Plan (1962–68)?",
+          "options": [
+            "The Udoji awards and indigenisation decree",
+            "Port Harcourt refinery, Kainji Dam and the Nigerian Security Printing and Minting",
+            "NEEDS, SEEDS and LEEDS",
+            "N-Power and the NHIS rollout"
+          ],
+          "answer": 1,
+          "explanation": "The First NDP delivered the Port Harcourt refinery, Kainji Dam and the Security Printing and Minting. It suffered from insufficient funds (50% was expected from foreign aid) and the civil war."
+        },
+        {
+          "question": "The naira replaced the British pound and the indigenisation decree came under:",
+          "options": [
+            "The Second National Development Plan (1970–74)",
+            "The First National Development Plan",
+            "SAP",
+            "The Seven-Point Agenda"
+          ],
+          "answer": 0,
+          "explanation": "The Second NDP was the post-war plan of the first oil windfall. It brought the naira, the indigenisation decree, River Basin Authorities, ITF, SON and NNOC."
+        },
+        {
+          "question": "External borrowing, the start of Nigeria's rising debt, began under:",
+          "options": [
+            "The First National Development Plan",
+            "The Third National Development Plan (1975–80)",
+            "NEEDS",
+            "The Transformation Agenda"
+          ],
+          "answer": 1,
+          "explanation": "The Third NDP was drafted in oil-boom affluence and overstated government capacity. A negative oil shock then led to external borrowing."
+        },
+        {
+          "question": "The Structural Adjustment Programme (SAP) was introduced in 1986 and lasted until:",
+          "options": [
+            "1993",
+            "1988",
+            "1999",
+            "2004"
+          ],
+          "answer": 0,
+          "explanation": "SAP was planned for two years (1986–88) but lasted until 1993."
+        },
+        {
+          "question": "The lead policies of SAP were:",
+          "options": [
+            "Fixed prices and import bans",
+            "Higher subsidies and nationalisation",
+            "A realistic exchange rate and trade liberalisation",
+            "Free education and healthcare"
+          ],
+          "answer": 2,
+          "explanation": "SAP's lead policies were a realistic exchange rate and trade liberalisation, with deregulation, subsidy removal and privatisation."
+        },
+        {
+          "question": "In the early 1990s Nigeria shifted from 5-year medium-term plans to:",
+          "options": [
+            "10-year perspective plans",
+            "Annual budgets only",
+            "3-year rolling plans",
+            "No planning at all"
+          ],
+          "answer": 2,
+          "explanation": "Three-year rolling plans replaced the 5-year plans. The first (1990–92) failed through deficit financing and uncompleted projects."
+        },
+        {
+          "question": "The National Planning Commission was established by:",
+          "options": [
+            "Decree 37 of 1976",
+            "Decree 23 of 1992",
+            "Decree 50 of 1977",
+            "Decree 12 of 1992"
+          ],
+          "answer": 3,
+          "explanation": "Decree 12 of 1992 created the NPC, which ran the 1993–96 rolling plan. Decree 23 of 1992 created OMPADEC."
+        },
+        {
+          "question": "NEEDS had counterparts at the state and local government levels called:",
+          "options": [
+            "SAP and MAMSER",
+            "SEEDS and LEEDS",
+            "WAI and NOA",
+            "NDDC and OMPADEC"
+          ],
+          "answer": 1,
+          "explanation": "NEEDS was national, SEEDS was for states and LEEDS for local governments. It was bottom-up, participatory and keyed to the MDGs."
+        },
+        {
+          "question": "The Seven-Point Agenda was released on 1 August 2007 by:",
+          "options": [
+            "President Umaru Musa Yar'Adua",
+            "President Goodluck Jonathan",
+            "President Olusegun Obasanjo",
+            "President Muhammadu Buhari"
+          ],
+          "answer": 0,
+          "explanation": "Yar'Adua's agenda covered power and energy, food security, wealth creation, transport, land reform, security and education. It failed mainly because of its short lifespan."
+        },
+        {
+          "question": "The Transformation Agenda (2011–2015) aimed to address the lack of the “3Cs”, namely:",
+          "options": [
+            "Capital, credit and consumption",
+            "Culture, conflict and change",
+            "Continuity, consistency and commitment",
+            "Cost, cash and control"
+          ],
+          "answer": 2,
+          "explanation": "President Jonathan's Transformation Agenda targeted continuity, consistency and commitment in planning."
+        },
+        {
+          "question": "The Economic Recovery and Growth Plan (ERGP) covered the period:",
+          "options": [
+            "2004–2007",
+            "2011–2015",
+            "2017–2020",
+            "1990–1992"
+          ],
+          "answer": 2,
+          "explanation": "The ERGP (2017–2020, under Buhari and Osinbajo) aimed to restore growth after the recession, invest in people and build a globally competitive economy."
+        },
+        {
+          "question": "According to the NBS (2012), Nigeria's poor population rose from about 28% in 1980 to:",
+          "options": [
+            "69% in 2010",
+            "35% in 2010",
+            "50% in 2010",
+            "90% in 2010"
+          ],
+          "answer": 0,
+          "explanation": "The poor rose from about 28% (1980) to 69% (2010), roughly a 150% increase. In 2010, 38.7% were extremely poor."
+        },
+        {
+          "question": "Under the absolute poverty (Food Energy Intake) measure, the book counts as poor those who cannot afford:",
+          "options": [
+            "100% of 2,000 calories per day",
+            "40% of 3,000 calories per day",
+            "10% of 1,000 calories per day",
+            "3,000 calories per week"
+          ],
+          "answer": 1,
+          "explanation": "The Food Energy Intake measure in the book sets the poverty line at the inability to afford 40% of 3,000 calories per day. The World Bank PPP line is under one US dollar per day."
+        }
+      ]
+    },
+    {
+      "id": "QS029",
+      "title": "Chapter 10 — Psychobiology and Measurement in Psychology",
+      "questions": [
+        {
+          "question": "According to the chapter, human behaviour comes from:",
+          "options": [
+            "The heart",
+            "The liver",
+            "The skin",
+            "The brain"
+          ],
+          "answer": 3,
+          "explanation": "Experience, behaviour and personal identity are products of the brain: “human behaviour comes from the brain”."
+        },
+        {
+          "question": "An ontogenetic explanation of behaviour describes:",
+          "options": [
+            "Why a behaviour evolved",
+            "The evolutionary history of a species",
+            "How a structure or behaviour develops",
+            "Behaviour at the chemical level"
+          ],
+          "answer": 2,
+          "explanation": "Ontogenetic explanations trace development from the genes plus environmental influence. Functional explanations ask why a behaviour evolved, and physiological ones work at the cellular and chemical level."
+        },
+        {
+          "question": "Relating a behaviour to the evolutionary history of a species is which type of psychobiological explanation?",
+          "options": [
+            "Physiological",
+            "Ontogenetic",
+            "Functional",
+            "Evolutionary"
+          ],
+          "answer": 3,
+          "explanation": "Evolutionary explanations look at a species' history. Functional explanations ask what the behaviour is for."
+        },
+        {
+          "question": "The body's two communication systems are:",
+          "options": [
+            "The digestive and respiratory systems",
+            "The endocrine and nervous systems",
+            "The skeletal and muscular systems",
+            "The urinary and reproductive systems"
+          ],
+          "answer": 1,
+          "explanation": "The endocrine system (hormones) and the nervous system (neurons) carry the body's messages."
+        },
+        {
+          "question": "Which gland is called the “master gland”?",
+          "options": [
+            "The thyroid gland",
+            "The pituitary gland",
+            "The pancreas",
+            "The thymus"
+          ],
+          "answer": 1,
+          "explanation": "The pituitary is the master gland. Its anterior part controls the thyroid, adrenal cortex and gonads."
+        },
+        {
+          "question": "Under-secretion of insulin by the pancreas leads to:",
+          "options": [
+            "Diabetes",
+            "Pituitary giantism",
+            "Hyperactivity",
+            "Poor bone formation"
+          ],
+          "answer": 0,
+          "explanation": "Insulin lowers blood sugar, so too little insulin causes diabetes. Over-secretion leads to lethargy."
+        },
+        {
+          "question": "Epinephrine and norepinephrine from the adrenal medulla:",
+          "options": [
+            "Control sodium metabolism",
+            "Lower blood sugar",
+            "Prepare the body for stress or emergency",
+            "Produce female sex characteristics"
+          ],
+          "answer": 2,
+          "explanation": "These hormones speed the heartbeat, raise blood pressure and constrict gut blood vessels, readying the body for stress."
+        },
+        {
+          "question": "Oxytocin from the posterior pituitary is responsible for:",
+          "options": [
+            "Raising metabolic rate",
+            "Uterine contraction in childbirth and milk release",
+            "Raising blood calcium",
+            "Male secondary sexual characteristics"
+          ],
+          "answer": 1,
+          "explanation": "Oxytocin triggers uterine contractions and milk release. Thyroxine raises metabolic rate and parathormone raises blood calcium."
+        },
+        {
+          "question": "The Central Nervous System (CNS) consists of:",
+          "options": [
+            "The brain and spinal cord",
+            "All nerves outside the brain and spinal cord",
+            "The heart and lungs",
+            "The endocrine glands"
+          ],
+          "answer": 0,
+          "explanation": "The CNS is the brain plus spinal cord. The Peripheral Nervous System is everything outside them."
+        },
+        {
+          "question": "The medulla, pons and cerebellum make up the:",
+          "options": [
+            "Forebrain",
+            "Midbrain",
+            "Hindbrain",
+            "Cerebral cortex"
+          ],
+          "answer": 2,
+          "explanation": "The hindbrain (medulla, pons, cerebellum) handles sleeping and waking, coordination of movement and vital reflexes such as heart rate and breathing."
+        },
+        {
+          "question": "The substantia nigra, located in the midbrain, is linked to:",
+          "options": [
+            "Parkinson's disease",
+            "Diabetes",
+            "Pituitary dwarfism",
+            "Hyperactivity"
+          ],
+          "answer": 0,
+          "explanation": "The substantia nigra, part of the midbrain, is associated with Parkinson's disease."
+        },
+        {
+          "question": "Which lobe of the cortex is responsible for vision?",
+          "options": [
+            "Frontal lobe",
+            "Parietal lobe",
+            "Occipital lobe",
+            "Temporal lobe"
+          ],
+          "answer": 2,
+          "explanation": "The occipital lobe at the very back processes vision. The temporal lobe handles hearing and speech, and the parietal lobe body sensations."
+        },
+        {
+          "question": "Injury to which lobe can cause personality change and paralysis?",
+          "options": [
+            "Frontal lobe",
+            "Occipital lobe",
+            "Temporal lobe",
+            "Parietal lobe"
+          ],
+          "answer": 0,
+          "explanation": "The frontal lobe governs social-emotional behaviour and personality and the planning and initiating of voluntary movement, so injury there affects both."
+        },
+        {
+          "question": "The left hemisphere of the brain is specialised for:",
+          "options": [
+            "Non-verbal, spatial and holistic functions",
+            "Vision only",
+            "Verbal, mathematical and analytic functions",
+            "Hormone release"
+          ],
+          "answer": 2,
+          "explanation": "The left hemisphere is verbal, mathematical and analytic. The right is non-verbal, spatial and holistic."
+        },
+        {
+          "question": "Which part of a neuron receives signals from other neurons, muscles and sense organs?",
+          "options": [
+            "Dendrites",
+            "Axon",
+            "Terminal buttons",
+            "Synapse"
+          ],
+          "answer": 0,
+          "explanation": "Dendrites receive incoming signals and carry them to the cell body. The axon carries signals away."
+        },
+        {
+          "question": "The tiny gap between a terminal button and the next cell is the:",
+          "options": [
+            "Axon",
+            "Nucleus",
+            "Dendrite",
+            "Synapse"
+          ],
+          "answer": 3,
+          "explanation": "Terminal buttons don't touch the next cell. They release neurotransmitters into the gap, called the synapse."
+        },
+        {
+          "question": "What is the correct order of a nerve signal's pathway?",
+          "options": [
+            "Axon → dendrites → synapse → cell body",
+            "Dendrites → cell body → axon → terminal buttons → neurotransmitter → next cell",
+            "Cell body → dendrites → terminal buttons → axon",
+            "Terminal buttons → axon → cell body → dendrites"
+          ],
+          "answer": 1,
+          "explanation": "Signals enter at the dendrites, pass the cell body, travel the axon to the terminal buttons, and cross via neurotransmitters to the next cell."
+        },
+        {
+          "question": "Which of these is a function of glial cells?",
+          "options": [
+            "Producing action potentials",
+            "Carrying signals to the cell body",
+            "Releasing insulin",
+            "Insulating neurons against interfering signals"
+          ],
+          "answer": 3,
+          "explanation": "Glial cells lack action potentials. They provide scaffolding, insulation and growth-influencing chemicals. Carrying signals to the cell body is the dendrites' job."
+        },
+        {
+          "question": "Thorndike and Hagen (1986) defined measurement as:",
+          "options": [
+            "The study of human relations",
+            "A list of wants ranked by urgency",
+            "The study of the brain",
+            "The process of quantifying observations of a quality or attribute of a thing or person"
+          ],
+          "answer": 3,
+          "explanation": "Measurement is quantifying observations or descriptions of a quality or attribute."
+        },
+        {
+          "question": "In a study titled “Effect of price on consumer buying behaviour”, price is the:",
+          "options": [
+            "Independent variable",
+            "Dependent variable",
+            "Control group",
+            "Correlation coefficient"
+          ],
+          "answer": 0,
+          "explanation": "Price is manipulated, so it is the cause or independent variable. Quantity purchased changes with it, so it is the dependent variable."
+        },
+        {
+          "question": "Which scale of measurement has an absolute (true) zero?",
+          "options": [
+            "Nominal scale",
+            "Ordinal scale",
+            "Ratio scale",
+            "Interval scale"
+          ],
+          "answer": 2,
+          "explanation": "The ratio scale has equal intervals plus a true zero, as with distance and weight. The interval scale has equal distances but no true zero."
+        },
+        {
+          "question": "Which scale of measurement is the lowest form, where numbers only serve as names or labels?",
+          "options": [
+            "Ratio scale",
+            "Interval scale",
+            "Ordinal scale",
+            "Nominal scale"
+          ],
+          "answer": 3,
+          "explanation": "Nominal measurement only labels categories, for example sex, or SES coded 1, 2, 3. The numbers have no quantitative meaning."
+        },
+        {
+          "question": "Paul Broca's case study of the patient “Tan” located the speech production centre in the:",
+          "options": [
+            "Occipital lobe of the right hemisphere",
+            "Frontal lobe of the left hemisphere",
+            "Cerebellum",
+            "Spinal cord"
+          ],
+          "answer": 1,
+          "explanation": "Broca hypothesised that the speech centre lay in the left frontal lobe, and the autopsy confirmed it. This is the classic example of the case-study method."
+        },
+        {
+          "question": "The finding that more TV time goes with lower achievement test scores is an example of a:",
+          "options": [
+            "Negative correlation",
+            "Positive correlation",
+            "Controlled experiment",
+            "Nominal scale"
+          ],
+          "answer": 0,
+          "explanation": "As one variable rises the other falls, which is a negative correlation (Keith, Reimers et al. 1986). Remember that correlation does not prove causation."
+        },
+        {
+          "question": "A psychological test that measures what it is intended to measure is said to be:",
+          "options": [
+            "Reliable",
+            "Valid",
+            "Standardised",
+            "Nominal"
+          ],
+          "answer": 1,
+          "explanation": "Validity means measuring what the test is meant to measure. Reliability is consistency over repeated use, and standardisation is uniform administration with norms."
+        }
+      ]
+    },
+    {
+      "id": "QS030",
+      "title": "Chapter 12 — Natural Resources and Sustainable Development",
+      "questions": [
+        {
+          "question": "A resource is best defined as:",
+          "options": [
+            "Only money in the bank",
+            "Only minerals under the ground",
+            "Anything produced in a factory",
+            "Any part of the environment with the potential to create wealth or satisfy human needs"
+          ],
+          "answer": 3,
+          "explanation": "A resource is any part of the environment (land, water, air, minerals, forest, wildlife) that can create wealth or satisfy human needs: “the stock that can be drawn from nature for supporting life”."
+        },
+        {
+          "question": "The idea of sustainable development came mostly from the:",
+          "options": [
+            "1919 League of Nations Covenant",
+            "1776 Wealth of Nations",
+            "2000 Millennium Summit",
+            "1987 Brundtland Report"
+          ],
+          "answer": 3,
+          "explanation": "The Brundtland Report, Our Common Future (1987), linked resource use, environment, poverty and fairness between generations."
+        },
+        {
+          "question": "Non-renewable resources such as coal and petroleum are also called:",
+          "options": [
+            "Stock resources",
+            "Flow resources",
+            "Biotic resources",
+            "Diffuse resources"
+          ],
+          "answer": 0,
+          "explanation": "Non-renewable resources are finite stocks. Renewable resources are flows that replenish quickly."
+        },
+        {
+          "question": "Forests, plants and animals are classified, by origin, as:",
+          "options": [
+            "Abiotic resources",
+            "Point resources",
+            "Biotic resources",
+            "Stock resources"
+          ],
+          "answer": 2,
+          "explanation": "Biotic resources are living and come from the biosphere. Abiotic resources are non-living: air, land, water and minerals."
+        },
+        {
+          "question": "Resources that are highly concentrated in a small area, such as minerals, are called:",
+          "options": [
+            "Point resources",
+            "Diffuse resources",
+            "Flow resources",
+            "Potential resources"
+          ],
+          "answer": 0,
+          "explanation": "Point resources are concentrated, like minerals. Diffuse resources spread over large areas, like forests."
+        },
+        {
+          "question": "Petroleum thought to exist in the Lake Chad basin but not yet developed is an example of a:",
+          "options": [
+            "Actual resource",
+            "Potential resource",
+            "Reserve",
+            "Flow resource"
+          ],
+          "answer": 1,
+          "explanation": "A potential resource is known to exist but is unused. Niger Delta oil and gas, which are surveyed and in use, are actual resources."
+        },
+        {
+          "question": "In de Zeeuw's (2001) classification, minerals are:",
+          "options": [
+            "Non-renewable but recyclable",
+            "Non-renewable and non-recyclable",
+            "Quickly renewable",
+            "Flow resources"
+          ],
+          "answer": 0,
+          "explanation": "Minerals can't be renewed but can be recycled. Fossil fuels are non-renewable and non-recyclable."
+        },
+        {
+          "question": "In de Zeeuw's classification, air, water and soil are “environmental renewable” resources because they:",
+          "options": [
+            "Can never be polluted",
+            "Are not depleted by use but can be degraded by pollution",
+            "Are finite stocks",
+            "Grow back like fish"
+          ],
+          "answer": 1,
+          "explanation": "These resources don't run out through use, but pollution can degrade them. Sunlight and wind are flow resources, which use does not reduce at all."
+        },
+        {
+          "question": "A socio-cultural or physical obstacle that hinders the use of a resource is called:",
+          "options": [
+            "Scarcity",
+            "Utility",
+            "Depletion",
+            "Resistance"
+          ],
+          "answer": 3,
+          "explanation": "Resistance includes culture, technology and physical barriers that stop a resource being used."
+        },
+        {
+          "question": "Which of these is NOT one of the eight elements that make up most of the earth's crust?",
+          "options": [
+            "Oxygen",
+            "Silicon",
+            "Carbon",
+            "Aluminium"
+          ],
+          "answer": 2,
+          "explanation": "The eight main crustal elements are oxygen, silicon, aluminium, iron, calcium, sodium, magnesium and potassium. Carbon is not among them."
+        },
+        {
+          "question": "Biogas is produced by anaerobic micro-organisms acting on waste in digesters, and is mainly:",
+          "options": [
+            "Oxygen",
+            "Uranium",
+            "Chlorine",
+            "Methane"
+          ],
+          "answer": 3,
+          "explanation": "Biogas is mainly methane, with carbon dioxide, nitrogen, hydrogen and oxygen."
+        },
+        {
+          "question": "Geothermal energy is:",
+          "options": [
+            "Heat from the earth's interior, used in volcanic areas",
+            "Energy from the sun",
+            "Energy from moving water",
+            "Energy from burning coal"
+          ],
+          "answer": 0,
+          "explanation": "Geothermal energy taps heat from inside the earth in volcanic areas, for example Iceland, New Zealand, Mexico and California."
+        },
+        {
+          "question": "Forests cover about what share of the world's land?",
+          "options": [
+            "5%",
+            "32%",
+            "70%",
+            "97%"
+          ],
+          "answer": 1,
+          "explanation": "Forests cover 32% of the world's land: about 2.5 billion ha of closed forest and 1.2 billion ha of open woodland and savannah."
+        },
+        {
+          "question": "Of the earth's total water, about what share is in the oceans?",
+          "options": [
+            "2%",
+            "1%",
+            "97%",
+            "70%"
+          ],
+          "answer": 2,
+          "explanation": "97% is in the oceans, 2% in polar ice and 1% elsewhere, mostly groundwater. Water covers over 70% of the earth's surface, a different figure."
+        },
+        {
+          "question": "Biodiversity increases:",
+          "options": [
+            "From the tropics towards the poles",
+            "From the poles towards the tropics",
+            "Only in deserts",
+            "Equally everywhere"
+          ],
+          "answer": 1,
+          "explanation": "Diversity rises towards the tropics. Tropical moist forests hold about 50% of the world's species, while North America and Europe hold only 10–15%."
+        },
+        {
+          "question": "Faniran and Ojo (1980) described soil as:",
+          "options": [
+            "Dead rock with no organic matter",
+            "A non-renewable fossil fuel",
+            "Water held in the ground",
+            "A living body formed by the interaction of certain forces and the work of certain processes"
+          ],
+          "answer": 3,
+          "explanation": "To the geographer, soil is a living body. It forms so slowly that, although renewable, it is effectively irreplaceable."
+        },
+        {
+          "question": "The major form of soil degradation is:",
+          "options": [
+            "Salinisation alone",
+            "Recycling",
+            "Accelerated erosion by water and wind",
+            "Reforestation"
+          ],
+          "answer": 2,
+          "explanation": "Accelerated erosion is the major form of soil degradation, followed by salinisation, pollution, nutrient loss and non-farm uses."
+        },
+        {
+          "question": "According to FAO (2015), world forest area between 1990 and 2015 fell from 4,128 million ha to:",
+          "options": [
+            "3,999 million ha",
+            "2,000 million ha",
+            "4,500 million ha",
+            "1,200 million ha"
+          ],
+          "answer": 0,
+          "explanation": "World forest fell from 4,128 to 3,999 million ha over 1990–2015, through timber harvest, agriculture, roads and firewood."
+        },
+        {
+          "question": "Which ecosystems are described as the most threatened?",
+          "options": [
+            "Freshwater ecosystems",
+            "Desert ecosystems",
+            "Polar ecosystems",
+            "Urban ecosystems"
+          ],
+          "answer": 0,
+          "explanation": "Freshwater ecosystems are the most threatened. Freshwater species fell 55% since 1970, compared with 25% for land species, and dams and barrages block fish migration."
+        },
+        {
+          "question": "The Brundtland Commission defined sustainable development as:",
+          "options": [
+            "Maximising present consumption at any cost",
+            "Stopping all economic growth",
+            "Meeting the needs of the present without compromising the ability of future generations to meet their own needs",
+            "Using only non-renewable resources"
+          ],
+          "answer": 2,
+          "explanation": "This is the classic definition from Our Common Future (1987)."
+        },
+        {
+          "question": "In business, the three pillars of sustainability are called the Triple Bottom Line:",
+          "options": [
+            "Price, product and place",
+            "Land, labour and capital",
+            "Growth, inflation and jobs",
+            "Profit, planet and people"
+          ],
+          "answer": 3,
+          "explanation": "The Triple Bottom Line covers the economic (profit), environmental (planet) and social (people) pillars."
+        },
+        {
+          "question": "Weak sustainability assumes that natural capital and man-made capital are:",
+          "options": [
+            "Complements that cannot replace each other",
+            "Substitutable",
+            "Both unlimited",
+            "Owned only by government"
+          ],
+          "answer": 1,
+          "explanation": "Weak sustainability treats the two as substitutes and links to the Environmental Kuznets Curve. Strong sustainability treats them as complements, so critical environmental levels must be kept."
+        },
+        {
+          "question": "The Environmental Kuznets Curve suggests that the environment:",
+          "options": [
+            "Always improves with growth",
+            "Always worsens with growth",
+            "Worsens in early growth, then improves past a turning point in per capita income",
+            "Is unaffected by income"
+          ],
+          "answer": 2,
+          "explanation": "Early growth damages the environment, but past a certain income level environmental quality improves."
+        },
+        {
+          "question": "The ecological footprint measures human consumption and waste in:",
+          "options": [
+            "Barrels of oil",
+            "Global hectares",
+            "Naira per capita",
+            "Calories per day"
+          ],
+          "answer": 1,
+          "explanation": "The ecological footprint expresses impact as the land area needed, in global hectares (Global Footprint Network 2010)."
+        },
+        {
+          "question": "Which of these is NOT given as an obstacle to sustainable development?",
+          "options": [
+            "Recycling of waste",
+            "Heavy reliance on fossil fuels",
+            "Population growth in less developed countries",
+            "Inadequate institutional frameworks"
+          ],
+          "answer": 0,
+          "explanation": "The three obstacles are reliance on fossil fuels, population growth in LDCs and weak institutions. Recycling helps sustainability rather than hindering it."
+        }
+      ]
+    },
+    {
+      "id": "QS031",
+      "title": "Chapter 13 — Peace and Conflict Studies",
+      "questions": [
+        {
+          "question": "Peace research originated in the moral reflections of Wilson, Clemenceau and Lloyd George on the costs of:",
+          "options": [
+            "World War I",
+            "World War II",
+            "The Cold War",
+            "The Nigerian Civil War"
+          ],
+          "answer": 0,
+          "explanation": "Robben and Ferrandiz (2007) trace peace research to reflections on World War I, where about 8 million soldiers died. This led to the League of Nations in 1919."
+        },
+        {
+          "question": "In the 1950s, peace research developed mainly in:",
+          "options": [
+            "African universities",
+            "Asian universities",
+            "Scandinavian universities",
+            "South American universities"
+          ],
+          "answer": 2,
+          "explanation": "Peace research grew in Scandinavian universities in the 1950s. Conflict studies grew in North America."
+        },
+        {
+          "question": "The Journal of Conflict Resolution was founded in:",
+          "options": [
+            "1919",
+            "1957",
+            "1959",
+            "1987"
+          ],
+          "answer": 1,
+          "explanation": "The Journal of Conflict Resolution dates from 1957. The Centre for Conflict Resolution at the University of Michigan followed in 1959."
+        },
+        {
+          "question": "The Centre for Conflict Resolution founded in 1959 was located at:",
+          "options": [
+            "The University of Ibadan",
+            "The University of Michigan",
+            "Oxford University",
+            "The University of Cape Town"
+          ],
+          "answer": 1,
+          "explanation": "The 1959 Centre for Conflict Resolution was at the University of Michigan, during the Cold War and nuclear arms race."
+        },
+        {
+          "question": "Lewis Coser (1956) defined conflict as:",
+          "options": [
+            "The struggle over values or claims to status, power and scarce resources, in which rivals aim to neutralise, injure or eliminate each other",
+            "The absence of war",
+            "The command of the sovereign",
+            "The study of human relations"
+          ],
+          "answer": 0,
+          "explanation": "Coser's definition stresses struggle over values, status, power and scarce resources."
+        },
+        {
+          "question": "Under Wallensteen's (2002) classification, anti-colonial struggles, secession and autonomy movements are examples of:",
+          "options": [
+            "Inter-state conflicts",
+            "Pseudo conflicts",
+            "Role conflicts",
+            "State-formation conflicts"
+          ],
+          "answer": 3,
+          "explanation": "State-formation conflicts, a variant of internal conflict, cover anti-colonial struggles, secession, autonomy, territorial disputes and battles for control of government."
+        },
+        {
+          "question": "The concept of “structural violence” is associated with:",
+          "options": [
+            "Edward Azar",
+            "Lewis Coser",
+            "John Dollard",
+            "Johan Galtung"
+          ],
+          "answer": 3,
+          "explanation": "Galtung's structural violence describes unequal social structures producing unequal access to resources."
+        },
+        {
+          "question": "Protracted Social Conflict (PSC), rooted in communal identity and unmet basic needs, is associated with:",
+          "options": [
+            "Edward Azar",
+            "Johan Galtung",
+            "Goodhand and Hulme",
+            "Woodrow Wilson"
+          ],
+          "answer": 0,
+          "explanation": "Edward Azar developed PSC theory. Goodhand and Hulme developed Complex Political Emergencies."
+        },
+        {
+          "question": "Complex Political Emergencies (CPE) were conceptualised by:",
+          "options": [
+            "Edward Azar",
+            "Lewis Coser",
+            "Peter Wallensteen",
+            "Jonathan Goodhand and David Hulme"
+          ],
+          "answer": 3,
+          "explanation": "Goodhand and Hulme describe CPEs as hybrid, politically rooted, protracted conflicts with social cleavages and predatory social formations."
+        },
+        {
+          "question": "Negative peace refers to:",
+          "options": [
+            "Justice and social stability through institutions",
+            "A complete end to all disagreement",
+            "The mere absence of war or violence",
+            "The presence of peacekeepers"
+          ],
+          "answer": 2,
+          "explanation": "Negative peace is simply non-war, a tense “yet-to-be-violent” situation. Positive peace adds justice and social stability."
+        },
+        {
+          "question": "Positive peace is:",
+          "options": [
+            "A political condition ensuring justice and social stability through formal and informal institutions",
+            "The absence of armies",
+            "A ceasefire only",
+            "Victory in war"
+          ],
+          "answer": 0,
+          "explanation": "Positive peace goes beyond the absence of violence to justice and stability built into institutions, practices and norms."
+        },
+        {
+          "question": "Peace enforcement differs from peacekeeping in that it:",
+          "options": [
+            "Never involves the military",
+            "Requires the consent of all parties",
+            "Is only carried out by NGOs",
+            "Uses military force, possibly without the consent of the warring parties"
+          ],
+          "answer": 3,
+          "explanation": "Peace enforcement uses force or its threat, under Chapter VII of the UN Charter (e.g. Korea 1950–53), and may proceed without the parties' consent."
+        },
+        {
+          "question": "The distinctive feature of peacekeeping operations is that they are:",
+          "options": [
+            "Conducted under a UN or regional organisation mandate",
+            "Carried out by a single country alone",
+            "Always secret",
+            "Conducted without any mandate"
+          ],
+          "answer": 0,
+          "explanation": "Peacekeeping operations are run under a UN or regional organisation mandate."
+        },
+        {
+          "question": "In mediation, the third party:",
+          "options": [
+            "Is impartial and has no authority to impose a decision",
+            "Gives a binding judgement like a judge",
+            "Represents one side",
+            "Always uses military force"
+          ],
+          "answer": 0,
+          "explanation": "A mediator facilitates negotiation but, unlike judges and arbitrators, cannot impose a decision."
+        },
+        {
+          "question": "Mediation that adds leverage, such as promised rewards or threatened punishment, is called:",
+          "options": [
+            "Pure mediation",
+            "Conciliation",
+            "Arbitration",
+            "Power mediation"
+          ],
+          "answer": 3,
+          "explanation": "Power mediation adds leverage. Pure mediation relies only on reasoning, persuasion, information control and suggestion."
+        },
+        {
+          "question": "How does conciliation differ from arbitration?",
+          "options": [
+            "Conciliation always involves the military",
+            "Conciliation produces a binding court order",
+            "The conciliation outcome is a voluntary compromise and is not binding",
+            "There is no difference"
+          ],
+          "answer": 2,
+          "explanation": "In conciliation the parties voluntarily agree to a compromise. An arbitrator's decision is binding."
+        },
+        {
+          "question": "Using good offices and mediation to resolve disputes before they erupt into armed conflict is called:",
+          "options": [
+            "Peace enforcement",
+            "Preventive diplomacy",
+            "Reconstruction",
+            "Post-conflict peace building"
+          ],
+          "answer": 1,
+          "explanation": "Preventive diplomacy acts before violence erupts and also contains the spread of conflict."
+        },
+        {
+          "question": "The systematic collection and analysis of information from crisis areas to anticipate escalation is called:",
+          "options": [
+            "Reconciliation",
+            "Capacity building",
+            "Early warning",
+            "Compromise"
+          ],
+          "answer": 2,
+          "explanation": "Early warning gathers and analyses information so decision makers can act before conflict escalates."
+        },
+        {
+          "question": "The Niger Delta provides about what share of Nigeria's national wealth?",
+          "options": [
+            "13%",
+            "80%",
+            "50%",
+            "30%"
+          ],
+          "answer": 1,
+          "explanation": "The Niger Delta provides about 80% of national wealth through oil. Grievances over poverty, pollution and neglect fuelled agitation for resource control."
+        },
+        {
+          "question": "Which of these is NOT one of the nine Niger Delta states?",
+          "options": [
+            "Bayelsa",
+            "Kogi",
+            "Ondo",
+            "Imo"
+          ],
+          "answer": 1,
+          "explanation": "The nine states are Abia, Akwa Ibom, Bayelsa, Cross River, Delta, Edo, Imo, Ondo and Rivers. Kogi is not one of them."
+        },
+        {
+          "question": "The frustration–aggression theory, used to explain Niger Delta militancy, was proposed by:",
+          "options": [
+            "Lewis Coser (1956)",
+            "John Dollard and associates (1938)",
+            "Edward Azar (1990)",
+            "Johan Galtung (1990)"
+          ],
+          "answer": 1,
+          "explanation": "Dollard and associates (1938) held that aggression presupposes frustration and frustration leads to aggression."
+        },
+        {
+          "question": "OMPADEC, which received 3% of Federation Account revenue, was established by:",
+          "options": [
+            "Decree 23 of 1992",
+            "Decree 37 of 1976",
+            "Decree 12 of 1992",
+            "The NDDC Act 1999"
+          ],
+          "answer": 0,
+          "explanation": "OMPADEC came under Babangida by Decree 23 of 1992. Decree 37 of 1976 created NDBDA, and the NDDC Act of 1999 created NDDC."
+        },
+        {
+          "question": "The 13% derivation principle is contained in:",
+          "options": [
+            "Section 36 of the 1999 Constitution",
+            "Decree 23 of 1992",
+            "Section 162(2) of the 1999 Constitution",
+            "The Willink Commission report"
+          ],
+          "answer": 2,
+          "explanation": "13% derivation is set out in S.162(2) of the 1999 Constitution, in force from 29 May 1999."
+        },
+        {
+          "question": "The 2009 amnesty for Niger Delta militants was declared on:",
+          "options": [
+            "1 October 1960, by Tafawa Balewa",
+            "29 May 1999, by Obasanjo",
+            "4 October 2004, by Asari Dokubo",
+            "25 June 2009, by President Yar'Adua"
+          ],
+          "answer": 3,
+          "explanation": "Yar'Adua declared the amnesty on 25 June 2009 with a 4 October 2009 deadline. About 15,000 militants accepted, bringing relative peace."
+        },
+        {
+          "question": "After Asari Dokubo's arrest in September 2005, the militants regrouped as:",
+          "options": [
+            "NDDC",
+            "OMPADEC",
+            "MEND (Movement for the Emancipation of the Niger Delta)",
+            "NDBDA"
+          ],
+          "answer": 2,
+          "explanation": "MEND then waged sabotage, oil theft, pipeline destruction and kidnapping. NDDC, OMPADEC and NDBDA are government development bodies."
+        }
+      ]
+    },
+    {
+      "id": "QS032",
+      "title": "Chapter 14 — ICT and the Social Sciences in the 21st Century",
+      "questions": [
+        {
+          "question": "The term ICT replaced “IT” in:",
+          "options": [
+            "The 1950s",
+            "The 1970s",
+            "2010",
+            "The early 1990s"
+          ],
+          "answer": 3,
+          "explanation": "ICT replaced IT in the early 1990s, recognising the computer's communicating abilities (Adesoki and Fatoki 2013)."
+        },
+        {
+          "question": "Clarke (2006) defined ICT as:",
+          "options": [
+            "The study of human relations",
+            "A whole range of applications, techniques and systems such as computers, communications equipment and the services associated with them",
+            "A list of wants ranked by urgency",
+            "Only the internet"
+          ],
+          "answer": 1,
+          "explanation": "Clarke's definition covers the whole range of applications, techniques and systems. It is the SAQ 1.2 answer."
+        },
+        {
+          "question": "Natural sciences seek to:",
+          "options": [
+            "Examine human relationships",
+            "Interpret religious texts",
+            "Explain and predict events in the natural environment",
+            "Study political parties"
+          ],
+          "answer": 2,
+          "explanation": "Natural sciences explain and predict events in the natural environment. Social sciences examine human relationships."
+        },
+        {
+          "question": "Which of these is a social science?",
+          "options": [
+            "Geology",
+            "Anthropology",
+            "Chemistry",
+            "Physics"
+          ],
+          "answer": 1,
+          "explanation": "The social sciences listed are anthropology, economics, political science, psychology and sociology. Geology, chemistry and physics are natural sciences."
+        },
+        {
+          "question": "“Learning through ICT” means:",
+          "options": [
+            "ICT is the subject being studied",
+            "ICT is integrated as an essential tool, so the course can no longer be taught without it",
+            "ICT is an optional extra",
+            "ICT is banned from class"
+          ],
+          "answer": 1,
+          "explanation": "Learning about ICT makes ICT the subject. Learning with ICT uses it as a medium. Learning through ICT makes it essential."
+        },
+        {
+          "question": "When ICT is a medium used to facilitate instruction, this is:",
+          "options": [
+            "Learning about ICT",
+            "Learning through ICT",
+            "Learning with ICT",
+            "Learning without ICT"
+          ],
+          "answer": 2,
+          "explanation": "Learning with ICT treats it as a medium for instruction, rather than the subject or an indispensable tool."
+        },
+        {
+          "question": "Alvin Toffler said the illiterate of the 21st century will be those who cannot:",
+          "options": [
+            "Read and write",
+            "Use a calculator",
+            "Speak two languages",
+            "Learn, unlearn and relearn"
+          ],
+          "answer": 3,
+          "explanation": "Toffler's point is that adaptability, not just reading and writing, defines literacy in the 21st century."
+        },
+        {
+          "question": "Which of these is NOT one of Haddad and Jurich's (2002) four basic issues in the use of ICT in education?",
+          "options": [
+            "Effectiveness",
+            "Popularity",
+            "Cost",
+            "Sustainability"
+          ],
+          "answer": 1,
+          "explanation": "The four issues are effectiveness, cost, equity and sustainability. Popularity is not one of them."
+        },
+        {
+          "question": "McCausland, Wache and Berk (1999) defined information literacy as:",
+          "options": [
+            "The ability to type quickly",
+            "Memorising facts from lectures",
+            "Owning a computer",
+            "The capacity to identify an issue and then identify, locate and evaluate relevant information to engage with it or solve a problem"
+          ],
+          "answer": 3,
+          "explanation": "Information literacy is finding and evaluating relevant information to tackle an issue. It has been added to the traditional generic skills."
+        },
+        {
+          "question": "Constructivism, today's dominant learning theory, holds that learning is:",
+          "options": [
+            "The passive transmission of facts",
+            "The active construction of knowledge in meaningful contexts",
+            "Memorisation of facts",
+            "Copying the teacher's notes"
+          ],
+          "answer": 1,
+          "explanation": "Constructivists (Duffy and Cunningham 1996) see learning as actively constructing knowledge, with social interaction playing a critical role."
+        },
+        {
+          "question": "Lebow (1993) described learning as the construction of meaning rather than:",
+          "options": [
+            "Social interaction",
+            "Problem solving",
+            "Memorisation of facts",
+            "Inquiry"
+          ],
+          "answer": 2,
+          "explanation": "Learning means building meaning, not memorising facts. This is the constructivist position."
+        },
+        {
+          "question": "ICT has driven a shift in curricula from content-centred teaching to:",
+          "options": [
+            "Competency/performance-based curricula",
+            "More lectures only",
+            "No curricula at all",
+            "Purely oral teaching"
+          ],
+          "answer": 0,
+          "explanation": "Curricula are shifting from content-centred lectures and tutorials to competency-based curricula (Stephenson 2001)."
+        },
+        {
+          "question": "In competency-based curricula, teachers act mainly as:",
+          "options": [
+            "Coaches and mentors",
+            "Content experts only",
+            "Examiners only",
+            "Administrators"
+          ],
+          "answer": 0,
+          "explanation": "Competency-based curricula need teachers as coaches and mentors in student-centred, inquiry-based settings."
+        },
+        {
+          "question": "Berner (2003) found that the greatest predictor of classroom computer use was:",
+          "options": [
+            "Belief in one's own computer competence",
+            "Age of the building",
+            "Number of students",
+            "Salary level"
+          ],
+          "answer": 0,
+          "explanation": "Among the seven variables Berner tested, a teacher's belief in their own computer competence predicted use most strongly."
+        },
+        {
+          "question": "According to the US Department of Education (2000), which teachers use computers more?",
+          "options": [
+            "Younger, less experienced teachers",
+            "Older, more experienced teachers",
+            "Only professors",
+            "Only administrators"
+          ],
+          "answer": 0,
+          "explanation": "Younger, less experienced teachers use computers more. In Nigeria, some older lecturers feel ICT is for the younger generation (Nwankwoala 2015)."
+        },
+        {
+          "question": "Makgato (2012) noted that some lecturers prefer face-to-face, teacher-centred teaching because it gives them:",
+          "options": [
+            "A sense of power",
+            "Higher pay",
+            "More free time",
+            "Better internet"
+          ],
+          "answer": 0,
+          "explanation": "Teacher-centred teaching gives a “sense of power”, one reason for negative attitudes to ICT."
+        },
+        {
+          "question": "Pelgrum (2001) argued that the success of educational innovations depends on:",
+          "options": [
+            "The size of the classroom",
+            "The colour of the computers",
+            "Teachers' skills and knowledge",
+            "Student fees"
+          ],
+          "answer": 2,
+          "explanation": "Without teachers' skills and knowledge, confidence drops and anxiety rises, so innovations fail."
+        },
+        {
+          "question": "Fung (2013) identified three phases of social science research affected by ICT:",
+          "options": [
+            "Planning, voting and counting",
+            "Teaching, testing and grading",
+            "Pre-data analysis, data analysis and post-data analysis",
+            "Input, output and feedback"
+          ],
+          "answer": 2,
+          "explanation": "ICT supports literature review (pre-data), analysis (data) and publication/plagiarism checks (post-data)."
+        },
+        {
+          "question": "Mendeley is software used to:",
+          "options": [
+            "Manage and track literature (references)",
+            "Transcribe recorded interviews",
+            "Run statistical tests",
+            "Detect plagiarism only"
+          ],
+          "answer": 0,
+          "explanation": "Mendeley manages references. Dragon NaturallySpeaking transcribes, and SPSS runs statistics."
+        },
+        {
+          "question": "Dragon NaturallySpeaking is used in research to:",
+          "options": [
+            "Manage references",
+            "Analyse quantitative data",
+            "Transcribe recorded interviews",
+            "Submit manuscripts"
+          ],
+          "answer": 2,
+          "explanation": "Dragon NaturallySpeaking converts recorded speech, for example interviews, into text."
+        },
+        {
+          "question": "SPSS (Statistical Package for the Social Sciences) is used for:",
+          "options": [
+            "Qualitative data analysis",
+            "Quantitative data analysis",
+            "Reference management",
+            "Video conferencing"
+          ],
+          "answer": 1,
+          "explanation": "SPSS handles quantitative analysis without manual formulas, though you must know what results you need."
+        },
+        {
+          "question": "NVivo and ATLAS.ti are used for:",
+          "options": [
+            "Quantitative data analysis",
+            "Transcribing audio",
+            "Managing references",
+            "Qualitative data analysis"
+          ],
+          "answer": 3,
+          "explanation": "NVivo and ATLAS.ti are qualitative analysis tools. SPSS is quantitative."
+        },
+        {
+          "question": "Who described ICT as having made the world a global village?",
+          "options": [
+            "Toffler",
+            "Clarke (2006)",
+            "Lebow (1993)",
+            "Bhatti (2013)"
+          ],
+          "answer": 3,
+          "explanation": "Bhatti (2013) is cited for ICT making the world a global village."
+        },
+        {
+          "question": "Which of these is a DISADVANTAGE of ICT in teaching?",
+          "options": [
+            "It is hard to authenticate that the registered student is the one participating",
+            "Learning is no longer limited by time and place",
+            "It enables collaboration and online resources",
+            "It widens reach through video conferencing"
+          ],
+          "answer": 0,
+          "explanation": "Authentication is a listed disadvantage, alongside inaccurate resources, difficult practicals, less face-to-face contact and unequal internet access. The other options are advantages."
+        },
+        {
+          "question": "In political science, an example of ICT use in Nigerian elections is:",
+          "options": [
+            "The ballot box lock",
+            "The ink pad",
+            "The polling unit sign",
+            "The card reader"
+          ],
+          "answer": 3,
+          "explanation": "The card reader is ICT-based. Computers also analyse voting behaviour and support prediction through pre-election surveys."
+        }
+      ]
+    }
+  ]
+}
