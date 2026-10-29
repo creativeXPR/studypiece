@@ -1,4 +1,4 @@
-// MAT 222 · Quick review: continuity of sin 2x / x (value 1 at 0), and classifying the discontinuity (6 marks).
+// MAT 222 · Reused as part of a larger lesson (see index.js): continuity of sin 2x / x (value 1 at 0), and classifying the discontinuity (6 marks).
 
 export default {
   id: 'sin2x-over-x',
@@ -155,8 +155,8 @@ export default {
         },
         {
           type: 'finish',
-          title: 'Continuity: reviewed.',
-          body: 'That completes the quick review of limits and continuity. The full course is on its way. Key terms, ready for revision:',
+          title: 'Discontinuities: done.',
+          body: 'You can now build continuous functions, classify every kind of discontinuity and handle a full exam question on one. Key terms, ready for revision:',
         },
       ],
     },

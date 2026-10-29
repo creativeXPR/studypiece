@@ -1,4 +1,4 @@
-// MAT 222 · Quick review: the ε-δ definition of the limit of a function (2 marks).
+// MAT 222 · Reused as part of a larger lesson (see index.js): the ε-δ definition of the limit of a function (2 marks).
 
 const HOOK = [
   ['$F(x_0) = l$', 'Not the definition', 'The limit ignores $F(x_0)$ completely. $F$ need not even be defined at $x_0$.'],

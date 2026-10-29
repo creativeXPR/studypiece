@@ -577,7 +577,7 @@ function Custom({ s, api }) {
   return (
     <>
       <Head s={s} />
-      {Widget && <Widget api={api} />}
+      {Widget && <Widget api={api} config={s.graph} />}
     </>
   );
 }

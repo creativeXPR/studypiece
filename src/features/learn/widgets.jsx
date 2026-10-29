@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { burstAt } from './fx';
+import { Bisection, GraphLab, MeanValue, RiemannSums, Taylor } from './analysisWidgets';
 import { Inline } from './Rich';
 
 // One-off interactive pieces used by `type: 'custom'` screens (`widget: 'venn'`).
@@ -1382,6 +1383,11 @@ function RootRace({ api }) {
 }
 
 export const WIDGETS = {
+  riemannSums: RiemannSums,
+  meanValue: MeanValue,
+  bisection: Bisection,
+  taylor: Taylor,
+  graph: GraphLab,
   rootRace: RootRace,
   epsilonDelta: EpsilonDelta,
   uniformDelta: UniformDelta,

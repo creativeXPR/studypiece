@@ -1,4 +1,4 @@
-// MAT 222 · Quick review: the three conditions for continuity at a point (3 marks).
+// MAT 222 · Reused as part of a larger lesson (see index.js): the three conditions for continuity at a point (3 marks).
 
 export default {
   id: 'three-conditions',
@@ -73,8 +73,8 @@ export default {
         },
         {
           type: 'finish',
-          title: 'Limits: reviewed.',
-          body: 'You can now define a limit, prove it is unique, run an ε-δ proof and test continuity. Next up: continuity and uniform continuity.',
+          title: 'Continuity: defined.',
+          body: 'You can now state continuity three ways and check the three conditions at a point. Key terms, ready for revision:',
         },
       ],
     },

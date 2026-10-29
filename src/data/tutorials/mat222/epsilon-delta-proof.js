@@ -1,4 +1,4 @@
-// MAT 222 · Quick review: prove lim_{x→2} (x³ + 1)/(x − 3) = −9 from the ε-δ definition (5 marks).
+// MAT 222 · Reused as part of a larger lesson (see index.js): prove lim_{x→2} (x³ + 1)/(x − 3) = −9 from the ε-δ definition (5 marks).
 
 export default {
   id: 'epsilon-delta-proof',

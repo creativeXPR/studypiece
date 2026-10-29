@@ -1,4 +1,4 @@
-// MAT 222 · Quick review: a Lipschitz function is uniformly continuous (5 marks).
+// MAT 222 · Reused as part of a larger lesson (see index.js): a Lipschitz function is uniformly continuous (5 marks).
 
 export default {
   id: 'lipschitz',

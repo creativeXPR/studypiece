@@ -1,4 +1,4 @@
-// MAT 222 · Quick review: continuity at a point vs uniform continuity on an interval (2 + 2 marks).
+// MAT 222 · Reused as part of a larger lesson (see index.js): continuity at a point vs uniform continuity on an interval (2 + 2 marks).
 
 export default {
   id: 'continuity-definitions',

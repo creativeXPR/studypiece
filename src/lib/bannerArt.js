@@ -107,18 +107,27 @@ const MOTIFS = {
 
   // Limits: a curve with a hole at x = a, the ε band around L and the δ band around a.
   'MAT 222': (k) => {
+    // Real analysis end to end: Riemann rectangles under a curve (integration), a tangent
+    // (differentiation) and a hollow point with its ε band (limits and continuity).
     const f = (x) => 2 + 0.9 * x + 0.35 * Math.sin(2 * x);
     const sx = (x) => 360 + (x / 8) * 260;
     const sy = (y) => 136 - (y / 10) * 112;
-    const a = 4.2;
-    return (
-      k.rect(sx(a - 0.8), 24, sx(a + 0.8) - sx(a - 0.8), 112, k.band) +
-      k.rect(360, sy(f(a) + 0.9), 260, sy(f(a) - 0.9) - sy(f(a) + 0.9), k.band) +
-      k.line(360, 136, 620, 136, k.axis) + k.line(360, 24, 360, 136, k.axis) +
-      k.poly(plot(f, 0, 8, { y0: 0, y1: 10 }), k.curve) +
-      k.circle(sx(a), sy(f(a)), 6, k.hole) +
-      k.text(sx(a) - 5, 152, 'a', k.label) + k.text(340, sy(f(a)) + 4, 'L', k.label) + k.text(378, 42, 'ε–δ', k.label)
-    );
+    let s = '';
+    for (let i = 0; i < 6; i++) {
+      const x0 = 0.4 + i * 0.6;
+      const h = f(x0 + 0.3);
+      s += k.rect(sx(x0), sy(h), sx(x0 + 0.6) - sx(x0) - 2, sy(0) - sy(h), k.bar, 2);
+    }
+    const a = 6.2;
+    s += k.rect(360, sy(f(a) + 0.8), 260, sy(f(a) - 0.8) - sy(f(a) + 0.8), k.band);
+    s += k.line(360, 136, 620, 136, k.axis) + k.line(360, 24, 360, 136, k.axis);
+    s += k.poly(plot(f, 0, 8, { y0: 0, y1: 10 }), k.curve);
+    const t = 4.6;
+    const m = 0.9 + 0.7 * Math.cos(2 * t);
+    s += k.line(sx(t - 1.1), sy(f(t) - 1.1 * m), sx(t + 1.1), sy(f(t) + 1.1 * m), k.accent);
+    s += k.circle(sx(t), sy(f(t)), 4.5, k.star);
+    s += k.circle(sx(a), sy(f(a)), 6, k.hole);
+    return s + k.text(378, 42, 'lim · d/dx · ∫', k.label);
   },
 
   // Coordinate geometry: a grid, a line through A and B, its midpoint and a circle.
@@ -232,7 +241,6 @@ export function bannerBackdrop(code, w, h, id) {
 }
 
 /** The full 640 × 160 banner used in the app. */
-export function bannerSvg(code) {
-  const id = `bn-${code.toLowerCase().replace(/\s+/g, '')}`;
+export function bannerSvg(code, id = `bn-${code.toLowerCase().replace(/\s+/g, '')}`) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" preserveAspectRatio="xMaxYMid slice" role="presentation">${bannerBackdrop(code, 640, 160, id)}${bannerMotif(code)}</svg>`;
 }
