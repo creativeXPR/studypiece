@@ -1,4 +1,4 @@
-// MTH 209 interactive tutorial: Numerical Methods, one chapter per course topic.
+// MTH 209 interactive tutorial: Numerical Analysis, one chapter per course topic.
 // (A lesson entry without `sections` shows as "Coming soon".)
 import bisection from './bisection';
 import regulaFalsi from './regula-falsi';
@@ -27,7 +27,7 @@ import euler from './euler';
 
 export default {
   code: 'MTH 209',
-  title: 'Numerical Methods',
+  title: 'Numerical Analysis',
   chapters: [
     {
       n: 1,
