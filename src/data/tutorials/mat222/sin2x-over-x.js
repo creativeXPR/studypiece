@@ -1,9 +1,9 @@
-// MAT 222 · Question 4(c): continuity of sin 2x / x (value 1 at 0), and classifying the discontinuity (6 marks).
+// MAT 222 · Quick review: continuity of sin 2x / x (value 1 at 0), and classifying the discontinuity (6 marks).
 
 export default {
   id: 'sin2x-over-x',
   title: 'Discuss the continuity of sin 2x / x',
-  covers: 'Question 4(c): continuity away from 0, the limit at 0, and a removable discontinuity',
+  covers: 'continuity away from 0, the limit at 0, and a removable discontinuity',
   minutes: 18,
   sections: [
     {
@@ -14,7 +14,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Question 4(c) · 6 marks',
+          eyebrow: 'Continuity · 6 marks',
           title: 'Discuss the continuity of $f$',
           body: '$$f(x) = \\begin{cases} \\dfrac{\\sin 2x}{x}, & x \\neq 0 \\\\ 1, & x = 0 \\end{cases}$$\n\n“Discuss the continuity of the function and classify the discontinuity if it exists.”\n\n“Discuss” means cover **every** point of $\\mathbb{R}$. A piecewise function only has a problem where the pieces meet, so the plan is:\n\n**1.** Points $x \\neq 0$. **2.** The limit at $0$. **3.** Compare with $f(0)$. **4.** Classify.',
           cta: 'Start with x ≠ 0',
@@ -155,8 +155,8 @@ export default {
         },
         {
           type: 'finish',
-          title: 'Question 4: done.',
-          body: 'You’ve now worked through every part of Questions 1 and 4. Key terms, ready for revision:',
+          title: 'Continuity: reviewed.',
+          body: 'That completes the quick review of limits and continuity. The full course is on its way. Key terms, ready for revision:',
         },
       ],
     },

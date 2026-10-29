@@ -1,4 +1,4 @@
-// MAT 222 · Question 1(a): the ε-δ definition of the limit of a function (2 marks).
+// MAT 222 · Quick review: the ε-δ definition of the limit of a function (2 marks).
 
 const HOOK = [
   ['$F(x_0) = l$', 'Not the definition', 'The limit ignores $F(x_0)$ completely. $F$ need not even be defined at $x_0$.'],
@@ -10,7 +10,7 @@ const HOOK = [
 export default {
   id: 'limit-definition',
   title: 'The ε-δ definition of a limit',
-  covers: 'Question 1(a): what “F has limit l at x₀” means, symbol by symbol',
+  covers: 'what “F has limit l at x₀” means, symbol by symbol',
   minutes: 12,
   sections: [
     {
@@ -23,7 +23,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Question 1(a) · 2 marks',
+          eyebrow: 'Limits of functions · 2 marks',
           title: 'When does $F$ have a limit $l$?',
           body: '“Let $F : X \\to \\mathbb{R}$, $X \\subset \\mathbb{R}$. Using the ε-δ definition, when is $F$ said to have a limit $l$ in $\\mathbb{R}$?”\n\nTwo marks means two things: the definition stated **correctly**, with the quantifiers **in the right order**. This lesson builds it so you never have to memorise it blindly.',
           cta: 'Let’s go',

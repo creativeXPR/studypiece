@@ -1,9 +1,9 @@
-// MAT 222 · Question 1(c): prove lim_{x→2} (x³ + 1)/(x − 3) = −9 from the ε-δ definition (5 marks).
+// MAT 222 · Quick review: prove lim_{x→2} (x³ + 1)/(x − 3) = −9 from the ε-δ definition (5 marks).
 
 export default {
   id: 'epsilon-delta-proof',
   title: 'Proving a limit with ε and δ',
-  covers: 'Question 1(c): lim (x³+1)/(x−3) = −9 as x → 2, from scratch work to finished proof',
+  covers: 'lim (x³+1)/(x−3) = −9 as x → 2, from scratch work to finished proof',
   minutes: 20,
   sections: [
     {
@@ -15,7 +15,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Question 1(c) · 5 marks',
+          eyebrow: 'Limits of functions · 5 marks',
           title: 'Show that $\\lim_{x\\to 2}\\dfrac{x^3+1}{x-3} = -9$',
           body: 'Every ε-δ limit proof has **two stages**:\n\n**1. Scratch work.** Work backwards from $|F(x) - l| < \\varepsilon$ to find a δ that does the job.\n\n**2. The proof.** Start from “Let $\\varepsilon > 0$”, state your δ, and show it works.\n\nWe’ll do the scratch work first, slowly.',
           cta: 'Start the scratch work',

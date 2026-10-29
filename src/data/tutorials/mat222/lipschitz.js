@@ -1,9 +1,9 @@
-// MAT 222 · Question 4(b): a Lipschitz function is uniformly continuous (5 marks).
+// MAT 222 · Quick review: a Lipschitz function is uniformly continuous (5 marks).
 
 export default {
   id: 'lipschitz',
   title: 'Lipschitz ⟹ uniformly continuous',
-  covers: 'Question 4(b): prove |f(x) − f(y)| ≤ k|x − y| makes f uniformly continuous, with δ = ε/k',
+  covers: 'prove |f(x) − f(y)| ≤ k|x − y| makes f uniformly continuous, with δ = ε/k',
   minutes: 12,
   sections: [
     {
@@ -14,7 +14,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Question 4(b) · 5 marks',
+          eyebrow: 'Uniform continuity · 5 marks',
           title: 'Prove that $f$ is uniformly continuous',
           body: '“Let $f$ be defined on a bounded interval $I$ on which it satisfies\n$$|f(x) - f(y)| \\le k|x - y|, \\quad \\forall x, y \\in I,\\ k \\in \\mathbb{R}_+.$$\nProve that $f$ is uniformly continuous on $I$.”\n\nThis inequality is called a ==Lipschitz condition==. It says the slope of any chord of the graph is at most $k$ in size: the function can’t change faster than $k$ times the input change.',
           cta: 'What do we need to show?',

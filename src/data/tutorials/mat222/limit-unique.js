@@ -1,9 +1,9 @@
-// MAT 222 · Question 1(b): a limit, if it exists, is unique (5 marks).
+// MAT 222 · Quick review: a limit, if it exists, is unique (5 marks).
 
 export default {
   id: 'limit-unique',
   title: 'A limit is unique',
-  covers: 'Question 1(b): proof by contradiction with ε = |l₁ − l₂|/2 and the triangle inequality',
+  covers: 'proof by contradiction with ε = |l₁ − l₂|/2 and the triangle inequality',
   minutes: 15,
   sections: [
     {
@@ -15,7 +15,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Question 1(b) · 5 marks',
+          eyebrow: 'Limits of functions · 5 marks',
           title: 'Can a function have two limits?',
           body: '“Given $F$ as defined above and $x_0 \\in X$. Prove that the limit of $F$ is unique.”\n\nIn other words: if $\\lim_{x\\to x_0}F(x) = l_1$ and $\\lim_{x\\to x_0}F(x) = l_2$, then $l_1 = l_2$.\n\nThe picture says it all: $F(x)$ can’t be squeezed into a tiny band around $l_1$ **and** a tiny band around $l_2$ at the same time, if the two bands don’t overlap.',
           cta: 'Show me the plan',

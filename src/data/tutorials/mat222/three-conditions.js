@@ -1,9 +1,9 @@
-// MAT 222 · Question 1(d): the three conditions for continuity at a point (3 marks).
+// MAT 222 · Quick review: the three conditions for continuity at a point (3 marks).
 
 export default {
   id: 'three-conditions',
   title: 'Three conditions for continuity',
-  covers: 'Question 1(d): defined at x₀, limit exists, limit equals the value',
+  covers: 'defined at x₀, limit exists, limit equals the value',
   minutes: 10,
   sections: [
     {
@@ -14,7 +14,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Question 1(d) · 3 marks',
+          eyebrow: 'Continuity at a point · 3 marks',
           title: 'Three conditions, three marks',
           body: '“Let $F : X \\subset \\mathbb{R} \\to \\mathbb{R}$. State the three conditions $F$ must satisfy to be continuous.”\n\nThink of drawing the graph near $x_0$ without lifting your pen. Three things can stop you: there is **no point** at $x_0$, the graph **doesn’t settle** on one height, or it settles on a height but the point is **somewhere else**.',
           cta: 'Show me the three',
@@ -42,7 +42,7 @@ export default {
           items: [
             { text: '$\\frac{x^2 - 4}{x - 2}$ at $x_0 = 2$', bucket: 'c1', why: '**Not defined at 2** (division by zero), even though the limit is 4.' },
             { text: '$\\lfloor x \\rfloor$ (floor) at $x_0 = 1$', bucket: 'c2', why: '**Left limit 0, right limit 1**: no single limit, though $\\lfloor 1 \\rfloor = 1$ is defined.' },
-            { text: '$\\frac{\\sin 2x}{x}$, with value $1$ at $x_0 = 0$', bucket: 'c3', why: '**Limit is 2, value is 1.** This is Question 4(c)!' },
+            { text: '$\\frac{\\sin 2x}{x}$, with value $1$ at $x_0 = 0$', bucket: 'c3', why: '**Limit is 2, value is 1.** You’ll meet it again in a later lesson.' },
             { text: '$x^2$ at $x_0 = 3$', bucket: 'ok', why: '**Polynomials are continuous everywhere**: $\\lim_{x\\to3}x^2 = 9 = 3^2$.' },
             { text: '$|x|$ at $x_0 = 0$', bucket: 'ok', why: '**$|x|$ has a corner at 0 but no gap**: limit $0$, value $0$.' },
           ],
@@ -73,8 +73,8 @@ export default {
         },
         {
           type: 'finish',
-          title: 'Question 1: done.',
-          body: 'You can now answer every part of Question 1. Next up: Question 4, on continuity and uniform continuity.',
+          title: 'Limits: reviewed.',
+          body: 'You can now define a limit, prove it is unique, run an ε-δ proof and test continuity. Next up: continuity and uniform continuity.',
         },
       ],
     },

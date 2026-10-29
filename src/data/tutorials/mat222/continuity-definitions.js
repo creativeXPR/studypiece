@@ -1,9 +1,9 @@
-// MAT 222 · Question 4(a): continuity at a point vs uniform continuity on an interval (2 + 2 marks).
+// MAT 222 · Quick review: continuity at a point vs uniform continuity on an interval (2 + 2 marks).
 
 export default {
   id: 'continuity-definitions',
   title: 'Continuous vs uniformly continuous',
-  covers: 'Question 4(a): the two definitions, and why the order of “for all x₀” and “there exists δ” matters',
+  covers: 'the two definitions, and why the order of “for all x₀” and “there exists δ” matters',
   minutes: 15,
   sections: [
     {
@@ -14,7 +14,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Question 4(a) · 4 marks',
+          eyebrow: 'Continuity · 4 marks',
           title: 'Two definitions that look almost the same',
           body: '“Let $f$ be a function defined on an interval $I$. When is $f$ said to be (i) continuous at a point $x_0 \\in I$? (ii) uniformly continuous on $I$?”\n\nThe two definitions use the same symbols. The whole difference is **where δ is chosen**: before or after the point. Get that right and you have both marks for (ii).',
           cta: 'Start with (i)',
@@ -89,7 +89,7 @@ export default {
           type: 'story',
           eyebrow: 'What you just saw',
           title: '$\\frac{1}{x}$ is continuous on $(0, 1]$, but not uniformly',
-          body: 'For $f(x) = \\frac1x$ the largest workable δ at $x_0$ is $\\frac{\\varepsilon x_0^2}{1 + \\varepsilon x_0}$, which **shrinks to 0** as $x_0 \\to 0$. Any single δ you pick fails at points close enough to $0$.\n\nFor $g(x) = 3x$, $|g(x) - g(y)| = 3|x - y|$, so $\\delta = \\frac{\\varepsilon}{3}$ works **everywhere**. That inequality is a Lipschitz condition, which is exactly Question 4(b).',
+          body: 'For $f(x) = \\frac1x$ the largest workable δ at $x_0$ is $\\frac{\\varepsilon x_0^2}{1 + \\varepsilon x_0}$, which **shrinks to 0** as $x_0 \\to 0$. Any single δ you pick fails at points close enough to $0$.\n\nFor $g(x) = 3x$, $|g(x) - g(y)| = 3|x - y|$, so $\\delta = \\frac{\\varepsilon}{3}$ works **everywhere**. That inequality is a Lipschitz condition, the subject of the next lesson.',
         },
         {
           type: 'multi',
