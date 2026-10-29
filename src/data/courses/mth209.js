@@ -1131,6 +1131,287 @@ export default {
       ]
     },
     {
+      "id": "QS006",
+      "title": "Approximations: series",
+      "questions": [
+        {
+          "question": "How many terms does the binomial expansion of $(a + x)^n$ have when $n$ is a positive integer?",
+          "options": [
+            "$n$",
+            "$n - 1$",
+            "Infinitely many",
+            "$n + 1$"
+          ],
+          "answer": 3,
+          "explanation": "For a positive integer $n$ the expansion stops: the powers of $x$ run from $x^0$ to $x^n$, giving $n + 1$ terms."
+        },
+        {
+          "question": "What is the coefficient of $x^2$ in $(2 + x)^4$?",
+          "options": [
+            "$16$",
+            "$24$",
+            "$32$",
+            "$6$"
+          ],
+          "answer": 1,
+          "explanation": "General term $\\binom{4}{r}2^{4-r}x^r$ with $r = 2$: $\\binom{4}{2} \\cdot 2^2 = 6 \\times 4 = 24$."
+        },
+        {
+          "question": "The general (the $(r+1)$th) term of $(a + x)^n$, for a positive integer $n$, is",
+          "options": [
+            "$\\binom{n}{r}x^{n-r}$",
+            "$\\binom{n}{r}a^{n-r}x^r$",
+            "$\\binom{n}{r}a^{n}x^r$",
+            "$\\dfrac{n!}{r!}a^{n-r}x^r$"
+          ],
+          "answer": 1,
+          "explanation": "$\\binom{n}{r} = \\frac{n!}{r!(n-r)!}$, and the powers of $a$ and $x$ always add up to $n$."
+        },
+        {
+          "question": "For a negative or fractional power $n$, the binomial series for $(1 + x)^n$ is valid when",
+          "options": [
+            "$|x| > 1$",
+            "for every real $x$",
+            "$x > 0$ only",
+            "$|x| < 1$"
+          ],
+          "answer": 3,
+          "explanation": "The series never stops for such $n$, and its terms only shrink to zero when $|x| < 1$."
+        },
+        {
+          "question": "The first three terms of the expansion of $(1 + x)^{-1}$ are",
+          "options": [
+            "$1 + x - x^2$",
+            "$1 + x + x^2$",
+            "$1 - x + x^2$",
+            "$1 - x - x^2$"
+          ],
+          "answer": 2,
+          "explanation": "$n = -1$: $1 + (-1)x + \\frac{(-1)(-2)}{2!}x^2 = 1 - x + x^2$."
+        },
+        {
+          "question": "Up to $x^2$, the expansion of $(1 + x)^{1/2}$ is",
+          "options": [
+            "$1 + 2x + x^2$",
+            "$1 + \\frac12 x - \\frac18 x^2$",
+            "$1 - \\frac12 x - \\frac18 x^2$",
+            "$1 + \\frac12 x + \\frac18 x^2$"
+          ],
+          "answer": 1,
+          "explanation": "$1 + \\frac12 x + \\frac{\\frac12\\left(-\\frac12\\right)}{2!}x^2 = 1 + \\frac12 x - \\frac18 x^2$."
+        },
+        {
+          "question": "Using three terms of the binomial series, $\\sqrt{1.02} \\approx$",
+          "options": [
+            "$1.00995$",
+            "$1.00950$",
+            "$1.01005$",
+            "$1.01000$"
+          ],
+          "answer": 0,
+          "explanation": "$(1 + 0.02)^{1/2} \\approx 1 + 0.01 - \\frac18(0.0004) = 1 + 0.01 - 0.00005 = 1.00995$. True value: $1.0099505$."
+        },
+        {
+          "question": "Use the binomial expansion of $(1 - x)^5$ with $x = 0.02$ to find $0.98^5$ correct to 4 decimal places.",
+          "options": [
+            "$0.9039$",
+            "$0.9000$",
+            "$0.9040$",
+            "$1.1041$"
+          ],
+          "answer": 0,
+          "explanation": "$1 - 5(0.02) + 10(0.02)^2 - 10(0.02)^3 + \\cdots = 1 - 0.1 + 0.004 - 0.00008 = 0.90392 \\approx 0.9039$."
+        },
+        {
+          "question": "For what values of $x$ is the binomial expansion of $(3 + x)^{-2}$ valid?",
+          "options": [
+            "for all real $x$",
+            "$|x| < 3$",
+            "$|x| < \\frac13$",
+            "$|x| < 1$"
+          ],
+          "answer": 1,
+          "explanation": "$(3 + x)^{-2} = 3^{-2}\\left(1 + \\frac{x}{3}\\right)^{-2}$, which needs $\\left|\\frac{x}{3}\\right| < 1$, i.e. $|x| < 3$."
+        },
+        {
+          "question": "Up to $x^2$, the expansion of $(1 - 2x)^{-1/2}$ is",
+          "options": [
+            "$1 + x + \\frac32 x^2$",
+            "$1 + 2x + 6x^2$",
+            "$1 + x + \\frac38 x^2$",
+            "$1 - x + \\frac32 x^2$"
+          ],
+          "answer": 0,
+          "explanation": "With $u = -2x$, $n = -\\frac12$: $1 - \\frac12 u + \\frac38 u^2 = 1 + x + \\frac38(4x^2) = 1 + x + \\frac32 x^2$, valid for $|x| < \\frac12$."
+        },
+        {
+          "question": "The Taylor series of $f$ about the point $a$ is",
+          "options": [
+            "$f(a + h) = hf(a) + h^2f'(a) + h^3f''(a) + \\cdots$",
+            "$f(a + h) = f(h) + af'(h) + \\dfrac{a^2}{2!}f''(h) + \\cdots$",
+            "$f(a + h) = f(a) + f'(a) + f''(a) + \\cdots$",
+            "$f(a + h) = f(a) + hf'(a) + \\dfrac{h^2}{2!}f''(a) + \\cdots$"
+          ],
+          "answer": 3,
+          "explanation": "Each term is (derivative at $a$) $\\times\\ h^n \\div n!$."
+        },
+        {
+          "question": "The Maclaurin series of $f$ is the Taylor series about",
+          "options": [
+            "the root of $f$",
+            "$a = 1$",
+            "$h = 0$",
+            "$a = 0$"
+          ],
+          "answer": 3,
+          "explanation": "Setting $a = 0$, $h = x$: $f(x) = f(0) + xf'(0) + \\frac{x^2}{2!}f''(0) + \\cdots$"
+        },
+        {
+          "question": "The Maclaurin series of $\\sin x$ is",
+          "options": [
+            "$x + \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} + \\cdots$",
+            "$1 - \\dfrac{x^2}{2!} + \\dfrac{x^4}{4!} - \\cdots$",
+            "$x - \\dfrac{x^2}{2} + \\dfrac{x^3}{3} - \\cdots$",
+            "$x - \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} - \\cdots$"
+          ],
+          "answer": 3,
+          "explanation": "At $0$ the derivatives of $\\sin x$ cycle $0, 1, 0, -1$, so only odd powers appear, with alternating signs."
+        },
+        {
+          "question": "The Maclaurin series of $\\cos x$ is",
+          "options": [
+            "$1 - x + \\dfrac{x^2}{2!} - \\cdots$",
+            "$1 + \\dfrac{x^2}{2!} + \\dfrac{x^4}{4!} + \\cdots$",
+            "$1 - \\dfrac{x^2}{2!} + \\dfrac{x^4}{4!} - \\cdots$",
+            "$x - \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} - \\cdots$"
+          ],
+          "answer": 2,
+          "explanation": "The derivatives of $\\cos x$ at $0$ cycle $1, 0, -1, 0$, so only even powers appear, with alternating signs."
+        },
+        {
+          "question": "The Maclaurin series of $\\ln(1 + x)$ is",
+          "options": [
+            "$1 + x - \\dfrac{x^2}{2} + \\cdots$",
+            "$x - \\dfrac{x^2}{2} + \\dfrac{x^3}{3} - \\dfrac{x^4}{4} + \\cdots$",
+            "$x - \\dfrac{x^2}{2!} + \\dfrac{x^3}{3!} - \\cdots$",
+            "$x + \\dfrac{x^2}{2} + \\dfrac{x^3}{3} + \\cdots$"
+          ],
+          "answer": 1,
+          "explanation": "$f^{(n)}(0) = (-1)^{n-1}(n-1)!$, and dividing by $n!$ leaves $\\frac{(-1)^{n-1}}{n}$."
+        },
+        {
+          "question": "For which $x$ is the series for $\\ln(1 + x)$ valid?",
+          "options": [
+            "$x > -1$",
+            "$-1 < x \\le 1$",
+            "$|x| < 2$",
+            "For every real $x$"
+          ],
+          "answer": 1,
+          "explanation": "The series converges for $-1 < x \\le 1$ (at $x = -1$, $\\ln 0$ is undefined)."
+        },
+        {
+          "question": "Using the Maclaurin series up to the $x^4$ term, $\\cos 0.2 \\approx$ (6 d.p.)",
+          "options": [
+            "$0.980067$",
+            "$0.198669$",
+            "$0.979933$",
+            "$0.980000$"
+          ],
+          "answer": 0,
+          "explanation": "$1 - \\frac{0.04}{2} + \\frac{0.0016}{24} = 1 - 0.02 + 0.0000667 = 0.980067$ ($x$ in radians). $0.198669$ is $\\sin 0.2$."
+        },
+        {
+          "question": "Using four terms of the series for $\\ln(1 + x)$, $\\ln 1.1 \\approx$",
+          "options": [
+            "$0.095333$",
+            "$0.095308$",
+            "$0.105361$",
+            "$0.095000$"
+          ],
+          "answer": 1,
+          "explanation": "$0.1 - 0.005 + 0.000333 - 0.000025 = 0.095308$. $0.095333$ stops at three terms; $0.105361 = -\\ln 0.9$."
+        },
+        {
+          "question": "Expanding $\\sqrt x$ about $a = 4$ to the $h^2$ term, $\\sqrt{4.1} \\approx$",
+          "options": [
+            "$2.025156$",
+            "$2.024844$",
+            "$2.025000$",
+            "$2.050000$"
+          ],
+          "answer": 1,
+          "explanation": "$f(4) = 2$, $f'(4) = \\frac14$, $f''(4) = -\\frac{1}{32}$: $2 + 0.025 - \\frac{0.01}{2}\\cdot\\frac{1}{32} = 2.024844$."
+        },
+        {
+          "question": "After keeping terms up to $h^n$ in a Taylor series, the truncation error is",
+          "options": [
+            "Always zero for small $h$",
+            "$\\dfrac{h^{n}}{n!}f^{(n)}(a)$",
+            "$\\dfrac{h^{n+1}}{(n+1)!}f^{(n+1)}(\\xi)$ for some $\\xi$ between $a$ and $a + h$",
+            "$h^{n+1}f(a)$"
+          ],
+          "answer": 2,
+          "explanation": "This is the remainder term; it is small when $h$ is small and the derivatives are bounded."
+        },
+        {
+          "question": "The exponential series is",
+          "options": [
+            "$e^x = \\displaystyle\\sum_{n=0}^{\\infty}nx^n$",
+            "$e^x = \\displaystyle\\sum_{n=0}^{\\infty}(-1)^n\\dfrac{x^n}{n!}$",
+            "$e^x = \\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{x^n}{n!}$",
+            "$e^x = \\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{x^n}{n}$"
+          ],
+          "answer": 2,
+          "explanation": "Every derivative of $e^x$ equals $1$ at $x = 0$, so the Maclaurin coefficients are $\\frac{1}{n!}$."
+        },
+        {
+          "question": "What is the coefficient of $x^5$ in the series for $e^x$?",
+          "options": [
+            "$\\dfrac{1}{720}$",
+            "$\\dfrac{1}{120}$",
+            "$\\dfrac15$",
+            "$\\dfrac{1}{24}$"
+          ],
+          "answer": 1,
+          "explanation": "$\\frac{x^5}{5!}$ and $5! = 120$."
+        },
+        {
+          "question": "Use the exponential series to find $e^{0.5}$ correct to 4 decimal places.",
+          "options": [
+            "$1.6484$",
+            "$1.6487$",
+            "$1.6458$",
+            "$1.6500$"
+          ],
+          "answer": 1,
+          "explanation": "$1 + 0.5 + 0.125 + 0.020833 + 0.002604 + 0.000260 + 0.000022 + \\cdots = 1.648721$, so $1.6487$."
+        },
+        {
+          "question": "Use the exponential series to find $e^{0.2}$ correct to 4 decimal places.",
+          "options": [
+            "$1.2214$",
+            "$1.2213$",
+            "$1.2240$",
+            "$1.2200$"
+          ],
+          "answer": 0,
+          "explanation": "$1 + 0.2 + 0.02 + 0.0013333 + 0.0000667 = 1.2214000$; the next term ($0.0000027$) can't change the 4th decimal place."
+        },
+        {
+          "question": "How many terms of $e = \\sum \\frac{1}{n!}$ (starting from $n = 0$) are needed for $e$ correct to 4 decimal places?",
+          "options": [
+            "$6$ (up to $\\frac{1}{5!}$)",
+            "$5$ (up to $\\frac{1}{4!}$)",
+            "$12$ (up to $\\frac{1}{11!}$)",
+            "$8$ (up to $\\frac{1}{7!}$)"
+          ],
+          "answer": 3,
+          "explanation": "Up to $\\frac{1}{7!}$ the sum is $2.718254$; the rest is below $0.00003 < 0.00005$, so $e = 2.7183$ (4 d.p.)."
+        }
+      ]
+    },
+    {
       "id": "QS005",
       "title": "Systems of linear equations",
       "questions": [
@@ -1408,6 +1689,568 @@ export default {
           ],
           "answer": 2,
           "explanation": "Simple iteration builds all of $x^{(k+1)}$ from $x^{(k)}$. Gauss-Seidel uses the newest values immediately, so it usually converges in fewer iterations."
+        }
+      ]
+    },
+    {
+      "id": "QS007",
+      "title": "Systems of non-linear equations",
+      "questions": [
+        {
+          "question": "A system of $n$ non-linear equations in $n$ unknowns is written compactly as",
+          "options": [
+            "$Ax = b$, where $A$ is $n \\times n$",
+            "$F(x) = x$, where $F: \\mathbb{R} \\to \\mathbb{R}^n$",
+            "$x = A^{-1}b$",
+            "$F(x) = 0$, where $F: \\mathbb{R}^n \\to \\mathbb{R}^n$"
+          ],
+          "answer": 3,
+          "explanation": "$F(x) = (f_1(x), \\ldots, f_n(x))^T$ maps the vector $x = (x_1, \\ldots, x_n)^T$ into $\\mathbb{R}^n$."
+        },
+        {
+          "question": "Which of these systems is non-linear?",
+          "options": [
+            "$x^2 + y^2 = 4,\\ x - y = 1$",
+            "$0.5x - 0.2y = 1,\\ 4y = x$",
+            "$x + 2y + z = 1,\\ y - z = 0,\\ 3x = 6$",
+            "$2x + 3y = 5,\\ x - y = 1$"
+          ],
+          "answer": 0,
+          "explanation": "The squared unknowns make the first system non-linear; the others contain only first powers."
+        },
+        {
+          "question": "A function $G$ has a fixed point at $p$ if",
+          "options": [
+            "$G(p) = 1$",
+            "$G'(p) = 0$",
+            "$G(p) = 0$",
+            "$G(p) = p$"
+          ],
+          "answer": 3,
+          "explanation": "A fixed point is left unchanged by $G$."
+        },
+        {
+          "question": "What are the fixed points of $g(x) = x^2$?",
+          "options": [
+            "$x = 0$ and $x = 1$",
+            "$x = 0$ only",
+            "$x = 1$ only",
+            "$x = -1$ and $x = 1$"
+          ],
+          "answer": 0,
+          "explanation": "$x^2 = x \\iff x(x - 1) = 0$, so $x = 0$ or $x = 1$. ($g(-1) = 1 \\ne -1$.)"
+        },
+        {
+          "question": "To solve $F(x) = 0$ by fixed-point iteration, you first",
+          "options": [
+            "set every $x_i = 0$",
+            "rewrite it as $x = G(x)$, usually by solving the $i$th equation for $x_i$",
+            "write it as $Ax = b$",
+            "compute the Jacobian of $F$"
+          ],
+          "answer": 1,
+          "explanation": "A fixed point of $G$ is then exactly a solution of $F(x) = 0$."
+        },
+        {
+          "question": "The fixed-point iteration for a system is",
+          "options": [
+            "$x^{(k)} = G^{-1}(x^{(k-1)})$",
+            "$x^{(k)} = x^{(k-1)} - G(x^{(k-1)})$",
+            "$x^{(k)} = F(x^{(k-1)})$",
+            "$x^{(k)} = G(x^{(k-1)})$, $k \\ge 1$"
+          ],
+          "answer": 3,
+          "explanation": "Start from $x^{(0)}$ and apply $G$ repeatedly."
+        },
+        {
+          "question": "$G$ is continuous on $D = \\{a_i \\le x_i \\le b_i\\}$. Which extra condition guarantees that $G$ has a fixed point in $D$?",
+          "options": [
+            "$\\det G \\ne 0$",
+            "$G(x) \\in D$ whenever $x \\in D$",
+            "$G(x) = 0$ somewhere in $D$",
+            "$G$ is linear"
+          ],
+          "answer": 1,
+          "explanation": "If $G$ maps $D$ into itself, the fixed-point theorem gives at least one fixed point in $D$."
+        },
+        {
+          "question": "Which condition makes the fixed point unique and the iteration convergent from any $x^{(0)} \\in D$?",
+          "options": [
+            "$\\det J \\ne 0$ at $x^{(0)}$",
+            "$\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le K$ for some $K > 1$",
+            "$G(x^{(0)}) = x^{(0)}$",
+            "$\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le \\frac{K}{n}$ on $D$ for some $K < 1$"
+          ],
+          "answer": 3,
+          "explanation": "Together with continuous partial derivatives and $G(D) \\subset D$, this is the condition of the fixed-point theorem."
+        },
+        {
+          "question": "Under the fixed-point theorem, the error after $k$ iterations satisfies",
+          "options": [
+            "$\\|x^{(k)} - p\\|_\\infty \\le \\dfrac{1 - K}{K^k}\\|x^{(1)} - x^{(0)}\\|_\\infty$",
+            "$\\|x^{(k)} - p\\|_\\infty \\le \\dfrac{K^k}{1 - K}\\|x^{(1)} - x^{(0)}\\|_\\infty$",
+            "$\\|x^{(k)} - p\\|_\\infty = 0$ after $n$ steps",
+            "$\\|x^{(k)} - p\\|_\\infty \\le K^k$"
+          ],
+          "answer": 1,
+          "explanation": "Because $K < 1$, $K^k \\to 0$, so the bound shrinks to zero."
+        },
+        {
+          "question": "Solving $3x_1 - \\cos(x_2x_3) - \\frac12 = 0$ for $x_1$ gives",
+          "options": [
+            "$g_1 = \\frac13\\cos(x_2x_3) + \\frac16$",
+            "$g_1 = \\frac13\\cos(x_2x_3) - \\frac16$",
+            "$g_1 = 3\\cos(x_2x_3) + \\frac12$",
+            "$g_1 = \\cos(x_2x_3) + \\frac12$"
+          ],
+          "answer": 0,
+          "explanation": "$3x_1 = \\cos(x_2x_3) + \\frac12$, then divide by 3."
+        },
+        {
+          "question": "For a $3 \\times 3$ system, every $\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le 0.281$ on $D$. What is $K$, and does the iteration converge?",
+          "options": [
+            "$K = 0.094$: it converges",
+            "$K = 0.843 < 1$: it converges to a unique fixed point",
+            "$K = 0.843$: it may diverge",
+            "$K = 0.281$: it converges"
+          ],
+          "answer": 1,
+          "explanation": "$\\frac{K}{n} = 0.281$ with $n = 3$ gives $K = 0.843$, which is less than 1."
+        },
+        {
+          "question": "With $g_1 = \\frac13\\cos(x_2x_3) + \\frac16$ and $x^{(0)} = (0.1, 0.1, -0.1)^T$, $x_1^{(1)} \\approx$",
+          "options": [
+            "$0.33332$",
+            "$0.16667$",
+            "$1.16662$",
+            "$0.49998$"
+          ],
+          "answer": 3,
+          "explanation": "$\\frac13\\cos(-0.01) + \\frac16 = 0.333317 + 0.166667 = 0.49998$."
+        },
+        {
+          "question": "The fixed-point iteration for $3x_1 - \\cos(x_2x_3) - \\frac12 = 0$, $x_1^2 - 81(x_2 + 0.1)^2 + \\sin x_3 + 1.06 = 0$, $e^{-x_1x_2} + 20x_3 + \\frac{10\\pi - 3}{3} = 0$ converges to",
+          "options": [
+            "$\\left(0.5,\\ 0,\\ -\\frac{\\pi}{6}\\right)$",
+            "$\\left(1,\\ 0,\\ -\\frac{\\pi}{3}\\right)$",
+            "$(0.5,\\ 0.1,\\ -0.5)$",
+            "$(0,\\ 0,\\ 0)$"
+          ],
+          "answer": 0,
+          "explanation": "Check: $3(0.5) - \\cos 0 - \\frac12 = 0$, $0.25 - 0.81 - \\frac12 + 1.06 = 0$, $1 - \\frac{10\\pi}{6} + \\frac{10\\pi - 3}{3} = 0$."
+        },
+        {
+          "question": "A usual stopping rule for fixed-point iteration is to stop when",
+          "options": [
+            "$x^{(k)} = 0$",
+            "$\\|x^{(k)} - x^{(k-1)}\\|_\\infty$ is below the tolerance",
+            "$k = n$",
+            "$K < 1$"
+          ],
+          "answer": 1,
+          "explanation": "Successive iterates agreeing to the required accuracy signals convergence."
+        },
+        {
+          "question": "What is $\\|(0.3, -0.7, 0.2)^T\\|_\\infty$?",
+          "options": [
+            "$0.7$",
+            "$1.2$",
+            "$0.787$",
+            "$0.2$"
+          ],
+          "answer": 0,
+          "explanation": "The infinity norm is the largest absolute component: $\\max(0.3, 0.7, 0.2) = 0.7$."
+        },
+        {
+          "question": "The Jacobian matrix of $F = (f_1, \\ldots, f_n)^T$ is",
+          "options": [
+            "$J(x) = \\left[f_i(x_j)\\right]$",
+            "the matrix of coefficients $a_{ij}$ of the system",
+            "$J(x) = \\left[\\frac{\\partial x_j}{\\partial f_i}\\right]$",
+            "$J(x) = \\left[\\frac{\\partial f_i}{\\partial x_j}\\right]$: row $i$ holds the partial derivatives of $f_i$"
+          ],
+          "answer": 3,
+          "explanation": "Row = function, column = variable."
+        },
+        {
+          "question": "Newton’s method for the system $F(x) = 0$ is",
+          "options": [
+            "$x^{(k+1)} = x^{(k)} - J^{-1}(x^{(k)})F(x^{(k)})$",
+            "$x^{(k+1)} = x^{(k)} + J(x^{(k)})F(x^{(k)})$",
+            "$x^{(k+1)} = J^{-1}(x^{(k)})F(x^{(k)})$",
+            "$x^{(k+1)} = x^{(k)} - \\dfrac{F(x^{(k)})}{x^{(k)}}$"
+          ],
+          "answer": 0,
+          "explanation": "It generalises $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$: $f'$ becomes the Jacobian and division becomes multiplication by $J^{-1}$."
+        },
+        {
+          "question": "Newton’s method for systems cannot be applied at $x^{(k)}$ when",
+          "options": [
+            "$F(x^{(k)})$ has a negative component",
+            "$x^{(k)} = 0$",
+            "$J(x^{(k)})$ is singular ($\\det J = 0$)",
+            "$n > 2$"
+          ],
+          "answer": 2,
+          "explanation": "The step needs $J^{-1}$ (or solving $Jy = -F$), which requires a non-singular Jacobian."
+        },
+        {
+          "question": "For $f_2 = 2x_1^2 + x_2^2 - 4x_3$, row 2 of the Jacobian is",
+          "options": [
+            "$(4x_1,\\ 2x_2,\\ 0)$",
+            "$(4x_1,\\ 2x_2,\\ -4)$",
+            "$(4x_1,\\ 2x_2,\\ -4x_3)$",
+            "$(2x_1,\\ 2x_2,\\ -4)$"
+          ],
+          "answer": 1,
+          "explanation": "$\\frac{\\partial f_2}{\\partial x_1} = 4x_1$, $\\frac{\\partial f_2}{\\partial x_2} = 2x_2$, $\\frac{\\partial f_2}{\\partial x_3} = -4$."
+        },
+        {
+          "question": "For $F = (x_1^2 + x_2^2 + x_3^2 - 1,\\ 2x_1^2 + x_2^2 - 4x_3,\\ 3x_1^2 - 4x_2 + x_3^2)^T$, what is $\\det J$ at $(0.5, 0.5, 0.5)$?",
+          "options": [
+            "$-8$",
+            "$-40$",
+            "$40$",
+            "$0$"
+          ],
+          "answer": 1,
+          "explanation": "$J = \\begin{pmatrix} 1 & 1 & 1 \\\\ 2 & 1 & -4 \\\\ 3 & -4 & 1 \\end{pmatrix}$: $1(-15) - 1(14) + 1(-11) = -40$."
+        },
+        {
+          "question": "For the same $F$, what is $F(0.5, 0.5, 0.5)$?",
+          "options": [
+            "$(-0.25,\\ 1.25,\\ -1.0)^T$",
+            "$(-0.25,\\ -1.25,\\ -1.0)^T$",
+            "$(0,\\ 0,\\ 0)^T$",
+            "$(0.75,\\ 0.75,\\ 1.0)^T$"
+          ],
+          "answer": 1,
+          "explanation": "$0.75 - 1 = -0.25$; $0.5 + 0.25 - 2 = -1.25$; $0.75 - 2 + 0.25 = -1.0$."
+        },
+        {
+          "question": "Given $J^{-1}F = (-0.375, 0, 0.125)^T$ at $x^{(0)} = (0.5, 0.5, 0.5)^T$, Newton’s method gives $x^{(1)} =$",
+          "options": [
+            "$(0.875,\\ 0.5,\\ 0.625)^T$",
+            "$(0.125,\\ 0.5,\\ 0.625)^T$",
+            "$(0.875,\\ 0.5,\\ 0.375)^T$",
+            "$(-0.375,\\ 0,\\ 0.125)^T$"
+          ],
+          "answer": 2,
+          "explanation": "$x^{(1)} = x^{(0)} - J^{-1}F = (0.5 + 0.375,\\ 0.5 - 0,\\ 0.5 - 0.125)$."
+        },
+        {
+          "question": "For $f_1 = x^2 + y^2 - 4$, $f_2 = x^2 - y - 1$ at $(x, y) = (1.5, 1)$, $F =$",
+          "options": [
+            "$(-0.75,\\ 0.25)^T$",
+            "$(-1.75,\\ 0.25)^T$",
+            "$(-0.75,\\ -0.25)^T$",
+            "$(0.75,\\ -0.25)^T$"
+          ],
+          "answer": 0,
+          "explanation": "$2.25 + 1 - 4 = -0.75$ and $2.25 - 1 - 1 = 0.25$."
+        },
+        {
+          "question": "For the same system from $(1.5, 1)$, with $J = \\begin{pmatrix} 2x & 2y \\\\ 2x & -1 \\end{pmatrix}$, one Newton step gives",
+          "options": [
+            "$(1.5278,\\ 1.3333)$",
+            "$(1.5278,\\ 1)$",
+            "$(1.5,\\ 1.3333)$",
+            "$(1.4722,\\ 0.6667)$"
+          ],
+          "answer": 0,
+          "explanation": "$J = \\begin{pmatrix} 3 & 2 \\\\ 3 & -1 \\end{pmatrix}$, $\\det J = -9$; solving $J\\Delta = F$ gives $\\Delta = (-0.0278, -0.3333)$, so $x^{(1)} = (1.5278, 1.3333)$. (Root: $(1.5175, 1.3028)$.)"
+        },
+        {
+          "question": "Near the root, how fast does Newton’s method for systems usually converge?",
+          "options": [
+            "Quadratically: the error roughly squares each step",
+            "Only after exactly $n$ steps",
+            "It never converges",
+            "Linearly, like bisection"
+          ],
+          "answer": 0,
+          "explanation": "In the $3 \\times 3$ example the change went $0.085 \\to 0.0046 \\to 0.000014$."
+        }
+      ]
+    },
+    {
+      "id": "QS008",
+      "title": "Initial value problems and Euler",
+      "questions": [
+        {
+          "question": "An initial value problem is",
+          "options": [
+            "an algebraic equation solved by iteration",
+            "a differential equation with conditions on the solution specified at the initial point",
+            "any differential equation without conditions",
+            "a differential equation with conditions at both ends of the interval"
+          ],
+          "answer": 1,
+          "explanation": "Conditions at two different points would make a boundary value problem."
+        },
+        {
+          "question": "How many initial conditions does an $n$th-order differential equation need?",
+          "options": [
+            "$2n$",
+            "$1$",
+            "$n$",
+            "$n + 1$"
+          ],
+          "answer": 2,
+          "explanation": "The number of initial conditions equals the order: $y(a), y'(a), \\ldots, y^{(n-1)}(a)$."
+        },
+        {
+          "question": "Which initial conditions does $y''' + xy' - y = \\sin x$ need?",
+          "options": [
+            "$y(a)$ and $y(b)$",
+            "$y(a)$ only",
+            "$y'(a)$ and $y''(a)$ only",
+            "$y(a)$, $y'(a)$ and $y''(a)$"
+          ],
+          "answer": 3,
+          "explanation": "Third order, so three conditions at the initial point."
+        },
+        {
+          "question": "The difference between the general and the particular solution of a DE is that",
+          "options": [
+            "the particular solution has more arbitrary constants",
+            "only linear DEs have particular solutions",
+            "they are always identical",
+            "the general solution has arbitrary constants; initial conditions fix them to give the particular solution"
+          ],
+          "answer": 3,
+          "explanation": "An IVP picks out one particular solution from the general family."
+        },
+        {
+          "question": "The pendulum equation $\\frac{d^2\\theta}{dt^2} + \\frac{g}{L}\\sin\\theta = 0$ needs how many initial conditions?",
+          "options": [
+            "Two: $\\theta(t_0)$ and $\\theta'(t_0)$",
+            "Three",
+            "None",
+            "One: $\\theta(t_0)$"
+          ],
+          "answer": 0,
+          "explanation": "It is a second-order equation: the starting angle and starting angular velocity."
+        },
+        {
+          "question": "A set $D \\subset \\mathbb{R}^2$ is convex if",
+          "options": [
+            "$D$ is a circle",
+            "the line segment joining any two points of $D$ lies entirely in $D$",
+            "$D$ is bounded",
+            "$D$ contains the origin"
+          ],
+          "answer": 1,
+          "explanation": "Formally, $((1-\\lambda)x_1 + \\lambda x_2, (1-\\lambda)y_1 + \\lambda y_2) \\in D$ for all $\\lambda \\in [0, 1]$."
+        },
+        {
+          "question": "Which set is convex?",
+          "options": [
+            "$\\{(x, y): a \\le x \\le b,\\ -\\infty < y < \\infty\\}$",
+            "A crescent shape",
+            "The ring $\\{1 \\le x^2 + y^2 \\le 4\\}$",
+            "Two separate discs"
+          ],
+          "answer": 0,
+          "explanation": "Any segment joining two points of the vertical strip stays inside it."
+        },
+        {
+          "question": "$f(x, y)$ satisfies a Lipschitz condition in $y$ on $D$ if there is $L > 0$ with",
+          "options": [
+            "$|f(x, y_1) - f(x, y_2)| \\le L|y_1 - y_2|$ for all $(x, y_1), (x, y_2) \\in D$",
+            "$|f(x_1, y) - f(x_2, y)| \\le L|x_1 - x_2|$",
+            "$f(x, y_1) = f(x, y_2)$ whenever $y_1 \\ne y_2$",
+            "$|f(x, y)| \\le L$ for all $(x, y) \\in D$"
+          ],
+          "answer": 0,
+          "explanation": "Only $y$ changes; $x$ is the same in both terms. $L$ is the Lipschitz constant."
+        },
+        {
+          "question": "A Lipschitz constant for $f(x, y) = |xy|$ on $D = \\{1 \\le x \\le 2,\\ -3 \\le y \\le 4\\}$ is",
+          "options": [
+            "$L = 8$",
+            "$L = 4$",
+            "$L = 2$",
+            "$L = 1$"
+          ],
+          "answer": 2,
+          "explanation": "$\\big||xy_1| - |xy_2|\\big| = |x|\\big||y_1| - |y_2|\\big| \\le |x||y_1 - y_2| \\le 2|y_1 - y_2|$."
+        },
+        {
+          "question": "A Lipschitz constant for $f(x, y) = x^2y$ on $\\{0 \\le x \\le 3,\\ -\\infty < y < \\infty\\}$ is",
+          "options": [
+            "$L = 6$",
+            "$L = 3$",
+            "No Lipschitz constant exists",
+            "$L = 9$"
+          ],
+          "answer": 3,
+          "explanation": "$|x^2y_1 - x^2y_2| = x^2|y_1 - y_2| \\le 9|y_1 - y_2|$."
+        },
+        {
+          "question": "If $D$ is convex, which condition guarantees that $f$ is Lipschitz in $y$ on $D$ with constant $L$?",
+          "options": [
+            "$f(x, y) \\le L$",
+            "$\\left|\\frac{\\partial f}{\\partial x}(x, y)\\right| \\le L$",
+            "$\\left|\\frac{\\partial f}{\\partial y}(x, y)\\right| \\le L$ for all $(x, y) \\in D$",
+            "$f$ is a polynomial"
+          ],
+          "answer": 2,
+          "explanation": "By the mean value theorem, $f(x, y_2) - f(x, y_1) = \\frac{\\partial f}{\\partial y}(x, \\xi)(y_2 - y_1)$, and convexity keeps $(x, \\xi)$ in $D$."
+        },
+        {
+          "question": "For $f(x, y) = 1 + x\\sin(xy)$, $\\frac{\\partial f}{\\partial y} =$",
+          "options": [
+            "$x^2\\cos(xy)$",
+            "$x\\cos(xy)$",
+            "$-x^2\\cos(xy)$",
+            "$\\sin(xy) + xy\\cos(xy)$"
+          ],
+          "answer": 0,
+          "explanation": "Treat $x$ as constant: $\\frac{\\partial}{\\partial y}\\sin(xy) = x\\cos(xy)$, times the factor $x$."
+        },
+        {
+          "question": "For $y' = 1 + x\\sin(xy)$, $0 \\le x \\le 2$, $y(0) = 0$, which Lipschitz constant shows the IVP has a unique solution?",
+          "options": [
+            "$L = 1$",
+            "$L = 2$",
+            "$L = 8$",
+            "$L = 4$"
+          ],
+          "answer": 3,
+          "explanation": "$|x^2\\cos(xy)| \\le x^2 \\le 4$ on $0 \\le x \\le 2$."
+        },
+        {
+          "question": "For $y' = 2xy + x^2$, $0 \\le x \\le 1$, a Lipschitz constant is",
+          "options": [
+            "$L = 1$",
+            "$L = 3$",
+            "$L = 2$",
+            "None exists, because $y$ is unbounded"
+          ],
+          "answer": 2,
+          "explanation": "$\\frac{\\partial f}{\\partial y} = 2x$ and $|2x| \\le 2$ on $[0, 1]$."
+        },
+        {
+          "question": "If $f$ is continuous on $D = \\{a \\le x \\le b,\\ -\\infty < y < \\infty\\}$ and Lipschitz in $y$ on $D$, then $y' = f(x, y)$, $y(a) = \\alpha$",
+          "options": [
+            "can only be solved exactly",
+            "has a unique solution on $[a, b]$",
+            "has exactly two solutions",
+            "has no solution"
+          ],
+          "answer": 1,
+          "explanation": "This is the existence and uniqueness theorem."
+        },
+        {
+          "question": "An IVP is well posed if",
+          "options": [
+            "its solution is a polynomial",
+            "its Lipschitz constant is less than 1",
+            "it can be solved by separation of variables",
+            "it has a unique solution and small perturbations of the problem cause only small changes in the solution"
+          ],
+          "answer": 3,
+          "explanation": "For perturbations bounded by $\\varepsilon$, the perturbed solution satisfies $|z(x) - y(x)| < k\\varepsilon$."
+        },
+        {
+          "question": "Why must uniqueness be checked before solving an IVP numerically?",
+          "options": [
+            "A numerical method produces numbers even when the problem has no unique solution",
+            "Numerical methods only work for linear DEs",
+            "It is needed to choose the step size",
+            "Uniqueness makes Euler’s method exact"
+          ],
+          "answer": 0,
+          "explanation": "Without a unique solution, the computed numbers have nothing meaningful to approximate."
+        },
+        {
+          "question": "Euler’s method for $y' = f(x, y)$, $y(a) = \\alpha$ is",
+          "options": [
+            "$y_{i+1} = y_i - h\\,f(x_i, y_i)$",
+            "$y_{i+1} = y_i + f(x_i, y_i)$",
+            "$y_{i+1} = y_i + h\\,f(x_i, y_i)$, $y_0 = \\alpha$",
+            "$y_{i+1} = h\\,f(x_i, y_i)$"
+          ],
+          "answer": 2,
+          "explanation": "Step along the tangent line: slope $f(x_i, y_i)$, run $h$."
+        },
+        {
+          "question": "For $a \\le x \\le b$ divided into $n$ equal steps, the step size is",
+          "options": [
+            "$h = \\dfrac{b + a}{n}$",
+            "$h = (b - a)n$",
+            "$h = \\dfrac{n}{b - a}$",
+            "$h = \\dfrac{b - a}{n}$"
+          ],
+          "answer": 3,
+          "explanation": "The mesh points are then $x_i = a + ih$, $i = 0, 1, \\ldots, n$."
+        },
+        {
+          "question": "For $0 \\le x \\le 2$ with $h = 0.5$, the mesh points are",
+          "options": [
+            "$0.5,\\ 1.0,\\ 1.5,\\ 2.0$",
+            "$0,\\ 1,\\ 2$",
+            "$0,\\ 0.5,\\ 1.0,\\ 1.5,\\ 2.0$",
+            "$0,\\ 0.25,\\ 0.5,\\ \\ldots,\\ 2.0$"
+          ],
+          "answer": 2,
+          "explanation": "$n = \\frac{2 - 0}{0.5} = 4$ steps, so 5 mesh points starting at $x_0 = 0$."
+        },
+        {
+          "question": "Euler’s method comes from",
+          "options": [
+            "the binomial expansion of $(1 + h)^n$",
+            "the trapezium rule",
+            "Newton’s divided differences",
+            "Taylor’s series $y(x + h) = y(x) + h\\,y'(x) + \\cdots$ cut after the $h\\,y'$ term"
+          ],
+          "answer": 3,
+          "explanation": "The dropped $\\frac{h^2}{2}y''(\\xi)$ term is the local truncation error."
+        },
+        {
+          "question": "For $y' = y - x^2 + 1$, $y(0) = 0.5$, $h = 0.5$, Euler’s method gives $y_1 \\approx y(0.5) =$",
+          "options": [
+            "$1.4256$",
+            "$0.75$",
+            "$1.5$",
+            "$1.25$"
+          ],
+          "answer": 3,
+          "explanation": "$0.5 + 0.5(0.5 - 0 + 1) = 1.25$. ($1.4256$ is the exact value.)"
+        },
+        {
+          "question": "Continuing the same problem, $y_4 \\approx y(2) =$",
+          "options": [
+            "$4.4375$",
+            "$3.375$",
+            "$4.7797$",
+            "$5.3055$"
+          ],
+          "answer": 0,
+          "explanation": "$y_2 = 2.25$, $y_3 = 3.375$, $y_4 = 3.375 + 0.5(3.375 - 2.25 + 1) = 4.4375$. Exact: $5.3055$."
+        },
+        {
+          "question": "Use Euler’s method with $h = 0.1$ on $y' = x + y$, $y(0) = 1$ to estimate $y(0.2)$.",
+          "options": [
+            "$1.32$",
+            "$1.11$",
+            "$1.2$",
+            "$1.22$"
+          ],
+          "answer": 3,
+          "explanation": "$y_1 = 1 + 0.1(1) = 1.1$; $y_2 = 1.1 + 0.1(0.1 + 1.1) = 1.22$. Exact: $1.2428$."
+        },
+        {
+          "question": "Halving the step size $h$ in Euler’s method roughly",
+          "options": [
+            "halves the error (it is a first-order method)",
+            "leaves the error unchanged",
+            "quarters the error",
+            "doubles the error"
+          ],
+          "answer": 0,
+          "explanation": "For $y' = y - x^2 + 1$ at $x = 2$: error $0.87$ with $h = 0.5$, $0.53$ with $h = 0.25$."
         }
       ]
     }

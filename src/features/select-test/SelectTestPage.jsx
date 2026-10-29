@@ -9,6 +9,7 @@ import LearnChooser from '../learn/LearnChooser';
 import { clearRun, listRuns } from '../learn/progress';
 import ConfirmDialog from '../../lib/ConfirmDialog';
 import AppHeader from '../../lib/AppHeader';
+import CourseBanner from '../../lib/CourseBanner';
 import { ChevronRight, SearchIcon } from '../../lib/icons';
 
 export default function SelectTestPage() {
@@ -134,7 +135,7 @@ export default function SelectTestPage() {
             <Link
               key={course.code}
               to={coursePath(course)}
-              className="course-card course-link"
+              className="course-card course-link has-banner"
               onClick={(e) => {
                 // Courses with a tutorial ask first: learn, or practise?
                 if (!getTutorial(course.slug)) return;
@@ -142,17 +143,20 @@ export default function SelectTestPage() {
                 setChooser(course);
               }}
             >
-              <div>
-                <h2 className="course-code">
-                  {course.code}
-                  {getTutorial(course.slug) && <span className="course-tag">Tutorial</span>}
-                </h2>
-                {course.title && <p className="course-title">{course.title}</p>}
-                <p className="muted small">
-                  {course.sets.length} set{course.sets.length === 1 ? '' : 's'} · {course.questionCount} questions
-                </p>
+              <CourseBanner code={course.code} size="card" />
+              <div className="course-link-body">
+                <div>
+                  <h2 className="course-code">
+                    {course.code}
+                    {getTutorial(course.slug) && <span className="course-tag">Tutorial</span>}
+                  </h2>
+                  {course.title && <p className="course-title">{course.title}</p>}
+                  <p className="muted small">
+                    {course.sets.length} set{course.sets.length === 1 ? '' : 's'} · {course.questionCount} questions
+                  </p>
+                </div>
+                <ChevronRight className="muted" />
               </div>
-              <ChevronRight className="muted" />
             </Link>
           ))}
           {visibleCourses.length === 0 && (

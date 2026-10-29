@@ -1,0 +1,102 @@
+/* Course banners (CourseBanner.jsx). One colour pair per course; motifs are drawn in
+   white on top, with a single warm accent. Dark mode just dims the whole banner a touch. */
+.course-banner {
+  --bn-from: #4f46e5;
+  --bn-to: #7c3aed;
+  --bn-accent: #fde047;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, var(--bn-from), var(--bn-to));
+  isolation: isolate;
+}
+
+.course-banner svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.course-banner-hero {
+  height: clamp(110px, 22vw, 168px);
+  border-radius: var(--radius);
+  margin-bottom: 18px;
+}
+
+.course-banner-card {
+  height: 72px;
+}
+
+.course-banner-strip {
+  height: 64px;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+}
+
+:root[data-theme='dark'] .course-banner {
+  filter: brightness(0.82) saturate(0.95);
+}
+
+/* motif parts */
+.course-banner .bn-speck { fill: rgb(255 255 255 / 0.16); }
+.course-banner .bn-glow { fill: rgb(255 255 255 / 0.07); }
+.course-banner .bn-axis { stroke: rgb(255 255 255 / 0.45); stroke-width: 2; }
+.course-banner .bn-grid { stroke: rgb(255 255 255 / 0.12); stroke-width: 1; }
+.course-banner .bn-curve { fill: none; stroke: #fff; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.course-banner .bn-accent { fill: none; stroke: var(--bn-accent); stroke-width: 3; stroke-linecap: round; }
+.course-banner .bn-dash { stroke: rgb(255 255 255 / 0.5); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.course-banner .bn-dot { fill: #fff; }
+.course-banner .bn-star { fill: var(--bn-accent); }
+.course-banner .bn-hole { fill: var(--bn-to); stroke: #fff; stroke-width: 3; }
+.course-banner .bn-band { fill: rgb(255 255 255 / 0.13); }
+.course-banner .bn-ring { fill: none; stroke: rgb(255 255 255 / 0.55); stroke-width: 2.5; }
+.course-banner .bn-bar { fill: rgb(255 255 255 / 0.28); }
+.course-banner .bn-coin { fill: var(--bn-accent); stroke: rgb(0 0 0 / 0.15); stroke-width: 1; }
+.course-banner .bn-fill { fill: rgb(255 255 255 / 0.85); }
+.course-banner .bn-flag { fill: var(--bn-accent); }
+.course-banner .bn-panel { fill: rgb(0 0 0 / 0.22); stroke: rgb(255 255 255 / 0.25); stroke-width: 1.5; }
+.course-banner .bn-page { fill: rgb(255 255 255 / 0.9); }
+.course-banner .bn-line { stroke: rgb(0 0 0 / 0.18); stroke-width: 2.5; stroke-linecap: round; }
+.course-banner .bn-crown { fill: var(--bn-accent); }
+.course-banner text { font-family: Inter, system-ui, sans-serif; }
+.course-banner .bn-label { fill: #fff; font-size: 15px; font-weight: 600; opacity: 0.9; }
+.course-banner .bn-ink { fill: #0f172a; opacity: 0.75; }
+.course-banner .bn-code { fill: #a7f3d0; font-family: ui-monospace, Consolas, monospace; font-size: 15px; }
+.course-banner .bn-big { fill: #fff; font-size: 34px; font-weight: 800; }
+
+/* per-course colours */
+.bn-mth209 { --bn-from: #4338ca; --bn-to: #7c3aed; --bn-accent: #fde047; }
+.bn-mat222 { --bn-from: #0f766e; --bn-to: #14b8a6; --bn-accent: #fde68a; }
+.bn-mth103 { --bn-from: #1d4ed8; --bn-to: #0ea5e9; --bn-accent: #fde047; }
+.bn-mat142 { --bn-from: #166534; --bn-to: #65a30d; --bn-accent: #facc15; }
+.bn-sta121 { --bn-from: #c2410c; --bn-to: #f59e0b; --bn-accent: #fef08a; }
+.bn-sta221 { --bn-from: #be123c; --bn-to: #f43f5e; --bn-accent: #fde68a; }
+.bn-cos102 { --bn-from: #0f172a; --bn-to: #334155; --bn-accent: #34d399; }
+.bn-ges103 { --bn-from: #92400e; --bn-to: #d97706; --bn-accent: #22c55e; }
+.bn-ges201 { --bn-from: #7e22ce; --bn-to: #c026d3; --bn-accent: #fde047; }
+.bn-gst111 { --bn-from: #0e7490; --bn-to: #06b6d4; --bn-accent: #fde047; }
+.bn-gst112 { --bn-from: #065f46; --bn-to: #047857; --bn-accent: #fbbf24; }
+
+/* any other course: one of six palettes, chosen from its code */
+.bn-auto-0 { --bn-from: #1e40af; --bn-to: #6366f1; }
+.bn-auto-1 { --bn-from: #9d174d; --bn-to: #db2777; }
+.bn-auto-2 { --bn-from: #115e59; --bn-to: #0d9488; }
+.bn-auto-3 { --bn-from: #9a3412; --bn-to: #ea580c; }
+.bn-auto-4 { --bn-from: #3f6212; --bn-to: #65a30d; }
+.bn-auto-5 { --bn-from: #581c87; --bn-to: #9333ea; }
+
+/* course list: banner strip on top of each card */
+.course-link.has-banner {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.course-link-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px 16px;
+}

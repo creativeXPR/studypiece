@@ -16,6 +16,14 @@ import luFactorisation from './lu-factorisation';
 import gaussian from './gaussian';
 import simpleIteration from './simple-iteration';
 import gaussSeidel from './gauss-seidel';
+import binomialExpansion from './binomial-expansion';
+import taylorMaclaurin from './taylor-maclaurin';
+import exponentialSeries from './exponential-series';
+import nonlinearSystems from './nonlinear-systems';
+import newtonSystems from './newton-systems';
+import ivpIntro from './ivp-intro';
+import ivpUnique from './ivp-unique';
+import euler from './euler';
 
 export default {
   code: 'MTH 209',
@@ -47,26 +55,27 @@ export default {
     },
     {
       n: 5,
+      title: 'Approximations',
+      by: 'Binomial expansion, Taylor, Maclaurin and exponential series',
+      lessons: [binomialExpansion, taylorMaclaurin, exponentialSeries],
+    },
+    {
+      n: 6,
       title: 'Systems of Linear Equations',
       by: 'Direct and iterative methods',
       lessons: [matrixInverse, luFactorisation, gaussian, simpleIteration, gaussSeidel],
     },
     {
-      n: 6,
+      n: 7,
       title: 'Systems of Non-Linear Equations',
       by: 'Fixed points, iteration and Newton’s method',
-      lessons: [
-        { id: 'nonlinear-systems', title: 'Definitions, fixed points and convergence', covers: 'Non-linear systems, fixed point iteration, condition for convergence' },
-        { id: 'newton-systems', title: 'Newton’s method for systems', covers: 'The Jacobian and Newton’s iteration for two equations' },
-      ],
+      lessons: [nonlinearSystems, newtonSystems],
     },
     {
-      n: 7,
+      n: 8,
       title: 'Initial Value Problems in ODEs',
-      by: 'Numerical solution of y′ = f(x, y), y(x₀) = y₀',
-      lessons: [
-        { id: 'ivp-intro', title: 'Initial value problems', covers: 'Euler’s method and related methods for y′ = f(x, y)' },
-      ],
+      by: 'Unique solutions, the Lipschitz condition and Euler’s method',
+      lessons: [ivpIntro, ivpUnique, euler],
     },
   ],
 };

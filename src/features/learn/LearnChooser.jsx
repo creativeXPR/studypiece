@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { coursePath } from '../../data/courses';
 import { tutorialPath } from '../../data/tutorials';
+import CourseBanner from '../../lib/CourseBanner';
 import { ChevronRight, TimerIcon, XIcon } from '../../lib/icons';
 import { lessonsDone } from './progress';
 import './learn.css';
@@ -33,6 +34,7 @@ export default function LearnChooser({ course, tutorial, onClose }) {
             <XIcon />
           </button>
         </div>
+        <CourseBanner code={course.code} size="strip" />
         <p className="muted">How do you want to study today?</p>
 
         <div className="chooser-options">

@@ -4,6 +4,7 @@ import { useAuth } from '../../app/AuthProvider';
 import { coursePath, getCourseBySlug } from '../../data/courses';
 import { getTutorial, lessonPath } from '../../data/tutorials';
 import AppHeader from '../../lib/AppHeader';
+import CourseBanner from '../../lib/CourseBanner';
 import ConfirmDialog from '../../lib/ConfirmDialog';
 import { CheckIcon, ChevronLeft, ChevronRight, ClockIcon, TimerIcon } from '../../lib/icons';
 import NotFound from '../course/NotFound';
@@ -37,6 +38,8 @@ export default function TutorialHomePage() {
         <Link to="/" className="back-link">
           <ChevronLeft size={16} /> All courses
         </Link>
+
+        <CourseBanner code={tutorial.code} />
 
         <section className="learn-hero">
           <div className="learn-hero-text">

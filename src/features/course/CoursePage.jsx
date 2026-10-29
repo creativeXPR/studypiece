@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { coursePath, getCourseBySlug, setPath } from '../../data/courses';
 import { getTutorial, tutorialPath } from '../../data/tutorials';
 import AppHeader from '../../lib/AppHeader';
+import CourseBanner from '../../lib/CourseBanner';
 import ShareButtons from '../../lib/ShareButtons';
 import ShuffleToggles from '../../lib/ShuffleToggles';
 import useShufflePrefs from '../../lib/useShufflePrefs';
@@ -29,6 +30,8 @@ export default function CoursePage() {
         <Link to="/" className="back-link">
           <ChevronLeft size={16} /> All courses
         </Link>
+
+        <CourseBanner code={course.code} />
 
         <div className="course-hero">
           <div>
