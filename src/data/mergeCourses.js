@@ -8,6 +8,8 @@ export function mergeCourses(list) {
     if (existing) {
       existing.sets = [...existing.sets, ...course.sets];
       existing.title ||= course.title;
+      // The course counts as updated whenever any of its files was ("YYYY-MM-DD" compares as text).
+      if ((course.updated ?? '') > (existing.updated ?? '')) existing.updated = course.updated;
     } else {
       byCode.set(course.code, { ...course, sets: [...course.sets] });
     }

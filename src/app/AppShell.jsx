@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigationType } from 'react-router-dom';
+import BrandMark from '../lib/BrandMark';
 import { isAdminUser } from '../lib/admins';
 import { BookIcon, PanelIcon, ShieldIcon, TimerIcon, UserIcon } from '../lib/icons';
 import { readJSON, writeJSON } from '../lib/storage';
@@ -88,7 +89,7 @@ export default function AppShell() {
     <div className={`shell${collapsed ? ' rail-collapsed' : ''}`}>
       <nav className="app-nav" aria-label="Main">
         <Link to="/" className="nav-brand" aria-label="StudyPiece home">
-          <span className="brand-mark">SP</span>
+          <BrandMark />
           <span className="nav-brand-name">StudyPiece</span>
         </Link>
         <div className="nav-items">

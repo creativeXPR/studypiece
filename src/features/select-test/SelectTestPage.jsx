@@ -10,6 +10,7 @@ import { clearRun, listRuns } from '../learn/progress';
 import ConfirmDialog from '../../lib/ConfirmDialog';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
+import { formatDay } from '../../lib/dates';
 import { ChevronRight, SearchIcon } from '../../lib/icons';
 
 export default function SelectTestPage() {
@@ -153,6 +154,7 @@ export default function SelectTestPage() {
                   {course.title && <p className="course-title">{course.title}</p>}
                   <p className="muted small">
                     {course.sets.length} set{course.sets.length === 1 ? '' : 's'} · {course.questionCount} questions
+                    {course.updated && ` · Updated ${formatDay(course.updated)}`}
                   </p>
                 </div>
                 <ChevronRight className="muted" />

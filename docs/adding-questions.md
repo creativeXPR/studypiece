@@ -134,6 +134,7 @@ AI can still get things wrong, especially calculations. Spot-check a few questio
 |---|---|---|
 | `code` | yes | Course code, e.g. `"GES 201"`. It becomes the link `/course/ges201`, and its first digit is the level. |
 | `title` | no | Course name shown under the code. |
+| `updated` | no | Date the course last got new or changed content, as `"YYYY-MM-DD"`. The course list shows newest first. Update it whenever you add sets. |
 | `showToAll` | no | `true` shows the course under **For you** for every student, whatever their department or level. |
 | `sets[].id` | yes | e.g. `"QS010"`. It becomes the link `/course/ges201/qs010`. Must be unique within the course. |
 | `sets[].title` | no | Topic of the set. Defaults to "Set 1", "Set 2"… |

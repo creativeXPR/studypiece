@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../app/AuthProvider';
 import AppHeader from '../../lib/AppHeader';
+import BrandMark from '../../lib/BrandMark';
 import { GoogleIcon } from '../../lib/icons';
 
 const ERROR_MESSAGES = {
@@ -79,7 +80,7 @@ export default function AuthPage() {
       <AppHeader />
       <main className="page page-narrow auth-page">
         <div className="card auth-card">
-          <span className="brand-mark brand-mark-lg">SP</span>
+          <BrandMark large />
           <h1>StudyPiece</h1>
           <p className="muted">CBT practice for your university courses: timed tests, instant scores, and a full explanation for every answer.</p>
 

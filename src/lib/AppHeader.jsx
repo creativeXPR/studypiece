@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import BrandMark from './BrandMark';
 import useTheme from './useTheme';
 import { MoonIcon, SunIcon } from './icons';
 
@@ -12,7 +13,7 @@ export default function AppHeader({ children }) {
     <header className="app-header">
       <div className="app-header-inner">
         <Link to="/" className="brand">
-          <span className="brand-mark">SP</span>
+          <BrandMark />
           <span className="brand-name">StudyPiece</span>
         </Link>
         <div className="header-slot">{children}</div>

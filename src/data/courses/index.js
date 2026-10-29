@@ -1,5 +1,5 @@
 // Every other .js or .json file in this folder is a course and is registered automatically.
-// Format: { code, title, sets: [{ id, title?, questions }] }. See docs/adding-questions.md.
+// Format: { code, title, updated: 'YYYY-MM-DD', sets: [{ id, title?, questions }] }. See docs/adding-questions.md.
 import { mergeCourses } from '../mergeCourses';
 import { courseSlug, setSlug } from '../slugs';
 
@@ -25,7 +25,8 @@ export const courses = mergeCourses(files)
     questionCount: course.sets.reduce((n, s) => n + s.questions.length, 0),
     sets: course.sets.map((set, i) => ({ ...set, slug: setSlug(set.id), title: set.title || `Set ${i + 1}` })),
   }))
-  .sort((a, b) => a.code.localeCompare(b.code));
+  // Newest first: most recently updated courses on top, then by code.
+  .sort((a, b) => (b.updated ?? '').localeCompare(a.updated ?? '') || a.code.localeCompare(b.code));
 
 export function getCourse(code) {
   return courses.find((c) => c.code === code);

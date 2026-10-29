@@ -11,6 +11,11 @@ export function parseDay(key) {
   return new Date(y, m - 1, d);
 }
 
+// "2026-10-29" -> "29 Oct 2026"
+export function formatDay(key) {
+  return parseDay(key).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
 export function addDays(date, n) {
   const next = new Date(date);
   next.setDate(next.getDate() + n);

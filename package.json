@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "check": "node scripts/checkQuestions.js",
+    "icons": "node scripts/brandIcons.js",
     "preview": "vite preview"
   },
   "dependencies": {

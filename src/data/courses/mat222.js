@@ -4,6 +4,7 @@
 
 export default {
   "code": "MAT 222",
+  "updated": "2026-10-17",
   "title": "Limits and continuity",
   "sets": [
     {

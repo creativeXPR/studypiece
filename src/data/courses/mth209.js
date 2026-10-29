@@ -4,6 +4,7 @@
 
 export default {
   "code": "MTH 209",
+  "updated": "2026-10-29",
   "title": "Numerical Methods",
   "sets": [
     {

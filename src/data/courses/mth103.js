@@ -4,6 +4,7 @@
 
 export default {
   "code": "MTH 103",
+  "updated": "2026-09-24",
   "title": "",
   "sets": [
     {

@@ -203,24 +203,24 @@ a {
   color: var(--text);
 }
 
+/* The logo: a whole with one piece lifted out, drawn as SVG (BrandMark.jsx). */
 .brand-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--pill);
-  background: var(--primary);
-  color: var(--primary-text);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  display: inline-block;
+  flex: none;
+  width: 30px;
+  height: 30px;
+}
+
+.brand-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
 .brand-mark-lg {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--pill);
-  font-size: 1.2rem;
+  width: 64px;
+  height: 64px;
 }
 
 .header-slot {
@@ -2324,10 +2324,8 @@ button,
   }
 
   .nav-brand .brand-mark {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--pill);
-    font-size: 0.75rem;
+    width: 38px;
+    height: 38px;
   }
 
   .nav-brand-name,

@@ -4,6 +4,7 @@
 
 export default {
   "code": "GES 103",
+  "updated": "2026-10-14",
   "showToAll": true,
   "title": "Government, Society and Economy",
   "sets": [

@@ -4,6 +4,7 @@
 
 export default {
   "code": "MAT 142",
+  "updated": "2026-09-24",
   "title": "",
   "sets": [
     {
