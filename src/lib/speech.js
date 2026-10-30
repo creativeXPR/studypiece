@@ -70,9 +70,12 @@ function latexToWords(tex) {
     .trim();
 }
 
-// Converts question/answer text (with $…$ math and intonation arrows) into plain speech.
+// Converts question/answer text (with $…$ math, `code` and intonation arrows) into plain speech.
 export function toSpeakable(text) {
   return String(text ?? '')
+    // Programs aren't read out; short outputs are, line by line.
+    .replace(/```\n?([\s\S]+?)\n?```/g, (_, code) => (/[;{}]/.test(code) ? ' The code is on screen. ' : ` ${code.split('\n').join(', ')}. `))
+    .replace(/`([^`\n]+)`/g, '$1')
     .replace(/\$\$([\s\S]+?)\$\$|\$([^$]+?)\$/g, (_, display, inline) => ` ${latexToWords(display ?? inline)} `)
     .replace(/↗↘/g, ' rise-fall on ')
     .replace(/↘↗/g, ' fall-rise on ')

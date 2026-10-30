@@ -639,6 +639,39 @@ a {
   padding: 4px 0;
 }
 
+/* Code in questions and explanations, shown exactly as typed (no `<=` ligatures). */
+.text-code,
+.text-codeblock {
+  font-family: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+  background: var(--primary-soft);
+}
+
+.text-code {
+  padding: 0.08em 0.35em;
+  font-size: 0.9em;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+
+.text-codeblock {
+  margin: 8px 0;
+  padding: 10px 12px;
+  font-size: 0.86rem;
+  font-weight: 400;
+  line-height: 1.55;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border-radius: 10px;
+}
+
+.option .text-codeblock {
+  margin: 0;
+  padding: 6px 10px;
+}
+
 .options {
   display: flex;
   flex-direction: column;

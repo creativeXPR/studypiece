@@ -114,23 +114,38 @@ function SwingWindow({ code, images, busy }) {
   const slot = useRef(null);
   const release = useRef(() => {});
   const [live, setLive] = useState(null); // { state: 'loading' | 'running' | 'ready' | 'error', pct, error }
+  const attempt = useRef(0); // bumped on cancel, so a load still under way can't take over the screen
 
   useEffect(() => () => release.current(), []);
 
+  const backToPicture = () => {
+    attempt.current += 1;
+    release.current();
+    release.current = () => {};
+    setLive(null);
+  };
+
   const goLive = async () => {
+    const mine = ++attempt.current;
+    const current = () => attempt.current === mine;
     setLive({ state: 'loading', pct: 0 });
+    let off = () => {};
     try {
       const cj = await import('./cheerpj');
-      const off = cj.onJavaStatus((st) => setLive((l) => (l?.state === 'loading' ? { ...l, pct: st.total ? Math.round((st.done / st.total) * 100) : 0 } : l)));
+      off = cj.onJavaStatus((st) => {
+        if (current()) setLive((l) => (l?.state === 'loading' ? { ...l, pct: st.total ? Math.round((st.done / st.total) * 100) : 0 } : l));
+      });
       await cj.bootJava();
-      off();
+      if (!current()) return;
       release.current();
       release.current = cj.borrowDisplay(slot.current);
       setLive({ state: 'running' });
       const r = await cj.runJava({ [fileNameFor(code)]: code }, mainClassOf(code));
-      setLive(r.compiled ? { state: 'ready' } : { state: 'error', error: 'Your code doesn’t compile yet. Fix it, press Run, then try live again.' });
+      if (current()) setLive(r.compiled ? { state: 'ready' } : { state: 'error', error: 'Your code doesn’t compile yet. Fix it, press Run, then try live again.' });
     } catch (e) {
-      setLive({ state: 'error', error: e.message });
+      if (current()) setLive({ state: 'error', error: e.message });
+    } finally {
+      off();
     }
   };
 
@@ -168,7 +183,8 @@ function SwingWindow({ code, images, busy }) {
       )}
       {showLive && (
         <p className="jv-window-note">
-          Live window, running on your device with <a href="https://cheerpj.com" target="_blank" rel="noreferrer">CheerpJ</a>.
+          {live.state === 'ready' ? 'Live window' : 'Live window loading'}, running on your device with <a href="https://cheerpj.com" target="_blank" rel="noreferrer">CheerpJ</a>.{' '}
+          <button type="button" className="jv-link" onClick={backToPicture}>{images?.length ? 'Back to the picture' : 'Cancel'}</button>
         </p>
       )}
     </div>
