@@ -330,6 +330,8 @@
   background: var(--primary-soft);
   border-radius: 6px;
   overflow-wrap: anywhere;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
 }
 
 .tut-term {

@@ -111,7 +111,7 @@ function bodyOf(t) {
 
 /** Java source for the test class, plus which line each test sits on (for error messages). */
 export function buildTests(tests) {
-  const head = ['import java.util.*;', 'import java.io.*;', 'import java.lang.reflect.*;', '', 'public class __Tests {'];
+  const head = ['import java.util.*;', 'import java.io.*;', 'import java.lang.reflect.*;', 'import javax.swing.*;', '', 'public class __Tests {'];
   const lineOf = {};
   const calls = javaTests(tests).map(({ t, i }, k) => {
     lineOf[head.length + 2 + k] = i;

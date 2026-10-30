@@ -12,6 +12,7 @@ const PALETTES = {
   'STA 121': ['#c2410c', '#f59e0b', '#fef08a'],
   'STA 221': ['#be123c', '#f43f5e', '#fde68a'],
   'COS 102': ['#0f172a', '#334155', '#34d399'],
+  'COS 202': ['#7c2d12', '#c2410c', '#fde68a'],
   'GES 103': ['#92400e', '#d97706', '#22c55e'],
   'GES 201': ['#7e22ce', '#c026d3', '#fde047'],
   'GST 111': ['#0e7490', '#06b6d4', '#fde047'],
@@ -176,6 +177,14 @@ const MOTIFS = {
     k.circle(396, 40, 4, k.dot) + k.circle(410, 40, 4, k.star) + k.circle(424, 40, 4, k.coin) +
     k.text(396, 70, 'int main() {', k.code) + k.text(414, 92, 'print("Hi");', k.code) + k.text(396, 114, '}', k.code) +
     k.text(540, 122, '</>', k.big),
+
+  // Object-oriented Java: a class hierarchy beside a line of code.
+  'COS 202': (k) =>
+    k.rect(420, 22, 120, 30, k.panel, 7) + k.text(458, 42, 'Shape', k.code) +
+    k.line(480, 52, 480, 68, k.axis) + k.line(410, 68, 550, 68, k.axis) + k.line(410, 68, 410, 82, k.axis) + k.line(550, 68, 550, 82, k.axis) +
+    k.rect(358, 82, 104, 30, k.panel, 7) + k.text(384, 102, 'Circle', k.code) +
+    k.rect(498, 82, 104, 30, k.panel, 7) + k.text(524, 102, 'Square', k.code) +
+    k.text(392, 136, 'class Circle extends Shape', k.code),
 
   // Government and society: a domed parliament building with a flag.
   'GES 103': (k) => {

@@ -608,7 +608,7 @@ function BugScreen({ s, index, api }) {
       <details className="jv-legend">
         <summary>Syntax or semantic?</summary>
         <p><b>Syntax error:</b> breaks Java’s grammar, so the code won’t compile (a missing <code>;</code>, a misspelt keyword).</p>
-        <p><b>Semantic error:</b> the code compiles, or nearly does, but means the wrong thing (a wrong condition, the wrong variable, a missing <code>return</code> value).</p>
+        <p><b>Semantic error:</b> the code compiles, but it doesn’t do what it should, because the logic or meaning is wrong (a wrong condition, the wrong variable, a missing base case).</p>
       </details>
     </>
   );

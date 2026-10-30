@@ -49,6 +49,7 @@ const CodeEditor = forwardRef(function CodeEditor({ value, onChange, readOnly = 
           java(),
           syntaxHighlighting(classHighlighter),
           keymap.of([...closeBracketsKeymap, ...defaultKeymap, ...historyKeymap, indentWithTab]),
+          EditorView.lineWrapping,
           EditorState.readOnly.of(readOnly),
           EditorView.contentAttributes.of({ 'aria-label': label, autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false' }),
           EditorView.updateListener.of((u) => {

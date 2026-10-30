@@ -1024,8 +1024,22 @@
 .jv-test-msg,
 .jv-err-src,
 .jv-cm .cm-content,
-.jv-cm .cm-line,
-.tut-code {
+.jv-cm .cm-line {
   font-variant-ligatures: none;
   font-feature-settings: 'liga' 0, 'calt' 0;
+}
+
+/* Phones: wrap long lines, so no bug or gap hides off-screen. */
+@media (max-width: 700px) {
+  .jv-code .jv-line {
+    white-space: pre-wrap;
+  }
+  .jv-code .jv-line code {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .jv-tap.flag code,
+  .jv-tap.wrong code {
+    padding-right: 64px;
+  }
 }
