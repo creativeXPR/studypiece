@@ -28,6 +28,15 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // config/forYou: the admin's "For you" dates, { courses: { code: 'YYYY-MM-DD' } }.
+    // Every signed-in student reads it; only admins change it.
+    match /config/forYou {
+      allow get: if signedIn();
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['courses'])
+        && request.resource.data.courses is map;
+    }
+
     // Everything else is closed by default.
   }
 }

@@ -1586,6 +1586,54 @@ a {
   height: 38px;
 }
 
+.foryou-list {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.foryou-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.foryou-info {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.foryou-info p {
+  margin: 2px 0 0;
+}
+
+.foryou-row.on .foryou-info p:first-of-type {
+  color: var(--good);
+}
+
+.foryou-error {
+  color: var(--bad);
+}
+
+.foryou-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.foryou-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .admin-range {
   margin-bottom: -4px;
 }

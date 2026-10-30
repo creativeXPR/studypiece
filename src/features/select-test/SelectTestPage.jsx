@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../app/AuthProvider';
 import { useTest } from '../../app/TestProvider';
-import { coursePath, courses, isNewCourse } from '../../data/courses';
+import { coursePath, courses } from '../../data/courses';
 import { prefixesFor } from '../../data/departments';
+import { isNewCourse, onForYou } from '../../data/forYou';
 import { findLesson, getTutorial, lessonPath } from '../../data/tutorials';
 import LearnChooser from '../learn/LearnChooser';
 import { clearRun, listRuns } from '../learn/progress';
@@ -11,6 +12,7 @@ import ConfirmDialog from '../../lib/ConfirmDialog';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import { formatDay } from '../../lib/dates';
+import { watchForYou } from '../../lib/forYouStore';
 import { ChevronRight, SearchIcon } from '../../lib/icons';
 
 export default function SelectTestPage() {
@@ -18,14 +20,21 @@ export default function SelectTestPage() {
   const { session, clearTest } = useTest();
   const navigate = useNavigate();
 
+  const [forYouDates, setForYouDates] = useState(null);
+  useEffect(() => watchForYou(setForYouDates), []);
+
   const myCourses = useMemo(() => {
     const prefixes = prefixesFor(profile?.department);
-    return courses.filter(
-      (c) => c.showToAll || isNewCourse(c) || (prefixes.includes(c.prefix) && String(c.level) === profile?.level),
+    const list = courses.filter(
+      (c) => c.showToAll || onForYou(c, forYouDates) || (prefixes.includes(c.prefix) && String(c.level) === profile?.level),
     );
-  }, [profile]);
+    // Courses shown to everyone come first.
+    return list.sort((a, b) => onForYou(b, forYouDates) - onForYou(a, forYouDates));
+  }, [profile, forYouDates]);
 
-  const [scope, setScope] = useState(myCourses.length ? 'mine' : 'all');
+  // Until the student picks a tab, follow what there is to show.
+  const [pickedScope, setScope] = useState(null);
+  const scope = pickedScope ?? (myCourses.length ? 'mine' : 'all');
   const [search, setSearch] = useState('');
   const [chooser, setChooser] = useState(null);
   const [confirm, setConfirm] = useState(null); // 'test' | 'lesson' | null
@@ -150,7 +159,8 @@ export default function SelectTestPage() {
                   <h2 className="course-code">
                     {course.code}
                     {getTutorial(course.slug) && <span className="course-tag">Tutorial</span>}
-                    {isNewCourse(course) && <span className="course-tag new">New</span>}
+                    {onForYou(course, forYouDates) &&
+                      (isNewCourse(course) ? <span className="course-tag new">New</span> : <span className="course-tag featured">Featured</span>)}
                   </h2>
                   {course.title && <p className="course-title">{course.title}</p>}
                   <p className="muted small">

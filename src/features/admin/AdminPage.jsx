@@ -4,6 +4,7 @@ import { db } from '../../lib/firebase';
 import AppHeader from '../../lib/AppHeader';
 import { addDays, dayKey, parseDay } from '../../lib/dates';
 import { normalizeUser, summarize } from './adminStats';
+import ForYouAdmin from './ForYouAdmin';
 import { isUnlocked, lock } from './adminUnlock';
 import PasskeyGate from './PasskeyGate';
 import SignInChart from './SignInChart';
@@ -127,6 +128,8 @@ function Dashboard({ onLock }) {
           </button>
         </div>
       </div>
+
+      <ForYouAdmin />
 
       <div className="admin-filters">
         <div className="segmented" role="tablist" aria-label="Time frame">

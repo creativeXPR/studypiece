@@ -2019,6 +2019,11 @@ a.learn-les:active {
   color: var(--good);
 }
 
+.course-tag.featured {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
 .course-tutorial-link {
   display: flex;
   align-items: center;
