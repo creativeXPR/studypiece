@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BookIcon, BulbIcon, CheckIcon, ChevronLeft, XIcon } from '../../lib/icons';
 import { buzz } from './fx';
 import { clearRun, getRun, saveProgress, saveRun } from './progress';
 import { Rich, Terms } from './Rich';
+import { JAVA_SCREENS } from './java/lazyScreens';
 import { SCREENS } from './screens';
 
 /**
@@ -122,6 +123,12 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
     return a;
   }, [lesson, nextLesson, courseSlug, homeHref, navigate, total, persist, uid]);
 
+  // A lesson with code exercises wakes the Java runner early, while the learner reads.
+  const hasCode = useMemo(() => screens.some((x) => x.type === 'code'), [screens]);
+  useEffect(() => {
+    if (hasCode) import('./java/runner').then((m) => m.wakeRunner());
+  }, [hasCode]);
+
   const back = () => {
     if (idx === 0) return;
     setSheet(null);
@@ -145,7 +152,7 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape' && notesOpen) setNotesOpen(false);
-      if (e.key !== 'Enter' || notesOpen || e.target.closest?.('button, a, input, textarea')) return;
+      if (e.key !== 'Enter' || notesOpen || e.target.closest?.('button, a, input, textarea, [contenteditable]')) return;
       if (sheet) continueSheet();
       else if (action.enabled) actionFn.current?.();
     };
@@ -154,7 +161,7 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
   });
 
   const s = screens[idx];
-  const Screen = SCREENS[s.type];
+  const Screen = SCREENS[s.type] ?? JAVA_SCREENS[s.type];
   const cur = s.sec;
   const unlocked = lesson.sections.slice(0, cur + 1).filter((x) => x.terms?.length);
   const noteCount = unlocked.reduce((n, x) => n + x.terms.length, 0);
@@ -196,7 +203,9 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
 
       <main className="tut-stage" ref={stageRef}>
         <section className={`tut-screen ${dir < 0 ? 'from-left' : 'from-right'}`} key={`${run}-${idx}`}>
-          <Screen s={s} index={idx} api={api} />
+          <Suspense fallback={<p className="tut-hint">Loading…</p>}>
+            <Screen s={s} index={idx} api={api} />
+          </Suspense>
         </section>
       </main>
 

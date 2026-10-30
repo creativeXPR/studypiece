@@ -323,6 +323,15 @@
   max-width: 62ch;
 }
 
+.tut-code {
+  padding: 0.08em 0.35em;
+  font-family: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--primary-soft);
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+
 .tut-term {
   background: var(--tut-hl);
   color: inherit;

@@ -1,0 +1,24 @@
+// Security policy for learners' programs (appended to the JDK's default policy).
+// The runner's own jar is trusted; everything else (the learner's classes and the
+// generated test class) may only do what a classroom program needs: no network,
+// no launching processes, no native code, files only inside its own run folder.
+
+grant codeBase "file:/app/runner.jar" {
+  permission java.security.AllPermission;
+};
+
+grant {
+  permission java.util.PropertyPermission "*", "read";
+  permission java.lang.RuntimePermission "exitVM.*";
+  permission java.lang.RuntimePermission "modifyThread";
+  permission java.lang.RuntimePermission "modifyThreadGroup";
+  permission java.lang.RuntimePermission "setIO";
+  permission java.lang.RuntimePermission "accessDeclaredMembers";
+  permission java.lang.RuntimePermission "getStackTrace";
+  permission java.awt.AWTPermission "*";
+  permission java.io.FilePermission "${run.dir}", "read";
+  permission java.io.FilePermission "${run.dir}${/}-", "read,write,delete";
+  permission java.io.FilePermission "${java.home}${/}-", "read";
+  permission java.io.FilePermission "/usr/share/fonts${/}-", "read";
+  permission java.io.FilePermission "/etc/fonts${/}-", "read";
+};

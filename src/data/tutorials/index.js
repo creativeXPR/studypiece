@@ -1,11 +1,12 @@
 // Interactive tutorials, keyed by course slug ("GES 103" -> "ges103").
 // A course with an entry here gets the Tutorial / Practice chooser and a /learn/<slug> page.
 import { courseSlug } from '../slugs';
+import cos202 from './cos202';
 import ges103 from './ges103';
 import mat222 from './mat222';
 import mth209 from './mth209';
 
-const list = [ges103, mat222, mth209].map((t) => ({ ...t, slug: courseSlug(t.code) }));
+const list = [cos202, ges103, mat222, mth209].map((t) => ({ ...t, slug: courseSlug(t.code) }));
 
 export const tutorials = Object.fromEntries(list.map((t) => [t.slug, t]));
 

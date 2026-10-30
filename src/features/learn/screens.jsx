@@ -112,7 +112,7 @@ function Choice({ s, index, api }) {
   useEffect(() => {
     if (finished) return;
     const onKey = (e) => {
-      if (e.target.closest?.('input, textarea')) return;
+      if (e.target.closest?.('input, textarea, [contenteditable]')) return;
       const k = e.key.toUpperCase();
       const i = /^[1-7]$/.test(k) ? Number(k) - 1 : LETTERS.indexOf(k);
       if (i >= 0 && i < s.options.length && !wrong.includes(i)) setSel(i);
