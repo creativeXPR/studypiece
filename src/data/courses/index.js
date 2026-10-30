@@ -28,6 +28,14 @@ export const courses = mergeCourses(files)
   // Newest first: most recently updated courses on top, then by code.
   .sort((a, b) => (b.updated ?? '').localeCompare(a.updated ?? '') || a.code.localeCompare(b.code));
 
+// A course added or updated this recently shows under "For you" for every student, with a "New" tag.
+const NEW_FOR_DAYS = 30;
+
+export function isNewCourse(course, now = Date.now()) {
+  const updated = Date.parse(course.updated ?? '');
+  return Number.isFinite(updated) && now - updated < NEW_FOR_DAYS * 86400000;
+}
+
 export function getCourse(code) {
   return courses.find((c) => c.code === code);
 }

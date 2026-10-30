@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../app/AuthProvider';
 import { useTest } from '../../app/TestProvider';
-import { coursePath, courses } from '../../data/courses';
+import { coursePath, courses, isNewCourse } from '../../data/courses';
 import { prefixesFor } from '../../data/departments';
 import { findLesson, getTutorial, lessonPath } from '../../data/tutorials';
 import LearnChooser from '../learn/LearnChooser';
@@ -21,7 +21,7 @@ export default function SelectTestPage() {
   const myCourses = useMemo(() => {
     const prefixes = prefixesFor(profile?.department);
     return courses.filter(
-      (c) => c.showToAll || (prefixes.includes(c.prefix) && String(c.level) === profile?.level),
+      (c) => c.showToAll || isNewCourse(c) || (prefixes.includes(c.prefix) && String(c.level) === profile?.level),
     );
   }, [profile]);
 
@@ -150,6 +150,7 @@ export default function SelectTestPage() {
                   <h2 className="course-code">
                     {course.code}
                     {getTutorial(course.slug) && <span className="course-tag">Tutorial</span>}
+                    {isNewCourse(course) && <span className="course-tag new">New</span>}
                   </h2>
                   {course.title && <p className="course-title">{course.title}</p>}
                   <p className="muted small">

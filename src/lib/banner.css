@@ -19,8 +19,11 @@
   margin-bottom: 18px;
 }
 
+/* Grows with the card, so wide screens don't crop the artwork. */
 .course-banner-card {
-  height: 72px;
+  aspect-ratio: 4 / 1;
+  max-height: 120px;
+  width: 100%;
 }
 
 .course-banner-strip {

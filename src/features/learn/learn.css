@@ -726,10 +726,16 @@
 }
 
 /* ---------- flip cards ---------- */
+/* One column on phones, two on tablets and up. Three thin columns made tall, cramped cards. */
 .tut-reveal {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   gap: 10px;
+}
+
+/* A lone last card fills its row. */
+.tut-flip:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .tut-flip {
@@ -2006,6 +2012,11 @@ a.learn-les:active {
   font-weight: 700;
   vertical-align: 2px;
   letter-spacing: 0.02em;
+}
+
+.course-tag.new {
+  background: var(--good-soft);
+  color: var(--good);
 }
 
 .course-tutorial-link {
