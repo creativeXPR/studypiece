@@ -13,10 +13,10 @@ import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import { formatDay } from '../../lib/dates';
 import { watchForYou } from '../../lib/forYouStore';
-import { ChevronRight, SearchIcon } from '../../lib/icons';
+import { ChevronRight, SearchIcon, StarIcon } from '../../lib/icons';
 
 export default function SelectTestPage() {
-  const { profile, user } = useAuth();
+  const { profile, user, toggleFavourite } = useAuth();
   const { session, clearTest } = useTest();
   const navigate = useNavigate();
 
@@ -52,12 +52,17 @@ export default function SelectTestPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, runsVersion]);
 
+  const favourites = profile?.favourites ?? [];
+  const favouriteCourses = courses.filter((c) => favourites.includes(c.code));
+
   const query = search.trim().toLowerCase().replace(/\s+/g, '');
   const visibleCourses = query
     ? courses.filter((c) => `${c.slug}${c.title}`.toLowerCase().replace(/\s+/g, '').includes(query))
     : scope === 'mine'
       ? myCourses
-      : courses;
+      : scope === 'favourites'
+        ? favouriteCourses
+        : courses;
 
   const activeTest = session && !session.submittedAt ? session : null;
 
@@ -133,6 +138,9 @@ export default function SelectTestPage() {
               <button role="tab" aria-selected={scope === 'mine'} className={scope === 'mine' ? 'active' : ''} onClick={() => setScope('mine')}>
                 For you
               </button>
+              <button role="tab" aria-selected={scope === 'favourites'} className={scope === 'favourites' ? 'active' : ''} onClick={() => setScope('favourites')}>
+                Favourites
+              </button>
               <button role="tab" aria-selected={scope === 'all'} className={scope === 'all' ? 'active' : ''} onClick={() => setScope('all')}>
                 All courses
               </button>
@@ -142,40 +150,52 @@ export default function SelectTestPage() {
 
         <div className="course-list">
           {visibleCourses.map((course) => (
-            <Link
-              key={course.code}
-              to={coursePath(course)}
-              className="course-card course-link has-banner"
-              onClick={(e) => {
-                // Courses with a tutorial ask first: learn, or practise?
-                if (!getTutorial(course.slug)) return;
-                e.preventDefault();
-                setChooser(course);
-              }}
-            >
-              <CourseBanner code={course.code} size="card" />
-              <div className="course-link-body">
-                <div>
-                  <h2 className="course-code">
-                    {course.code}
-                    {getTutorial(course.slug) && <span className="course-tag">Tutorial</span>}
-                    {onForYou(course, forYouDates) &&
-                      (isNewCourse(course) ? <span className="course-tag new">New</span> : <span className="course-tag featured">Featured</span>)}
-                  </h2>
-                  {course.title && <p className="course-title">{course.title}</p>}
-                  <p className="muted small">
-                    {course.sets.length} set{course.sets.length === 1 ? '' : 's'} · {course.questionCount} questions
-                    {course.updated && ` · Updated ${formatDay(course.updated)}`}
-                  </p>
+            <div key={course.code} className="course-item">
+              <Link
+                to={coursePath(course)}
+                className="course-card course-link has-banner"
+                onClick={(e) => {
+                  // Courses with a tutorial ask first: learn, or practise?
+                  if (!getTutorial(course.slug)) return;
+                  e.preventDefault();
+                  setChooser(course);
+                }}
+              >
+                <CourseBanner code={course.code} size="card" />
+                <div className="course-link-body">
+                  <div>
+                    <h2 className="course-code">
+                      {course.code}
+                      {getTutorial(course.slug) && <span className="course-tag">Tutorial</span>}
+                      {onForYou(course, forYouDates) &&
+                        (isNewCourse(course) ? <span className="course-tag new">New</span> : <span className="course-tag featured">Featured</span>)}
+                    </h2>
+                    {course.title && <p className="course-title">{course.title}</p>}
+                    <p className="muted small">
+                      {course.sets.length} set{course.sets.length === 1 ? '' : 's'} · {course.questionCount} questions
+                      {course.updated && ` · Updated ${formatDay(course.updated)}`}
+                    </p>
+                  </div>
+                  <ChevronRight className="muted" />
                 </div>
-                <ChevronRight className="muted" />
-              </div>
-            </Link>
+              </Link>
+              <button
+                type="button"
+                className={`fav-btn${favourites.includes(course.code) ? ' on' : ''}`}
+                aria-pressed={favourites.includes(course.code)}
+                aria-label={`${favourites.includes(course.code) ? 'Remove' : 'Add'} ${course.code} ${favourites.includes(course.code) ? 'from' : 'to'} favourites`}
+                onClick={() => toggleFavourite(course.code)}
+              >
+                <StarIcon size={20} />
+              </button>
+            </div>
           ))}
           {visibleCourses.length === 0 && (
             <div className="empty">
               {query ? (
                 <p>No course matches “{search}”.</p>
+              ) : scope === 'favourites' ? (
+                <p>No favourites yet. Tap the star on any course to keep it here.</p>
               ) : (
                 <>
                   <p>

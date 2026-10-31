@@ -124,6 +124,12 @@ export const SpeakerIcon = (p) => (
     <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" />
   </Icon>
 );
+export const StarIcon = (p) => (
+  <Icon {...p}>
+    <path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z" />
+  </Icon>
+);
+
 export const StopIcon = (p) => (
   <Icon {...p}>
     <rect x="6" y="6" width="12" height="12" rx="2" />

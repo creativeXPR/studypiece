@@ -36,6 +36,40 @@
   filter: brightness(0.82) saturate(0.95);
 }
 
+/* course list: favourite star, over the empty left side of the banner */
+.course-item {
+  position: relative;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+  transition: transform var(--dur, 0.2s) ease;
+}
+
+.fav-btn:active {
+  transform: scale(0.9);
+}
+
+.fav-btn.on {
+  color: #f5b70a;
+}
+
+.fav-btn.on svg {
+  fill: currentColor;
+}
+
 /* course list: banner strip on top of each card */
 .course-link.has-banner {
   flex-direction: column;

@@ -8,7 +8,7 @@ import {
   signOut as fbSignOut,
   updateProfile,
 } from 'firebase/auth';
-import { arrayUnion, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { auth, db, googleProvider } from '../lib/firebase';
 import { dayKey } from '../lib/dates';
 import { readJSON, writeJSON } from '../lib/storage';
@@ -31,12 +31,13 @@ async function loadProfile(user) {
       username: data.username || user.displayName || '',
       department: (data.department || data.courseDepartment || cached?.department || '').toLowerCase(),
       level: String(data.level || cached?.level || ''),
+      favourites: Array.isArray(data.favourites) ? data.favourites : cached?.favourites ?? [],
     };
     writeJSON(profileKey(user.uid), profile);
     return profile;
   } catch (err) {
     console.warn('Using cached profile:', err.message);
-    return cached ?? { username: user.displayName || '', department: '', level: '' };
+    return cached ?? { username: user.displayName || '', department: '', level: '', favourites: [] };
   }
 }
 
@@ -111,6 +112,24 @@ export function AuthProvider({ children }) {
     [profile, user],
   );
 
+  // Favourite courses (by code) follow the student across devices. The screen and local
+  // copy update at once; Firestore catches up, even after being offline.
+  const toggleFavourite = useCallback(
+    (code) => {
+      const current = profile?.favourites ?? [];
+      const isFavourite = current.includes(code);
+      const next = { ...profile, favourites: isFavourite ? current.filter((c) => c !== code) : [...current, code] };
+      writeJSON(profileKey(user.uid), next);
+      setProfile(next);
+      setDoc(
+        doc(db, 'users', user.uid),
+        { favourites: isFavourite ? arrayRemove(code) : arrayUnion(code) },
+        { merge: true },
+      ).catch((err) => console.warn('Favourite saved locally only:', err.message));
+    },
+    [profile, user],
+  );
+
   const needsOnboarding = !!user && (!profile?.department || !profile?.level);
 
   return (
@@ -124,6 +143,7 @@ export function AuthProvider({ children }) {
         resetPassword,
         signOut,
         saveProfile,
+        toggleFavourite,
       }}>
       {children}
     </AuthContext.Provider>
