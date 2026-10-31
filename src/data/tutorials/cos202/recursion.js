@@ -328,7 +328,7 @@ public static void main(String[] args) {
           type: 'code',
           eyebrow: 'Bonus',
           title: 'Put it in a window',
-          body: 'Press **▶ Run** and your window appears below. Then rename the button to `Compute` and run it again. Want to type in it? Choose **Try it live**. Chapter 8 explains every line.',
+          body: 'Press **▶ Run** and your window appears below. Then rename the button to `Compute` and run it again. Want to type in it? Choose **Try it live**. Chapter 9 explains every line.',
           swing: true,
           starter: `import javax.swing.*;
 import java.awt.*;

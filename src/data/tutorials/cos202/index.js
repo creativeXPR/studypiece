@@ -16,6 +16,15 @@ import finalStatic from './final-static';
 import inheritance from './inheritance';
 import interfaces from './interfaces';
 import iterators from './iterators';
+import javaArrays from './java-arrays';
+import javaBigPicture from './java-big-picture';
+import javaDecisions from './java-decisions';
+import javaLoops from './java-loops';
+import javaMethods from './java-methods';
+import javaOperators from './java-operators';
+import javaStart from './java-start';
+import javaText from './java-text';
+import javaValues from './java-values';
 import methods from './methods';
 import modernInterfaces from './modern-interfaces';
 import polymorphism from './polymorphism';
@@ -34,6 +43,22 @@ export default {
   chapters: [
     {
       n: 0,
+      title: 'Intro to Java',
+      by: 'Start here if you have never coded: from your first program to methods',
+      lessons: [
+        javaStart,
+        javaValues,
+        javaOperators,
+        javaText,
+        javaDecisions,
+        javaLoops,
+        javaArrays,
+        javaMethods,
+        javaBigPicture,
+      ],
+    },
+    {
+      n: 1,
       title: 'Java Toolkit',
       by: 'Program anatomy, arrays, methods and overloading',
       lessons: [
@@ -43,7 +68,7 @@ export default {
       ],
     },
     {
-      n: 1,
+      n: 2,
       title: 'Recursion and Algorithms',
       by: 'Recursion, searching and sorting',
       lessons: [
@@ -53,7 +78,7 @@ export default {
       ],
     },
     {
-      n: 2,
+      n: 3,
       title: 'Classes and Objects',
       by: 'Objects, constructors, encapsulation',
       lessons: [
@@ -63,7 +88,7 @@ export default {
       ],
     },
     {
-      n: 3,
+      n: 4,
       title: 'Modifiers',
       by: 'Access and non-access modifiers',
       lessons: [
@@ -72,7 +97,7 @@ export default {
       ],
     },
     {
-      n: 4,
+      n: 5,
       title: 'Inheritance and Polymorphism',
       by: 'extends, super, overriding',
       lessons: [
@@ -82,7 +107,7 @@ export default {
       ],
     },
     {
-      n: 5,
+      n: 6,
       title: 'Abstraction and Interfaces',
       by: 'Abstract classes, interfaces, lambdas',
       lessons: [
@@ -92,7 +117,7 @@ export default {
       ],
     },
     {
-      n: 6,
+      n: 7,
       title: 'Using the Java API',
       by: 'Packages, Strings, ArrayList, iterators',
       lessons: [
@@ -102,7 +127,7 @@ export default {
       ],
     },
     {
-      n: 7,
+      n: 8,
       title: 'Exceptions',
       by: 'try/catch, throw and throws',
       lessons: [
@@ -111,7 +136,7 @@ export default {
       ],
     },
     {
-      n: 8,
+      n: 9,
       title: 'Swing GUI and Events',
       by: 'Windows, components, listeners, threads',
       lessons: [
@@ -121,7 +146,7 @@ export default {
       ],
     },
     {
-      n: 9,
+      n: 10,
       title: 'Exam Lab',
       by: 'Error catalogue and full programs',
       lessons: [

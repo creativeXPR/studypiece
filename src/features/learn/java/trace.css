@@ -1,0 +1,211 @@
+/* Beginner screens (traceScreens.jsx): step-through tracer and live flowchart. */
+.jt-trace,
+.jt-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.jt-note {
+  min-height: 3.2em;
+  margin: 0;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-radius: 12px;
+  line-height: 1.45;
+}
+
+.jt-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.jt-count {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.jt-steps button:disabled {
+  visibility: hidden;
+}
+
+.jt-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  scroll-margin-bottom: 110px;
+}
+
+.jt-panel {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.jt-panel h3 {
+  margin: 0 0 8px;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.jt-empty {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--text-2);
+}
+
+.jt-vars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.jt-var {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  max-width: 100%;
+}
+
+.jt-val {
+  min-width: 44px;
+  max-width: 100%;
+  padding: 5px 9px;
+  overflow-wrap: anywhere;
+  text-align: center;
+  font: 0.86rem var(--jv-mono);
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+}
+
+.jt-var.fresh .jt-val {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 30%, transparent);
+  animation: jt-pop 0.25s ease;
+}
+
+.jt-name {
+  font: 0.74rem var(--jv-mono);
+  color: var(--text-2);
+}
+
+@keyframes jt-pop {
+  from { transform: scale(0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jt-var.fresh .jt-val { animation: none; }
+}
+
+.jt-screen pre {
+  min-height: 1.5em;
+  margin: 0;
+  overflow-x: auto;
+  font: 0.86rem/1.5 var(--jv-mono);
+}
+
+/* ---------- flowchart ---------- */
+.jt-flow svg {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.jf-node rect,
+.jf-node polygon {
+  fill: var(--surface);
+  stroke: var(--border-strong);
+  stroke-width: 1.2;
+  transition: fill 0.2s, stroke 0.2s;
+}
+
+.jf-node.on rect,
+.jf-node.on polygon {
+  fill: color-mix(in srgb, var(--primary) 16%, var(--surface));
+  stroke: var(--primary);
+  stroke-width: 1.8;
+}
+
+.jf-node text,
+.jf-tag {
+  font: 11px var(--jv-mono);
+  font-variant-ligatures: none;
+  text-anchor: middle;
+  fill: var(--text);
+}
+
+.jf-node:not(.on) text {
+  fill: var(--text-2);
+}
+
+.jf-tag {
+  font-weight: 700;
+}
+
+.jf-arrow polyline {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.2;
+}
+
+.jf-arrow polygon {
+  fill: var(--border-strong);
+}
+
+.jf-arrow.on polyline {
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+
+.jf-arrow.on polygon {
+  fill: var(--primary);
+}
+
+.jt-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.jt-slider input {
+  width: 100%;
+}
+
+.jf-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.84rem;
+  color: var(--text-2);
+}
+
+.jf-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jf-legend b {
+  flex: none;
+  width: 22px;
+  height: 13px;
+  background: var(--surface-2);
+  border: 1.5px solid var(--text-2);
+}
+
+.jf-legend .oval { border-radius: 7px; }
+.jf-legend .para { transform: skewX(-20deg); }
+.jf-legend .dia { width: 13px; height: 13px; margin: 0 4.5px; transform: rotate(45deg); }
