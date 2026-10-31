@@ -19,7 +19,8 @@ export function saveProgress(courseSlug, lessonId, score, of) {
 }
 
 export function lessonsDone(tutorial) {
-  const ready = tutorial.chapters.flatMap((c) => c.lessons).filter((l) => l.sections);
+  // Optional chapters don't count, so skipping them still reaches 100%.
+  const ready = tutorial.chapters.filter((c) => !c.optional).flatMap((c) => c.lessons).filter((l) => l.sections);
   const done = ready.filter((l) => getProgress(tutorial.slug, l.id)?.done).length;
   return { done, total: ready.length };
 }

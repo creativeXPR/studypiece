@@ -44,7 +44,9 @@ export default {
     {
       n: 0,
       title: 'Intro to Java',
-      by: 'Start here if you have never coded: from your first program to methods',
+      by: 'From your first program to methods',
+      optional: true,
+      hint: 'New to Java? Check this out if you need the basics.',
       lessons: [
         javaStart,
         javaValues,

@@ -28,7 +28,11 @@ export default function TutorialHomePage() {
     .filter((r) => r.courseSlug === tutorial.slug)
     .map((run) => ({ run, lesson: allLessons.find((l) => l.id === run.lessonId && l.sections) }))
     .find((x) => x.lesson);
-  const upNext = resume?.lesson ?? allLessons.find((l) => l.sections && !getProgress(tutorial.slug, l.id)?.done);
+  // An optional chapter only joins the path once the student has started it.
+  const started = (ch) => ch.lessons.some((l) => getProgress(tutorial.slug, l.id)?.done || getRun(uid, tutorial.slug, l.id));
+  const finished = (ch) => ch.lessons.every((l) => getProgress(tutorial.slug, l.id)?.done);
+  const path = tutorial.chapters.filter((c) => !c.optional || started(c)).flatMap((c) => c.lessons);
+  const upNext = resume?.lesson ?? path.find((l) => l.sections && !getProgress(tutorial.slug, l.id)?.done);
   const pct = total ? Math.round((done / total) * 100) : 0;
 
   return (
@@ -69,7 +73,7 @@ export default function TutorialHomePage() {
             </>
           ) : upNext ? (
             <Link to={lessonPath(tutorial.slug, upNext.id)} className="btn btn-primary btn-lg learn-continue">
-              {done ? 'Continue' : 'Start'}: {upNext.title} <ChevronRight size={18} />
+              {allLessons.some((l) => getProgress(tutorial.slug, l.id)?.done) ? 'Continue' : 'Start'}: {upNext.title} <ChevronRight size={18} />
             </Link>
           ) : (
             <p className="learn-alldone">
@@ -86,17 +90,7 @@ export default function TutorialHomePage() {
         <div className="learn-chapters">
           {tutorial.chapters.map((ch) => {
             const ready = ch.lessons.filter((l) => l.sections).length;
-            return (
-              <section key={ch.n} className="learn-chapter">
-                <header className="learn-ch-head">
-                  <span className="learn-ch-num">{ch.n}</span>
-                  <div>
-                    <h2>{ch.title}</h2>
-                    <p className="muted small">
-                      {ch.by} · {ready ? `${ready} of ${ch.lessons.length} lessons ready` : 'Coming soon'}
-                    </p>
-                  </div>
-                </header>
+            const list = (
                 <ol className="learn-lessons">
                   {ch.lessons.map((l, i) => {
                     const rec = l.sections ? getProgress(tutorial.slug, l.id) : null;
@@ -137,6 +131,37 @@ export default function TutorialHomePage() {
                     );
                   })}
                 </ol>
+            );
+            if (ch.optional) {
+              return (
+                <details key={ch.n} className="learn-chapter learn-optional" open={started(ch) && !finished(ch)}>
+                  <summary className="learn-ch-head">
+                    <span className="learn-ch-num">{ch.n}</span>
+                    <div>
+                      <h2>{ch.title}</h2>
+                      <p className="learn-optional-hint">{ch.hint}</p>
+                      <p className="muted small">
+                        {ch.by} · {ch.lessons.length} short lessons
+                      </p>
+                    </div>
+                    <ChevronRight className="learn-optional-chevron" size={20} />
+                  </summary>
+                  {list}
+                </details>
+              );
+            }
+            return (
+              <section key={ch.n} className="learn-chapter">
+                <header className="learn-ch-head">
+                  <span className="learn-ch-num">{ch.n}</span>
+                  <div>
+                    <h2>{ch.title}</h2>
+                    <p className="muted small">
+                      {ch.by} · {ready ? `${ready} of ${ch.lessons.length} lessons ready` : 'Coming soon'}
+                    </p>
+                  </div>
+                </header>
+                {list}
               </section>
             );
           })}
