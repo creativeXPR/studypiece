@@ -2254,6 +2254,287 @@ export default {
           "explanation": "For $y' = y - x^2 + 1$ at $x = 2$: error $0.87$ with $h = 0.5$, $0.53$ with $h = 0.25$."
         }
       ]
+    },
+    {
+      "id": "QS009",
+      "title": "Exam focus",
+      "questions": [
+        {
+          "question": "What is a consistent system of linear equations?",
+          "options": [
+            "A system with exactly one solution",
+            "A system with no solution",
+            "A system with at least one solution",
+            "A system with as many equations as unknowns"
+          ],
+          "answer": 2,
+          "explanation": "Consistent means at least one solution exists. There may be one solution or infinitely many."
+        },
+        {
+          "question": "A system of linear equations is inconsistent when",
+          "options": [
+            "it has no solution",
+            "it has infinitely many solutions",
+            "its coefficients are fractions",
+            "it has more unknowns than solutions"
+          ],
+          "answer": 0,
+          "explanation": "Inconsistent means no values of the unknowns satisfy every equation at once."
+        },
+        {
+          "question": "Is the system $x + y = 1$, $x + y = 3$ consistent?",
+          "options": [
+            "Yes: it has exactly one solution",
+            "Yes: it has infinitely many solutions",
+            "Yes: it has two equations and two unknowns",
+            "No: the two equations contradict each other"
+          ],
+          "answer": 3,
+          "explanation": "$x + y$ can’t equal both 1 and 3, so there is no solution. Matching the count of equations and unknowns doesn’t guarantee a solution."
+        },
+        {
+          "question": "The system $x + y = 2$, $2x + 2y = 4$ is",
+          "options": [
+            "inconsistent",
+            "consistent, with infinitely many solutions",
+            "consistent, with exactly one solution",
+            "impossible to classify"
+          ],
+          "answer": 1,
+          "explanation": "The second equation is twice the first, so any pair with $x + y = 2$ works."
+        },
+        {
+          "question": "A question says “solve by the Gaussian method”. You use the matrix inverse method and get the right answer. What happens?",
+          "options": [
+            "You get full marks, since the answer is right",
+            "You lose the method marks",
+            "You gain extra marks for a harder method",
+            "Nothing, as all methods are marked alike"
+          ],
+          "answer": 1,
+          "explanation": "When a method is named, use only that method. The right answer by another route loses the method marks."
+        },
+        {
+          "question": "A question says “use LU factorisation” for $AX = B$. What should your working show?",
+          "options": [
+            "$X = A^{-1}B$ using the adjoint",
+            "Elimination, then back substitution only",
+            "Repeated iteration from a starting vector",
+            "$A = LU$, then $LY = B$, then $UX = Y$"
+          ],
+          "answer": 3,
+          "explanation": "LU factorisation means finding $L$ and $U$, then forward substitution followed by back substitution."
+        },
+        {
+          "question": "Newton’s method gives $x^{(k)} = (0.7852,\\ 0.4966)^T$ and $x^{(k-1)} = (0.7898,\\ 0.4966)^T$, with $\\varepsilon = 10^{-3}$. What next?",
+          "options": [
+            "Keep going: one component changed by $0.0046$",
+            "Stop: the second component did not change",
+            "Stop: the two vectors are close to 2 d.p.",
+            "Restart with a new initial vector"
+          ],
+          "answer": 0,
+          "explanation": "The largest change is $0.0046 > 10^{-3}$. If even one component is beyond the bound, you keep going."
+        },
+        {
+          "question": "A Newton’s method question gives no error bound. What should you use?",
+          "options": [
+            "$\\varepsilon = 10^{-1}$",
+            "$\\varepsilon = 0$",
+            "$\\varepsilon = 10^{-3}$",
+            "Stop after exactly three iterations"
+          ],
+          "answer": 2,
+          "explanation": "Without a stated bound, use the standard $\\|x^{(k)} - x^{(k-1)}\\| \\le 10^{-3}$. If a bound is given, use that one."
+        },
+        {
+          "question": "With $\\varepsilon = 10^{-3}$, $x^{(k)} = (0.5002,\\ 0.2501)^T$ and $x^{(k-1)} = (0.5000,\\ 0.2500)^T$. What should you do?",
+          "options": [
+            "Keep going: the vectors are not identical",
+            "Keep going: only one component passes",
+            "Stop: the components add up to less than 1",
+            "Stop: the largest change is $0.0002$"
+          ],
+          "answer": 3,
+          "explanation": "Both changes are within $10^{-3}$, so the stopping test is met."
+        },
+        {
+          "question": "For $x_1^2 + x_2^2 + x_3^2 = 1$, $2x_1^2 + x_2^2 - 4x_3 = 0$, $3x_1^2 - 4x_2 + x_3^2 = 0$ with $x^{(0)} = (0.5,\\ 0.5,\\ 0.5)^T$, one Newton step gives",
+          "options": [
+            "$x^{(1)} = (0.875,\\ 0.5,\\ 0.375)^T$",
+            "$x^{(1)} = (0.75,\\ 0.5,\\ 0.25)^T$",
+            "$x^{(1)} = (0.5,\\ 0.875,\\ 0.375)^T$",
+            "$x^{(1)} = (0.25,\\ 1.25,\\ 1)^T$"
+          ],
+          "answer": 0,
+          "explanation": "Here $F(x^{(0)}) = (-0.25,\\ -1.25,\\ -1)^T$ and $\\det J = -40$. Then $x^{(1)} = x^{(0)} - J^{-1}F(x^{(0)})$."
+        },
+        {
+          "question": "What is an initial value problem?",
+          "options": [
+            "A differential equation with no conditions attached",
+            "A system of linear equations with a starting guess",
+            "A differential equation together with initial conditions",
+            "An integral evaluated from a starting point"
+          ],
+          "answer": 2,
+          "explanation": "The conditions state the value of the solution, and possibly its derivatives, at the starting point."
+        },
+        {
+          "question": "How many initial conditions does $y''' + xy' - y = \\sin x$ need?",
+          "options": [
+            "$1$",
+            "$3$",
+            "$2$",
+            "$4$"
+          ],
+          "answer": 1,
+          "explanation": "The number of initial conditions equals the order of the equation, and here the order is 3."
+        },
+        {
+          "question": "What do the initial conditions do?",
+          "options": [
+            "Pick one particular solution from the general solution",
+            "Turn a particular solution into the general one",
+            "Raise the order of the equation",
+            "Make the equation linear"
+          ],
+          "answer": 0,
+          "explanation": "The general solution contains arbitrary constants. Initial conditions fix them."
+        },
+        {
+          "question": "Solve $y' = 2x$, $y(0) = 3$.",
+          "options": [
+            "$y = x^2 + C$",
+            "$y = 2x + 3$",
+            "$y = x^2 - 3$",
+            "$y = x^2 + 3$"
+          ],
+          "answer": 3,
+          "explanation": "The general solution is $y = x^2 + C$, and $y(0) = 3$ gives $C = 3$."
+        },
+        {
+          "question": "Which of these is a general solution of $y' = 2x$, not a particular one?",
+          "options": [
+            "$y = x^2$",
+            "$y = x^2 + C$",
+            "$y = x^2 + 3$",
+            "$y = x^2 - 1$"
+          ],
+          "answer": 1,
+          "explanation": "A general solution contains an arbitrary constant. The others have the constant fixed."
+        },
+        {
+          "question": "Unless told otherwise, how should you round the final answer $x = \\frac23$?",
+          "options": [
+            "$0.66$",
+            "$0.6$",
+            "$0.67$",
+            "$0.667$"
+          ],
+          "answer": 2,
+          "explanation": "To 2 d.p., $\\frac23 = 0.666\\ldots$ rounds up to $0.67$."
+        },
+        {
+          "question": "Why keep exact fractions during the working of a matrix method?",
+          "options": [
+            "Fractions are required by the method",
+            "Decimals can’t be multiplied in matrices",
+            "Rounding early loses accuracy",
+            "It makes the determinant larger"
+          ],
+          "answer": 2,
+          "explanation": "Fractions stay exact. Round once, at the final answer."
+        },
+        {
+          "question": "Rounding each $\\frac13$ to 2 d.p. before adding, $\\frac13 + \\frac13 + \\frac13$ gives",
+          "options": [
+            "$1.00$, the same as the exact value",
+            "$0.99$, instead of the exact $1$",
+            "$1.01$, instead of the exact $1$",
+            "$0.33$, instead of the exact $1$"
+          ],
+          "answer": 1,
+          "explanation": "$0.33 + 0.33 + 0.33 = 0.99$. This is why you round at the end, not during the working."
+        },
+        {
+          "question": "In Doolittle’s LU factorisation, the diagonal entries of $L$ are",
+          "options": [
+            "all $0$",
+            "equal to the diagonal of $A$",
+            "equal to the diagonal of $U$",
+            "all $1$"
+          ],
+          "answer": 3,
+          "explanation": "Fixing the diagonal of $L$ at 1 makes the factorisation unique."
+        },
+        {
+          "question": "For $A = \\begin{pmatrix} 2 & 1 \\\\ 4 & 5 \\end{pmatrix}$ with $L$ having 1s on its diagonal, what are $l_{21}$ and $u_{22}$?",
+          "options": [
+            "$l_{21} = 2$, $u_{22} = 3$",
+            "$l_{21} = 4$, $u_{22} = 1$",
+            "$l_{21} = \\frac12$, $u_{22} = 5$",
+            "$l_{21} = 2$, $u_{22} = 5$"
+          ],
+          "answer": 0,
+          "explanation": "$l_{21} = \\frac42 = 2$, and $u_{22} = 5 - 2(1) = 3$."
+        },
+        {
+          "question": "After finding $L$ and $U$, what is the best check of your work?",
+          "options": [
+            "Check that $L$ and $U$ have equal determinants",
+            "Multiply them: $LU$ should give $A$",
+            "Check that $U$ has 1s on its diagonal",
+            "Add them: $L + U$ should give $A$"
+          ],
+          "answer": 1,
+          "explanation": "Slips are easy in LU, and multiplying back catches them."
+        },
+        {
+          "question": "In the Gaussian method, $a^{(1)}_{ij} = a_{ij} - a_{i1}b_{1j}$ with $b_{1j} = \\frac{a_{1j}}{a_{11}}$. For $A = \\begin{pmatrix} 2 & 4 \\\\ 3 & 7 \\end{pmatrix}$, what is $a^{(1)}_{22}$?",
+          "options": [
+            "$1$",
+            "$7$",
+            "$-5$",
+            "$13$"
+          ],
+          "answer": 0,
+          "explanation": "$b_{12} = \\frac42 = 2$, so $a^{(1)}_{22} = 7 - 3(2) = 1$."
+        },
+        {
+          "question": "When is simple iteration guaranteed to converge for any starting vector?",
+          "options": [
+            "Only when $\\alpha > 1$ and $\\beta > 1$",
+            "Only when the starting vector is $0$",
+            "When $\\alpha < 1$ or $\\beta < 1$",
+            "Whenever $C$ has a zero diagonal"
+          ],
+          "answer": 2,
+          "explanation": "Here $\\alpha$ and $\\beta$ are the largest row and column sums of $|c_{ij}|$ for the matrix $C$."
+        },
+        {
+          "question": "In the system with first equation $10x_1 + x_2 + 2x_3 = 6$, what is $c_{12}$ for simple iteration?",
+          "options": [
+            "$\\frac{1}{10}$",
+            "$-10$",
+            "$-\\frac{2}{10}$",
+            "$-\\frac{1}{10}$"
+          ],
+          "answer": 3,
+          "explanation": "$c_{ij} = -\\frac{a_{ij}}{a_{ii}}$ for $i \\ne j$, so $c_{12} = -\\frac{1}{10}$."
+        },
+        {
+          "question": "Two successive iterates are $1.2346$ and $1.2318$. To what accuracy has the iteration converged?",
+          "options": [
+            "2 d.p.: both give $1.23$",
+            "4 d.p.: both give $1.2346$",
+            "1 d.p.: only $1.2$ agrees",
+            "It has not converged at all"
+          ],
+          "answer": 0,
+          "explanation": "At 2 d.p. both values round to $1.23$. At 3 d.p. they differ: $1.235$ and $1.232$."
+        }
+      ]
     }
   ]
 };

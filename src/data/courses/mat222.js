@@ -2254,6 +2254,287 @@ export default {
           "explanation": "$\\int_0^1 u\\,du = \\frac12$."
         }
       ]
+    },
+    {
+      "id": "QS009",
+      "title": "Exam focus",
+      "questions": [
+        {
+          "question": "Besides stating and proving, what else should you prepare for in an exam?",
+          "options": [
+            "Only memorising the names of theorems",
+            "Only computing numerical integrals",
+            "Analysing a given function or result",
+            "Nothing else"
+          ],
+          "answer": 2,
+          "explanation": "Exams cover the major things: state, prove and analyse."
+        },
+        {
+          "question": "A theorem in this course has a name. In an exam you could be asked to",
+          "options": [
+            "state it or prove it",
+            "state it, but never prove it",
+            "prove it, but never state it",
+            "give its name only"
+          ],
+          "answer": 0,
+          "explanation": "Any named theorem or lemma can be asked. Learn the statement and the proof."
+        },
+        {
+          "question": "When your proof uses a named theorem, what should you write?",
+          "options": [
+            "The name alone is enough",
+            "Neither: just use the result",
+            "The page where it appears",
+            "Its name, then the theorem written out"
+          ],
+          "answer": 3,
+          "explanation": "The name alone is not enough. Give the name, then write the theorem."
+        },
+        {
+          "question": "A good written proof is",
+          "options": [
+            "mostly English, with few symbols",
+            "mathematically consistent, with enough words to establish it",
+            "only symbols, with no words at all",
+            "as long as possible, to show effort"
+          ],
+          "answer": 1,
+          "explanation": "Use less English, but enough to establish the result."
+        },
+        {
+          "question": "State Rolle’s theorem: $f$ continuous on $[a, b]$, differentiable on $(a, b)$, and",
+          "options": [
+            "$f(a) = f(b)$ ⇒ $f'(c) = 0$ for every $c \\in (a, b)$",
+            "$f(a) = f(b)$ ⇒ $f'(c) = 0$ for some $c \\in (a, b)$",
+            "$f(a) = 0$ ⇒ $f(c) = 0$ for some $c \\in (a, b)$",
+            "$f(a) \\ne f(b)$ ⇒ $f'(c) = 0$ for some $c \\in (a, b)$"
+          ],
+          "answer": 1,
+          "explanation": "Equal end values give at least one interior point with a horizontal tangent."
+        },
+        {
+          "question": "State Fermat’s theorem: if $f$ has a local extremum at an interior point $x_0$ and",
+          "options": [
+            "$f$ is continuous at $x_0$, then $f'(x_0) = 0$",
+            "$f'(x_0) = 0$, then $f$ is constant",
+            "$f$ is differentiable at $x_0$, then $f''(x_0) = 0$",
+            "$f$ is differentiable at $x_0$, then $f'(x_0) = 0$"
+          ],
+          "answer": 3,
+          "explanation": "Differentiability at $x_0$ is needed: $|x|$ has a minimum at 0 but no derivative there."
+        },
+        {
+          "question": "State the mean value theorem: $f$ continuous on $[a, b]$ and differentiable on $(a, b)$ ⇒ for some $c \\in (a, b)$,",
+          "options": [
+            "$f'(c) = \\frac{f(b) - f(a)}{b - a}$",
+            "$f(c) = \\frac{f(b) - f(a)}{b - a}$",
+            "$f'(c) = f(b) - f(a)$",
+            "$f'(c) = \\frac{f(b) + f(a)}{2}$"
+          ],
+          "answer": 0,
+          "explanation": "Some tangent is parallel to the chord joining the end points."
+        },
+        {
+          "question": "State Cauchy’s mean value theorem, with $g'$ non-zero on $(a, b)$: for some $c \\in (a, b)$,",
+          "options": [
+            "$\\frac{f(c)}{g(c)} = \\frac{f(b) - f(a)}{g(b) - g(a)}$",
+            "$f'(c)g'(c) = \\frac{f(b) - f(a)}{g(b) - g(a)}$",
+            "$\\frac{f'(c)}{g'(c)} = \\frac{f(b) - f(a)}{g(b) - g(a)}$",
+            "$\\frac{f'(c)}{g'(c)} = \\frac{f(b)}{g(b)}$"
+          ],
+          "answer": 2,
+          "explanation": "The same point $c$ serves both functions. Taking $g(x) = x$ gives the ordinary MVT."
+        },
+        {
+          "question": "State the Heine–Cantor theorem: a continuous function on a closed, bounded interval is",
+          "options": [
+            "differentiable there",
+            "monotone there",
+            "Lipschitz continuous there",
+            "uniformly continuous there"
+          ],
+          "answer": 3,
+          "explanation": "$\\sqrt x$ on $[0, 1]$ is uniformly continuous but not Lipschitz, so the theorem can’t promise more."
+        },
+        {
+          "question": "State Darboux’s theorem: if $f$ is differentiable on $[a, b]$ and $r$ lies strictly between $f'(a)$ and $f'(b)$, then",
+          "options": [
+            "$f'(c) = r$ for some $c \\in (a, b)$",
+            "$f(c) = r$ for some $c \\in (a, b)$",
+            "$f'$ is continuous on $[a, b]$",
+            "$f'(c) = r$ for every $c \\in (a, b)$"
+          ],
+          "answer": 0,
+          "explanation": "Derivatives have the intermediate value property, even when they are not continuous."
+        },
+        {
+          "question": "What separates Darboux’s criterion (Odadare’s criterion) from Riemann’s ε-criterion?",
+          "options": [
+            "It needs $U - L < \\varepsilon$ for one partition only, not every one",
+            "It applies only to continuous functions",
+            "It needs $U - L < \\varepsilon$ for every fine enough partition, not just one",
+            "It needs $f$ to be unbounded"
+          ],
+          "answer": 2,
+          "explanation": "Riemann’s criterion asks for some partition. Darboux’s (Odadare’s) asks for every partition with $\\|\\pi\\| < \\delta$."
+        },
+        {
+          "question": "Which of these is not one of the four ways to confirm that $f$ is Riemann integrable?",
+          "options": [
+            "Using the definition",
+            "Showing that $f$ is differentiable at one point",
+            "Using the ε-criterion",
+            "Using the limit criterion"
+          ],
+          "answer": 1,
+          "explanation": "The four ways are the definition, the ε-criterion, the limit criterion and Darboux’s (Odadare’s) criterion. Which you use depends on the question."
+        },
+        {
+          "question": "A question gives the partition $\\pi_n = \\{\\frac in\\}$ of $[0, 1]$. Which test should you reach for?",
+          "options": [
+            "The limit criterion",
+            "Fermat’s theorem",
+            "Rolle’s theorem",
+            "The sandwich rule for sequences alone"
+          ],
+          "answer": 0,
+          "explanation": "When $n$ is present, use the limit criterion: show $U(f, \\pi_n) - L(f, \\pi_n) \\to 0$."
+        },
+        {
+          "question": "For the uniform partition of $[0, 2]$ into $n$ pieces, $\\|\\pi_n\\| =$",
+          "options": [
+            "$\\frac1n$",
+            "$2n$",
+            "$\\frac{n}{2}$",
+            "$\\frac2n$"
+          ],
+          "answer": 3,
+          "explanation": "$\\|\\pi_n\\| = \\frac{b - a}{n}$, so $\\|\\pi_n\\| \\to 0$ exactly when $n \\to \\infty$."
+        },
+        {
+          "question": "Which is the valid way to choose δ in an ε-δ proof?",
+          "options": [
+            "$\\delta = \\frac{\\varepsilon}{|x + 2|}$, using a varying bound",
+            "$\\delta = \\min(1, \\frac{\\varepsilon}{4})$, using a constant bound",
+            "$\\delta = \\varepsilon x$, using a varying bound",
+            "$\\delta = x - 1$, using a varying bound"
+          ],
+          "answer": 1,
+          "explanation": "Never use a variable as your bound. For $\\lim_{x \\to 1}$ with $|x - 1| < 1$, $|x + 2| < 4$ gives a constant to divide by."
+        },
+        {
+          "question": "In the statement $a \\Leftrightarrow b$, $b$ is",
+          "options": [
+            "sufficient for $a$, but not necessary",
+            "necessary for $a$, but not sufficient",
+            "both sufficient and necessary for $a$",
+            "neither sufficient nor necessary for $a$"
+          ],
+          "answer": 2,
+          "explanation": "$b \\Rightarrow a$ makes $b$ sufficient, and $a \\Rightarrow b$ makes $b$ necessary."
+        },
+        {
+          "question": "Which statement about Riemann integrability on $[a, b]$ is true?",
+          "options": [
+            "Bounded ⇒ integrable ⇒ continuous",
+            "Integrable ⇒ continuous ⇒ bounded",
+            "Continuous ⇒ integrable ⇒ bounded",
+            "Bounded ⇒ continuous ⇒ integrable"
+          ],
+          "answer": 2,
+          "explanation": "Neither converse holds. A step function is integrable but not continuous, and the Dirichlet function is bounded but not integrable."
+        },
+        {
+          "question": "Which function shows that continuity is not necessary for integrability?",
+          "options": [
+            "$f(x) = x^2$ on $[0, 1]$",
+            "A step function on $[0, 1]$",
+            "The Dirichlet function on $[0, 1]$",
+            "$f(x) = \\frac1x$ on $(0, 1]$"
+          ],
+          "answer": 1,
+          "explanation": "A step function has finitely many discontinuities and is integrable. The Dirichlet function is not integrable."
+        },
+        {
+          "question": "$\\pi$ is a partition of $[a, b]$. Which of these is a refinement of $\\pi$?",
+          "options": [
+            "Only $\\pi$ with many extra points",
+            "Only partitions with fewer points",
+            "Only uniform partitions",
+            "$\\pi$ itself, or $\\pi$ with one extra point"
+          ],
+          "answer": 3,
+          "explanation": "A refinement contains every point of $\\pi$. One extra point is enough, and $\\pi$ refines itself."
+        },
+        {
+          "question": "A Riemann sum $S(f, \\pi, \\xi)$ differs from $U(f, \\pi)$ and $L(f, \\pi)$ because it",
+          "options": [
+            "uses tags, with no sup or inf",
+            "needs $f$ to be continuous",
+            "works only on uniform partitions",
+            "uses the sup on every subinterval"
+          ],
+          "answer": 0,
+          "explanation": "With no sup or inf, it can be written for any function. An integrable function still turns out to be bounded."
+        },
+        {
+          "question": "For $f(x) = |x|$ at $0$, the null sequences $h_n = \\frac1n$ and $h_n = -\\frac1n$ give difference quotients tending to",
+          "options": [
+            "$0$ and $0$, so $f'(0) = 0$",
+            "$1$ and $-1$, so $f'(0)$ does not exist",
+            "$1$ and $1$, so $f'(0) = 1$",
+            "$\\infty$ and $\\infty$, so $f'(0)$ does not exist"
+          ],
+          "answer": 1,
+          "explanation": "Two null sequences with different limits show that the limit of the difference quotient does not exist."
+        },
+        {
+          "question": "Let $f(x) = x^2\\sin\\frac1x$ for $x \\ne 0$, with $f(0) = 0$. Which is true?",
+          "options": [
+            "$f'(0) = 0$, but $f'$ is not continuous at $0$",
+            "$f'(0)$ does not exist",
+            "$f'(0) = 0$, and $f'$ is continuous at $0$",
+            "$f$ is not continuous at $0$"
+          ],
+          "answer": 0,
+          "explanation": "$\\left|\\frac{f(h)}{h}\\right| \\le |h| \\to 0$, so $f'(0) = 0$. But $f'(x) = 2x\\sin\\frac1x - \\cos\\frac1x$ has no limit at 0."
+        },
+        {
+          "question": "Which function on $[0, 1]$ satisfies the MVT but not Rolle’s theorem?",
+          "options": [
+            "$f(x) = x(1 - x)$",
+            "$f(x) = 5$",
+            "$f(x) = x$",
+            "$f(x) = \\sin(\\pi x)$"
+          ],
+          "answer": 2,
+          "explanation": "$f(0) \\ne f(1)$ rules out Rolle, while the MVT still gives $f'(c) = 1$. Rolle’s conditions always imply the MVT’s, but the converse fails."
+        },
+        {
+          "question": "On which domain is $f(x) = \\frac1x$ uniformly continuous?",
+          "options": [
+            "$(0, 1]$",
+            "$(0, 2)$",
+            "$(0, \\infty)$",
+            "$[1, 2]$"
+          ],
+          "answer": 3,
+          "explanation": "Uniform continuity depends on the domain. Near 0 the function gets too steep, while $[1, 2]$ is closed and bounded."
+        },
+        {
+          "question": "Using the ε definition, $f'(c) = L$ means: for every $\\varepsilon > 0$ there is $\\delta > 0$ such that $0 < |x - c| < \\delta$ implies",
+          "options": [
+            "$\\left|\\frac{f(x) - f(c)}{x - c} - L\\right| < \\varepsilon$",
+            "$|f(x) - f(c)| < \\varepsilon$",
+            "$\\left|\\frac{f(x) - f(c)}{x - c}\\right| < \\varepsilon$",
+            "$|f(x) - L| < \\varepsilon$"
+          ],
+          "answer": 0,
+          "explanation": "The quantity kept within ε is the gap between the difference quotient and $L$. Be ready to compute a derivative from this definition too."
+        }
+      ]
     }
   ]
 };
