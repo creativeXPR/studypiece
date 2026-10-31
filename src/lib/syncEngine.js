@@ -1,7 +1,8 @@
 // Keeps a signed-in student's study data the same on all their devices.
 // This device's storage stays the source of truth for the screen, so everything works offline.
-// Each item carries the time it last changed. Items merge one by one (see mergeEntry), so
-// work done on two devices, even offline, combines when they reconnect.
+// The student syncs with a button (syncNow). `auto: true` also syncs in the background, which
+// is kept for a future paid plan. Each item carries the time it last changed, and items merge
+// one by one (see mergeEntry), so work done on two devices combines.
 import { collection, doc, onSnapshot, runTransaction, serverTimestamp } from 'firebase/firestore';
 
 // users/{uid}/sync/{bucket}: { entries: { key: { at, s, del } }, updatedAt }.
@@ -13,6 +14,7 @@ const TOMBSTONE_DAYS = 60;
 const SLOW_MS = 10_000; // at most one upload per 10 s while working
 const FAST_MS = 1_500; // finishing a lesson or submitting a test goes up sooner
 const RETRY_MS = 30_000;
+const BUCKET_TIMEOUT_MS = 30_000;
 
 const newer = (a, b) => {
   if (a.at !== b.at) return a.at > b.at ? a : b;
@@ -46,6 +48,19 @@ export function mergeEntry(bucket, a, b) {
     if (!top || !other) return latest;
     const merged = { ...top, done: !!(top.done || other.done), best: Math.max(top.best ?? 0, other.best ?? 0) };
     return { at, s: JSON.stringify(merged) };
+  }
+
+  // The copy of a lesson with the most progress replaces the other. A student who chose to
+  // start over keeps that fresh start, unless the other copy was worked on after it.
+  if (bucket === 'runs') {
+    const x = parse(a);
+    const y = parse(b);
+    if (!x || !y) return latest;
+    let winner = latest;
+    if ((x.resetAt ?? 0) > b.at) winner = a;
+    else if ((y.resetAt ?? 0) > a.at) winner = b;
+    else if (x.idx !== y.idx) winner = x.idx > y.idx ? a : b;
+    return { at, s: winner.s };
   }
 
   // A submitted test stays submitted, even if the other device kept going offline.
@@ -90,8 +105,9 @@ function fit(map) {
   return out;
 }
 
-export function createSyncEngine({ db, storage, isOnline = () => true, now = Date.now, slowMs = SLOW_MS, fastMs = FAST_MS }) {
+export function createSyncEngine({ db, storage, isOnline = () => true, now = Date.now, auto = false, slowMs = SLOW_MS, fastMs = FAST_MS }) {
   let uid = null;
+  let manual = null;
   let unsubscribe = null;
   let timer = null;
   let timerAt = Infinity;
@@ -101,6 +117,15 @@ export function createSyncEngine({ db, storage, isOnline = () => true, now = Dat
   const listeners = new Set();
 
   const prefix = (bucket) => `studypiece.sync.${uid ?? 'anon'}.${bucket}.`;
+  const lastSyncKey = () => `studypiece.lastSync.${uid ?? 'anon'}`;
+
+  function lastSyncAt() {
+    try {
+      return Number(storage.getItem(lastSyncKey())) || 0;
+    } catch {
+      return 0;
+    }
+  }
 
   function readRaw(bucket, key) {
     try {
@@ -141,7 +166,7 @@ export function createSyncEngine({ db, storage, isOnline = () => true, now = Dat
   };
 
   function schedule(bucket, delay) {
-    if (!uid) return;
+    if (!uid || !auto) return;
     if (bucket) dirty.add(bucket);
     if (!dirty.size) return;
     const when = now() + delay;
@@ -238,7 +263,7 @@ export function createSyncEngine({ db, storage, isOnline = () => true, now = Dat
       if (uid === nextUid) return;
       this.stop();
       uid = nextUid;
-      if (!db) return;
+      if (!db || !auto) return;
       unsubscribe = onSnapshot(
         collection(db, 'users', uid, 'sync'),
         { includeMetadataChanges: true },
@@ -269,9 +294,57 @@ export function createSyncEngine({ db, storage, isOnline = () => true, now = Dat
 
     flush,
 
+    /** Merges everything with the account now. Resolves to { ok, reason: 'offline' | 'error' | 'signed-out' }. */
+    syncNow() {
+      if (!uid || !db) return Promise.resolve({ ok: false, reason: 'signed-out' });
+      if (!isOnline()) return Promise.resolve({ ok: false, reason: 'offline' });
+      if (manual) return manual;
+      const forUid = uid;
+      manual = (async () => {
+        let failed = false;
+        for (const bucket of BUCKETS) {
+          try {
+            await Promise.race([
+              pushBucket(bucket),
+              new Promise((_, reject) => setTimeout(() => reject(new Error('timed out')), BUCKET_TIMEOUT_MS)),
+            ]);
+          } catch (err) {
+            failed = true;
+            console.warn('Could not sync:', err.message);
+          }
+        }
+        manual = null;
+        if (uid !== forUid) return { ok: false, reason: 'signed-out' };
+        if (!failed) {
+          const latest = Math.max(now(), ...BUCKETS.flatMap((b) => Object.values(readAll(b)).map((e) => e.at)));
+          try {
+            storage.setItem(lastSyncKey(), String(latest));
+          } catch {
+            // Storage blocked: the reminder just stays on.
+          }
+        }
+        notify();
+        return failed ? { ok: false, reason: 'error' } : { ok: true };
+      })();
+      return manual;
+    },
+
+    /** { lastSyncAt, pending }: when this device last synced, and what has changed since. */
+    status() {
+      const last = lastSyncAt();
+      const pending = BUCKETS.reduce((n, b) => n + Object.values(readAll(b)).filter((e) => e.at > last).length, 0);
+      return { lastSyncAt: last, pending };
+    },
+
     get(bucket, key) {
       const e = readRaw(bucket, key);
       return e && !e.del ? parse(e) : null;
+    },
+
+    /** When the item was removed, or 0. */
+    removedAt(bucket, key) {
+      const e = readRaw(bucket, key);
+      return e?.del ? e.at : 0;
     },
 
     /** When the item last changed, or 0. */

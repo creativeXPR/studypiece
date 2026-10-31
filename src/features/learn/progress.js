@@ -44,7 +44,11 @@ export function getRun(uid, courseSlug, lessonId) {
 }
 
 export function saveRun(uid, courseSlug, lessonId, run) {
-  if (uid) sync.set('runs', itemKey(courseSlug, lessonId), run);
+  if (!uid) return;
+  const key = itemKey(courseSlug, lessonId);
+  // Remembers a fresh start, so merging doesn't bring back the run it replaced.
+  const resetAt = sync.removedAt('runs', key) || sync.get('runs', key)?.resetAt;
+  sync.set('runs', key, resetAt ? { ...run, resetAt } : run);
 }
 
 export function clearRun(uid, courseSlug, lessonId) {

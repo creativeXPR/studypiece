@@ -100,11 +100,6 @@ export function stopSync() {
   sync.stop();
 }
 
-/** Tries to send waiting changes before signing out, without blocking for long. */
-export function flushSync(ms = 3000) {
-  return Promise.race([sync.flush(), new Promise((resolve) => setTimeout(resolve, ms))]);
-}
-
 /** Re-renders a component when another device's data arrives. */
 export function useSyncRevision() {
   return useSyncExternalStore(sync.subscribe, sync.revision);

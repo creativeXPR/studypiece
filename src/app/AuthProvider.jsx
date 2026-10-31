@@ -12,7 +12,7 @@ import { arrayRemove, arrayUnion, doc, getDoc, serverTimestamp, setDoc } from 'f
 import { auth, db, googleProvider } from '../lib/firebase';
 import { dayKey } from '../lib/dates';
 import { readJSON, writeJSON } from '../lib/storage';
-import { flushSync, startSync, stopSync } from '../lib/sync';
+import { startSync, stopSync } from '../lib/sync';
 
 const AuthContext = createContext(null);
 
@@ -95,10 +95,7 @@ export function AuthProvider({ children }) {
       console.warn('Could not save name:', err.message),
     );
   }, []);
-  const signOut = useCallback(async () => {
-    await flushSync();
-    return fbSignOut(auth);
-  }, []);
+  const signOut = useCallback(() => fbSignOut(auth), []);
 
   const saveProfile = useCallback(
     async ({ department, level }) => {

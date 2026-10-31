@@ -12,6 +12,7 @@ import ConfirmDialog from '../../lib/ConfirmDialog';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import { formatDay } from '../../lib/dates';
+import { SyncReminder } from '../../lib/SyncControls';
 import { useSyncRevision } from '../../lib/sync';
 import { watchForYou } from '../../lib/forYouStore';
 import { ChevronRight, SearchIcon, StarIcon } from '../../lib/icons';
@@ -72,6 +73,7 @@ export default function SelectTestPage() {
     <>
       <AppHeader />
       <main className="page select-page">
+        <SyncReminder />
         {activeTest && (
           <div className="banner">
             <div>

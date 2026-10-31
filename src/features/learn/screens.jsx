@@ -3,6 +3,7 @@ import { Art, CardIcon } from './art';
 import { burstAt, buzz, confetti } from './fx';
 import { Inline, Rich, Terms } from './Rich';
 import { WIDGETS } from './widgets';
+import { SyncFab } from '../../lib/SyncControls';
 import { CheckIcon } from '../../lib/icons';
 
 // Screen types. Every screen gets { s, index, api }:
@@ -625,6 +626,7 @@ function Finish({ s, api }) {
       </div>
       <Rich text={s.body} />
       {terms.length > 0 && <Terms terms={terms} />}
+      <SyncFab />
     </div>
   );
 }

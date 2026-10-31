@@ -1,0 +1,81 @@
+/* Manual sync controls (SyncControls.jsx). */
+.sync-fab-wrap {
+  position: fixed;
+  right: 16px;
+  bottom: calc(var(--sync-fab-bottom, 140px) + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: calc(100vw - 32px);
+}
+
+.sync-fab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  font-weight: 600;
+  color: var(--primary-text);
+  background: var(--primary);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.28);
+  cursor: pointer;
+}
+
+.sync-fab:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.sync-fab:disabled {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.sync-fab-note {
+  max-width: 280px;
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.16);
+}
+
+.sync-spin {
+  animation: sync-spin 1s linear infinite;
+}
+
+@keyframes sync-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sync-spin { animation: none; }
+}
+
+.sync-row {
+  gap: 12px;
+}
+
+.sync-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sync-row .btn {
+  flex: none;
+}
+
+.sync-problem {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--warn);
+}

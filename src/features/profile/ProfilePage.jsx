@@ -4,6 +4,7 @@ import AppFooter from '../../lib/AppFooter';
 import AppHeader from '../../lib/AppHeader';
 import { isAdminUser } from '../../lib/admins';
 import { ChevronRight, LogoutIcon, MoonIcon, ShieldIcon, SunIcon } from '../../lib/icons';
+import { SyncCard } from '../../lib/SyncControls';
 import useTheme from '../../lib/useTheme';
 
 function initials(name) {
@@ -89,6 +90,8 @@ export default function ProfilePage() {
             </Link>
           )}
         </section>
+
+        <SyncCard />
 
         <button type="button" className="btn btn-outline btn-block btn-lg signout-btn" onClick={signOut}>
           <LogoutIcon size={18} /> Sign out

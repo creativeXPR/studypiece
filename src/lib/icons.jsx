@@ -62,6 +62,15 @@ export const SearchIcon = (p) => (
     <path d="M20 20l-3.5-3.5" />
   </Icon>
 );
+export const SyncIcon = (p) => (
+  <Icon {...p}>
+    <path d="M20 11a8 8 0 0 0-14.3-4.9L3 9" />
+    <path d="M3 4v5h5" />
+    <path d="M4 13a8 8 0 0 0 14.3 4.9L21 15" />
+    <path d="M21 20v-5h-5" />
+  </Icon>
+);
+
 export const CheckIcon = (p) => (
   <Icon {...p}>
     <path d="M5 12l5 5L20 7" />
