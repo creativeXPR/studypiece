@@ -149,6 +149,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Exams are not only “state” and “prove”. Expect to state, prove and analyse, so prepare for all three.' },
+          ],
           eyebrow: 'Model answer · 2 marks',
           title: 'Write this',
           body: 'Let $F : X \\to \\mathbb{R}$, $X \\subset \\mathbb{R}$, and let $x_0$ be a limit point of $X$. $F$ is said to have a limit $l \\in \\mathbb{R}$ as $x$ tends to $x_0$, written $\\lim_{x \\to x_0} F(x) = l$, if for every $\\varepsilon > 0$ there exists $\\delta > 0$ (depending on ε) such that\n\n$$|F(x) - l| < \\varepsilon \\quad \\text{whenever } x \\in X \\text{ and } 0 < |x - x_0| < \\delta.$$',

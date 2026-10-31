@@ -39,6 +39,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Check $\\|x^{(k)} - x^{(k-1)}\\| \\le \\varepsilon$. If even one component is still beyond the bound, keep going. If no bound is given, use $10^{-3}$.' },
+          ],
           eyebrow: 'The method',
           title: 'Newton’s iteration and when to stop',
           body: 'If $x^{(k)}$ is close to the root $x$, write $x = x^{(k)} + \\varepsilon^{(k)}$. When $J$ is non-singular ($|J| \\ne 0$), the correction is $\\varepsilon^{(k)} \\approx -J^{-1}(x^{(k)})F(x^{(k)})$, giving\n$$x^{(k+1)} = x^{(k)} - J^{-1}(x^{(k)})\\,F(x^{(k)}),\\quad k = 0, 1, 2, \\ldots$$\n\n**Stopping rule:** stop when $\\|x^{(k)} - x^{(k-1)}\\| \\le \\varepsilon$. If no tolerance is given, use $\\varepsilon = 10^{-3}$.\n\n**Tip:** instead of inverting $J$, you can solve $J(x^{(k)})\\,y = -F(x^{(k)})$ for $y$ and set $x^{(k+1)} = x^{(k)} + y$. It is the same step.',

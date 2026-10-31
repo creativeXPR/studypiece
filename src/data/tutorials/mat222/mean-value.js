@@ -14,6 +14,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Note', text: 'If $f$ satisfies Rolle’s theorem it also satisfies the MVT, but the converse is not generally true.' },
+          ],
           eyebrow: 'Mean value theorems · Lesson 2',
           title: 'Rolle, tilted',
           body: 'Drop Rolle’s condition $f(a) = f(b)$. The chord from $(a, f(a))$ to $(b, f(b))$ is now tilted, with slope $\\frac{f(b) - f(a)}{b - a}$.\n\n**MVT.** If $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$, there is $c \\in (a, b)$ with\n$$f\'(c) = \\frac{f(b) - f(a)}{b - a}.$$\nGeometrically: somewhere the tangent is **parallel to the chord**. In motion: at some instant your speed equals your average speed.',

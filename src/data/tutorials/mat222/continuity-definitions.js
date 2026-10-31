@@ -56,6 +56,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Note', text: 'Be careful: uniform continuity depends on the domain. $\\frac1x$ is uniformly continuous on $[1, 2]$, but not on $(0, 1]$.' },
+          ],
           eyebrow: '(ii) Uniformly continuous · 2 marks',
           title: 'One δ for the whole interval',
           body: '$f$ is **uniformly continuous on $I$** if for every $\\varepsilon > 0$ there exists $\\delta > 0$ such that\n$$|f(x) - f(y)| < \\varepsilon \\quad \\text{whenever } x, y \\in I \\text{ and } |x - y| < \\delta.$$\n\nNow δ is chosen **before** the points $x, y$. So it can depend on ε only, and must work everywhere in $I$ at once.',
@@ -118,6 +121,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Often examined: define continuity at a point and uniform continuity side by side.' },
+          ],
           eyebrow: 'Model answer · 4 marks',
           title: 'Write this',
           body: '**(i)** $f$ is continuous at $x_0 \\in I$ if for every $\\varepsilon > 0$ there exists $\\delta > 0$ such that $|f(x) - f(x_0)| < \\varepsilon$ for all $x \\in I$ with $|x - x_0| < \\delta$. (Equivalently, $\\lim_{x\\to x_0}f(x) = f(x_0)$.)\n\n**(ii)** $f$ is uniformly continuous on $I$ if for every $\\varepsilon > 0$ there exists $\\delta > 0$ such that $|f(x) - f(y)| < \\varepsilon$ for all $x, y \\in I$ with $|x - y| < \\delta$.\n\nIn (i), δ may depend on ε and $x_0$; in (ii), δ depends on ε alone and works for every pair of points in $I$.',

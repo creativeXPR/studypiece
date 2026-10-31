@@ -27,6 +27,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Any theorem or lemma with a name can be asked: you may have to state it, or prove it. Learn both.' },
+          ],
           eyebrow: 'Exam answer',
           title: 'Fermat’s theorem: at an interior extremum, $f\'(x_0) = 0$',
           body: 'Suppose $f$ has a local **maximum** at $x_0$ and is differentiable there. For small $h \\ne 0$, $f(x_0 + h) \\le f(x_0)$, so $f(x_0 + h) - f(x_0) \\le 0$.\n\nFor $h > 0$: $\\frac{f(x_0 + h) - f(x_0)}{h} \\le 0$, so letting $h \\to 0^+$, $f\'(x_0) \\le 0$.\n\nFor $h < 0$: $\\frac{f(x_0 + h) - f(x_0)}{h} \\ge 0$, so letting $h \\to 0^-$, $f\'(x_0) \\ge 0$.\n\nTogether, $f\'(x_0) = 0$. (For a local minimum the inequalities reverse.) $\\blacksquare$',
@@ -90,6 +93,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'When you use a named theorem, give its name and then write the theorem out. The name alone is not enough.' },
+          ],
           eyebrow: 'Exam answer',
           title: 'Prove Rolle’s theorem',
           body: 'If $f$ is constant on $[a, b]$, then $f\'(c) = 0$ for every $c \\in (a, b)$.\n\nOtherwise, $f$ is continuous on the closed interval $[a, b]$, so by the **extreme value theorem** it attains a maximum and a minimum there. Since $f(a) = f(b)$ and $f$ is not constant, at least one of them is attained at some $c \\in (a, b)$, an **interior** point.\n\n$f$ is differentiable at $c$ and has a local extremum there, so by **Fermat’s theorem** $f\'(c) = 0$. $\\blacksquare$',

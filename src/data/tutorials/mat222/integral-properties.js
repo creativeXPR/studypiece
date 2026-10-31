@@ -56,6 +56,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Note', text: 'Reading $a \\Leftrightarrow b$: $b$ is sufficient for $a$ (the $\\Leftarrow$ direction), and $b$ is necessary for $a$ (the $\\Rightarrow$ direction).' },
+          ],
           eyebrow: 'Exam answer',
           title: 'Prove additivity (⇐ direction)',
           body: 'Let $f$ be integrable on $[a, c]$ and $[c, b]$, and $\\varepsilon > 0$. By Riemann’s criterion choose partitions $\\pi_1$ of $[a, c]$ and $\\pi_2$ of $[c, b]$ with\n$$U(f, \\pi_1) - L(f, \\pi_1) < \\tfrac\\varepsilon2, \\qquad U(f, \\pi_2) - L(f, \\pi_2) < \\tfrac\\varepsilon2.$$\nThen $\\pi = \\pi_1 \\cup \\pi_2$ is a partition of $[a, b]$, and sums over $\\pi$ split: $U(f, \\pi) = U(f, \\pi_1) + U(f, \\pi_2)$, likewise for $L$. So\n$$U(f, \\pi) - L(f, \\pi) < \\tfrac\\varepsilon2 + \\tfrac\\varepsilon2 = \\varepsilon,$$\nand $f$ is integrable on $[a, b]$. Also $L(f, \\pi_1) + L(f, \\pi_2) \\le \\int_a^c f + \\int_c^b f \\le U(f, \\pi_1) + U(f, \\pi_2)$, and $\\int_a^b f$ lies in the same interval of length $< \\varepsilon$, giving the equality. $\\blacksquare$',

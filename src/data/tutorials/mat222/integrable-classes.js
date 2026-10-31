@@ -46,6 +46,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Note', text: 'Continuous ⇒ integrable ⇒ bounded, and neither converse holds. Continuity is sufficient for integrability, not necessary.' },
+          ],
           eyebrow: 'The Riemann integral · Lesson 4',
           title: 'Three big families, no computation needed',
           body: 'Checking integrability from scratch is slow. Three theorems settle it for most functions you’ll meet:\n\n**A. Monotone** functions on $[a, b]$ are integrable.\n**B. Continuous** functions on $[a, b]$ are integrable.\n**C. Bounded** functions with **finitely many** discontinuities are integrable.\n\nThe classes overlap: $x^2$ on $[0, 1]$ is in all three.',

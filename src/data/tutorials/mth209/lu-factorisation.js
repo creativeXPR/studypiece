@@ -63,6 +63,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Tip', text: 'Slips are easy here, so be very careful. Work one entry at a time, keep the 1s on the diagonal of $L$, and check that $LU$ gives back $A$.' },
+          ],
           eyebrow: 'Worked example · Row 2',
           title: 'Entries $(2,1)$, $(2,2)$, $(2,3)$',
           body: '$$\\begin{aligned} 1 &= l_{21}u_{11} = 2l_{21} &&\\implies l_{21} = \\tfrac12 \\\\ -2 &= l_{21}u_{12} + u_{22} = \\tfrac32 + u_{22} &&\\implies u_{22} = -\\tfrac72 \\\\ 1 &= l_{21}u_{13} + u_{23} = 2 + u_{23} &&\\implies u_{23} = -1 \\end{aligned}$$',

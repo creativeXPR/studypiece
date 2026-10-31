@@ -22,6 +22,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Tip', text: 'A quick convergence check: when $x^{(k)}$ and $x^{(k-1)}$ agree at 2 d.p., you have converged to that accuracy.' },
+          ],
           eyebrow: 'The iteration',
           title: '$x^{(k+1)} = Cx^{(k)} + F$',
           body: 'Start from an initial vector $x^{(0)}$ (often $F$ itself, or $0$) and compute\n$$x^{(k+1)}_i = c_{i1}x^{(k)}_1 + c_{i2}x^{(k)}_2 + \\cdots + c_{in}x^{(k)}_n + f_i,\\quad k = 0, 1, 2, \\ldots$$\n\n**Every** component of $x^{(k+1)}$ is computed from the **old** vector $x^{(k)}$. Stop when two successive iterates agree to the required number of decimal places.',

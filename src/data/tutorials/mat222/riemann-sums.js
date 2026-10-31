@@ -31,6 +31,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Note', text: 'With no sup or inf involved, a Riemann sum can be written for any function, bounded or not. An integrable function still turns out to be bounded.' },
+          ],
           eyebrow: 'Properties and the Fundamental Theorem · Lesson 2',
           title: 'Forget sup and inf: just pick a point',
           body: 'Upper and lower sums need the sup and inf on every piece, which can be hard to find. A ==Riemann sum== is simpler: in each piece pick **any** point $\\xi_k$ (a ==tag==) and use the height $f(\\xi_k)$:\n$$S(f, \\pi, \\xi) = \\sum_{k=1}^n f(\\xi_k)\\,\\Delta x_k.$$\nSince $m_k \\le f(\\xi_k) \\le M_k$,\n$$L(f, \\pi) \\le S(f, \\pi, \\xi) \\le U(f, \\pi).$$',
@@ -77,7 +80,7 @@ export default {
           type: 'story',
           eyebrow: 'The theorem',
           title: 'Fine partitions, any tags, same limit',
-          body: '**Theorem (convergence of tagged Riemann sums).** Let $f$ be Riemann integrable on $[a, b]$. Then for any $\\varepsilon > 0$ there is $\\delta > 0$ such that for **every** partition with $\\|\\pi\\| < \\delta$ and **every** choice of tags,\n$$\\left|S(f, \\pi, \\xi) - \\int_a^b f(x)\\,dx\\right| < \\varepsilon.$$\nEquivalently $\\lim_{\\|\\pi\\| \\to 0} S(f, \\pi, \\xi) = \\int_a^b f$, uniformly in the tags.\n\n**Proof.** By Darboux’s criterion there is δ with $U(f, \\pi) - L(f, \\pi) < \\varepsilon$ whenever $\\|\\pi\\| < \\delta$; combine with the previous inequality. $\\blacksquare$',
+          body: '**Theorem (convergence of tagged Riemann sums).** Let $f$ be Riemann integrable on $[a, b]$. Then for any $\\varepsilon > 0$ there is $\\delta > 0$ such that for **every** partition with $\\|\\pi\\| < \\delta$ and **every** choice of tags,\n$$\\left|S(f, \\pi, \\xi) - \\int_a^b f(x)\\,dx\\right| < \\varepsilon.$$\nEquivalently $\\lim_{\\|\\pi\\| \\to 0} S(f, \\pi, \\xi) = \\int_a^b f$, uniformly in the tags.\n\n**Proof.** By Darboux’s criterion (Odadare’s criterion) there is δ with $U(f, \\pi) - L(f, \\pi) < \\varepsilon$ whenever $\\|\\pi\\| < \\delta$; combine with the previous inequality. $\\blacksquare$',
         },
         {
           type: 'choice',

@@ -68,6 +68,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Often examined: be ready to say when $f$ tends to positive infinity, then prove it for a given function.' },
+          ],
           eyebrow: 'Definition',
           title: 'Beat any height $N$',
           body: '$f$ ==diverges to infinity== as $x \\to \\infty$ if for every $N \\in \\mathbb{R}$ there is an $M$ such that\n$$f(x) > N \\quad \\text{whenever } x \\in S,\\ x \\ge M.$$\nWe write $\\lim_{x \\to \\infty} f(x) = \\infty$. At a point: $f(x) > N$ whenever $0 < |x - c| < \\delta$.',

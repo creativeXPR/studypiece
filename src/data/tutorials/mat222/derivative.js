@@ -19,6 +19,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Know the ε form too: $f\'(c)$ is the derivative when, for every $\\varepsilon > 0$, there is $\\delta > 0$ with $\\left|\\frac{f(x) - f(c)}{x - c} - f\'(c)\\right| < \\varepsilon$ whenever $0 < |x - c| < \\delta$.' },
+          ],
           eyebrow: 'Differentiation · Lesson 1',
           title: 'A tangent is a chord that has shrunk',
           body: 'A chord joins $(x_0, f(x_0))$ and $(x_0 + h, f(x_0 + h))$; its slope is the ==Newton quotient==\n$$\\frac{f(x_0 + h) - f(x_0)}{h}.$$\nLet the second point slide in ($h \\to 0$). If the slopes settle on a number, that number is the slope of the tangent: the ==derivative==\n$$f\'(x_0) = \\lim_{x \\to x_0} \\frac{f(x) - f(x_0)}{x - x_0}.$$\nFor this, $x_0$ must be a limit point of the domain.',
@@ -110,6 +113,10 @@ export default {
         },
         {
           type: 'reveal',
+          asides: [
+            { label: 'Tip', text: 'To show a derivative does not exist, find two null sequences $h_n$ that give different limits of the difference quotient, or one where the quotient goes to $\\pm\\infty$.' },
+            { label: 'Note', text: 'Not every derivative is continuous. For example, $x^2\\sin\\frac1x$ with $f(0) = 0$ has a derivative everywhere, but $f\'$ is not continuous at $0$.' },
+          ],
           eyebrow: 'Going further',
           title: 'How badly can it fail?',
           cards: [

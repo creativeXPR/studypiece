@@ -16,7 +16,7 @@ function strips(n) {
 export default {
   id: 'integrability-tests',
   title: 'Tests for integrability',
-  covers: 'Riemann’s ε-criterion with proof, the sequential (limit) criterion and computing the integral as lim U(f, πₙ), Darboux’s criterion',
+  covers: 'Riemann’s ε-criterion with proof, the sequential (limit) criterion and computing the integral as lim U(f, πₙ), Darboux’s criterion (Odadare’s criterion)',
   minutes: 18,
   sections: [
     {
@@ -63,11 +63,15 @@ export default {
       name: 'The sequential criterion and Darboux',
       terms: [
         ['Sequential (limit) criterion', '$f \\in \\mathcal{R}[a, b]$ ⇔ there is a sequence of partitions $\\pi_n$ with $\\lim_{n \\to \\infty} [U(f, \\pi_n) - L(f, \\pi_n)] = 0$. Then $\\int_a^b f = \\lim U(f, \\pi_n) = \\lim L(f, \\pi_n)$.'],
-        ['Darboux’s criterion', '$f$ is integrable ⇔ for every $\\varepsilon > 0$ there is $\\delta > 0$ such that $U(f, \\pi) - L(f, \\pi) < \\varepsilon$ for every partition with $\\|\\pi\\| < \\delta$.'],
+        ['Darboux’s criterion (Odadare’s criterion)', '$f$ is integrable ⇔ for every $\\varepsilon > 0$ there is $\\delta > 0$ such that $U(f, \\pi) - L(f, \\pi) < \\varepsilon$ for every partition with $\\|\\pi\\| < \\delta$.'],
       ],
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Tip', text: 'When $n$ appears in the question, reach for the limit criterion.' },
+            { label: 'Note', text: 'For a uniform partition, $\\|\\pi_n\\| = \\frac{b - a}{n}$, so $\\|\\pi_n\\| \\to 0$ exactly when $n \\to \\infty$.' },
+          ],
           eyebrow: 'The criterion you will use most',
           title: 'One sequence of partitions',
           body: '**Sequential criterion.** $f$ is integrable on $[a, b]$ ⇔ some sequence of partitions has $U(f, \\pi_n) - L(f, \\pi_n) \\to 0$. In that case\n$$\\int_a^b f(x)\\,dx = \\lim_{n \\to \\infty} U(f, \\pi_n) = \\lim_{n \\to \\infty} L(f, \\pi_n),$$\nby the squeeze $L(f, \\pi_n) \\le \\int_a^b f \\le U(f, \\pi_n)$. So it both **proves** integrability and **computes** the integral. Usually $\\pi_n$ is the uniform partition into $n$ equal pieces.',
@@ -107,9 +111,9 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Darboux’s criterion',
+          eyebrow: 'Darboux’s criterion (Odadare’s criterion)',
           title: 'Fine enough partitions always work',
-          body: '**Darboux’s criterion.** A bounded $f$ is integrable on $[a, b]$ ⇔ for every $\\varepsilon > 0$ there is $\\delta > 0$ such that\n$$\\sum_{k=1}^n \\left(\\sup_{[x_{k-1}, x_k]} f - \\inf_{[x_{k-1}, x_k]} f\\right)\\Delta x_k < \\varepsilon$$\nfor **every** partition with $\\|\\pi\\| < \\delta$.\n\nSo there are four routes to integrability: the **definition**, the **ε-criterion**, the **limit criterion** and **Darboux**. Pick by what the question gives you.',
+          body: '**Darboux’s criterion (Odadare’s criterion).** A bounded $f$ is integrable on $[a, b]$ ⇔ for every $\\varepsilon > 0$ there is $\\delta > 0$ such that\n$$\\sum_{k=1}^n \\left(\\sup_{[x_{k-1}, x_k]} f - \\inf_{[x_{k-1}, x_k]} f\\right)\\Delta x_k < \\varepsilon$$\nfor **every** partition with $\\|\\pi\\| < \\delta$.\n\nSo there are four routes to integrability: the **definition**, the **ε-criterion**, the **limit criterion** and **Darboux (Odadare)**. Pick by what the question gives you.',
         },
         {
           type: 'finish',

@@ -1907,7 +1907,7 @@ export default {
           "explanation": "$\\frac83 + 2 = \\frac{14}{3}$."
         },
         {
-          "question": "Darboux's criterion is stated in terms of",
+          "question": "Darboux's criterion (Odadare's criterion) is stated in terms of",
           "options": [
             "partitions with small gauge $\\|\\pi\\| < \\delta$",
             "tags only",

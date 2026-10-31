@@ -39,6 +39,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Be ready to say what a consistent system is: one with at least one solution. An inconsistent system has none.' },
+          ],
           eyebrow: 'Exam notice',
           title: 'Use the method you are told to use',
           body: 'If a question says “solve by the Gaussian method” and you use the matrix inverse method, you **lose the method marks** even with the right answer.\n\nA system is ==consistent== when it has **at least one solution**, and inconsistent when it has none. Fewer equations than unknowns does not make a system inconsistent: $2x + 4y + 3z = 2$, $4x + y + 6z = 3$ has 3 unknowns and only 2 equations, yet $z = 0$, $x = \\frac57$, $y = \\frac17$ solves it (it has infinitely many solutions).',
@@ -89,6 +92,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Tip', text: 'Give final answers to 2 d.p. unless told otherwise. Keep your working in exact fractions for as long as you can, because they are more accurate than rounded decimals.' },
+          ],
           eyebrow: 'Worked example · Steps 2–4',
           title: 'Adjoint and inverse',
           body: 'The cofactors (with signs), transposed, give\n$$\\operatorname{adj}A = \\begin{pmatrix} -5 & -13 & 11 \\\\ -1 & -2 & 2 \\\\ 3 & 8 & -7 \\end{pmatrix}.$$\n\nFor example, the $(1,1)$ entry is $+\\begin{vmatrix} -2 & 1 \\\\ -1 & 3 \\end{vmatrix} = -5$, and the $(1,2)$ entry is $C_{21} = -\\begin{vmatrix} 3 & 4 \\\\ -1 & 3 \\end{vmatrix} = -13$.\n\nSince $\\det A = -1$:\n$$A^{-1} = -\\operatorname{adj}A = \\begin{pmatrix} 5 & 13 & -11 \\\\ 1 & 2 & -2 \\\\ -3 & -8 & 7 \\end{pmatrix}.$$',

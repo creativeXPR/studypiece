@@ -98,6 +98,9 @@ export default {
       screens: [
         {
           type: 'story',
+          asides: [
+            { label: 'Note', text: 'Adding even one point gives a refinement, and every partition is a refinement of itself.' },
+          ],
           eyebrow: 'Exam answer',
           title: 'Refining raises $L$ and lowers $U$',
           body: 'It suffices to add one point $y$ inside a subinterval $[x_{k-1}, x_k]$, splitting it into $[x_{k-1}, y]$ and $[y, x_k]$ with infima $m\'_k$, $m\'\'_k$.\n\nEach piece is a subset of $[x_{k-1}, x_k]$, and an inf over a **smaller** set is **larger**: $m_k \\le m\'_k$ and $m_k \\le m\'\'_k$. Hence\n$$m_k(x_k - x_{k-1}) = m_k(y - x_{k-1}) + m_k(x_k - y) \\le m\'_k(y - x_{k-1}) + m\'\'_k(x_k - y).$$\nAll other terms are unchanged, so $L(f, \\pi) \\le L(f, \\pi^*)$. The same argument with sups gives $U(f, \\pi^*) \\le U(f, \\pi)$. Add points one at a time for a general refinement. $\\blacksquare$',

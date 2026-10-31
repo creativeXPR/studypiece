@@ -381,6 +381,26 @@
   color: var(--warn);
 }
 
+.tut-headsup + .tut-headsup {
+  margin-top: 8px;
+}
+
+.tut-headsup.tip {
+  background: var(--primary-soft);
+}
+
+.tut-headsup.tip b {
+  color: var(--primary);
+}
+
+.tut-headsup.plain {
+  background: var(--surface-2);
+}
+
+.tut-headsup.plain b {
+  color: var(--text-2);
+}
+
 /* ---------- options ---------- */
 .tut-options {
   display: flex;

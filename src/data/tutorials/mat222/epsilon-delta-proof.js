@@ -92,6 +92,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Tip', text: 'Never use a variable as your bound. Choose a constant, because nothing can be bounded by a value that keeps changing.' },
+          ],
           eyebrow: 'Step 6 · The numerator',
           title: 'Bound $|x^2 + 2x + 13|$ from above',
           body: 'If $\\frac32 < x < \\frac52$, then $|x| < \\frac52$. By the triangle inequality,\n$$|x^2 + 2x + 13| \\le |x|^2 + 2|x| + 13 < \\tfrac{25}{4} + 5 + 13 = \\tfrac{97}{4} < 25.$$\n\nRounding up to $25$ is allowed (we only need **an** upper bound) and keeps the numbers simple.',
@@ -162,6 +165,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'A proof must be mathematically consistent. Use less English, but enough to establish the result.' },
+          ],
           eyebrow: 'Model answer · 5 marks',
           title: 'Write this',
           body: '**Proof.** Let $F(x) = \\frac{x^3 + 1}{x - 3}$, $x \\neq 3$. For $x \\neq 3$,\n$$|F(x) + 9| = \\frac{|x^3 + 9x - 26|}{|x - 3|} = \\frac{|x - 2|\\,|x^2 + 2x + 13|}{|x - 3|}.$$\n\nLet $\\varepsilon > 0$ and choose $\\delta = \\min\\left(\\frac12, \\frac{\\varepsilon}{50}\\right)$. Suppose $0 < |x - 2| < \\delta$. Then $\\frac32 < x < \\frac52$, so\n$|x - 3| > \\frac12$ and $|x^2 + 2x + 13| \\le |x|^2 + 2|x| + 13 < \\frac{25}{4} + 5 + 13 < 25$.\n\nTherefore\n$$|F(x) + 9| < \\frac{25\\,|x - 2|}{1/2} = 50|x - 2| < 50 \\cdot \\frac{\\varepsilon}{50} = \\varepsilon.$$\n\nHence $\\lim_{x\\to 2}\\frac{x^3+1}{x-3} = -9$. $\\blacksquare$',

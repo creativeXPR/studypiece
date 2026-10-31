@@ -22,6 +22,9 @@ export default {
         },
         {
           type: 'story',
+          asides: [
+            { label: 'Exam tip', text: 'Expect to define an initial value problem: a differential equation together with initial conditions. Those conditions pick one particular solution out of the general solution.' },
+          ],
           eyebrow: 'Definition',
           title: 'Conditions at the start',
           body: 'An ==initial value problem== is a differential equation, or a system of them, whose solution values are specified at the **initial point** (the beginning) of the interval.\n\nSolving a DE gives a ==general solution== with arbitrary constants. The initial conditions pin those constants down, leaving one ==particular solution==.\n\n**Rule:** the number of initial conditions equals the **order** of the differential equation.',

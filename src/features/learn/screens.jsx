@@ -45,15 +45,26 @@ function Head({ s }) {
   );
 }
 
-function Note({ text }) {
-  if (!text) return null;
+const ASIDE_TONE = { 'Exam tip': 'exam', Tip: 'tip', Note: 'plain' };
+
+function Aside({ label, text }) {
   return (
-    <aside className="tut-headsup">
-      <b>Heads up</b>
+    <aside className={`tut-headsup ${ASIDE_TONE[label] ?? ''}`}>
+      <b>{label}</b>
       <span>
         <Inline text={text} />
       </span>
     </aside>
+  );
+}
+
+// `note` is the older single heads-up; `asides` holds labelled tips and notes.
+function Note({ s }) {
+  return (
+    <>
+      {s.note && <Aside label="Heads up" text={s.note} />}
+      {s.asides?.map((a) => <Aside key={a.text} label={a.label} text={a.text} />)}
+    </>
   );
 }
 
@@ -67,7 +78,7 @@ function Story({ s, api }) {
   return (
     <>
       <Head s={s} />
-      <Note text={s.note} />
+      <Note s={s} />
     </>
   );
 }
@@ -139,7 +150,7 @@ function Choice({ s, index, api }) {
           );
         })}
       </div>
-      <Note text={s.note} />
+      <Note s={s} />
     </>
   );
 }
@@ -501,7 +512,7 @@ function Reveal({ s, api }) {
           </button>
         ))}
       </div>
-      <Note text={s.note} />
+      <Note s={s} />
     </>
   );
 }
