@@ -12,6 +12,7 @@ import ConfirmDialog from '../../lib/ConfirmDialog';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import { formatDay } from '../../lib/dates';
+import { useSyncRevision } from '../../lib/sync';
 import { watchForYou } from '../../lib/forYouStore';
 import { ChevronRight, SearchIcon, StarIcon } from '../../lib/icons';
 
@@ -39,6 +40,7 @@ export default function SelectTestPage() {
   const [chooser, setChooser] = useState(null);
   const [confirm, setConfirm] = useState(null); // 'test' | 'lesson' | null
   const [runsVersion, setRunsVersion] = useState(0);
+  const syncRevision = useSyncRevision();
 
   // The most recent lesson left part-way through (saved like a running test).
   const lessonRun = useMemo(() => {
@@ -48,9 +50,9 @@ export default function SelectTestPage() {
       if (found) return { ...run, tutorial, lesson: found.lesson };
     }
     return null;
-    // runsVersion re-reads storage after a discard.
+    // runsVersion re-reads storage after a discard; syncRevision after another device's update.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, runsVersion]);
+  }, [user, runsVersion, syncRevision]);
 
   const favourites = profile?.favourites ?? [];
   const favouriteCourses = courses.filter((c) => favourites.includes(c.code));

@@ -28,6 +28,18 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // users/{uid}/sync/{bucket}: the student's study data, kept the same across devices.
+    // Only the student can read or change it.
+    match /users/{userId}/sync/{bucket} {
+      allow get, list: if signedIn() && request.auth.uid == userId;
+      allow create, update: if signedIn()
+        && request.auth.uid == userId
+        && bucket in ['lessons', 'runs', 'drafts', 'prefs', 'testPaper', 'testState']
+        && request.resource.data.keys().hasOnly(['entries', 'updatedAt'])
+        && request.resource.data.entries is map;
+      allow delete: if false;
+    }
+
     // config/forYou: the admin's "For you" dates, { courses: { code: 'YYYY-MM-DD' } }.
     // Every signed-in student reads it; only admins change it.
     match /config/forYou {

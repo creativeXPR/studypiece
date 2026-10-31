@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { readJSON, writeJSON } from './storage';
+import { sync, useSyncRevision } from './sync';
 
-const KEY = 'studypiece.shuffle';
+const KEY = 'shuffle';
 const DEFAULTS = { shuffle: true, shuffleOptions: true };
 
 // Remembers the student's randomisation choices between tests.
 export default function useShufflePrefs() {
-  const [prefs, setPrefs] = useState(() => ({ ...DEFAULTS, ...readJSON(KEY, {}) }));
-  const update = (patch) =>
-    setPrefs((p) => {
-      const next = { ...p, ...patch };
-      writeJSON(KEY, next);
-      return next;
-    });
+  const [, rerender] = useState(0);
+  useSyncRevision();
+  const prefs = { ...DEFAULTS, ...sync.get('prefs', KEY) };
+  const update = (patch) => {
+    sync.set('prefs', KEY, { ...prefs, ...patch });
+    rerender((n) => n + 1);
+  };
   return [prefs, update];
 }

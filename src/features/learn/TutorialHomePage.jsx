@@ -6,6 +6,7 @@ import { getTutorial, lessonPath } from '../../data/tutorials';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import ConfirmDialog from '../../lib/ConfirmDialog';
+import { useSyncRevision } from '../../lib/sync';
 import { CheckIcon, ChevronLeft, ChevronRight, ClockIcon, TimerIcon } from '../../lib/icons';
 import NotFound from '../course/NotFound';
 import { clearRun, getProgress, getRun, lessonsDone, listRuns } from './progress';
@@ -18,6 +19,7 @@ export default function TutorialHomePage() {
   const { user } = useAuth();
   const uid = user?.uid;
   const navigate = useNavigate();
+  useSyncRevision();
   const [startOver, setStartOver] = useState(null); // lesson to restart, pending confirmation
   if (!tutorial) return <NotFound />;
 

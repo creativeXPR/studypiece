@@ -9,7 +9,7 @@ import SectionTabs from '../../lib/SectionTabs';
 import { OPTION_LABELS, questionStatus, scoreSection } from '../../lib/scoring';
 import { BulbIcon, CheckIcon, ChevronLeft, ChevronRight, PlayIcon, StopIcon, XIcon } from '../../lib/icons';
 import { speechSupported } from '../../lib/speech';
-import { readJSON, writeJSON } from '../../lib/storage';
+import { sync } from '../../lib/sync';
 import SelectionReader from './SelectionReader';
 import useFreeFlow from './useFreeFlow';
 
@@ -24,7 +24,7 @@ const FILTERS = [
 const STATUS_TEXT = { correct: 'Correct', wrong: 'Wrong', skipped: 'Not answered' };
 const SPOKEN_LABELS = ['one', 'two', 'three', 'four', 'five', 'six'];
 const RATES = [0.75, 1, 1.25, 1.5];
-const RATE_KEY = 'studypiece.speechRate';
+const RATE_KEY = 'speechRate';
 
 export default function ReviewPage() {
   const { session } = useTest();
@@ -32,7 +32,7 @@ export default function ReviewPage() {
   const [sectionIndex, setSectionIndex] = useState(0);
   const [filter, setFilter] = useState('all');
   const [selected, setSelected] = useState(0);
-  const [rate, setRate] = useState(() => readJSON(RATE_KEY, 1));
+  const [rate, setRate] = useState(() => sync.get('prefs', RATE_KEY) ?? 1);
   const contentRef = useRef(null);
 
   const course = getCourse(session.config.items[0].course);
@@ -129,7 +129,7 @@ export default function ReviewPage() {
 
   function changeRate(value) {
     setRate(value);
-    writeJSON(RATE_KEY, value);
+    sync.set('prefs', RATE_KEY, value);
   }
 
   function countFor(id) {

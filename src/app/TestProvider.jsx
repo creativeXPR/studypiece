@@ -1,11 +1,34 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { getCourse } from '../data/courses';
-import { readJSON, writeJSON } from '../lib/storage';
+import { sync } from '../lib/sync';
 import { useAuth } from './AuthProvider';
 
 const TestContext = createContext(null);
 
-const sessionKey = (uid) => `studypiece.session.${uid}`;
+// The test paper (written once, can be large) and the student's answers (small, change
+// often) sync separately, so answering doesn't re-upload every question.
+const CURRENT = 'current';
+
+// A session, null when there is none, or undefined while its two parts disagree.
+function readSession() {
+  const paper = sync.get('testPaper', CURRENT);
+  const state = sync.get('testState', CURRENT);
+  if (!paper || !state) return null;
+  return paper.startedAt === state.startedAt ? { ...paper, ...state } : undefined;
+}
+
+// Only an explicit clear deletes a test: having none on this device yet must not remove it
+// from the student's other devices.
+function deleteSession() {
+  sync.remove('testPaper', CURRENT);
+  sync.remove('testState', CURRENT);
+}
+
+function writeSession(session) {
+  const { config, sections, startedAt, endsAt, answers, flags, cursor, submittedAt } = session;
+  sync.set('testPaper', CURRENT, { config, sections, startedAt, endsAt }, { fast: true });
+  sync.set('testState', CURRENT, { startedAt, answers, flags, cursor, submittedAt }, { fast: !!submittedAt });
+}
 
 function shuffled(list) {
   const copy = [...list];
@@ -74,25 +97,38 @@ function createSession(config) {
 export function TestProvider({ children }) {
   const { user } = useAuth();
   const uid = user?.uid;
-  const [session, setSession] = useState(() => (uid ? readJSON(sessionKey(uid)) : null));
+  const [session, setSession] = useState(() => (uid ? readSession() ?? null : null));
   const [loadedFor, setLoadedFor] = useState(uid);
 
   // Switching accounts: load that user's session instead of keeping the last one.
   if (loadedFor !== uid) {
     setLoadedFor(uid);
-    setSession(uid ? readJSON(sessionKey(uid)) : null);
+    setSession(uid ? readSession() ?? null : null);
   }
 
   useEffect(() => {
-    if (uid) writeJSON(sessionKey(uid), session);
+    if (uid && session) writeSession(session);
   }, [uid, session]);
+
+  // A test started or continued on another device takes over here.
+  useEffect(() => {
+    if (!uid) return undefined;
+    return sync.subscribe(() => {
+      const latest = readSession();
+      if (latest === undefined) return;
+      setSession((current) => (JSON.stringify(current) === JSON.stringify(latest) ? current : latest));
+    });
+  }, [uid]);
 
   const update = useCallback((fn) => setSession((s) => (s ? fn(s) : s)), []);
 
   const value = {
     session,
     startTest: useCallback((config) => setSession(createSession(config)), []),
-    clearTest: useCallback(() => setSession(null), []),
+    clearTest: useCallback(() => {
+      deleteSession();
+      setSession(null);
+    }, []),
     setCursor: useCallback((cursor) => update((s) => ({ ...s, cursor: { ...s.cursor, ...cursor } })), [update]),
     answer: useCallback(
       (sectionKey, index, option) =>

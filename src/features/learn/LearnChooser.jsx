@@ -5,6 +5,7 @@ import { tutorialPath } from '../../data/tutorials';
 import CourseBanner from '../../lib/CourseBanner';
 import { ChevronRight, TimerIcon, XIcon } from '../../lib/icons';
 import { lessonsDone } from './progress';
+import { useSyncRevision } from '../../lib/sync';
 import './learn.css';
 
 /**
@@ -13,6 +14,7 @@ import './learn.css';
  */
 export default function LearnChooser({ course, tutorial, onClose }) {
   const navigate = useNavigate();
+  useSyncRevision();
   const { done, total } = lessonsDone(tutorial);
 
   useEffect(() => {

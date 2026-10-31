@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { CheckIcon, XIcon } from '../../../lib/icons';
+import { sync } from '../../../lib/sync';
 import { burstAt } from '../fx';
 import { Inline, Rich } from '../Rich';
 import CodeEditor from './CodeEditor';
@@ -47,23 +48,6 @@ function Head({ s }) {
 function Explain({ parts }) {
   return parts.filter(Boolean).map((t, i) => <Rich key={i} text={t} className="tut-sheet-text" />);
 }
-
-const store = {
-  get(k) {
-    try {
-      return localStorage.getItem(k);
-    } catch {
-      return null;
-    }
-  },
-  set(k, v) {
-    try {
-      localStorage.setItem(k, v);
-    } catch {
-      /* private mode: drafts just aren't kept */
-    }
-  },
-};
 
 function hash(text) {
   let h = 5381;
@@ -241,8 +225,8 @@ function SolutionCompare({ mine, solution, solved }) {
 
 /* ---------------- write and run ---------------- */
 function CodeScreen({ s, index, api }) {
-  const key = `studypiece.jv.${hash((s.title || '') + s.starter)}`;
-  const [code, setCode] = useState(() => store.get(key) ?? s.starter);
+  const key = hash((s.title || '') + s.starter);
+  const [code, setCode] = useState(() => sync.get('drafts', key) ?? s.starter);
   const [panel, setPanel] = useState(null); // { kind: 'out' | 'errors' | 'tests' | 'busy' | 'note', ... }
   const [shots, setShots] = useState(null);
   const [results, setResults] = useState({});
@@ -261,7 +245,7 @@ function CodeScreen({ s, index, api }) {
 
   const onChange = (v) => {
     setCode(v);
-    store.set(key, v);
+    sync.set('drafts', key, v);
   };
 
   const files = () => ({ [fileNameFor(code)]: code });

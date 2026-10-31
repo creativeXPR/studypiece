@@ -12,6 +12,7 @@ import { arrayRemove, arrayUnion, doc, getDoc, serverTimestamp, setDoc } from 'f
 import { auth, db, googleProvider } from '../lib/firebase';
 import { dayKey } from '../lib/dates';
 import { readJSON, writeJSON } from '../lib/storage';
+import { flushSync, startSync, stopSync } from '../lib/sync';
 
 const AuthContext = createContext(null);
 
@@ -49,10 +50,12 @@ export function AuthProvider({ children }) {
     () =>
       onAuthStateChanged(auth, async (u) => {
         if (!u) {
+          stopSync();
           setProfile(null);
           setUser(null);
           return;
         }
+        startSync(u.uid);
         setProfile(await loadProfile(u));
         setUser(u);
         // Base fields, same shape the previous app wrote.
@@ -92,7 +95,10 @@ export function AuthProvider({ children }) {
       console.warn('Could not save name:', err.message),
     );
   }, []);
-  const signOut = useCallback(() => fbSignOut(auth), []);
+  const signOut = useCallback(async () => {
+    await flushSync();
+    return fbSignOut(auth);
+  }, []);
 
   const saveProfile = useCallback(
     async ({ department, level }) => {
