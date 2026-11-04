@@ -7,6 +7,7 @@
 const PALETTES = {
   'MTH 209': ['#4338ca', '#7c3aed', '#fde047'],
   'MAT 222': ['#0f766e', '#14b8a6', '#fde68a'],
+  'MTH 210': ['#1e3a8a', '#0891b2', '#fde047'],
   'MTH 103': ['#1d4ed8', '#0ea5e9', '#fde047'],
   'MAT 142': ['#166534', '#65a30d', '#facc15'],
   'STA 121': ['#c2410c', '#f59e0b', '#fef08a'],
@@ -104,6 +105,28 @@ const MOTIFS = {
       s += k.circle(sx(x), sy(f(x)), 4, k.dot);
     }
     return s + k.circle(sx(steps[3]), sy(0), 6, k.star) + k.text(378, 40, 'xₙ₊₁ = xₙ − f/f′', k.label);
+  },
+
+  // Vectors in space: 3D axes, two vectors spanning a shaded parallelogram, their cross
+  // product standing up from it, and a helix winding beside them.
+  'MTH 210': (k) => {
+    const o = [430, 104];
+    const P = ([x, y, z]) => [o[0] - x * 26 + y * 34, o[1] + x * 13 + y * 6 - z * 30];
+    const L = (a, b, st) => k.line(...P(a).map((v) => v.toFixed(1)), ...P(b).map((v) => v.toFixed(1)), st);
+    const a = [0.2, 2.4, 0];
+    const b = [1.6, 0.6, 0];
+    const ab = [a[0] + b[0], a[1] + b[1], 0];
+    let s = k.path(`M${P([0, 0, 0])}L${P(a)}L${P(ab)}L${P(b)}Z`, k.band);
+    s += L([0, 0, 0], [2.4, 0, 0], k.axis) + L([0, 0, 0], [0, 4.2, 0], k.axis) + L([0, 0, 0], [0, 0, 3.4], k.axis);
+    s += L([0, 0, 0], a, k.curve) + L([0, 0, 0], b, k.accent) + L([0, 0, 0], [0, 0, 2.6], k.dash);
+    s += k.circle(...P([0, 0, 2.6]), 5, k.star);
+    const helix = [];
+    for (let i = 0; i <= 120; i++) {
+      const t = (i / 120) * 6 * Math.PI;
+      helix.push(`${(585 + 20 * Math.cos(t)).toFixed(1)},${(128 - (t / (2 * Math.PI)) * 30 + 9 * Math.sin(t)).toFixed(1)}`);
+    }
+    s += k.poly(helix.join(' '), k.ring);
+    return s + k.text(468, 34, 'a × b · ∇φ', k.label);
   },
 
   // Limits: a curve with a hole at x = a, the ε band around L and the δ band around a.

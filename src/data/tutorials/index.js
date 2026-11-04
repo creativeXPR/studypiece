@@ -5,8 +5,9 @@ import cos202 from './cos202';
 import ges103 from './ges103';
 import mat222 from './mat222';
 import mth209 from './mth209';
+import mth210 from './mth210';
 
-const list = [cos202, ges103, mat222, mth209].map((t) => ({ ...t, slug: courseSlug(t.code) }));
+const list = [cos202, ges103, mat222, mth209, mth210].map((t) => ({ ...t, slug: courseSlug(t.code) }));
 
 export const tutorials = Object.fromEntries(list.map((t) => [t.slug, t]));
 

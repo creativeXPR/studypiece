@@ -121,6 +121,7 @@ docs/adding-questions.md
 | COS 102, GES 103, GES 201, GST 111, GST 112, MAT 142, MTH 103, STA 121 | Question banks |
 | MAT 222 | Real Analysis II: 9 sets (QS001–QS008 plus QS009 "Exam focus") and a tutorial |
 | MTH 209 | Numerical Analysis: 9 sets (including QS009 "Exam focus") and a tutorial |
+| MTH 210 | Vector Analysis: 7 sets (one per chapter plus QS007 "Exam focus") and a tutorial of 20 lessons in 6 chapters, each chapter ending with an exam practice lesson |
 | COS 202 | Advanced OOP in Java: 9 sets of 25 and a tutorial |
 | GES 103 | Also has a tutorial |
 
@@ -144,6 +145,7 @@ STA 221 (statistical inference) is not in the app yet (see section 9).
 - **General screens** (`src/features/learn/screens.jsx`): `story`, `choice` (and `poll`), `multi`, `sort`, `order`, `reveal`, `bridge`, `recall`, `custom` (a widget) and `finish`.
 - **Java screens** (`src/features/learn/java/`, loaded only when needed): `code`, `bug`, `predict`, `fill`, `better`, `trace` (steps through a program showing memory and screen) and `flow` (a live flowchart).
 - **Widgets and graphs:** `src/features/learn/widgets.jsx` and `analysisWidgets.jsx`. Use `widget: 'graph'` with a `graph: {...}` config for a configurable graph.
+- **3D vectors and fields (MTH 210):** `src/features/learn/vectorWidgets.jsx`. `widget: 'space'` draws 3D axes the student can drag to turn, with arrows, points, lines, shaded polygons and curves from a `draw(P, v)` function; `widget: 'field'` draws a 2D vector field and/or shaded scalar field with contour lines and a tap-to-move probe. Both take `params` (sliders), `views`, `read`, `need` and `action`. Helpers for the configs are in `src/data/tutorials/mth210/vec.js`.
 
 ### Text marks
 - **Marks:** `**bold**`, `==term==` and `` `code` ``. A blank line starts a new paragraph.
