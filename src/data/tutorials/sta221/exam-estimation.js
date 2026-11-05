@@ -60,12 +60,24 @@ export default {
         {
           type: 'story',
           eyebrow: 'Exam question 4',
+          title: 'Define estimation, estimator and estimate. Show that $\\bar X$ is an unbiased estimator of $\\mu$ but $S^2 = \\frac1n\\sum(X_i - \\bar X)^2$ is not an unbiased estimator of $\\sigma^2$.',
+          body: '**Estimation:** using a statistic from a sample to estimate a population parameter. **Estimator:** the rule (a function of the sample, so a random variable), e.g. $\\bar X$. **Estimate:** the value it gives for one sample, e.g. $\\bar x = 25$.\n\n**Mean.** $E(\\bar X) = \\frac1n\\sum E(X_i) = \\frac1n(n\\mu) = \\mu$: unbiased.\n\n**Variance.** $\\sum(X_i - \\bar X)^2 = \\sum(X_i - \\mu)^2 - n(\\bar X - \\mu)^2$, so\n$$E\\left[\\sum(X_i - \\bar X)^2\\right] = n\\sigma^2 - n\\cdot\\frac{\\sigma^2}{n} = (n - 1)\\sigma^2.$$\nHence $E(S^2) = \\frac{n - 1}{n}\\sigma^2 \\ne \\sigma^2$: **biased** (bias $-\\frac{\\sigma^2}{n}$). Dividing by $n - 1$ instead gives the unbiased $s^2$.',
+        },
+        {
+          type: 'story',
+          eyebrow: 'Exam question 5',
+          title: 'State and explain the properties of a good estimator.',
+          body: '**Unbiasedness:** $E(\\hat\\theta) = \\theta$; on average it hits the parameter. ($\\bar X$ for $\\mu$.)\n**Consistency:** $\\hat\\theta_n$ gets closer to $\\theta$ as $n$ grows, e.g. unbiased with variance $\\to 0$. ($\\text{Var}(\\bar X) = \\frac{\\sigma^2}{n} \\to 0$.)\n**Efficiency:** among unbiased estimators, the smallest variance; the best reaches the Cramér–Rao bound (the MVUE).\n**Sufficiency:** it uses all the information in the sample about $\\theta$. ($\\bar X$ is sufficient for $\\mu$; $X_1$ alone is not.)',
+        },
+        {
+          type: 'story',
+          eyebrow: 'Exam question 6',
           title: '$X_1, X_2, X_3$: mean $\\mu$, variance $\\sigma^2$. $T_1 = \\frac{X_1 + X_2}{2}$, $T_2 = \\frac{X_1 + 2X_2 + 3X_3}{6}$, $T_3 = \\frac{X_1 + X_2 + X_3}{2}$, $T_4 = \\frac{X_1 + X_2 + X_3}{3}$. Which are unbiased? Which is most efficient?',
           body: '**Unbiased:** $T_1$, $T_2$, $T_4$ (weights add to $1$). $E(T_3) = \\frac{3\\mu}{2}$: bias $\\frac\\mu2$.\n\n**Variances:** $\\text{Var}(T_1) = \\frac{\\sigma^2}{2}$; $\\text{Var}(T_2) = \\frac{1 + 4 + 9}{36}\\sigma^2 = \\frac{7\\sigma^2}{18}$; $\\text{Var}(T_3) = \\frac{3\\sigma^2}{4}$; $\\text{Var}(T_4) = \\frac{\\sigma^2}{3}$.\n\n**Most efficient:** $T_4 = \\bar X$. RE$(T_4, T_1) = 1.5$; RE$(T_4, T_2) = \\frac{7/18}{1/3} = \\frac76 \\approx 1.17$.',
         },
         {
           type: 'story',
-          eyebrow: 'Exam question 5',
+          eyebrow: 'Exam question 7',
           title: 'For a Poisson sample, $f(x; \\lambda) = \\frac{e^{-\\lambda}\\lambda^x}{x!}$: find the Cramér–Rao bound and show $\\bar X$ is the MVUE of $\\lambda$.',
           body: '$\\ln f = -\\lambda + x\\ln\\lambda - \\ln x!$\n$\\frac{\\partial}{\\partial\\lambda}\\ln f = -1 + \\frac x\\lambda$, $\\quad \\frac{\\partial^2}{\\partial\\lambda^2}\\ln f = -\\frac{x}{\\lambda^2}$.\n$$I(\\lambda) = -E\\left[-\\frac{X}{\\lambda^2}\\right] = \\frac{E(X)}{\\lambda^2} = \\frac1\\lambda, \\qquad \\text{bound} = \\frac{1}{nI(\\lambda)} = \\frac\\lambda n.$$\n$E(\\bar X) = \\lambda$ (unbiased) and $\\text{Var}(\\bar X) = \\frac\\lambda n$, which equals the bound. So $\\bar X$ is the MVUE. $\\blacksquare$',
         },

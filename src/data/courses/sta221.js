@@ -56,15 +56,15 @@ export default {
           "explanation": "It comes from a sample: $\\hat p = 0.64$ estimates $p$."
         },
         {
-          "question": "A complete numbered list of all units in the population is the",
+          "question": "A census that counts each person where they are found on census night is",
           "options": [
-            "sampling unit",
-            "census",
-            "stratum",
-            "sampling frame"
+            "de jure enumeration",
+            "a sample survey",
+            "systematic sampling",
+            "de facto enumeration"
           ],
           "answer": 3,
-          "explanation": "Samples are drawn from the frame."
+          "explanation": "De facto: \"in fact\", where people actually are."
         },
         {
           "question": "The estimator is to the estimate as",
@@ -166,15 +166,15 @@ export default {
           "explanation": "${}^6C_3 = \\frac{6!}{3!\\,3!} = 20$."
         },
         {
-          "question": "The number of samples of size $2$ from $4$ units **with** replacement is",
+          "question": "A census that counts each person at their usual place of residence is",
           "options": [
-            "$16$",
-            "$6$",
-            "$8$",
-            "$12$"
+            "de jure enumeration",
+            "de facto enumeration",
+            "cluster sampling",
+            "a pilot survey"
           ],
           "answer": 0,
-          "explanation": "$N^n = 4^2$."
+          "explanation": "De jure: \"by law\", where people belong. It gives the permanent population used for planning."
         },
         {
           "question": "The mean of the sampling distribution of $\\bar X$ is",
@@ -276,15 +276,15 @@ export default {
           "explanation": "Variances add, even for a difference; then take the square root."
         },
         {
-          "question": "\"The two sample means differ by more than $2$\" calls for",
+          "question": "The three points of interest about the sampling distribution of the mean are its",
           "options": [
-            "the right tail only",
-            "the left tail only",
-            "$\\Phi(z)$",
-            "both tails: $2[1 - \\Phi(z)]$"
+            "mode, median and range",
+            "sample size, frame and method",
+            "bias, power and level of significance",
+            "mean ($= \\mu$), its spread ($\\frac{\\sigma^2}{n}$, smaller than $\\sigma^2$) and its shape (tending to normal)"
           ],
           "answer": 3,
-          "explanation": "\"Differ by\" has no direction."
+          "explanation": "Centre, spread and shape: $\\mu_{\\bar x} = \\mu$, $\\sigma^2_{\\bar x} = \\frac{\\sigma^2}{n}$ (times the fpc without replacement), approximately normal."
         }
       ]
     },
@@ -458,15 +458,15 @@ export default {
           "explanation": "$\\frac{1.96^2(0.25)}{0.04^2} = 600.25$, rounded up."
         },
         {
-          "question": "Two samples of $50$ oranges from a basket that is $60\\%$ ripe. A difference of $5$ ripe oranges is a difference in proportion of",
+          "question": "An estimator that uses all the information the sample holds about $\\theta$ is",
           "options": [
-            "$0.1$",
-            "$5$",
-            "$0.05$",
-            "$0.6$"
+            "sufficient",
+            "biased",
+            "consistent",
+            "asymptotically unbiased"
           ],
           "answer": 0,
-          "explanation": "$\\frac{5}{50} = 0.1$. Convert counts to proportions first."
+          "explanation": "Sufficiency: once you know the statistic, the rest of the data says nothing more about $\\theta$."
         },
         {
           "question": "An estimator $\\hat\\theta$ is unbiased if",
@@ -524,15 +524,15 @@ export default {
           "explanation": "$\\sum(x - \\bar x)^2 = 66$, divided by $n - 1 = 4$."
         },
         {
-          "question": "$X_1, X_2$ independent with mean $\\mu$, variance $\\sigma^2$. $\\text{Var}\\left(\\frac{X_1 + X_2}{2}\\right) = $",
+          "question": "Which is NOT one of the properties of a good estimator?",
           "options": [
-            "$\\sigma^2$",
-            "$\\frac{\\sigma^2}{4}$",
-            "$2\\sigma^2$",
-            "$\\frac{\\sigma^2}{2}$"
+            "Unbiasedness",
+            "Consistency",
+            "Efficiency",
+            "Being equal to the parameter in every sample"
           ],
           "answer": 3,
-          "explanation": "$\\frac14(\\sigma^2 + \\sigma^2)$: constants come out squared."
+          "explanation": "The four properties are unbiasedness, consistency, efficiency and sufficiency; an estimate still varies from sample to sample."
         },
         {
           "question": "$T = \\frac{X_1 + 2X_2 + 3X_3}{6}$ is unbiased for $\\mu$ because",
@@ -1235,15 +1235,15 @@ export default {
           "explanation": "Mean squares, not sums of squares."
         },
         {
-          "question": "A large F suggests that",
+          "question": "Yields of $4$ varieties on each of $5$ blocks, one plot per variety per block, call for",
           "options": [
-            "all means are equal",
-            "the treatment means are not all equal",
-            "the variances are unequal",
-            "the samples are too small"
+            "one-way ANOVA",
+            "two-way ANOVA (a randomised block design)",
+            "a z test",
+            "a goodness-of-fit test"
           ],
           "answer": 1,
-          "explanation": "Between-group variation outweighs random error."
+          "explanation": "Rows are blocks with one value per variety in each: two-way."
         },
         {
           "question": "Yields A: $20, 24, 22, 26$; B: $28, 30, 27, 31, 29$; C: $23, 25, 24$ give $SST = 124.25$, $SSB = 92.25$. $SSW = $",
@@ -1279,15 +1279,15 @@ export default {
           "explanation": "$MSB = \\frac{60}{3} = 20$, $MSW = \\frac{120}{20} = 6$."
         },
         {
-          "question": "In the F table $F_\\alpha(\\nu_1, \\nu_2)$, $\\nu_1$ is",
+          "question": "The one-way ANOVA model is",
           "options": [
-            "the numerator (between) df",
-            "the denominator df",
-            "the total df",
-            "the number of observations"
+            "$x_{ij} = \\mu + \\alpha_j + \\varepsilon_{ij}$, errors independent $N(0, \\sigma^2)$",
+            "$x_{ij} = \\mu + \\alpha_j + \\beta_i + \\varepsilon_{ij}$",
+            "$y = \\alpha + \\beta x + \\varepsilon$",
+            "$x_{ij} = \\mu\\alpha_j\\varepsilon_{ij}$"
           ],
           "answer": 0,
-          "explanation": "Columns are the numerator df."
+          "explanation": "Overall mean plus treatment effect plus error; H₀: all $\\alpha_j = 0$."
         },
         {
           "question": "For $k = 3$ groups and $n = 15$ observations, the treatment test uses",
@@ -1345,15 +1345,15 @@ export default {
           "explanation": "Column totals squared over the number of rows."
         },
         {
-          "question": "$SSR$ in two-way ANOVA is",
+          "question": "Grouping alike units into blocks and comparing treatments within each block is",
           "options": [
-            "$\\frac{\\sum B_i^2}{r} - CF$",
-            "$\\frac{\\sum T_j^2}{r} - CF$",
-            "$\\frac{\\sum B_i^2}{c} - CF$",
-            "$SST - SSC$"
+            "replication",
+            "randomisation",
+            "local control",
+            "a completely randomised design"
           ],
           "answer": 2,
-          "explanation": "Block (row) totals squared over the number of columns."
+          "explanation": "It removes a nuisance factor from the experimental error."
         },
         {
           "question": "Four varieties in five blocks: error df $= $",
@@ -1378,15 +1378,15 @@ export default {
           "explanation": "$251.67 - 112.67 - 131$."
         },
         {
-          "question": "Two-way ANOVA gives a negative SSE. This means",
+          "question": "Scores for three methods have $5$, $4$ and $6$ students, with no other grouping. The right analysis is",
           "options": [
-            "there is an arithmetic error",
-            "blocks have no effect",
-            "treatments are equal",
-            "use its absolute value"
+            "one-way ANOVA (a completely randomised design)",
+            "two-way ANOVA",
+            "a $\\chi^2$ test of independence",
+            "correlation"
           ],
           "answer": 0,
-          "explanation": "Sums of squares can never be negative."
+          "explanation": "Unequal columns and no blocks: one-way."
         },
         {
           "question": "Two-way ANOVA gives two F tests:",
@@ -1400,15 +1400,15 @@ export default {
           "explanation": "$F_1 = \\frac{MSC}{MSE}$, $F_2 = \\frac{MSR}{MSE}$."
         },
         {
-          "question": "In a partly filled ANOVA table, MS for a row is",
+          "question": "Assigning treatments to experimental units by chance is the principle of",
           "options": [
-            "SS times its df",
-            "df divided by SS",
-            "F times the error MS of another table",
-            "SS divided by its df"
+            "replication",
+            "local control",
+            "blocking",
+            "randomisation"
           ],
           "answer": 3,
-          "explanation": "Then F = MS ÷ MS(error)."
+          "explanation": "It stops any treatment being favoured and keeps the errors independent."
         }
       ]
     },
@@ -1830,15 +1830,15 @@ export default {
           "explanation": "Pooled $\\bar p = 0.25$, SE $= 0.05$."
         },
         {
-          "question": "Calls per minute fitted to a Poisson: $\\chi^2 = 0.74$, df $= 3$. Conclusion:",
+          "question": "Testing whether three fertilisers give the same mean yield is an application of hypothesis testing that uses",
           "options": [
-            "the Poisson does not fit",
-            "df must be $4$",
-            "the Poisson distribution fits well",
-            "use Yates' correction"
+            "the $\\chi^2$ goodness-of-fit test",
+            "a $z$ test for one proportion",
+            "the ANOVA $F$ test",
+            "Spearman's rank correlation"
           ],
           "answer": 2,
-          "explanation": "$0.74 < 7.815$."
+          "explanation": "Several means at once: ANOVA."
         },
         {
           "question": "Agree/neutral/disagree by gender: $\\chi^2 = 8.167$, df $= 2$. Conclusion at $5\\%$:",
@@ -1951,26 +1951,26 @@ export default {
           "explanation": "Minimise the total squared error."
         },
         {
-          "question": "Two judges' ranks give $\\sum d^2 = 3.5$ for $8$ contestants. $r_s = $",
+          "question": "For methods in four ability blocks (one student per method per block), a suitable model is",
           "options": [
-            "$0.042$",
-            "$0.56$",
-            "$0.958$",
-            "$0.995$"
+            "$x_{ij} = \\mu + \\alpha_j + \\varepsilon_{ij}$",
+            "$x_{ij} = \\alpha_j\\beta_i$",
+            "$x_{ij} = \\mu + \\alpha_j + \\beta_i + \\varepsilon_{ij}$",
+            "$y = \\alpha + \\beta x$"
           ],
           "answer": 2,
-          "explanation": "$1 - \\frac{21}{504}$."
+          "explanation": "A randomised block design: treatment and block effects plus independent normal errors."
         },
         {
-          "question": "\"Distinguish between a census, a population and a sample.\" The best answer is",
+          "question": "Distinguish de jure from de facto enumeration.",
           "options": [
-            "the population is the whole group; a census studies all of it; a sample studies part of it",
-            "a census is a sample of the population",
-            "a population is a part of a sample",
-            "they mean the same thing"
+            "De jure counts people at their usual residence; de facto counts them where they are at the census moment",
+            "De jure is a sample; de facto is a census",
+            "De jure counts only adults; de facto counts everyone",
+            "They are the same method under two names"
           ],
           "answer": 0,
-          "explanation": "Write one clear sentence for each."
+          "explanation": "Give one advantage of each: de facto is simple and quick; de jure gives the permanent population for planning."
         }
       ]
     }

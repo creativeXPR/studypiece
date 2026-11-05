@@ -18,6 +18,7 @@ import chiSquareDistribution from './chi-square-distribution';
 import goodnessOfFit from './goodness-of-fit';
 import contingencyTables from './contingency-tables';
 import examChiSquare from './exam-chi-square';
+import experimentalDesign from './experimental-design';
 import oneWayAnova from './one-way-anova';
 import twoWayAnova from './two-way-anova';
 import examAnova from './exam-anova';
@@ -41,7 +42,7 @@ export default {
     { n: 2, title: 'Estimation', by: 'Confidence intervals, proportions and good estimators', lessons: [confidenceIntervals, proportions, goodEstimators, examEstimation] },
     { n: 3, title: 'Hypothesis Testing', by: 'Errors, power and z tests', lessons: [testingIdeas, zTests, examTesting] },
     { n: 4, title: 'Chi-Square', by: 'The distribution, goodness of fit and contingency tables', lessons: [chiSquareDistribution, goodnessOfFit, contingencyTables, examChiSquare] },
-    { n: 5, title: 'Analysis of Variance', by: 'One-way and two-way ANOVA', lessons: [oneWayAnova, twoWayAnova, examAnova] },
+    { n: 5, title: 'Analysis of Variance', by: 'Experimental design, one-way and two-way ANOVA', lessons: [experimentalDesign, oneWayAnova, twoWayAnova, examAnova] },
     { n: 6, title: 'Correlation and Regression', by: 'Association, r and the least squares line', lessons: [correlation, regression, examRegression] },
   ],
 };

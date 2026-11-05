@@ -1,4 +1,4 @@
-// STA 221 · ANOVA · Lesson 1: why ANOVA, assumptions, factor, level, treatment and response, the
+// STA 221 · ANOVA · Lesson 2: why ANOVA, assumptions, factor, level, treatment and response, the
 // split of total variation, the short-cut formulas, the one-way ANOVA table and the F test.
 import { fmt } from './stat';
 
@@ -26,7 +26,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'ANOVA · Lesson 1',
+          eyebrow: 'ANOVA · Lesson 2',
           title: 'Compare many means in one go',
           body: 'Three fertilisers, three groups of plots. Are the mean yields all the same?\n\nTesting each pair at $5\\%$ (with $5$ treatments that is $10$ pairs) gives a big chance that one pair looks "significant" by pure luck. ==Analysis of variance== asks the single question "are **all** the means equal?" at one level of significance.\n\nThe trick: compare the variation **between** the groups with the variation **within** them.',
           cta: 'Pull the groups apart',
@@ -75,12 +75,20 @@ export default {
     {
       name: 'The ANOVA table',
       terms: [
+        ['One-way model', '$x_{ij} = \\mu + \\alpha_j + \\varepsilon_{ij}$, errors independent $N(0, \\sigma^2)$; H₀: all $\\alpha_j = 0$.'],
         ['Short-cut', '$CF = \\frac{T^2}{n}$; $SST = \\sum x^2 - CF$; $SSB = \\sum\\frac{T_j^2}{n_j} - CF$; $SSW = SST - SSB$.'],
         ['Degrees of freedom', 'Between $k - 1$; within $n - k$; total $n - 1$.'],
         ['Mean squares', '$MSB = \\frac{SSB}{k - 1}$, $MSW = \\frac{SSW}{n - k}$, $F = \\frac{MSB}{MSW}$.'],
         ['Decision', 'Reject H₀ if $F > F_\\alpha(k - 1, n - k)$: numerator df across, denominator df down.'],
       ],
       screens: [
+        {
+          type: 'story',
+          eyebrow: 'The model',
+          title: 'Write the model first',
+          body: 'One-way ANOVA (a completely randomised design) assumes each observation is\n$$x_{ij} = \\mu + \\alpha_j + \\varepsilon_{ij}, \\qquad i = 1, \\dots, n_j,\\ j = 1, \\dots, k,$$\nwhere $\\mu$ is the overall mean, $\\alpha_j$ the effect of treatment $j$ (with $\\sum n_j\\alpha_j = 0$), and $\\varepsilon_{ij}$ independent $N(0, \\sigma^2)$ errors.\n\nThe hypotheses are then about the effects:\n$$H_0: \\alpha_1 = \\alpha_2 = \\cdots = \\alpha_k = 0 \\quad (\\text{all means equal}), \\qquad H_1: \\text{not all } \\alpha_j = 0.$$',
+          asides: [{ label: 'Exam tip', text: '"Conduct an ANOVA with a suitable model": write the model, its assumptions (normal, equal variance, independent errors), H₀ and H₁, then the table, decision and conclusion.' }],
+        },
         {
           type: 'story',
           eyebrow: 'Worked example',

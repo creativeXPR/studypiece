@@ -117,6 +117,21 @@ export default {
           ],
         },
         {
+          type: 'reveal',
+          eyebrow: 'Applications of hypothesis testing',
+          title: 'One recipe, many questions',
+          body: 'The same five steps answer every "is this claim believable?" question in the course:',
+          cards: [
+            { title: 'A mean', text: 'Is the machine still filling $500$ ml? $z$ test for one mean.' },
+            { title: 'Two means', text: 'Do two schools score differently? $z$ test for two means.' },
+            { title: 'Proportions', text: 'Is the defect rate above $10\\%$? Do two towns differ? $z$ tests for proportions.' },
+            { title: 'A variance', text: 'Has the machine become less consistent? $\\chi^2 = \\frac{(n-1)s^2}{\\sigma_0^2}$.' },
+            { title: 'Counts', text: 'Is the die fair? Are two attributes related? $\\chi^2$ goodness of fit and independence.' },
+            { title: 'Several means', text: 'Do three fertilisers give the same yield? ANOVA $F$ test.' },
+          ],
+          asides: [{ label: 'Exam tip', text: 'Asked for "applications of hypothesis testing"? Name the test, the hypothesis it checks and a one-line real example, as on these cards.' }],
+        },
+        {
           type: 'finish',
           title: 'z tests: done.',
           body: 'Key terms, ready for revision:',

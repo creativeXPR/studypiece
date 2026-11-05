@@ -88,6 +88,8 @@ export default {
       name: 'Sampling methods',
       terms: [
         ['Census', 'A complete count of every member of the population: complete, but costly, slow and sometimes impossible.'],
+        ['De facto enumeration', 'A census that counts each person **where they are found** at the census moment (e.g. census night), wherever they usually live.'],
+        ['De jure enumeration', 'A census that counts each person at their **usual place of residence**, even if they were away at the census moment.'],
         ['When sampling is unavoidable', 'Destroyed by testing, Infinite population, Rush (short time), Tight resources, Changing population, Scattered units: "DIRT CS".'],
         ['Simple random', 'Every unit has an equal chance (with or without replacement). Needs a full frame.'],
         ['Stratified', 'Groups differ from each other but are alike inside: sample from **every** stratum, $n_h = \\frac{N_h}{N}n$.'],
@@ -102,6 +104,28 @@ export default {
           eyebrow: 'Census or sample?',
           title: 'When a census is out',
           body: 'A ==census== counts everyone. It is complete but expensive, slow, and sometimes impossible. Sampling is unavoidable when any of these holds (**DIRT CS**):\n\n**D**estroyed: testing ruins the unit (bulb lifetimes, crash tests).\n**I**nfinite population.\n**R**ush: results needed quickly.\n**T**ight resources: money and trained staff.\n**C**hanging: the population moves (fish, traffic).\n**S**cattered: units spread widely.',
+        },
+        {
+          type: 'reveal',
+          eyebrow: 'Counting a population',
+          title: 'De facto or de jure?',
+          body: 'A population census can count people in two ways. Picture a trader from Ibadan who is visiting Lagos on census night.',
+          cards: [
+            { title: 'De facto', text: 'Count people **where they are** at the census moment. The trader is counted in **Lagos**. Simple and quick, with little double counting, but places with many visitors (hotels, hospitals, markets) look bigger than they really are.' },
+            { title: 'De jure', text: 'Count people at their **usual residence**. The trader is counted in **Ibadan**. Gives the "permanent" population used for planning, but needs a clear rule for "usual residence" and risks people being missed or counted twice.' },
+            { title: 'Memory trick', text: '**De facto** = "in fact": where you actually are. **De jure** = "by law": where you belong (your usual home).' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Your turn',
+          prompt: 'A nurse who lives in Ibadan spent census night on duty at a hospital in Oyo. The census counts her in Ibadan. This is',
+          options: [
+            { text: 'de jure enumeration', correct: true, why: 'She is counted at her usual place of residence.' },
+            { text: 'de facto enumeration', why: 'De facto would count her where she actually was: the hospital in Oyo.' },
+            { text: 'cluster sampling', why: 'A census counts everyone; it is not a sample.' },
+            { text: 'quota sampling', why: 'No quotas or sampling are involved.' },
+          ],
         },
         {
           type: 'custom',

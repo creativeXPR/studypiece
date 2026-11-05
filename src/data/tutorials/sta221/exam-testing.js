@@ -53,6 +53,12 @@ export default {
           ],
         },
         {
+          type: 'story',
+          eyebrow: 'Exam question 4',
+          title: 'Give four applications of hypothesis testing, stating the test used in each.',
+          body: '**1. A population mean:** is a machine still filling $500$ ml? $z = \\frac{\\bar x - \\mu_0}{\\sigma/\\sqrt n}$.\n**2. Two means or two proportions:** do two schools, or two towns, differ? $z$ test for a difference.\n**3. A variance:** has a process become less consistent? $\\chi^2 = \\frac{(n - 1)s^2}{\\sigma_0^2}$.\n**4. Counts:** is a die fair, or are opinion and gender related? $\\chi^2$ goodness of fit or independence.\n**5. Several means:** do three fertilisers give the same mean yield? ANOVA $F$ test.\n\nIn every case: hypotheses, level and critical value, test statistic, decision, conclusion in context.',
+        },
+        {
           type: 'finish',
           title: 'Chapter 3 exam practice: done.',
           body: 'Formulas to remember:',

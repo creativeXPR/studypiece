@@ -25,6 +25,7 @@ export default {
         ['Efficient', 'Of two unbiased estimators, the one with the **smaller variance**.'],
         ['Relative efficiency', '$\\text{RE}(\\hat\\theta_1, \\hat\\theta_2) = \\dfrac{\\text{Var}(\\hat\\theta_2)}{\\text{Var}(\\hat\\theta_1)}$; above $1$ means $\\hat\\theta_1$ is better.'],
         ['Consistent', '$\\hat\\theta_n$ gets arbitrarily close to $\\theta$ as $n \\to \\infty$ (e.g. unbiased with variance $\\to 0$).'],
+        ['Sufficient', 'Uses **all** the information the sample holds about $\\theta$: once you know the statistic, the rest of the data tells you nothing more about $\\theta$ (e.g. $\\sum X_i$, or $\\bar X$, for a mean).'],
         ['Rules', '$E(aX + bY) = aE(X) + bE(Y)$; $\\text{Var}(aX + bY) = a^2\\text{Var}(X) + b^2\\text{Var}(Y)$ for independent $X, Y$.'],
       ],
       screens: [
@@ -95,6 +96,18 @@ export default {
             { text: '$1$: they are equally good', why: 'Their variances differ.' },
             { text: '$\\frac{\\sigma^2}{n}$', why: 'A relative efficiency is a pure number.' },
           ],
+        },
+        {
+          type: 'reveal',
+          eyebrow: 'Properties of a good estimator',
+          title: 'Four properties to list in the exam',
+          cards: [
+            { title: 'Unbiased', text: '$E(\\hat\\theta) = \\theta$: right on average.' },
+            { title: 'Consistent', text: 'Gets closer and closer to $\\theta$ as $n$ grows (e.g. unbiased with variance $\\to 0$, like $\\bar X$).' },
+            { title: 'Efficient', text: 'Smallest variance among unbiased estimators; the best reaches the Cramér–Rao bound (MVUE).' },
+            { title: 'Sufficient', text: 'Uses all the information in the sample about $\\theta$; nothing useful is thrown away. $\\bar X$ is sufficient for $\\mu$; a single observation $X_1$ is not.' },
+          ],
+          asides: [{ label: 'Exam tip', text: 'For "state the properties of a good estimator", give all four with a one-line meaning each; for unbiasedness add the proof that $E(\\bar X) = \\mu$.' }],
         },
         {
           type: 'bridge',

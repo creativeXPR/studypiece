@@ -49,6 +49,18 @@ export default {
           ],
         },
         {
+          type: 'story',
+          eyebrow: 'Exam question 3',
+          title: 'A population is $2, 4, 6, 8$. Form the sampling distribution of the mean for samples of size $2$ drawn without replacement, and state three points of interest about it.',
+          body: '$\\mu = 5$, $\\sigma^2 = \\frac{9 + 1 + 1 + 9}{4} = 5$.\n\n${}^4C_2 = 6$ samples: $\\{2,4\\}, \\{2,6\\}, \\{2,8\\}, \\{4,6\\}, \\{4,8\\}, \\{6,8\\}$ with means $3, 4, 5, 5, 6, 7$. So $\\bar x = 3, 4, 5, 6, 7$ with probabilities $\\frac16, \\frac16, \\frac26, \\frac16, \\frac16$.\n\n**Points of interest:**\n**1.** Mean of the sample means $= \\frac{30}{6} = 5 = \\mu$: $\\bar X$ is unbiased.\n**2.** Variance $= \\frac{4 + 1 + 0 + 0 + 1 + 4}{6} = \\frac53 = \\frac{\\sigma^2}{n}\\cdot\\frac{N - n}{N - 1} = \\frac52\\cdot\\frac23$ ✓, smaller than $\\sigma^2 = 5$.\n**3.** Shape: symmetric and peaked at $\\mu$, though the population is flat; it tends to normal as $n$ grows.',
+        },
+        {
+          type: 'story',
+          eyebrow: 'Exam question 4',
+          title: 'Distinguish between de jure and de facto enumeration. Give one advantage of each.',
+          body: '**De facto:** each person is counted **where they are found** at the census moment (e.g. census night). *Advantage:* simple and quick to carry out, with little risk of double counting.\n\n**De jure:** each person is counted at their **usual place of residence**, wherever they were at the census moment. *Advantage:* it gives the permanent population of each area, which is what planning (schools, hospitals, roads) needs.\n\nA weakness of de facto: places with many visitors look bigger than they are. A weakness of de jure: "usual residence" must be defined, and people may be missed or counted twice.',
+        },
+        {
           type: 'bridge',
           title: 'Methods: practised.',
           recap: ['Allocate strata in proportion; check the total.', 'List samples after writing how many there should be.'],
@@ -65,20 +77,20 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Exam question 3',
+          eyebrow: 'Exam question 5',
           title: 'A population of $1{,}000$ items has mean $150$ g and $\\sigma = 20$ g. A sample of $100$ is drawn without replacement. Find $P(\\bar X > 153)$. Repeat with replacement and comment.',
           body: '**Without replacement:** SE $= \\frac{20}{10}\\sqrt{\\frac{900}{999}} = 2(0.9492) = 1.8983$; $z = \\frac{3}{1.8983} = 1.58$; $P = 1 - 0.9429 = 0.0571$.\n\n**With replacement:** SE $= 2$, $z = 1.50$, $P = 1 - 0.9332 = 0.0668$.\n\n**Comment:** sampling $10\\%$ of a finite population without replacement reduces the standard error, so extreme sample means are less likely.',
         },
         {
           type: 'story',
-          eyebrow: 'Exam question 4',
+          eyebrow: 'Exam question 6',
           title: '(a) State the Central Limit Theorem. (b) With $\\sigma = 10$, how large must $n$ be for $\\bar x$ to be within $2$ units of $\\mu$ with probability at least $0.95$?',
           body: '**(a)** For large $n$, the sampling distribution of the mean is approximately normal with mean $\\mu$ and variance $\\frac{\\sigma^2}{n}$, whatever the population distribution ($n \\ge 30$ is usually large enough).\n\n**(b)** Need $1.96 \\times \\frac{10}{\\sqrt n} \\le 2$, so $\\sqrt n \\ge 9.8$, $n \\ge 96.04$. Take $n = 97$.',
           asides: [{ label: 'Exam tip', text: 'Always round a sample size **up**: $96$ would give a margin slightly over $2$.' }],
         },
         {
           type: 'story',
-          eyebrow: 'Exam question 5',
+          eyebrow: 'Exam question 7',
           title: 'Machine A fills packets with mean $250$ g, $\\sigma = 8$ g; machine B with mean $248$ g, $\\sigma = 6$ g. Samples of $40$ from A and $50$ from B. Find $P(\\bar X_A < \\bar X_B)$.',
           body: 'Mean of $\\bar X_A - \\bar X_B$: $250 - 248 = 2$. SE $= \\sqrt{\\frac{64}{40} + \\frac{36}{50}} = \\sqrt{2.32} = 1.5232$.\n$$P(\\bar X_A - \\bar X_B < 0) = P\\left(Z < \\frac{0 - 2}{1.5232}\\right) = \\Phi(-1.31) = 0.0951.$$',
         },

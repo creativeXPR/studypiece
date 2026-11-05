@@ -1,4 +1,4 @@
-// STA 221 · ANOVA · Lesson 2: two-way classification (randomised blocks): blocking, SSC, SSR, SSE,
+// STA 221 · ANOVA · Lesson 3: two-way classification (randomised blocks): blocking, SSC, SSR, SSE,
 // the two-way ANOVA table with two F tests.
 const SCORES = [[45, 52, 48], [40, 47, 46], [50, 58, 52], [43, 51, 46]];
 const GRAND = 578 / 12;
@@ -18,12 +18,13 @@ export default {
         ['Split', '$SST = SSC$ (treatments, columns) $+ SSR$ (blocks, rows) $+ SSE$ (error).'],
         ['Short-cuts', '$CF = \\frac{T^2}{rc}$; $SSC = \\frac{\\sum T_j^2}{r} - CF$; $SSR = \\frac{\\sum B_i^2}{c} - CF$; $SSE = SST - SSC - SSR$.'],
         ['df', 'Columns $c - 1$; rows $r - 1$; error $(c - 1)(r - 1)$; total $rc - 1$.'],
+        ['Two-way model', '$x_{ij} = \\mu + \\alpha_j + \\beta_i + \\varepsilon_{ij}$: treatment effect $\\alpha_j$, block effect $\\beta_i$, errors independent $N(0, \\sigma^2)$, one observation per cell.'],
         ['Two F tests', '$F_1 = \\frac{MSC}{MSE}$ against $F_\\alpha(c - 1, (c-1)(r-1))$; $F_2 = \\frac{MSR}{MSE}$ against $F_\\alpha(r - 1, (c-1)(r-1))$.'],
       ],
       screens: [
         {
           type: 'story',
-          eyebrow: 'ANOVA · Lesson 2',
+          eyebrow: 'ANOVA · Lesson 3',
           title: 'Take the nuisance out of the error',
           body: 'In a fertiliser trial, a stream along one side of the field makes nearby plots more fertile. One-way ANOVA lumps that into "random error", hiding the fertiliser effect.\n\nFix: cut the field into strips (==blocks==) parallel to the stream and use **every** fertiliser once in each strip. Now the block effect can be measured and removed from the error:\n$$SST = SSC + SSR + SSE.$$',
           cta: 'See the blocks',
@@ -45,6 +46,12 @@ export default {
             need: 2,
             action: 'Remove the block effect',
           },
+        },
+        {
+          type: 'story',
+          eyebrow: 'The model',
+          title: 'Treatments and blocks both enter the model',
+          body: 'A randomised block design assumes\n$$x_{ij} = \\mu + \\alpha_j + \\beta_i + \\varepsilon_{ij},$$\nwith $\\alpha_j$ the effect of treatment $j$ (column), $\\beta_i$ the effect of block $i$ (row), $\\sum\\alpha_j = \\sum\\beta_i = 0$, and $\\varepsilon_{ij}$ independent $N(0, \\sigma^2)$ errors.\n\nTwo pairs of hypotheses come out of one table:\n**Treatments:** H₀: all $\\alpha_j = 0$. **Blocks:** H₀: all $\\beta_i = 0$.',
         },
         {
           type: 'story',

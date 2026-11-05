@@ -54,6 +54,13 @@ export default {
           ],
         },
         {
+          type: 'story',
+          eyebrow: 'Exam question 4',
+          title: 'Three teaching methods were tried on students grouped into four ability blocks, one student per method per block. (a) Is this one-way or two-way ANOVA? (b) Write a suitable model and its assumptions. (c) Outline the procedure.',
+          body: '**(a)** Two-way: the rows are blocks (a second factor) and each block has exactly one value for each method, a randomised block design.\n\n**(b)** $x_{ij} = \\mu + \\alpha_j + \\beta_i + \\varepsilon_{ij}$, with $\\mu$ the overall mean, $\\alpha_j$ the method effect ($\\sum\\alpha_j = 0$), $\\beta_i$ the block effect ($\\sum\\beta_i = 0$), and errors $\\varepsilon_{ij}$ independent $N(0, \\sigma^2)$. Assumptions: normal populations, equal variances, random independent observations, no interaction between methods and blocks.\n\n**(c)** H₀: all $\\alpha_j = 0$ and H₀: all $\\beta_i = 0$. Compute $CF$, $SST$, $SSC$, $SSR$, $SSE$; fill the table (df $2$, $3$, $6$); $F_1 = \\frac{MSC}{MSE}$ against $F_{0.05}(2, 6)$, $F_2 = \\frac{MSR}{MSE}$ against $F_{0.05}(3, 6)$; conclude for methods and for blocks.',
+          asides: [{ label: 'Exam tip', text: 'Results for this design: $F_1 = 42.25$ and $F_2 = 32.75$, so both methods and blocks differ (worked in the two-way lesson).' }],
+        },
+        {
           type: 'finish',
           title: 'Chapter 5 exam practice: done.',
           body: 'Formulas to remember:',

@@ -122,7 +122,7 @@ docs/adding-questions.md
 | MAT 222 | Real Analysis II: 9 sets (QS001–QS008 plus QS009 "Exam focus") and a tutorial |
 | MTH 209 | Numerical Analysis: 9 sets (including QS009 "Exam focus") and a tutorial |
 | MTH 210 | Vector Analysis: 7 sets (one per chapter plus QS007 "Exam focus") and a tutorial of 20 lessons in 6 chapters, each chapter ending with an exam practice lesson |
-| STA 221 | Statistical Inference: 7 sets (one per chapter plus QS007 "Exam focus") and a tutorial of 23 lessons: an optional "Statistics from Zero" chapter and six chapters, each ending with an exam practice lesson |
+| STA 221 | Statistical Inference: 7 sets (one per chapter plus QS007 "Exam focus") and a tutorial of 24 lessons: an optional "Statistics from Zero" chapter and six chapters, each ending with an exam practice lesson. Extra content (de jure and de facto enumeration, three points of interest, sufficiency, applications of testing, experimental design, ANOVA models) follows the course's area-of-concentration list |
 | COS 202 | Advanced OOP in Java: 9 sets of 25 and a tutorial |
 | GES 103 | Also has a tutorial |
 

@@ -74,6 +74,17 @@ export default {
           asides: [{ label: 'Exam tip', text: 'When listing samples, write the count first ($N^n$ or ${}^NC_n$) and make sure your list has exactly that many.' }],
         },
         {
+          type: 'reveal',
+          eyebrow: 'Three points of interest',
+          title: 'What to say about any sampling distribution of the mean',
+          body: 'Given a sampling distribution, an exam often asks for its "points of interest". There are three, and the $\\{1, 3, 5, 7\\}$ example shows all of them.',
+          cards: [
+            { title: '1 · Its mean', text: 'The mean of the sample means equals the population mean: $\\mu_{\\bar x} = \\mu$. Here $4 = 4$: $\\bar X$ is **unbiased**.' },
+            { title: '2 · Its spread', text: 'Its variance is $\\frac{\\sigma^2}{n}$ (with replacement), or $\\frac{\\sigma^2}{n}\\cdot\\frac{N - n}{N - 1}$ (without). Here $\\frac52$ and $\\frac53$. It is **smaller** than the population variance $5$.' },
+            { title: '3 · Its shape', text: 'It is more bunched in the middle than the population, and tends to the **normal** shape as $n$ grows (Central Limit Theorem). Here the flat population gives a peaked, symmetric distribution of means.' },
+          ],
+        },
+        {
           type: 'bridge',
           title: 'Sampling distributions: set.',
           recap: ['$N^n$ samples with replacement, ${}^NC_n$ without.', 'The mean of the sample means is $\\mu$.', 'Its standard deviation is the standard error.'],
