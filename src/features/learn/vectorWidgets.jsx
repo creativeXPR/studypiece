@@ -4,6 +4,7 @@
 // SpaceLab ('space'): 3D axes the learner can drag to turn, with arrows, points, lines,
 // shaded polygons and curves drawn from the config.
 //   config: { R: axis length, floor?: draw a grid on the xy-plane, flat?: top-down xy view,
+//     bare?: a flat picture with no axes or grid (for diagrams that are not graphs),
 //     params?: [{ label, min, max, step, value }], views?: [label, ...],
 //     draw(P, v) -> items, where P is the list of slider values and v the view index. Items:
 //       { arrow: [from, to], kind, label, mid?: label at the middle }   { seg: [from, to], kind, dash }
@@ -118,14 +119,15 @@ export function SpaceLab({ api, config: g }) {
   const reached = g.goal ? g.goal(P, v) : false;
   const ok = g.ok ? g.ok(P, v) : null;
   const choices = (g.params?.length ? 1 : 0) + (g.views?.length ? 1 : 0);
-  useDone(api, g, tried, reached, choices ? 3 : g.flat ? 1 : 2);
+  useDone(api, g, tried, reached, choices ? 3 : g.flat || g.bare ? 1 : 2);
 
   const R = g.R ?? 4;
-  const proj = g.flat ? camera(-Math.PI / 2, Math.PI / 2, 108 / R) : camera(turn.yaw, turn.pitch, 96 / R);
+  const flat = g.flat || g.bare;
+  const proj = flat ? camera(-Math.PI / 2, Math.PI / 2, 108 / R) : camera(turn.yaw, turn.pitch, 96 / R);
   const items = g.draw(P, v);
 
   const down = (e) => {
-    if (g.flat) return;
+    if (flat) return;
     e.currentTarget.setPointerCapture?.(e.pointerId);
     drag.current = { x: e.clientX, y: e.clientY, yaw: turn.yaw, pitch: turn.pitch };
   };
@@ -139,7 +141,7 @@ export function SpaceLab({ api, config: g }) {
   const up = () => { drag.current = null; };
 
   const axes = [];
-  const axisNames = g.flat ? ['x', 'y'] : ['x', 'y', 'z'];
+  const axisNames = g.bare ? [] : flat ? ['x', 'y'] : ['x', 'y', 'z'];
   axisNames.forEach((name, i) => {
     const end = [0, 0, 0];
     end[i] = R * 1.12;
@@ -159,7 +161,7 @@ export function SpaceLab({ api, config: g }) {
   });
 
   const grid = [];
-  if (g.floor || g.flat) {
+  if ((g.floor || flat) && !g.bare) {
     const m = Math.floor(R);
     for (let k = -m; k <= m; k++) {
       if (k === 0) continue;
@@ -219,7 +221,7 @@ export function SpaceLab({ api, config: g }) {
   }
 
   return (
-    <div className={`tut-graph tut-sp${g.flat ? ' flat' : ''}`}>
+    <div className={`tut-graph tut-sp${flat ? ' flat' : ''}`}>
       <div className="tut-graph-stage">
         <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={g.aria ?? '3D picture of vectors'}
           onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}>
@@ -230,7 +232,7 @@ export function SpaceLab({ api, config: g }) {
           {layer((it) => it.arrow)}
           {layer((it) => it.pt || it.text)}
         </svg>
-        {!g.flat && <p className="tut-sp-hint">Drag the picture to turn it</p>}
+        {!flat && <p className="tut-sp-hint">Drag the picture to turn it</p>}
         {g.read && (
           <p className={`tut-graph-read${ok === null ? '' : ok ? ' ok' : ' bad'}`} aria-live="polite">
             <Inline text={g.read(P, v)} />

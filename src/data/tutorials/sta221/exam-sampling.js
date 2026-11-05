@@ -1,0 +1,104 @@
+// STA 221 · Sampling · Exam practice: worked exam-style questions on chapter 1.
+export default {
+  id: 'exam-sampling',
+  title: 'Exam practice: sampling',
+  covers: 'Exam-style questions: parameter or statistic, systematic and stratified samples, distinguishing methods, listing samples, probabilities about x̄ with and without replacement, sample size, difference of two means',
+  minutes: 15,
+  sections: [
+    {
+      name: 'Methods and sampling distributions',
+      terms: [
+        ['Systematic', '$k = \\frac Nn$; random start, then add $k$.'],
+        ['Stratified', '$n_h = \\frac{N_h}{N} \\times n$.'],
+        ['Check a listing', 'The mean of the sample means equals $\\mu$; with replacement their variance is $\\frac{\\sigma^2}{n}$.'],
+      ],
+      screens: [
+        {
+          type: 'story',
+          eyebrow: 'Exam question 1',
+          title: '(a) A town’s $1{,}000$ traders are $300$ food sellers, $450$ clothing sellers and $250$ others. Allocate a stratified sample of $60$. (b) Distinguish stratified from cluster sampling, and quota from stratified sampling.',
+          body: '**(a)** $n_h = \\frac{N_h}{N}n$: food $= \\frac{300}{1000}(60) = 18$, clothing $= 27$, others $= 15$. Total $60$ ✓.\n\n**(b)** **Stratified:** split into groups that **differ** from each other; sample some units from **every** group. **Cluster:** split into many **similar** groups; choose **some** groups and study the units in them.\n\n**Quota vs stratified:** both fill a set number from each group, but in quota sampling the interviewer **chooses** who (non-random); in stratified sampling the units are chosen **at random**.',
+          asides: [{ label: 'Exam tip', text: 'For "distinguish" questions, use two columns (Method A | Method B) with matching rows: how units are chosen, when it is used, its weakness.' }],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Same type',
+          prompt: 'A lecturer interviews the first $30$ students who walk into the hall. This is',
+          options: [
+            { text: 'convenience sampling: early arrivals may differ from others', correct: true, why: 'Whoever is easiest to reach; punctual students may be more serious, so the sample is biased.' },
+            { text: 'systematic sampling', why: 'There is no random start and no fixed interval $k$.' },
+            { text: 'simple random sampling', why: 'Not every student had an equal chance.' },
+            { text: 'cluster sampling', why: 'No groups were chosen at random.' },
+          ],
+        },
+        {
+          type: 'story',
+          eyebrow: 'Exam question 2',
+          title: 'A population is $2, 5, 8$. List all samples of size $2$ with replacement, find the sampling distribution of $\\bar x$, and verify $\\mu_{\\bar x} = \\mu$ and $\\sigma_{\\bar x}^2 = \\frac{\\sigma^2}{n}$.',
+          body: '$\\mu = 5$, $\\sigma^2 = \\frac{9 + 0 + 9}{3} = 6$.\n\n$3^2 = 9$ samples: $(2,2), (2,5), (2,8), (5,2), (5,5), (5,8), (8,2), (8,5), (8,8)$ with means $2, 3.5, 5, 3.5, 5, 6.5, 5, 6.5, 8$.\n\nSo $\\bar x = 2, 3.5, 5, 6.5, 8$ with frequencies $1, 2, 3, 2, 1$.\n\n$\\mu_{\\bar x} = \\frac{45}{9} = 5 = \\mu$ ✓. $\\sigma_{\\bar x}^2 = \\frac{9 + 2(2.25) + 0 + 2(2.25) + 9}{9} = \\frac{27}{9} = 3 = \\frac62$ ✓.',
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Same type',
+          prompt: 'How many samples of size $3$ can be drawn from $6$ units (i) with replacement, (ii) without?',
+          options: [
+            { text: '$216$ and $20$', correct: true, why: '$6^3 = 216$; ${}^6C_3 = \\frac{6!}{3!\\,3!} = 20$.' },
+            { text: '$18$ and $20$', why: 'With replacement is $6^3$, not $6 \\times 3$.' },
+            { text: '$216$ and $120$', why: '$120$ counts ordered selections; samples are unordered.' },
+            { text: '$729$ and $20$', why: 'That is $3^6$; it should be $N^n = 6^3$.' },
+          ],
+        },
+        {
+          type: 'bridge',
+          title: 'Methods: practised.',
+          recap: ['Allocate strata in proportion; check the total.', 'List samples after writing how many there should be.'],
+          why: 'Now the calculation questions.',
+        },
+      ],
+    },
+    {
+      name: 'Probability questions',
+      terms: [
+        ['Sample size for a mean', '$n = \\left(\\dfrac{z\\sigma}{E}\\right)^2$, rounded **up**.'],
+        ['Two tails', '$P(|D| > d) = 2[1 - \\Phi(z)]$.'],
+      ],
+      screens: [
+        {
+          type: 'story',
+          eyebrow: 'Exam question 3',
+          title: 'A population of $1{,}000$ items has mean $150$ g and $\\sigma = 20$ g. A sample of $100$ is drawn without replacement. Find $P(\\bar X > 153)$. Repeat with replacement and comment.',
+          body: '**Without replacement:** SE $= \\frac{20}{10}\\sqrt{\\frac{900}{999}} = 2(0.9492) = 1.8983$; $z = \\frac{3}{1.8983} = 1.58$; $P = 1 - 0.9429 = 0.0571$.\n\n**With replacement:** SE $= 2$, $z = 1.50$, $P = 1 - 0.9332 = 0.0668$.\n\n**Comment:** sampling $10\\%$ of a finite population without replacement reduces the standard error, so extreme sample means are less likely.',
+        },
+        {
+          type: 'story',
+          eyebrow: 'Exam question 4',
+          title: '(a) State the Central Limit Theorem. (b) With $\\sigma = 10$, how large must $n$ be for $\\bar x$ to be within $2$ units of $\\mu$ with probability at least $0.95$?',
+          body: '**(a)** For large $n$, the sampling distribution of the mean is approximately normal with mean $\\mu$ and variance $\\frac{\\sigma^2}{n}$, whatever the population distribution ($n \\ge 30$ is usually large enough).\n\n**(b)** Need $1.96 \\times \\frac{10}{\\sqrt n} \\le 2$, so $\\sqrt n \\ge 9.8$, $n \\ge 96.04$. Take $n = 97$.',
+          asides: [{ label: 'Exam tip', text: 'Always round a sample size **up**: $96$ would give a margin slightly over $2$.' }],
+        },
+        {
+          type: 'story',
+          eyebrow: 'Exam question 5',
+          title: 'Machine A fills packets with mean $250$ g, $\\sigma = 8$ g; machine B with mean $248$ g, $\\sigma = 6$ g. Samples of $40$ from A and $50$ from B. Find $P(\\bar X_A < \\bar X_B)$.',
+          body: 'Mean of $\\bar X_A - \\bar X_B$: $250 - 248 = 2$. SE $= \\sqrt{\\frac{64}{40} + \\frac{36}{50}} = \\sqrt{2.32} = 1.5232$.\n$$P(\\bar X_A - \\bar X_B < 0) = P\\left(Z < \\frac{0 - 2}{1.5232}\\right) = \\Phi(-1.31) = 0.0951.$$',
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Same type',
+          prompt: 'Scores have $\\sigma = 15$. Two samples of $60$ and $80$ come from the same population. $P$(their means differ by more than $4$) is (SE $= 2.5617$, $\\Phi(1.56) = 0.9406$)',
+          options: [
+            { text: '$0.1188$', correct: true, why: '$z = \\frac{4}{2.5617} = 1.56$; two tails: $2(1 - 0.9406)$.' },
+            { text: '$0.0594$', why: '"Differ by" has no direction: count both tails.' },
+            { text: '$0.8812$', why: 'That is the chance they differ by **less** than $4$.' },
+            { text: '$0.9406$', why: 'Use the tail areas beyond $\\pm 1.56$.' },
+          ],
+        },
+        {
+          type: 'finish',
+          title: 'Chapter 1 exam practice: done.',
+          body: 'Formulas to remember:',
+        },
+      ],
+    },
+  ],
+};

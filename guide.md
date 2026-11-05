@@ -122,10 +122,10 @@ docs/adding-questions.md
 | MAT 222 | Real Analysis II: 9 sets (QS001–QS008 plus QS009 "Exam focus") and a tutorial |
 | MTH 209 | Numerical Analysis: 9 sets (including QS009 "Exam focus") and a tutorial |
 | MTH 210 | Vector Analysis: 7 sets (one per chapter plus QS007 "Exam focus") and a tutorial of 20 lessons in 6 chapters, each chapter ending with an exam practice lesson |
+| STA 221 | Statistical Inference: 7 sets (one per chapter plus QS007 "Exam focus") and a tutorial of 23 lessons: an optional "Statistics from Zero" chapter and six chapters, each ending with an exam practice lesson |
 | COS 202 | Advanced OOP in Java: 9 sets of 25 and a tutorial |
 | GES 103 | Also has a tutorial |
 
-STA 221 (statistical inference) is not in the app yet (see section 9).
 
 ### For you, Favourites and admin
 - **For you:** shows the student's own department and level courses, plus new courses for 30 days.
@@ -256,7 +256,7 @@ To dry-run rules without deploying, call the `firebaserules` REST `:test` endpoi
    - **Decided so far:** StudyPiece keeps **its own wallet on `quick-cbt`**, and new students get **3 free credits**, then buy.
    - **Not decided:** what Dawn does for students, pricing and packs, whether free credits expire, and payments.
    - **Watch out:** with PeraForm's reservation sizes, 3 credits would allow only one Standard run, so StudyPiece needs smaller reservations. "Best" quality costs more than 3 credits.
-2. **STA 221:** the notes have been analysed and a 65-page notes PDF made (`C:\Users\IAR\Downloads\STA221_notes.pdf`), but nothing is built in the app. The owner said to wait.
+2. **STA 221:** the notes have been analysed and a 65-page notes PDF made (`C:\Users\IAR\Downloads\STA221_notes.pdf`) from the lecturer's compiled notes; the tutorial and question bank follow it. No past papers have been seen yet: if the owner sends some, add them to the exam practice lessons and the Exam focus set.
 3. **Unconfirmed on real devices:**
    - real sign-in with the Java runner and with sync;
    - saving a For you date to the real database;
