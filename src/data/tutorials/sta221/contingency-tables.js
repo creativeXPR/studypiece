@@ -56,6 +56,17 @@ export default {
         ['Check', 'The expected table has the same row and column totals as the observed one.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'A goodness-of-fit test with $6$ categories and no parameters estimated has degrees of freedom',
+          options: [
+            { text: '$5$', correct: true, why: '$k - 1 - m = 6 - 1 - 0$.' },
+            { text: '$6$', why: 'One df is always lost because the totals must agree.' },
+            { text: '$4$', why: 'Subtract one more only for each estimated parameter.' },
+            { text: '$120$', why: 'df depends on the categories, not the sample size.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Chi-Square · Lesson 3', title: 'Are two things related?', graph: table },
         {
           type: 'custom',

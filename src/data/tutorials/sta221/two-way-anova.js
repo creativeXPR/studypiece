@@ -23,6 +23,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In one-way ANOVA, $F = $',
+          options: [
+            { text: '$\\frac{MSB}{MSW}$', correct: true, why: 'Between-groups mean square over within-groups mean square.' },
+            { text: '$\\frac{SSB}{SSW}$', why: 'Divide each SS by its df first.' },
+            { text: '$\\frac{MSW}{MSB}$', why: 'Between goes on top: big $F$ means the groups differ.' },
+            { text: '$SSB - SSW$', why: '$F$ is a ratio.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'ANOVA · Lesson 3',
           title: 'Take the nuisance out of the error',

@@ -106,6 +106,53 @@ export default {
           ],
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Bottles: $\\mu = 500$ ml, $\\sigma = 12$ ml, $n = 36$. Find $P(\\bar X < 497)$. Use $\\Phi(1.5) = 0.9332$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Standard error $\\sigma_{\\bar x} = \\frac{\\sigma}{\\sqrt n} = $', answer: 2, hint: 'Divide $\\sigma = 12$ by $\\sqrt{36} = 6$.' },
+              { ask: '$z = \\frac{497 - 500}{\\sigma_{\\bar x}} = $', answer: -1.5, hint: 'Subtract the mean first ($-3$), then divide by the SE, not by $\\sigma$.' },
+              { ask: '$P(\\bar X < 497) = P(Z < -1.5) = 1 - \\Phi(1.5) = $', answer: 0.0668, tol: 0.0005, hint: 'The left tail below $-1.5$ is the same size as the right tail above $1.5$: $1 - 0.9332$.' },
+            ],
+            after: '**Answer:** $P(\\bar X < 497) = 0.0668$.',
+          },
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'A school has $500$ JSS, $400$ SSS science and $300$ SSS arts students. Draw a sample of $60$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Systematic sampling: the interval $k = \\frac Nn = $', answer: 20, hint: '$N = 1200$ students in all, $n = 60$.' },
+              { ask: 'Stratified, proportional: number of JSS students $= \\frac{500}{1200} \\times 60 = $', answer: 25, hint: 'Multiply the stratum’s share of the population by $60$.' },
+              { ask: 'Science students $= $', answer: 20, hint: '$\\frac{400}{1200} \\times 60$.' },
+              { ask: 'Arts students $= $', answer: 15, hint: '$\\frac{300}{1200} \\times 60$. Check: the three must add to $60$.' },
+            ],
+            after: '**Answer:** $k = 20$; $25 + 20 + 15 = 60$.',
+          },
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Machine A: mean $250$ g, $\\sigma = 8$; machine B: mean $248$ g, $\\sigma = 6$. Samples of $40$ and $50$. Find $P(\\bar X_A < \\bar X_B)$. Use $\\Phi(1.31) = 0.9049$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Mean of $\\bar X_A - \\bar X_B = $', answer: 2, hint: '$\\mu_A - \\mu_B$.' },
+              { ask: 'SE $= \\sqrt{\\frac{8^2}{40} + \\frac{6^2}{50}} = $', answer: 1.5232, tol: 0.002, hint: 'Square the SDs: $\\frac{64}{40} + \\frac{36}{50} = 2.32$, then take the square root. Variances add.' },
+              { ask: '$z = \\frac{0 - 2}{\\text{SE}} = $ (2 d.p.)', answer: -1.31, tol: 0.006, hint: '$\\bar X_A < \\bar X_B$ means the difference is below $0$.' },
+              { ask: '$P = \\Phi(-1.31) = 1 - \\Phi(1.31) = $', answer: 0.0951, tol: 0.0005, hint: '$1 - 0.9049$.' },
+            ],
+            after: '**Answer:** $P(\\bar X_A < \\bar X_B) = 0.0951$.',
+          },
+        },
+        {
           type: 'finish',
           title: 'Chapter 1 exam practice: done.',
           body: 'Formulas to remember:',

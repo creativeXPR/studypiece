@@ -3,6 +3,7 @@ import { burstAt } from './fx';
 import { Bisection, GraphLab, MeanValue, RiemannSums, Taylor } from './analysisWidgets';
 import { FieldLab, SpaceLab } from './vectorWidgets';
 import { Scene } from './sceneWidget';
+import { Calc, MockClock } from './calcWidget';
 import { Inline } from './Rich';
 
 // One-off interactive pieces used by `type: 'custom'` screens (`widget: 'venn'`).
@@ -1393,6 +1394,8 @@ export const WIDGETS = {
   space: SpaceLab,
   field: FieldLab,
   scene: Scene,
+  calc: Calc,
+  mockClock: MockClock,
   rootRace: RootRace,
   epsilonDelta: EpsilonDelta,
   uniformDelta: UniformDelta,

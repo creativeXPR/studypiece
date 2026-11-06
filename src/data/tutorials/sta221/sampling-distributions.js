@@ -110,6 +110,17 @@ export default {
         ['Standard error (SE)', 'The standard deviation of a sampling distribution. For the mean: $\\sigma_{\\bar x}$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Taking some students from **every** year group, in proportion to its size, is',
+          options: [
+            { text: 'stratified sampling', correct: true, why: 'Some from every group.' },
+            { text: 'cluster sampling', why: 'Cluster sampling takes **all** from **some** groups.' },
+            { text: 'systematic sampling', why: 'Systematic takes every $k$th unit from a list.' },
+            { text: 'convenience sampling', why: 'Convenience takes whoever is easiest to reach.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Sampling · Lesson 3', title: 'Pile up the sample means', graph: scene },
         {
           type: 'choice',

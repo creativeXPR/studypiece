@@ -55,6 +55,17 @@ export default {
         ['p-value', 'The chance, if H₀ were true, of a result at least as extreme as the one seen. Reject H₀ when p-value $< \\alpha$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Rejecting the null hypothesis when it is actually true is a',
+          options: [
+            { text: 'Type I error (probability $\\alpha$)', correct: true, why: 'Jailing an innocent person.' },
+            { text: 'Type II error', why: 'Type II is keeping a false H₀.' },
+            { text: 'correct decision', why: 'H₀ was true, so rejecting it is wrong.' },
+            { text: 'power', why: 'Power is rejecting a **false** H₀.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Hypothesis Testing · Lesson 2', title: 'The five steps, on the bell', graph: recipe },
         {
           type: 'custom',

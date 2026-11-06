@@ -61,6 +61,17 @@ export default {
         ['Φ(z)', '$P(Z \\le z)$, the area to the **left** of $z$, read from the normal table.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Class A and class B both average $10$ hours. A has standard deviation $1.3$, B has $4.7$. Which statement is right?',
+          options: [
+            { text: 'Class B is more spread out', correct: true, why: 'A bigger standard deviation means a bigger typical distance from the mean.' },
+            { text: 'Class A is more spread out', why: 'The smaller standard deviation belongs to the tighter class.' },
+            { text: 'They are spread the same, since the means are equal', why: 'Equal means say nothing about spread.' },
+            { text: 'Class B has a bigger mean', why: 'Both means are $10$.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Statistics from Zero · Lesson 2', title: 'A hill made of people', graph: scene },
         {
           type: 'choice',

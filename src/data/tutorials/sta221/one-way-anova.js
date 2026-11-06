@@ -61,6 +61,17 @@ export default {
         ['Terms', 'Response: what is measured. Factor: what may affect it. Levels: its values. Treatments: the levels compared.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Grouping alike experimental units into blocks is the principle of',
+          options: [
+            { text: 'local control', correct: true, why: 'It removes a nuisance factor from the error.' },
+            { text: 'replication', why: 'Replication repeats each treatment.' },
+            { text: 'randomisation', why: 'Randomisation assigns treatments by chance.' },
+            { text: 'stratified sampling', why: 'That is a sampling method, not a design principle.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'ANOVA · Lesson 2', title: 'Between the groups, within the groups', graph: groups },
         {
           type: 'custom',

@@ -59,6 +59,41 @@ export default {
           body: '**1. A population mean:** is a machine still filling $500$ ml? $z = \\frac{\\bar x - \\mu_0}{\\sigma/\\sqrt n}$.\n**2. Two means or two proportions:** do two schools, or two towns, differ? $z$ test for a difference.\n**3. A variance:** has a process become less consistent? $\\chi^2 = \\frac{(n - 1)s^2}{\\sigma_0^2}$.\n**4. Counts:** is a die fair, or are opinion and gender related? $\\chi^2$ goodness of fit or independence.\n**5. Several means:** do three fertilisers give the same mean yield? ANOVA $F$ test.\n\nIn every case: hypotheses, level and critical value, test statistic, decision, conclusion in context.',
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'A firm claims its rice bags average $80$ kg, $\\sigma = 12$. A sample of $49$ has mean $83.6$ kg. Test the claim at $5\\%$, then at $1\\%$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Step 1: the alternative hypothesis is', options: ['$\\mu \\ne 80$', '$\\mu > 80$', '$\\mu < 80$'], answer: 0, hint: 'The claim is tested either way: "is it $80$?"' },
+              { ask: 'SE $= \\frac{12}{\\sqrt{49}} = $ (4 d.p.)', answer: 1.7143, tol: 0.0005, hint: '$\\sqrt{49} = 7$.' },
+              { ask: '$z = \\frac{83.6 - 80}{\\text{SE}} = $ (2 d.p.)', answer: 2.1, tol: 0.006, hint: '$\\frac{3.6}{1.7143}$.' },
+              { ask: 'Critical value at $5\\%$ (two-tailed): $\\pm$', answer: 1.96, tol: 0.001, hint: 'Two tails, $2.5\\%$ each.' },
+              { ask: 'Decision at $5\\%$', options: ['Reject H₀', 'Accept H₀'], answer: 0, hint: 'Is $2.10$ beyond $1.96$?' },
+              { ask: 'At $1\\%$ the critical value is $2.58$. Decision', options: ['Reject H₀', 'Accept H₀'], answer: 1, hint: 'Is $2.10$ beyond $2.58$?' },
+            ],
+            after: '**Conclusion:** at $5\\%$ the mean weight is not $80$ kg; at $1\\%$ the evidence is not strong enough.',
+          },
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Town P: $45$ of $150$ prefer brand X. Town Q: $30$ of $150$. Do the proportions differ? ($5\\%$)',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: '$\\hat p_P - \\hat p_Q = $', answer: 0.1, hint: '$0.30 - 0.20$.' },
+              { ask: 'Pooled $\\bar p = \\frac{x_1 + x_2}{n_1 + n_2} = $', answer: 0.25, hint: '$\\frac{45 + 30}{300}$.' },
+              { ask: 'SE $= \\sqrt{\\bar p\\bar q\\left(\\frac{1}{150} + \\frac{1}{150}\\right)} = $', answer: 0.05, tol: 0.0005, hint: '$\\sqrt{0.25 \\times 0.75 \\times \\frac{2}{150}}$.' },
+              { ask: '$z = $', answer: 2, tol: 0.01, hint: '$\\frac{0.10}{0.05}$.' },
+              { ask: 'Decision', options: ['Reject H₀: they differ', 'Accept H₀'], answer: 0, hint: 'Compare $2.00$ with $1.96$.' },
+            ],
+            after: '**Answer:** $z = 2.00 > 1.96$: the proportions differ.',
+          },
+        },
+        {
           type: 'finish',
           title: 'Chapter 3 exam practice: done.',
           body: 'Formulas to remember:',

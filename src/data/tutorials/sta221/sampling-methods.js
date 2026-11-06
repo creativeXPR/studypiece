@@ -77,6 +77,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The mean $\\bar x$ of a sample of $20$ students is a',
+          options: [
+            { text: 'statistic: worked out from a sample, and it changes from sample to sample', correct: true, why: 'Parameter ↔ population, statistic ↔ sample.' },
+            { text: 'parameter: it describes the population', why: 'Only a number from the **whole** population is a parameter.' },
+            { text: 'population', why: 'The population is the group, not a number.' },
+            { text: 'fixed number that never changes', why: 'You saw $\\bar x$ change with each new sample.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Sampling · Lesson 2',
           title: 'Count everyone, or just some?',

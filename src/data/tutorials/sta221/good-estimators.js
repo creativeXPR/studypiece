@@ -88,6 +88,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The standard error of a sample proportion $\\hat p$ is',
+          options: [
+            { text: '$\\sqrt{\\frac{pq}{n}}$', correct: true, why: '$pq$ plays the part of $\\sigma^2$.' },
+            { text: '$\\frac{pq}{n}$', why: 'That is the variance; take its square root.' },
+            { text: '$\\sqrt{\\frac{p}{n}}$', why: 'Each 0/1 score has variance $pq$, not $p$.' },
+            { text: '$p(1 - p)$', why: 'Divide by $n$ and take the square root.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Estimation · Lesson 3',
           title: 'Estimator = recipe, estimate = cake',

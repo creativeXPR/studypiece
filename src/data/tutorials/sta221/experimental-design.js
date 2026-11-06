@@ -39,6 +39,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In a contingency table, the expected count of a cell is',
+          options: [
+            { text: '$\\frac{\\text{row total} \\times \\text{column total}}{\\text{grand total}}$', correct: true, why: '"RC over G".' },
+            { text: 'the observed count', why: 'Expected counts are what H₀ predicts.' },
+            { text: '$\\frac{\\text{grand total}}{\\text{number of cells}}$', why: 'That ignores the row and column totals.' },
+            { text: 'row total + column total', why: 'Multiply, then divide by the grand total.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'ANOVA · Lesson 1',
           title: 'Plan the experiment before collecting the data',

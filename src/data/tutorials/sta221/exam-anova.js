@@ -61,6 +61,26 @@ export default {
           asides: [{ label: 'Exam tip', text: 'Results for this design: $F_1 = 42.25$ and $F_2 = 32.75$, so both methods and blocks differ (worked in the two-way lesson).' }],
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Teaching methods. Totals $T_1 = 370$ ($n_1 = 5$), $T_2 = 260$ ($4$), $T_3 = 496$ ($6$); $T = 1126$, $n = 15$, $\\sum x^2 = 85522$. Complete the ANOVA.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: '$CF = \\frac{T^2}{n} = $ (2 d.p.)', answer: 84525.07, tol: 0.05, hint: '$\\frac{1126^2}{15}$.' },
+              { ask: '$SST = \\sum x^2 - CF = $', answer: 996.93, tol: 0.05, hint: '$85522 - 84525.07$.' },
+              { ask: '$SSB = \\frac{370^2}{5} + \\frac{260^2}{4} + \\frac{496^2}{6} - CF = $', answer: 757.6, tol: 0.05, hint: '$27380 + 16900 + 41002.67 - CF$.' },
+              { ask: '$SSW = SST - SSB = $', answer: 239.33, tol: 0.05, hint: '$996.93 - 757.60$.' },
+              { ask: '$MSB = \\frac{SSB}{k - 1} = $', answer: 378.8, tol: 0.05, hint: '$k = 3$ methods, so divide by $2$.' },
+              { ask: '$MSW = \\frac{SSW}{n - k} = $ (2 d.p.)', answer: 19.94, tol: 0.02, hint: '$n - k = 15 - 3 = 12$.' },
+              { ask: '$F = \\frac{MSB}{MSW} = $ (2 d.p.)', answer: 18.99, tol: 0.03, hint: '$\\frac{378.80}{19.94}$.' },
+              { ask: 'With $F_{0.05}(2, 12) = 3.89$, the decision is', options: ['The methods differ', 'The methods are equal'], answer: 0, hint: 'Is $18.99$ bigger than $3.89$?' },
+            ],
+            after: '**Answer:** $F = 18.99 > 3.89$: reject H₀; method 3 (mean $82.7$) looks best.',
+          },
+        },
+        {
           type: 'finish',
           title: 'Chapter 5 exam practice: done.',
           body: 'Formulas to remember:',

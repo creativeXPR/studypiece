@@ -90,6 +90,17 @@ export default {
         ['Two proportions', 'Mean $p_1 - p_2$, SE $\\sqrt{\\dfrac{p_1q_1}{n_1} + \\dfrac{p_2q_2}{n_2}}$; same population: $\\sqrt{pq\\left(\\dfrac1{n_1} + \\dfrac1{n_2}\\right)}$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: '"$95\\%$ confidence" means',
+          options: [
+            { text: '$95\\%$ of intervals built this way catch $\\mu$', correct: true, why: 'The hoop moves, the peg ($\\mu$) does not.' },
+            { text: '$\\mu$ is in this interval with probability $0.95$', why: '$\\mu$ is fixed: it is either in or not.' },
+            { text: '$95\\%$ of the data lie in the interval', why: 'The interval is about $\\mu$, not about single values.' },
+            { text: 'the sample mean is $95\\%$ correct', why: 'Confidence is about the method of building intervals.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Estimation · Lesson 2', title: 'A proportion is a mean in disguise', graph: scene },
         {
           type: 'custom',

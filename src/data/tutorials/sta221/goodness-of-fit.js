@@ -63,6 +63,17 @@ export default {
       screens: [
         {
           type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'A $\\chi^2$ distribution with $5$ degrees of freedom has mean',
+          options: [
+            { text: '$5$', correct: true, why: 'The mean is its own name tag: $\\nu$.' },
+            { text: '$10$', why: '$10$ is its variance, $2\\nu$.' },
+            { text: '$0$', why: '$\\chi^2$ is never negative; its mean is $\\nu$.' },
+            { text: '$11.07$', why: 'That is the $5\\%$ critical value.' },
+          ],
+        },
+        {
+          type: 'choice',
           poll: 'dieGuess',
           eyebrow: 'Chi-Square · Lesson 2',
           prompt: 'A die is rolled $120$ times. Face $6$ comes up $16$ times instead of the expected $20$. Is the die loaded?',

@@ -58,6 +58,17 @@ export default {
         ['Variance statistic', '$\\chi^2 = \\dfrac{(n - 1)s^2}{\\sigma^2}$ with $\\nu = n - 1$ (normal population).'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'For a two-tailed $z$ test at $5\\%$, reject H₀ when',
+          options: [
+            { text: '$|z| > 1.96$', correct: true, why: '$2.5\\%$ in each tail.' },
+            { text: '$z > 1.645$', why: 'That is one-tailed.' },
+            { text: '$|z| > 2.58$', why: 'That is the $1\\%$ value.' },
+            { text: '$z < 1.96$', why: 'Values **near** $0$ fit H₀; reject only far out.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Chi-Square · Lesson 1', title: 'Square some normals and add them up', graph: build },
         {
           type: 'custom',

@@ -3422,3 +3422,24 @@ a.learn-les:active {
 .sc-curve { fill: none; stroke: var(--c); stroke-width: 2.5; stroke-linejoin: round; }
 .sc-curve.dash { stroke-dasharray: 6 4; stroke-width: 2; }
 .sc-area { fill: var(--c); fill-opacity: 0.22; stroke: none; }
+
+/* ---------- Calc: step-by-step "Your turn" calculations ---------- */
+.tut-calc { display: flex; flex-direction: column; gap: 12px; }
+.tut-calc-log { margin: 0; padding: 12px 14px 12px 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+.tut-calc-log li { font-size: 0.95rem; }
+.tut-calc-log li .tut-calc-ask { color: var(--text-2); }
+.tut-calc-log li .tut-calc-said { display: block; font-weight: 600; color: var(--good); }
+.tut-calc-log li.shown .tut-calc-said { color: var(--warn); }
+.tut-calc-step { padding: 14px; border-radius: 16px; background: var(--surface); border: 1.5px solid var(--primary); display: flex; flex-direction: column; gap: 10px; animation: tut-pop var(--dur-slow) var(--ease-spring); }
+.tut-calc-num { margin: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--primary); }
+.tut-calc-q { margin: 0; font-size: 1.02rem; line-height: 1.5; }
+.tut-calc-input { font: inherit; font-size: 1.1rem; padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--border-strong); background: var(--bg); color: var(--text); width: 100%; box-sizing: border-box; }
+.tut-calc-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.tut-calc-opts { display: flex; flex-direction: column; gap: 8px; }
+.tut-calc-opts button { text-align: left; font: inherit; padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--border-strong); background: var(--bg); color: var(--text); cursor: pointer; }
+.tut-calc-opts button.on { border-color: var(--primary); background: var(--primary-soft); }
+.tut-calc-hint { margin: 0; padding: 10px 12px; border-radius: 12px; background: var(--bad-soft); color: var(--text); font-size: 0.95rem; }
+.tut-calc-hint b { color: var(--bad); }
+.tut-calc-after { margin: 0; padding: 12px 14px; border-radius: 14px; background: var(--good-soft); }
+.tut-calc-clock { margin: 0; align-self: flex-end; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--primary); }
+.tut-calc-clock.low { color: var(--bad); }

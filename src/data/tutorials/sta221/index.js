@@ -26,6 +26,7 @@ import examAnova from './exam-anova';
 import correlation from './correlation';
 import regression from './regression';
 import examRegression from './exam-regression';
+import mockExam from './mock-exam';
 
 export default {
   code: 'STA 221',
@@ -45,5 +46,6 @@ export default {
     { n: 4, title: 'Chi-Square', by: 'The distribution, goodness of fit and contingency tables', lessons: [chiSquareDistribution, goodnessOfFit, contingencyTables, examChiSquare] },
     { n: 5, title: 'Analysis of Variance', by: 'Experimental design, one-way and two-way ANOVA', lessons: [experimentalDesign, oneWayAnova, twoWayAnova, examAnova] },
     { n: 6, title: 'Correlation and Regression', by: 'Association, r and the least squares line', lessons: [correlation, regression, examRegression] },
+    { n: 7, title: 'Mock Exam', by: 'Six written questions on a 60-minute clock', lessons: [mockExam] },
   ],
 };

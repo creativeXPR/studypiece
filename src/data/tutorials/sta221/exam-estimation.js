@@ -93,6 +93,55 @@ export default {
           ],
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'A sample of $100$ has $\\bar x = 72.5$ and $s = 8$. Find the $95\\%$ confidence interval for $\\mu$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Standard error $= \\frac{s}{\\sqrt n} = $', answer: 0.8, hint: '$\\frac{8}{\\sqrt{100}}$.' },
+              { ask: 'Critical value for $95\\%$: $z_{\\alpha/2} = $', answer: 1.96, tol: 0.001, hint: 'One-six-four-five, one-nine-six, two-five-eight: $95\\%$ is the middle one.' },
+              { ask: 'Margin of error $E = z \\times \\text{SE} = $', answer: 1.568, tol: 0.002, hint: '$1.96 \\times 0.8$.' },
+              { ask: 'Lower limit $= \\bar x - E = $', answer: 70.93, tol: 0.006, hint: '$72.5 - 1.568$.' },
+              { ask: 'Upper limit $= \\bar x + E = $', answer: 74.07, tol: 0.006, hint: '$72.5 + 1.568$.' },
+            ],
+            after: '**Answer:** $(70.93, 74.07)$. We are $95\\%$ confident that $\\mu$ lies in this interval.',
+          },
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: '$140$ of $400$ adults smoke. Find a $95\\%$ confidence interval for the proportion of smokers.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: '$\\hat p = $', answer: 0.35, hint: '$\\frac{140}{400}$.' },
+              { ask: 'SE $= \\sqrt{\\frac{\\hat p\\hat q}{n}} = $ (4 d.p.)', answer: 0.0238, tol: 0.0002, hint: '$\\sqrt{\\frac{0.35 \\times 0.65}{400}}$.' },
+              { ask: 'Margin $= 1.96 \\times \\text{SE} = $ (3 d.p.)', answer: 0.047, tol: 0.001, hint: '$1.96 \\times 0.02385$.' },
+              { ask: 'Lower limit $= $', answer: 0.303, tol: 0.002, hint: '$0.35 - 0.0467$.' },
+              { ask: 'Upper limit $= $', answer: 0.397, tol: 0.002, hint: '$0.35 + 0.0467$.' },
+            ],
+            after: '**Answer:** $(0.303, 0.397)$.',
+          },
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'How many observations estimate $\\mu$ to within $\\pm 2$ with $95\\%$ confidence, if $\\sigma = 12$?',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: '$\\frac{z\\sigma}{E} = \\frac{1.96 \\times 12}{2} = $', answer: 11.76, tol: 0.005, hint: '$1.96 \\times 12 = 23.52$, then divide by $2$.' },
+              { ask: '$n = \\left(\\frac{z\\sigma}{E}\\right)^2 = $ (1 d.p.)', answer: 138.3, tol: 0.06, hint: 'Square $11.76$.' },
+              { ask: 'Sample size to use: $n = $', answer: 139, tol: 0, hint: 'Always round a sample size **up**.' },
+            ],
+            after: '**Answer:** $n = 139$.',
+          },
+        },
+        {
           type: 'finish',
           title: 'Chapter 2 exam practice: done.',
           body: 'Formulas to remember:',

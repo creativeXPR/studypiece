@@ -74,6 +74,17 @@ export default {
         ['Through the means', 'The line always passes through $(\\bar x, \\bar y)$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: '$r = -0.85$ describes',
+          options: [
+            { text: 'a very strong negative linear relationship', correct: true, why: '$|r| \\ge 0.8$, and the sign gives the direction.' },
+            { text: 'a weak relationship', why: 'The sign is direction; $|r|$ is strength.' },
+            { text: 'no relationship', why: 'That would be $r$ near $0$.' },
+            { text: 'proof that $x$ causes $y$ to fall', why: 'Correlation is not causation.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Correlation and Regression · Lesson 2', title: 'The line with the smallest squares', graph: fit },
         {
           type: 'custom',

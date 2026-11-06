@@ -104,6 +104,17 @@ export default {
       screens: [
         {
           type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The standard deviation of the pile of sample means is called the',
+          options: [
+            { text: 'standard error', correct: true, why: 'It measures how much $\\bar x$ wobbles from sample to sample.' },
+            { text: 'standard deviation of the population', why: 'That is the spread of single students, which is wider.' },
+            { text: 'variance', why: 'The variance is the square of a standard deviation.' },
+            { text: 'parameter', why: 'It is a property of the sampling distribution, called the standard error.' },
+          ],
+        },
+        {
+          type: 'choice',
           poll: 'cltGuess',
           eyebrow: 'Sampling · Lesson 4',
           prompt: 'Waiting times are very lopsided: most short, a few very long. If you average the waits of $30$ random customers, again and again, what shape will those averages make?',

@@ -59,6 +59,41 @@ export default {
           body: '**Assumption:** the measurements come from a normal population.\nH₀: $\\sigma^2 = 16$, H₁: $\\sigma^2 > 16$.\n$$\\chi^2 = \\frac{24 \\times 26.5}{16} = 39.75, \\quad \\text{df} = 24, \\quad \\chi^2_{0.05}(24) = 36.415.$$\n$39.75 > 36.415$: reject H₀. The variance has increased.',
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Seeds should come in the ratio $9 : 3 : 3 : 1$. In $160$ seeds: $95, 25, 28, 12$. Test the ratio at $5\\%$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Expected count for the first type $= 160 \\times \\frac{9}{16} = $', answer: 90, hint: 'Each part of the ratio is $\\frac{160}{16} = 10$ seeds.' },
+              { ask: 'Expected count for the last type $= $', answer: 10, hint: '$160 \\times \\frac{1}{16}$.' },
+              { ask: '$\\chi^2 = \\frac{5^2}{90} + \\frac{5^2}{30} + \\frac{2^2}{30} + \\frac{2^2}{10} = $ (3 d.p.)', answer: 1.644, tol: 0.004, hint: '$0.278 + 0.833 + 0.133 + 0.400$.' },
+              { ask: 'Degrees of freedom $= $', answer: 3, tol: 0, hint: '$k - 1$ with $k = 4$ categories.' },
+              { ask: 'Table value $\\chi^2_{0.05}(3) = $', answer: 7.815, tol: 0.002, hint: 'From the $\\chi^2$ table, $3$ df, $5\\%$.' },
+              { ask: 'Decision', options: ['The data agree with $9 : 3 : 3 : 1$', 'The data do not fit the ratio'], answer: 0, hint: 'Is $1.644$ bigger than $7.815$?' },
+            ],
+            after: '**Answer:** $1.644 < 7.815$: accept H₀.',
+          },
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Opinion by gender. Male: agree $60$, neutral $25$, disagree $15$. Female: $40$, $35$, $25$. Is opinion independent of gender? ($5\\%$)',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Expected male–agree $= \\frac{100 \\times 100}{200} = $', answer: 50, hint: 'Row total × column total ÷ grand total; the agree column totals $100$.' },
+              { ask: 'Expected male–neutral $= $', answer: 30, hint: 'Neutral column total is $60$: $\\frac{100 \\times 60}{200}$.' },
+              { ask: '$\\chi^2$ over all six cells $= $ (3 d.p.)', answer: 8.167, tol: 0.005, hint: 'Each row gives $\\frac{10^2}{50} + \\frac{5^2}{30} + \\frac{5^2}{20} = 4.083$; there are two rows.' },
+              { ask: 'Degrees of freedom $= $', answer: 2, tol: 0, hint: '$(r - 1)(c - 1) = (2 - 1)(3 - 1)$.' },
+              { ask: 'With $\\chi^2_{0.05}(2) = 5.991$, the decision is', options: ['Opinion depends on gender', 'Opinion is independent of gender'], answer: 0, hint: 'Is $8.167$ bigger than $5.991$?' },
+            ],
+            after: '**Answer:** $8.167 > 5.991$: reject independence.',
+          },
+        },
+        {
           type: 'finish',
           title: 'Chapter 4 exam practice: done.',
           body: 'Formulas to remember:',

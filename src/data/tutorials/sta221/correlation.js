@@ -81,6 +81,17 @@ export default {
         ['Not causation', 'A strong correlation only says two things move together; a third variable or coincidence may be responsible.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'A two-way ANOVA with $c$ treatments and $r$ blocks has error degrees of freedom',
+          options: [
+            { text: '$(c - 1)(r - 1)$', correct: true, why: 'The product of the other two.' },
+            { text: '$rc - 1$', why: 'That is the total df.' },
+            { text: '$c + r - 2$', why: 'Multiply, don’t add.' },
+            { text: '$n - k$', why: 'That is the one-way error df.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Correlation and Regression · Lesson 1', title: 'Hours and scores, together', graph: lift },
         {
           type: 'custom',

@@ -54,6 +54,40 @@ export default {
           ],
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'For $10$ pairs: $\\sum x = 120$, $\\sum y = 480$, $\\sum xy = 6080$, $\\sum x^2 = 1560$, $\\sum y^2 = 24200$. Find the line, $r$, and $\\hat y$ at $x = 15$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: 'Shared numerator $n\\sum xy - \\sum x\\sum y = $', answer: 3200, hint: '$10(6080) - 120(480)$.' },
+              { ask: '$n\\sum x^2 - (\\sum x)^2 = $', answer: 1200, hint: '$10(1560) - 120^2$.' },
+              { ask: '$\\beta = $ (3 d.p.)', answer: 2.667, tol: 0.002, hint: 'Numerator over the $x$ bracket: $\\frac{3200}{1200}$.' },
+              { ask: '$\\alpha = \\bar y - \\beta\\bar x = $', answer: 16, tol: 0.02, hint: '$\\bar y = 48$, $\\bar x = 12$: $48 - 2.667 \\times 12$.' },
+              { ask: '$n\\sum y^2 - (\\sum y)^2 = $', answer: 11600, hint: '$10(24200) - 480^2$.' },
+              { ask: '$r = \\frac{3200}{\\sqrt{1200 \\times 11600}} = $ (3 d.p.)', answer: 0.858, tol: 0.002, hint: '$\\sqrt{1200 \\times 11600} = 3730.9$.' },
+              { ask: '$\\hat y$ at $x = 15$: ', answer: 56, tol: 0.06, hint: '$16 + 2.667 \\times 15$.' },
+            ],
+            after: '**Answer:** $\\hat y = 16 + 2.667x$, $r = 0.858$ (very strong positive), $\\hat y(15) = 56$.',
+          },
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Two examiners rank $10$ essays; the rank differences give $\\sum d^2 = 12$. Find Spearman’s $r_s$.',
+          body: 'Work it on paper first, then enter each step. A wrong step shows a hint.',
+          graph: {
+            steps: [
+              { ask: '$6\\sum d^2 = $', answer: 72, hint: '$6 \\times 12$.' },
+              { ask: '$n(n^2 - 1) = $', answer: 990, hint: '$10 \\times 99$.' },
+              { ask: '$r_s = 1 - \\frac{72}{990} = $ (3 d.p.)', answer: 0.927, tol: 0.002, hint: '$\\frac{72}{990} = 0.073$.' },
+            ],
+            after: '**Answer:** $r_s = 0.927$: the examiners agree very closely.',
+          },
+        },
+        {
           type: 'finish',
           title: 'Chapter 6 exam practice: done.',
           body: 'Formulas to remember:',

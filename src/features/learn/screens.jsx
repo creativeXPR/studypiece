@@ -584,12 +584,12 @@ function Recall({ s, api }) {
 }
 
 /* ---------------- custom widget ---------------- */
-function Custom({ s, api }) {
+function Custom({ s, index, api }) {
   const Widget = WIDGETS[s.widget];
   return (
     <>
       <Head s={s} />
-      {Widget && <Widget api={api} config={s.graph} />}
+      {Widget && <Widget api={api} config={s.graph} index={index} />}
     </>
   );
 }

@@ -64,6 +64,17 @@ export default {
         ['Meaning', '$95\\%$ of intervals built this way contain $\\mu$. Never "a $95\\%$ probability that $\\mu$ is in this interval".'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'For a large sample, the sample mean $\\bar X$ is approximately normal with mean $\\mu$ and standard error',
+          options: [
+            { text: '$\\frac{\\sigma}{\\sqrt n}$', correct: true, why: 'The Central Limit Theorem.' },
+            { text: '$\\sigma$', why: 'Averages wobble less than single values.' },
+            { text: '$\\frac{\\sigma}{n}$', why: 'It shrinks with $\\sqrt n$, not $n$.' },
+            { text: '$\\frac{\\sigma^2}{n}$', why: 'That is the variance; the SE is its square root.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Estimation · Lesson 1', title: 'From the bell to the hoop', graph: scene },
         {
           type: 'custom',

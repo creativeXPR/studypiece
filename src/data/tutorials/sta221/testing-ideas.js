@@ -61,6 +61,17 @@ export default {
         ['Level of significance α', 'The size of the critical region, usually $5\\%$ or $1\\%$. **Critical value**: its boundary, e.g. $\\pm 1.96$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'An estimator whose darts are centred on the bullseye, $E(\\hat\\theta) = \\theta$, is',
+          options: [
+            { text: 'unbiased', correct: true, why: 'Right on average.' },
+            { text: 'efficient', why: 'Efficient is about a tight group (small variance).' },
+            { text: 'consistent', why: 'Consistent is about closing in as $n$ grows.' },
+            { text: 'sufficient', why: 'Sufficient is about using all the information.' },
+          ],
+        },
         { type: 'custom', widget: 'scene', eyebrow: 'Hypothesis Testing · Lesson 1', title: 'Put the claim on trial', graph: trial },
         {
           type: 'choice',
