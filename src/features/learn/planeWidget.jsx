@@ -193,7 +193,8 @@ export function Plane({ api, config: g }) {
       </div>
       <p className="tut-scene-say" key={step} aria-live="polite"><Inline text={s.say} /></p>
       {s.action && (
-        <button type="button" className="tut-scene-act" onClick={() => { setPresses((p) => p + 1); setHere((h) => h + 1); }}>
+        // Disabled once the step's presses are done, so the picture never runs ahead of the words.
+        <button type="button" className="tut-scene-act" disabled={here >= need} onClick={() => { setPresses((p) => p + 1); setHere((h) => h + 1); }}>
           {s.action.label}
         </button>
       )}

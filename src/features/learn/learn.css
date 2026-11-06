@@ -3474,3 +3474,25 @@ a.learn-les:active {
 .tut-plane-presets { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .tut-plane-goal { margin: 0; padding: 10px 12px; border-radius: 10px; background: var(--primary-soft); font-weight: 600; }
 .tut-plane-goal.met { background: var(--good-soft); color: var(--good); }
+/* Rule for every lesson picture: it must fit the screen together with its caption and buttons,
+   so cap its height by the window (it keeps its shape and centres inside its card). New widget
+   stages should be added to this list. */
+.tut-graph-stage svg,
+.tut-venn svg,
+.tut-build-stage svg,
+.tut-pd-stage svg,
+.tut-avg-stage svg,
+.tut-bell-stage svg,
+.tut-gs-stage svg,
+.tut-vt-stage svg { max-height: max(220px, 34vh); }
+.tut-plane .tut-graph-stage,
+.tut-scene .tut-graph-stage { padding: 8px 10px; }
+.tut-plane-note { margin-top: 4px; }
+.tut-scene-act:disabled { opacity: 0.45; cursor: default; }
+/* Wide screens: labs put their sliders and buttons beside the picture instead of under it,
+   so the whole lab fits the window. Phones keep the stacked layout. */
+@media (min-width: 760px) {
+  .tut-graph { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); column-gap: 16px; row-gap: 10px; align-items: start; }
+  .tut-graph > .tut-graph-stage { grid-column: 1; grid-row: 1 / span 12; }
+  .tut-graph > :not(.tut-graph-stage) { grid-column: 2; }
+}
