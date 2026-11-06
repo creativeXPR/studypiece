@@ -4,6 +4,7 @@ import { Bisection, GraphLab, MeanValue, RiemannSums, Taylor } from './analysisW
 import { FieldLab, SpaceLab } from './vectorWidgets';
 import { Scene } from './sceneWidget';
 import { Calc, MockClock } from './calcWidget';
+import { Plane, PlaneLab } from './planeWidget';
 import { Inline } from './Rich';
 
 // One-off interactive pieces used by `type: 'custom'` screens (`widget: 'venn'`).
@@ -1392,6 +1393,8 @@ export const WIDGETS = {
   taylor: Taylor,
   graph: GraphLab,
   space: SpaceLab,
+  plane: Plane,
+  planeLab: PlaneLab,
   field: FieldLab,
   scene: Scene,
   calc: Calc,
