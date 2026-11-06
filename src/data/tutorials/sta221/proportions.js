@@ -1,6 +1,68 @@
 // STA 221 · Estimation · Lesson 2: the sampling distribution of a sample proportion, the difference
 // of two proportions, a confidence interval for p and the sample size for a proportion.
-import { fmt, normalPdf } from './stat';
+import { N, axis, curvePts } from './campus';
+import { fmt, normalPdf, rng } from './stat';
+
+// 160 of the 400 students own a laptop (p = 0.4).
+const HAS = (() => {
+  const r = rng(404);
+  const idx = Array.from({ length: N }, (_, i) => i);
+  for (let i = N - 1; i > 0; i--) {
+    const j = Math.floor(r() * (i + 1));
+    [idx[i], idx[j]] = [idx[j], idx[i]];
+  }
+  const yes = new Set(idx.slice(0, 160));
+  return Array.from({ length: N }, (_, i) => (yes.has(i) ? 1 : 0));
+})();
+const PX = (v) => 40 + v * 260; // proportion 0–1 across the picture
+const grid = (i) => [22 + 15.5 * (i % 20), 14 + 10 * Math.floor(i / 20)];
+// The two stacks: students at 0 and at 1, 10 across, rising from y = 150.
+const twoStacks = (() => {
+  const seen = [0, 0];
+  return HAS.map((v) => {
+    const k = seen[v]++;
+    return [PX(v) + ((k % 10) - 4.5) * 5, 150 - 4 - Math.floor(k / 10) * 4.4];
+  });
+})();
+const PHATS = Array.from({ length: 200 }, (_, s) => {
+  const r = rng(9000 + s);
+  const pool = Array.from({ length: N }, (_, i) => i);
+  let yes = 0;
+  for (let k = 0; k < 50; k++) yes += HAS[pool.splice(Math.floor(r() * pool.length), 1)[0]];
+  return yes / 50;
+});
+const PHAT_PILE = (() => {
+  const seen = {};
+  return PHATS.map((v) => {
+    const k = (seen[v] = (seen[v] ?? 0) + 1) - 1;
+    return [PX(v), 248 - 3.5 - k * 3.6];
+  });
+})();
+const SEP = Math.sqrt((0.4 * 0.6) / 50);
+
+const scene = {
+  aria: 'Yes and no answers stacked at 0 and 1; their balance point is the proportion; sample proportions pile into a bell',
+  steps: [
+    { say: 'Same 400 students, a new question with only two answers: **do you own a laptop?** Green dots say yes.' },
+    { say: 'Give every "yes" a score of $1$ and every "no" a score of $0$. Stack them: $240$ students at $0$, $160$ at $1$.' },
+    { say: 'Where does this balance? $\\frac{160 \\times 1 + 240 \\times 0}{400} = 0.4$. The mean of the 0s and 1s is just the **proportion** who said yes: $p = 0.4$.' },
+    { say: 'So a **proportion is a mean**. Everything we learned about $\\bar x$ carries straight over to the sample proportion $\\hat p$.' },
+    { say: 'Ask $50$ students, many times. Each sample gives its own $\\hat p$. The values pile into a bell around $p = 0.4$: the **sampling distribution of** $\\hat p$.' },
+    { say: `Its standard error: $\\sqrt{\\frac{pq}{n}} = \\sqrt{\\frac{0.4 \\times 0.6}{50}} \\approx ${fmt(SEP, 3)}$, where $q = 1 - p$. The $pq$ plays the part that $\\sigma^2$ played for means.` },
+  ],
+  draw: (step) => {
+    const shapes = HAS.map((v, i) => ({ id: `p${i}`, dot: step === 0 ? grid(i) : twoStacks[i], r: step === 0 ? 3 : 1.9, kind: v ? 'b' : 's', o: step >= 4 ? 0.35 : 1, delay: step === 1 ? (i % 40) * 15 : 0 }));
+    shapes.push(...axis('top', 150, { at: PX, ticks: [[0, '0 (no)'], [0.4, '0.4'], [1, '1 (yes)']], from: 20, to: 320, o: step >= 1 ? 1 : 0 }));
+    shapes.push({ id: 'pline', vline: PX(0.4), y1: 50, y2: 252, kind: 'd', dash: true, o: step >= 2 ? 1 : 0 });
+    shapes.push({ id: 'plab', text: [PX(0.4), 44], label: 'p = 0.4', kind: 'd', size: 12, o: step >= 2 ? 1 : 0 });
+    PHATS.forEach((v, j) => shapes.push({ id: `h${j}`, dot: PHAT_PILE[j], r: 1.6, kind: 'e', o: step >= 4 ? 1 : 0, delay: step === 4 ? j * 5 : 0 }));
+    shapes.push(...axis('low', 248, { at: PX, ticks: [0.2, 0.4, 0.6].map((v) => [v, String(v)]), from: 20, to: 320, o: step >= 4 ? 1 : 0 }));
+    shapes.push({ id: 'bell', curve: curvePts((v) => 244.5 - 200 * 0.02 * normalPdf(v, 0.4, SEP) * 3.6, 0.15, 0.65, { at: PX }), kind: 'e', o: step >= 5 ? 1 : 0 });
+    shapes.push({ id: 'phl', text: [PX(0.62), 200], label: 'p̂ values', kind: 'e', size: 11, anchor: 'start', o: step >= 4 ? 1 : 0 });
+    return shapes;
+  },
+};
+
 
 const P = 0.4;
 function bars(n) {
@@ -28,18 +90,12 @@ export default {
         ['Two proportions', 'Mean $p_1 - p_2$, SE $\\sqrt{\\dfrac{p_1q_1}{n_1} + \\dfrac{p_2q_2}{n_2}}$; same population: $\\sqrt{pq\\left(\\dfrac1{n_1} + \\dfrac1{n_2}\\right)}$.'],
       ],
       screens: [
-        {
-          type: 'story',
-          eyebrow: 'Estimation · Lesson 2',
-          title: 'A proportion is just a mean of 0s and 1s',
-          body: 'Score each person $1$ if they have the attribute (support a candidate, own a generator) and $0$ if not. The proportion $\\hat p$ is the mean of those scores. So everything about means carries over, with $\\sigma^2$ replaced by $pq$:\n$$\\mu_{\\hat p} = p, \\qquad \\sigma_{\\hat p} = \\sqrt{\\frac{pq}{n}}, \\qquad z = \\frac{\\hat p - p}{\\sqrt{pq/n}}.$$',
-          cta: 'See its shape',
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'Estimation · Lesson 2', title: 'A proportion is a mean in disguise', graph: scene },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
-          title: 'The sample proportion becomes normal too',
+          eyebrow: 'Play with it',
+          title: 'Change the sample size',
           body: 'In a population, $40\\%$ have the attribute. The bars show how $\\hat p$ is spread over all samples of size $n$; the curve is $N\\left(0.4, \\frac{pq}{n}\\right)$.',
           graph: {
             x: [0, 0.8], y: [0, 12], xs: [[0], [0.2], [0.4], [0.6], [0.8]], ys: [],

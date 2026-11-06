@@ -1,6 +1,45 @@
 // STA 221 · Chi-Square · Lesson 2: the χ² goodness-of-fit test (fair die, a stated ratio, and a
 // fitted Poisson with one df lost for the estimated mean).
-import { fmt } from './stat';
+import { areaPts, axis, curvePts } from './campus';
+import { CHI05, chi2Pdf, fmt } from './stat';
+
+const FACE = (f) => 45 + (f - 1) * 50;
+const BY = (n) => 160 - n * 4; // count → y, base 160
+const PARTS = BASE_PARTS();
+function BASE_PARTS() { return [25, 17, 15, 23, 24, 16].map((o) => ((o - 20) ** 2) / 20); }
+const CXG = (v) => 30 + v * 18; // χ² 0–15 in the lower strip
+const c5 = (v) => 250 - 300 * chi2Pdf(v, 5);
+
+const die = {
+  aria: 'Six bars for 120 die rolls against an expected line of 20; the gaps are squared, scaled and added into χ², then placed on the χ² curve',
+  steps: [
+    { say: 'Roll a die $120$ times. If it is fair, each face should come up about $\\frac{120}{6} = 20$ times: the **expected** count (dashed line).' },
+    { say: 'The **observed** counts: $25, 17, 15, 23, 24, 16$. None is exactly $20$; some gap is just luck. The question: are the gaps **too big** for luck?' },
+    { say: 'Measure each gap as $\\frac{(O - E)^2}{E}$: square it so ups and downs don’t cancel, and divide by $E$ so a gap of $5$ counts more when only $20$ were expected than when $200$ were.' },
+    { say: `Add them all up: $\\chi^2 = \\sum\\frac{(O - E)^2}{E} = ${fmt(PARTS.reduce((s, x) => s + x, 0), 1)}$. One number for the total mismatch.` },
+    { say: `How big is "too big"? Compare with the $\\chi^2$ curve for $6 - 1 = 5$ degrees of freedom. The surprising $5\\%$ starts at $${CHI05[5]}$; our $5.0$ sits comfortably in the ordinary part. **No evidence the die is unfair.**` },
+  ],
+  draw: (step) => {
+    const obs = [25, 17, 15, 23, 24, 16];
+    const shapes = obs.map((o, i) => ({ id: `bar${i}`, bar: [FACE(i + 1) - 15, 160], w: 30, h: step >= 1 ? o * 4 : 0, kind: 'a', delay: i * 80 }));
+    shapes.push({ id: 'exp', line: [20, BY(20), 320, BY(20)], kind: 'd', dash: true });
+    shapes.push({ id: 'expl', text: [4, BY(20) + 4], label: 'E', kind: 'd', size: 12, anchor: 'start' });
+    obs.forEach((o, i) => {
+      shapes.push({ id: `gap${i}`, line: [FACE(i + 1), BY(o), FACE(i + 1), BY(20)], kind: 'c', o: step >= 2 ? 1 : 0 });
+      shapes.push({ id: `part${i}`, text: [FACE(i + 1), Math.min(BY(o), BY(20)) - 8], label: step >= 2 ? fmt(PARTS[i], 2) : String(o), kind: step >= 2 ? 'c' : 'a', size: 11, o: step >= 1 ? 1 : 0 });
+      shapes.push({ id: `face${i}`, text: [FACE(i + 1), 174], label: String(i + 1), kind: 's', size: 11 });
+    });
+    shapes.push({ id: 'base', line: [20, 160, 320, 160], kind: 's' });
+    shapes.push({ id: 'sum', text: [170, 196], label: 'χ² = 1.25 + 0.45 + 1.25 + 0.45 + 0.80 + 0.80 = 5.0', kind: 'c', size: 12, o: step === 3 ? 1 : 0 });
+    shapes.push({ id: 'c5', curve: curvePts(c5, 0.1, 15, { at: CXG }), kind: 'e', o: step >= 4 ? 1 : 0 });
+    shapes.push({ id: 't5', area: areaPts(c5, CHI05[5], 15, 250, { at: CXG }), kind: 'd', o: step >= 4 ? 1 : 0 });
+    shapes.push(...axis('cx', 250, { at: CXG, ticks: [0, 5, 10, 15].map((v) => [v, String(v)]), o: step >= 4 ? 0.9 : 0 }));
+    shapes.push({ id: 'mark', vline: CXG(5), y1: 195, y2: 252, kind: 'c', o: step >= 4 ? 1 : 0 });
+    shapes.push({ id: 'markl', text: [CXG(5), 190], label: 'our 5.0', kind: 'c', size: 11, o: step >= 4 ? 1 : 0 });
+    shapes.push({ id: 'crit', text: [CXG(CHI05[5]) + 4, 226], label: '5% beyond 11.07', kind: 'd', size: 10, anchor: 'start', o: step >= 4 ? 1 : 0 });
+    return shapes;
+  },
+};
 
 const BASE = [25, 17, 15, 23, 24, 16];
 const LOAD = [-2, -1, -1, -1, -1, 6];
@@ -31,10 +70,11 @@ export default {
           pollTitle: 'How far is "too far"?',
           pollBody: 'Some mismatch always happens by chance. The $\\chi^2$ statistic measures the **total** mismatch across all faces, and the table says when it is too big to blame on luck.',
         },
+        { type: 'custom', widget: 'scene', eyebrow: 'See it', title: 'Gaps between observed and expected', graph: die },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
+          eyebrow: 'Play with it',
           title: 'Load the die until the test notices',
           body: 'Bars: observed counts for faces $1$–$6$ in $120$ rolls. Dashed line: expected $20$ each. Load the die towards $6$ and watch $\\chi^2$ grow past the table value $\\chi^2_{0.05}(5) = 11.070$.',
           graph: {

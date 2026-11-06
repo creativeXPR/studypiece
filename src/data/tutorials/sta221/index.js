@@ -3,6 +3,7 @@
 // ends with an exam practice lesson. Pictures use GraphLab and SpaceLab (bare mode).
 import meanAndSpread from './mean-and-spread';
 import normalCurve from './normal-curve';
+import populationsAndSamples from './populations-and-samples';
 import samplingMethods from './sampling-methods';
 import samplingDistributions from './sampling-distributions';
 import centralLimit from './central-limit';
@@ -38,7 +39,7 @@ export default {
       hint: 'New to statistics? Start here for the basics.',
       lessons: [meanAndSpread, normalCurve],
     },
-    { n: 1, title: 'Sampling', by: 'Methods, sampling distributions and the Central Limit Theorem', lessons: [samplingMethods, samplingDistributions, centralLimit, examSampling] },
+    { n: 1, title: 'Sampling', by: 'Methods, sampling distributions and the Central Limit Theorem', lessons: [populationsAndSamples, samplingMethods, samplingDistributions, centralLimit, examSampling] },
     { n: 2, title: 'Estimation', by: 'Confidence intervals, proportions and good estimators', lessons: [confidenceIntervals, proportions, goodEstimators, examEstimation] },
     { n: 3, title: 'Hypothesis Testing', by: 'Errors, power and z tests', lessons: [testingIdeas, zTests, examTesting] },
     { n: 4, title: 'Chi-Square', by: 'The distribution, goodness of fit and contingency tables', lessons: [chiSquareDistribution, goodnessOfFit, contingencyTables, examChiSquare] },

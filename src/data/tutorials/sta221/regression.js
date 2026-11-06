@@ -1,6 +1,56 @@
 // STA 221 · Correlation and Regression · Lesson 2: the model y = α + βx + ε, least squares, the
 // normal equations, β and α, the shared numerator with r, prediction, interpolation and extrapolation.
-import { fmt } from './stat';
+import { HOURS, SCORES } from './campus';
+import { fmt, mean } from './stat';
+
+// Ten students with study hours spread from 2 to 20.
+const TEN = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20].map((h) => HOURS.findIndex((x, i) => x === h && i > h * 7));
+const TX = TEN.map((i) => HOURS[i]);
+const TY = TEN.map((i) => SCORES[i]);
+const MX = mean(TX);
+const MY = mean(TY);
+const B_BEST = TX.reduce((s, x, k) => s + (x - MX) * (TY[k] - MY), 0) / TX.reduce((s, x) => s + (x - MX) ** 2, 0);
+const A_BEST = MY - B_BEST * MX;
+const RX = (h) => 34 + h * 13;
+const RY = (s) => 244 - (s - 25) * 2.9;
+const SLOPES = [0, 0, 0, 0, 0.9, B_BEST, B_BEST, B_BEST];
+const lineAt = (b, h) => MY + b * (h - MX);
+const Qof = (b) => TX.reduce((s, x, k) => s + (TY[k] - lineAt(b, x)) ** 2, 0);
+const fit = {
+  aria: 'Ten students on a scatter; a line through the mean point tilts until the squares of the vertical errors have the smallest total area',
+  steps: [
+    { say: 'Ten of our students: hours across, exam score up. We want one straight line to **predict** score from hours.' },
+    { say: 'Start with a line through the **middle of the data**, the point $(\\bar x, \\bar y)$, lying flat for now.' },
+    { say: 'Each student’s **error** (residual) is the vertical gap between their dot and the line: how far off the line’s prediction is.' },
+    { say: `Square each error and draw it as a real **square**. The total area is $Q = \\sum(\\text{error})^2 \\approx ${fmt(Qof(0), 0)}$. The best line is the one that makes this area **smallest**: the method of **least squares**.` },
+    { say: `Tilt the line up a little: the squares shrink. $Q \\approx ${fmt(Qof(0.9), 0)}$.` },
+    { say: `Keep tilting to the best slope: $Q \\approx ${fmt(Qof(B_BEST), 0)}$, the smallest possible. Tilt any further and the squares grow again.` },
+    { say: `This **least squares line** is $\\hat y = \\alpha + \\beta x$ with slope $\\beta \\approx ${fmt(B_BEST, 2)}$ (each extra hour ≈ $${fmt(B_BEST, 1)}$ more marks) and intercept $\\alpha = \\bar y - \\beta\\bar x \\approx ${fmt(A_BEST, 1)}$. It always passes through $(\\bar x, \\bar y)$.` },
+    { say: `Predict inside the data (**interpolation**): at $10$ hours, $\\hat y \\approx ${fmt(A_BEST + 10 * B_BEST, 0)}$. Far outside it (**extrapolation**), say $40$ hours, the line would promise $${fmt(A_BEST + 40 * B_BEST, 0)}$ marks: impossible. Only trust the line where you have data.` },
+  ],
+  draw: (step) => {
+    const b = SLOPES[step];
+    const shapes = Array.from({ length: 41 }, (_, k) => {
+      const h = (k / 40) * 22;
+      return { id: `l${k}`, dot: [RX(h), RY(lineAt(b, h))], r: 1.3, kind: 'a', o: step >= 1 ? 1 : 0 };
+    });
+    TX.forEach((x, k) => {
+      const yp = RY(TY[k]);
+      const yl = RY(lineAt(b, x));
+      const gap = Math.abs(yp - yl);
+      const side = Math.min(gap, 60);
+      shapes.push({ id: `sq${k}`, bar: [RX(x) + side > 334 ? RX(x) - side : RX(x), Math.max(yp, yl)], w: side, h: step >= 3 && step <= 5 ? side : 0, kind: 'c', o: step >= 3 && step <= 5 ? 1 : 0 });
+      shapes.push({ id: `res${k}`, bar: [RX(x) - 0.8, Math.max(yp, yl)], w: 1.6, h: step >= 2 && step <= 5 ? gap : 0, kind: 'd', o: step >= 2 && step <= 5 ? 1 : 0 });
+      shapes.push({ id: `p${k}`, dot: [RX(x), yp], r: 4.5, kind: 'e' });
+    });
+    shapes.push({ id: 'mp', dot: [RX(MX), RY(MY)], r: 5, kind: 'd', o: step >= 1 && step <= 2 ? 1 : 0 });
+    shapes.push({ id: 'xax', line: [28, 244, 330, 244], kind: 's' });
+    [0, 5, 10, 15, 20].forEach((h) => shapes.push({ id: `xt${h}`, text: [RX(h), 256], label: String(h), kind: 's', size: 10 }));
+    shapes.push({ id: 'Q', text: [320, 30], label: step >= 3 && step <= 5 ? `Q ≈ ${fmt(Qof(b), 0)}` : '', kind: 'c', size: 13, anchor: 'end' });
+    shapes.push({ id: 'eq', text: [320, 30], label: step >= 6 ? `ŷ = ${fmt(A_BEST, 1)} + ${fmt(B_BEST, 2)}x` : '', kind: 'a', size: 13, anchor: 'end' });
+    return shapes;
+  },
+};
 
 const X = [2, 3, 5, 6, 8, 9, 10, 13];
 const Y = [40, 48, 55, 58, 66, 72, 75, 86];
@@ -24,17 +74,11 @@ export default {
         ['Through the means', 'The line always passes through $(\\bar x, \\bar y)$.'],
       ],
       screens: [
-        {
-          type: 'story',
-          eyebrow: 'Correlation and Regression · Lesson 2',
-          title: 'From "how closely?" to "by how much?"',
-          body: 'Correlation says how closely two variables follow a line. ==Regression== finds that line, $\\hat y = \\alpha + \\beta x$, so we can **predict** $y$ from $x$.\n\nThe model: $y_i = \\alpha + \\beta x_i + \\varepsilon_i$. The ==least squares== line makes the total squared error\n$$Q = \\sum(y_i - \\alpha - \\beta x_i)^2$$\nas small as possible.',
-          cta: 'Fit it yourself',
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'Correlation and Regression · Lesson 2', title: 'The line with the smallest squares', graph: fit },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
+          eyebrow: 'Play with it',
           title: 'Turn the line to make the squared errors smallest',
           body: 'Hours studied ($x$) and exam score ($y$) for $8$ students. The line pivots about $(\\bar x, \\bar y) = (7, 62.5)$; the dashed lines are the errors. Find the slope that makes $Q$ smallest.',
           graph: {

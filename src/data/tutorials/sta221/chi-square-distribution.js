@@ -1,6 +1,47 @@
 // STA 221 · Chi-Square · Lesson 1: the chi-square distribution, its properties, reading the table,
 // the types of chi-square statistic, the conditions (RICE-5) and the test for a variance.
-import { CHI05, chi2Pdf, fmt, shade } from './stat';
+import { areaPts, axis, curvePts } from './campus';
+import { CHI05, chi2Pdf, fmt, gauss, rng, shade } from './stat';
+
+const ZS = (() => { const r = rng(515); return Array.from({ length: 300 }, () => Array.from({ length: 5 }, () => gauss(r))); })();
+const ZX = (v) => 170 + v * 38;
+const CX = (v) => 20 + v * 20; // χ² from 0 to 15
+// Stack values in bins of width w, three dots across, on the line at `at`, base y = 215.
+function stack(vals, at, w, cols) {
+  const seen = {};
+  return vals.map((v) => {
+    const b = Math.floor(v / w);
+    const k = (seen[b] = (seen[b] ?? 0) + 1) - 1;
+    return [at((b + 0.5) * w) + (cols === 3 ? ((k % 3) - 1) * 3 : 0), 211 - Math.floor(k / cols) * 2.6];
+  });
+}
+const VALS = [ZS.map((z) => z[0]), ZS.map((z) => z[0] ** 2), ZS.map((z) => z[0] ** 2 + z[1] ** 2), ZS.map((z) => z.reduce((s, x) => s + x * x, 0))];
+const POS = [stack(VALS[0], ZX, 0.25, 1), stack(VALS[1], CX, 0.5, 3), stack(VALS[2], CX, 0.5, 1), stack(VALS[3], CX, 0.5, 1)];
+const curve5 = (v) => 213 - 300 * 0.5 * chi2Pdf(v, 5) * 2.6;
+
+const build = {
+  aria: 'Standard normal values squared and added, piling into chi-square shapes for 1, 2 and 5 degrees of freedom',
+  steps: [
+    { say: 'Start from $300$ values of $z$, from the standard normal bell: centred on $0$, as many negative as positive.' },
+    { say: '**Square** every one. Negatives become positive, and small values get even smaller, so the pile crowds against $0$ with a long tail to the right. This is the **chi-square** ($\\chi^2$) distribution with **1 degree of freedom**.' },
+    { say: 'Now **add two** squared values: $z_1^2 + z_2^2$. The pile spreads out to the right. That is $\\chi^2$ with **2 degrees of freedom**.' },
+    { say: 'Add **five**: $z_1^2 + \\cdots + z_5^2$. The hump moves right and the shape becomes rounder: $\\chi^2$ with $5$ degrees of freedom. Its balance point is about $5$.' },
+    { say: 'So: the sum of $\\nu$ squared standard normals is $\\chi^2$ with $\\nu$ degrees of freedom. Built from squares, it is **never negative**, it leans **right**, its mean is $\\nu$ and its variance $2\\nu$.' },
+    { say: `Big values are rare: the last $5\\%$ of the area (the right tail) starts at $${CHI05[5]}$ for $5$ df. That number is what the $\\chi^2$ table gives: $\\chi^2_{0.05}(5) = ${CHI05[5]}$.` },
+  ],
+  draw: (step) => {
+    const j = Math.min(step, 3);
+    const shapes = POS[j].map((p, i) => ({ id: `z${i}`, dot: p, r: 1.4, kind: step >= 1 ? 'e' : 'a', o: VALS[j][i] > 15 ? 0 : 1, delay: (i % 60) * 6 }));
+    shapes.push(...axis('z', 215, { at: ZX, ticks: [-3, -2, -1, 0, 1, 2, 3].map((v) => [v, String(v)]), o: step === 0 ? 1 : 0 }));
+    shapes.push(...axis('c', 215, { at: CX, ticks: [0, 5, 10, 15].map((v) => [v, String(v)]), o: step >= 1 ? 1 : 0 }));
+    shapes.push({ id: 'df', text: [300, 60], label: ['z', 'df = 1', 'df = 2', 'df = 5', 'df = 5', 'df = 5'][step], kind: step ? 'e' : 'a', size: 14, anchor: 'end' });
+    shapes.push({ id: 'curve', curve: curvePts(curve5, 0.1, 15, { at: CX }), kind: 'd', o: step >= 4 ? 1 : 0 });
+    shapes.push({ id: 'mean5', vline: CX(5), y1: 100, y2: 218, kind: 'd', dash: true, o: step === 4 ? 1 : 0 });
+    shapes.push({ id: 'tail', area: areaPts(curve5, CHI05[5], 15, 215, { at: CX }), kind: 'c', o: step >= 5 ? 1 : 0 });
+    shapes.push({ id: 'taill', text: [CX(CHI05[5]) + 4, 180], label: `5% tail from ${CHI05[5]}`, kind: 'c', size: 11, anchor: 'start', o: step >= 5 ? 1 : 0 });
+    return shapes;
+  },
+};
 
 export default {
   id: 'chi-square-distribution',
@@ -17,17 +58,11 @@ export default {
         ['Variance statistic', '$\\chi^2 = \\dfrac{(n - 1)s^2}{\\sigma^2}$ with $\\nu = n - 1$ (normal population).'],
       ],
       screens: [
-        {
-          type: 'story',
-          eyebrow: 'Chi-Square · Lesson 1',
-          title: 'Square some normals and add them up',
-          body: 'If $Z_1, \\dots, Z_\\nu$ are independent standard normal variables, then\n$$\\chi^2 = Z_1^2 + Z_2^2 + \\cdots + Z_\\nu^2$$\nhas a ==chi-square distribution== with $\\nu$ ==degrees of freedom==.\n\nIt shows up in two places: testing a **variance**, and comparing **observed and expected counts**.',
-          cta: 'Change the df',
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'Chi-Square · Lesson 1', title: 'Square some normals and add them up', graph: build },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
+          eyebrow: 'Play with it',
           title: 'A family of curves, one per df',
           body: 'The shaded tail holds $5\\%$ of the area; its left edge is the table value $\\chi^2_{0.05}$. The dashed line is the mean.',
           graph: {

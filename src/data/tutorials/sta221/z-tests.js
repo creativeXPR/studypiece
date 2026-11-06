@@ -1,6 +1,42 @@
 // STA 221 · Hypothesis Testing · Lesson 2: the five-step recipe and the large-sample z tests for one
 // mean, two means, one proportion and two proportions, with p-values.
+import { CLAIM, SE20, XBAR_TEST, areaPts, axis, curvePts, fmt1 } from './campus';
 import { fmt, normalPdf, shade } from './stat';
+
+const ZX = (z) => 170 + z * 36; // z from −4.2 to 4.2 across the picture
+const ZOBS = (XBAR_TEST - CLAIM) / SE20;
+const zc = (z) => 200 - 330 * normalPdf(z);
+const HRS = (z) => fmt1(CLAIM + z * SE20);
+
+const recipe = {
+  aria: 'The five steps of a test drawn on the bell: hypotheses, critical values, the z of our sample, decision and conclusion',
+  steps: [
+    { say: '**Step 1 · Hypotheses.** Same claim, same sample. H₀: $\\mu = 13$ (the claim, always with "="). H₁: $\\mu \\ne 13$ (it is something else, either way).' },
+    { say: '**Step 2 · Level and critical values.** At $\\alpha = 5\\%$, split between two tails: $2.5\\%$ each side, beyond $1.96$ standard errors from $13$.' },
+    { say: `**Step 3 · Test statistic.** Measure our $\\bar x = ${fmt1(XBAR_TEST)}$ in standard errors from the claim: $z = \\dfrac{\\bar x - 13}{\\sigma / \\sqrt n}$. Relabel the ruler in z…` },
+    { say: `…and our sample sits at $z = ${fmt(ZOBS, 2)}$: more than ${['zero', 'one', 'two', 'three', 'four', 'five'][Math.floor(Math.abs(ZOBS))]} standard errors below the claim.` },
+    { say: `**Step 4 · Decision.** $${fmt(ZOBS, 2)} < -1.96$: inside the critical region, so **reject H₀**.` },
+    { say: '**Step 5 · Conclusion in words.** "At the $5\\%$ level, there is evidence that students’ mean study time is **not** $13$ hours a week." Always say it in the words of the question.' },
+    { say: 'If the claim had been "students study **at least** $13$ hours", only a **low** $\\bar x$ would count against it. Then H₁: $\\mu < 13$ and all $5\\%$ goes in the **left** tail: reject if $z < -1.645$.' },
+  ],
+  draw: (step) => {
+    const z = step >= 3;
+    const two = step <= 5;
+    return [
+      { id: 'bell', curve: curvePts(zc, -4.2, 4.2, { at: ZX }), kind: 'a' },
+      { id: 'cl', vline: ZX(0), y1: 52, y2: 204, kind: 'a', dash: true },
+      { id: 'cll', text: [ZX(0), 46], label: 'H₀: μ = 13', kind: 'a', size: 12 },
+      { id: 'tl', area: areaPts(zc, -4.2, two ? -1.96 : -1.645, 200, { at: ZX }), kind: 'd', o: step >= 1 ? 1 : 0 },
+      { id: 'tr', area: areaPts(zc, 1.96, 4.2, 200, { at: ZX }), kind: 'd', o: step >= 1 && two ? 1 : 0 },
+      { id: 'cv', text: [170, 232], label: two ? 'reject if z < −1.96 or z > 1.96' : 'reject if z < −1.645', kind: 'd', size: 11, o: step >= 1 ? 1 : 0 },
+      ...axis('ax', 200, { at: ZX, ticks: [-3, -2, -1, 0, 1, 2, 3].map((v) => [v, z ? String(v) : HRS(v)]) }),
+      { id: 'unit', text: [326, 214], label: z ? 'z' : 'hrs', kind: 's', size: 10 },
+      { id: 'xb', dot: [ZX(Math.max(ZOBS, -4.1)), 196], r: 5.5, kind: 'd', o: step >= 2 && step <= 5 ? 1 : 0 },
+      { id: 'xbl', text: [ZX(Math.max(ZOBS, -4.1)) + 4, 184], label: z ? `z = ${fmt(ZOBS, 2)}` : `x̄ = ${fmt1(XBAR_TEST)}`, kind: 'd', size: 11, anchor: 'start', o: step >= 2 && step <= 5 ? 1 : 0 },
+      { id: 'verdict', text: [170, 22], label: step === 4 ? 'Reject H₀' : step === 5 ? 'Mean study time is not 13 hours' : '', kind: 'd', size: 13, o: step === 4 || step === 5 ? 1 : 0 },
+    ];
+  },
+};
 
 const f = (x) => normalPdf(x);
 const reject = (z, v) => (v === 0 ? Math.abs(z) > 1.96 : v === 1 ? z > 1.645 : z < -1.645);
@@ -19,17 +55,11 @@ export default {
         ['p-value', 'The chance, if H₀ were true, of a result at least as extreme as the one seen. Reject H₀ when p-value $< \\alpha$.'],
       ],
       screens: [
-        {
-          type: 'story',
-          eyebrow: 'Hypothesis Testing · Lesson 2',
-          title: 'One recipe for every test in this course',
-          body: '**1 · Hypotheses.** H₀ (with "$=$") and H₁.\n**2 · Level and critical value** from the table.\n**3 · Test statistic** from the data.\n**4 · Decision:** in the critical region? Reject H₀. Otherwise accept it.\n**5 · Conclusion** in the words of the question.\n\nThe same five steps work for $z$ tests here, and later for $\\chi^2$ and ANOVA. Every statistic has the same shape:\n$$\\frac{\\text{observed} - \\text{expected}}{\\text{standard error}}.$$',
-          cta: 'Try the decision',
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'Hypothesis Testing · Lesson 2', title: 'The five steps, on the bell', graph: recipe },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
+          eyebrow: 'Play with it',
           title: 'Is the test statistic in the critical region?',
           body: 'The shaded tails are the $5\\%$ critical region. Move the observed $z$ (the dot). Switch between two-tailed and one-tailed tests.',
           graph: {

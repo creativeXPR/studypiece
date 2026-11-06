@@ -1,15 +1,73 @@
 // STA 221 · Estimation · Lesson 3: point and interval estimation, unbiasedness (x̄, and s² with
 // n − 1), consistency, efficiency and relative efficiency, the MVUE and the Cramér–Rao bound.
+import { MU, X, axis, fmt1, mean } from './campus';
 import { gauss, rng } from './stat';
 
-const DARTS = (() => { const r = rng(88); return Array.from({ length: 18 }, () => [gauss(r), gauss(r)]); })();
-const KINDS = [
-  { b: [0, 0], s: 0.35, say: '**Unbiased and efficient:** centred on the bullseye and tightly grouped. The best estimator.' },
-  { b: [0, 0], s: 1.1, say: '**Unbiased but not efficient:** right on average, but widely scattered (large variance).' },
-  { b: [1.5, 0.9], s: 0.35, say: '**Biased:** tightly grouped but centred in the wrong place. $E(\\hat\\theta) \\ne \\theta$.' },
-  { b: [1.5, 0.9], s: 1.1, say: '**Biased and inefficient:** off-centre **and** scattered. The worst of both.' },
+// Dartboard in picture coordinates, centred at (170, 112).
+const DART = (() => { const r = rng(88); return Array.from({ length: 16 }, () => [gauss(r), gauss(r)]); })();
+const DART2 = (() => { const r = rng(91); return Array.from({ length: 16 }, () => [gauss(r), gauss(r)]); })();
+const ring = (rad) => Array.from({ length: 61 }, (_, i) => [170 + rad * Math.cos((i / 60) * 2 * Math.PI), 112 + rad * Math.sin((i / 60) * 2 * Math.PI)]);
+// [centre shift x, y, spread] of the red darts, and of the second (green) set, for each step.
+const SETS = [
+  [[0, 0, 0], null],
+  [[0, 0, 22], null],
+  [[46, -30, 16], null],
+  [[0, 0, 42], [0, 0, 12]],
+  [[0, 0, 42], [0, 0, 6]],
+  [[0, 0, 42], [0, 0, 12]],
 ];
-const ring = (rad) => (t) => [rad * Math.cos(t), rad * Math.sin(t), 0];
+const darts = {
+  aria: 'A dartboard: the bullseye is the true value, each dart an estimate from one sample',
+  steps: [
+    { say: 'Think of the true value of the parameter, $\\theta$, as the **bullseye**. Every sample we take gives one estimate: one **dart**.' },
+    { say: '**Unbiased:** the darts land **centred** on the bullseye. Any one dart may miss, but on average they hit it: $E(\\hat\\theta) = \\theta$.' },
+    { say: '**Biased:** the darts cluster around the wrong spot. However many you throw, the average is off: $E(\\hat\\theta) \\ne \\theta$. The gap is the **bias**.' },
+    { say: '**Efficient:** two unbiased estimators, both centred. The green one is **tightly grouped**, the red one scattered. Smaller variance = more efficient. Pick green.' },
+    { say: '**Consistent:** use bigger samples and the darts close in on the bullseye. As $n$ grows, the estimator gets as close to $\\theta$ as we like (for $\\bar X$: variance $\\frac{\\sigma^2}{n} \\to 0$).' },
+    { say: '**Sufficient:** it uses **all** the information in the sample. $\\bar X$ uses every student (green); using only the first student $X_1$ (red) throws information away, so its darts scatter more.' },
+  ],
+  draw: (step) => {
+    const [a, b] = SETS[step];
+    const shapes = [30, 60, 90].map((r) => ({ id: `ring${r}`, curve: ring(r), kind: 's' }));
+    shapes.push({ id: 'bull', dot: [170, 112], r: 5, kind: 'c' }, { id: 'theta', text: [184, 104], label: 'θ', kind: 'c', size: 14 });
+    DART.forEach(([x, y], i) => shapes.push({ id: `d${i}`, dot: [170 + a[0] + a[2] * x, 112 + a[1] + a[2] * y], r: 3.5, kind: 'd', o: step >= 1 ? 1 : 0, delay: i * 30 }));
+    DART2.forEach(([x, y], i) => shapes.push({ id: `g${i}`, dot: b ? [170 + b[2] * x, 112 + b[2] * y] : [170, 112], r: 3.5, kind: 'b', o: b ? 1 : 0, delay: i * 30 }));
+    shapes.push({ id: 'cap', text: [170, 232], label: ['', 'unbiased', 'biased', 'red: wide · green: tight (efficient)', 'red: small n · green: big n', 'green: x̄ (all data) · red: X₁ only'][step], kind: 'a', size: 12 });
+    return shapes;
+  },
+};
+
+// Why n − 1: five students' hours, squares measured from μ and from their own mean x̄.
+const FIVE = [3, 10, 7, 14, 5];
+const XB = mean(FIVE);
+const SQ_MU = FIVE.reduce((s, v) => s + (v - MU) ** 2, 0);
+const SQ_XB = FIVE.reduce((s, v) => s + (v - XB) ** 2, 0);
+const squares = (centre, kind, on, tag) => FIVE.map((v, i) => {
+  const d = Math.abs(v - centre) * 10;
+  return { id: `${tag}${i}`, bar: [Math.min(X(centre), X(v)), 225], w: d, h: on ? d : 0, kind, o: on ? 1 : 0, delay: i * 90 };
+});
+const nMinus1 = {
+  aria: 'Five values with squares drawn to the true mean and to their own mean; the squares to their own mean are smaller',
+  steps: [
+    { say: `Five of our students: $3, 10, 7, 14, 5$ hours. The true population mean is $\\mu = ${fmt1(MU)}$ (blue). Their own sample mean is $\\bar x = ${fmt1(XB)}$ (red).` },
+    { say: `The spread we **want** is measured from the true centre $\\mu$. Draw each student’s squared distance from $\\mu$ as a box. Total area: $${fmt1(SQ_MU)}$.` },
+    { say: `But we don’t know $\\mu$, so we measure from $\\bar x$ instead. Total area: only $${fmt1(SQ_XB)}$. **Smaller!**` },
+    { say: 'This always happens: $\\bar x$ is worked out **from these very values**, so it sits right in their middle, and the boxes measured to it are as small as boxes can be. Measured from the true $\\mu$, they are bigger.' },
+    { say: 'So $\\frac1n\\sum(x - \\bar x)^2$ comes out **too small** on average: it is **biased**. Dividing by a slightly smaller number, $n - 1$, makes it bigger by exactly the right amount: $s^2 = \\frac{1}{n - 1}\\sum(x - \\bar x)^2$ is unbiased.' },
+  ],
+  draw: (step) => [
+    ...squares(MU, 'a', step === 1, 'm'),
+    ...squares(XB, 'd', step >= 2, 'x'),
+    ...FIVE.map((v, i) => ({ id: `v${i}`, dot: [X(v), 221], r: 5, kind: 's' })),
+    ...axis('ax', 225),
+    { id: 'mu', vline: X(MU), y1: 70, y2: 229, kind: 'a', dash: true },
+    { id: 'mul', text: [X(MU) + 4, 64], label: `μ = ${fmt1(MU)}`, kind: 'a', size: 12, anchor: 'start' },
+    { id: 'xb', vline: X(XB), y1: 90, y2: 229, kind: 'd' },
+    { id: 'xbl', text: [X(XB) - 4, 84], label: `x̄ = ${fmt1(XB)}`, kind: 'd', size: 12, anchor: 'end' },
+    { id: 'tot', text: [300, 40], label: step === 1 ? `total ≈ ${fmt1(SQ_MU)}` : step >= 2 ? `total ≈ ${fmt1(SQ_XB)}` : '', kind: step === 1 ? 'a' : 'd', size: 13, anchor: 'end', o: step >= 1 ? 1 : 0 },
+  ],
+};
+
 
 export default {
   id: 'good-estimators',
@@ -36,31 +94,7 @@ export default {
           body: '==Estimation== uses a statistic from a sample to estimate a population parameter. A rule such as $\\hat\\theta = \\frac1n(X_1 + \\cdots + X_n) = \\bar X$ is an **estimator**; since it depends on a random sample, it is itself a random variable. The number it gives for one sample, say $25$, is the **estimate**.\n\nSome rules are better than others. A good estimator is **unbiased**, **efficient** and **consistent**.',
           cta: 'Throw some darts',
         },
-        {
-          type: 'custom',
-          widget: 'space',
-          eyebrow: 'See it',
-          title: 'The dartboard',
-          body: 'The bullseye is the parameter $\\theta$; each dart is the estimate from one sample.',
-          graph: {
-            R: 3.6, bare: true,
-            views: ['Unbiased, tight', 'Unbiased, wide', 'Biased, tight', 'Biased, wide'],
-            draw: (P, v) => {
-              const { b, s } = KINDS[v];
-              return [
-                { curve: ring(3), from: 0, to: 2 * Math.PI, kind: 's' },
-                { curve: ring(2), from: 0, to: 2 * Math.PI, kind: 's' },
-                { curve: ring(1), from: 0, to: 2 * Math.PI, kind: 's' },
-                { pt: [0, 0, 0], kind: 'c', label: 'θ' },
-                ...DARTS.map(([x, y]) => ({ pt: [b[0] + s * x, b[1] + s * y, 0], kind: 'd' })),
-              ];
-            },
-            read: (P, v) => KINDS[v].say,
-            need: 4,
-            action: 'Look at all four',
-          },
-          asides: [{ label: 'Memory trick', text: '**Unbiased** = centred on the bullseye. **Efficient** = tightly grouped. **Consistent** = more darts (bigger $n$) close in on the bullseye.' }],
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'See it', title: 'The dartboard', graph: darts },
         {
           type: 'story',
           eyebrow: 'Proof',
@@ -127,9 +161,10 @@ export default {
         ['Cramér–Rao bound', '$\\text{Var}(\\hat\\theta) \\ge \\dfrac{1}{nI(\\theta)}$, $I(\\theta) = -E\\left[\\dfrac{\\partial^2}{\\partial\\theta^2}\\ln f(X; \\theta)\\right]$. An unbiased estimator that reaches it is the MVUE.'],
       ],
       screens: [
+        { type: 'custom', widget: 'scene', eyebrow: 'See it', title: 'Why the sample variance divides by n − 1', graph: nMinus1 },
         {
           type: 'story',
-          eyebrow: 'Proof',
+          eyebrow: 'The algebra behind the picture',
           title: 'Dividing by $n$ underestimates $\\sigma^2$',
           body: 'Write $X_i - \\bar X = (X_i - \\mu) - (\\bar X - \\mu)$. Squaring and adding (using $\\sum(X_i - \\mu) = n(\\bar X - \\mu)$):\n$$\\sum(X_i - \\bar X)^2 = \\sum(X_i - \\mu)^2 - n(\\bar X - \\mu)^2.$$\nTake expectations, with $E(X_i - \\mu)^2 = \\sigma^2$ and $E(\\bar X - \\mu)^2 = \\frac{\\sigma^2}{n}$:\n$$E\\left[\\sum(X_i - \\bar X)^2\\right] = n\\sigma^2 - n\\cdot\\frac{\\sigma^2}{n} = (n - 1)\\sigma^2.$$\nSo dividing by $n$ gives $\\frac{n-1}{n}\\sigma^2$ (biased); dividing by $n - 1$ gives exactly $\\sigma^2$. $\\blacksquare$',
           asides: [{ label: 'Note', text: 'Why it happens: $\\bar x$ sits in the middle of the data, so the data always look a little closer to $\\bar x$ than to the true $\\mu$. Dividing by $n - 1$ makes up for that.' }],

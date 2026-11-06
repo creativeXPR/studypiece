@@ -1,38 +1,99 @@
-// STA 221 · Statistics from Zero · Lesson 2: the normal curve, z scores and reading the normal
-// table (Φ), with the three rules for left, right and middle areas.
+// STA 221 · Statistics from Zero · Lesson 2: a pile of heights becomes the normal curve, areas are
+// proportions, re-labelling the ruler in standard deviations gives z scores, and the table Φ(z).
+import { areaPts, axis, curvePts } from './campus';
 import { Phi, fmt, normalPdf, shade } from './stat';
+
+// Heights of 1,000 adults: mean 165 cm, SD 6 cm, in 2 cm bins from 147 to 183.
+const MU = 165;
+const SD = 6;
+const H = (v) => 20 + ((v - 147) / 36) * 300;
+const BINS = Array.from({ length: 18 }, (_, i) => 147 + 2 * i);
+const count = (b) => 1000 * (Phi((b + 2 - MU) / SD) - Phi((b - MU) / SD));
+const BASE = 200;
+const Y = (c) => BASE - c * 1.05; // 1 person = 1.05 px of height
+const dens = (v) => Y(1000 * 2 * normalPdf(v, MU, SD));
+const ZT = [-3, -2, -1, 0, 1, 2, 3];
+
+const scene = {
+  aria: 'A histogram of heights becoming the normal curve, then the ruler relabelled in z scores',
+  steps: [
+    { say: 'We measure the heights of **1,000 adults** and stack them in $2$ cm groups, just like the study-hours pile.' },
+    { say: 'Look at the shape: a **symmetric hill**. Most people are near the middle; the further from the middle, the fewer people there are, on both sides equally.' },
+    { say: 'Smooth off the steps and you get a famous curve: the **normal curve**. Heights, exam marks, measurement errors and many averages all pile up this way.' },
+    { say: `The pile has a centre, the mean $\\mu = ${MU}$ cm, and a spread, the standard deviation $\\sigma = ${SD}$ cm.` },
+    { say: `**Areas are proportions.** The shaded part, everyone taller than $171$ cm, holds about $${fmt(100 * (1 - Phi(1)), 1)}\\%$ of the people. The whole area is $1$ ($100\\%$).` },
+    { say: 'Now a clever trick. Re-label the ruler in **standard deviations from the mean**: $165 \\to 0$, $171 \\to 1$, $159 \\to -1$, and so on.' },
+    { say: 'These new numbers are **z scores**: $z = \\dfrac{x - \\mu}{\\sigma}$, "how many standard deviations from the mean". $171$ cm is $1$ SD above, so $z = 1$.' },
+    { say: `Measured in z, **every** normal curve looks exactly the same. So one table does for all of them: it gives $\\Phi(z)$, the area to the **left** of $z$. Here $\\Phi(1) = ${Phi(1).toFixed(4)}$.` },
+  ],
+  draw: (step) => {
+    const shapes = BINS.map((b, i) => ({ id: `b${i}`, bar: [H(b) + 0.5, BASE], w: H(b + 2) - H(b) - 1, h: step >= 0 ? count(b) * 1.05 : 0, kind: 'a', o: step >= 2 ? 0.35 : 1, delay: i * 40 }));
+    const z = step >= 5;
+    shapes.push(...axis('h', BASE, { at: z ? (t) => H(MU + SD * t) : H, ticks: z ? ZT.map((t) => [t, String(t)]) : [150, 155, 160, 165, 170, 175, 180].map((v) => [v, String(v)]) }));
+    shapes.push({ id: 'zname', text: [330, BASE + 14], label: z ? 'z' : 'cm', kind: 's', size: 10 });
+    shapes.push({ id: 'curve', curve: curvePts(dens, 147, 183, { at: H }), kind: 'a', o: step >= 2 ? 1 : 0 });
+    shapes.push({ id: 'mu', vline: H(MU), y1: 40, y2: BASE, kind: 'd', dash: true, o: step >= 3 ? 1 : 0 });
+    shapes.push({ id: 'mulab', text: [H(MU), 34], label: z ? 'z = 0' : 'μ = 165', kind: 'd', size: 12, o: step >= 3 ? 1 : 0 });
+    shapes.push({ id: 'sdarrow', line: [H(MU), 120, H(MU + SD), 120], kind: 'c', o: step >= 3 && step <= 6 ? 1 : 0 });
+    shapes.push({ id: 'sdlab', text: [H(MU + SD / 2), 113], label: 'σ = 6', kind: 'c', size: 11, o: step >= 3 && step <= 6 ? 1 : 0 });
+    shapes.push({ id: 'tail', area: areaPts(dens, 171, 183, BASE, { at: H }), kind: 'c', o: step === 4 || step === 6 ? 1 : 0 });
+    shapes.push({ id: 'taillab', text: [H(177), 150], label: `${fmt(100 * (1 - Phi(1)), 1)}%`, kind: 'c', size: 13, o: step === 4 ? 1 : 0 });
+    shapes.push({ id: 'left', area: areaPts(dens, 147, 171, BASE, { at: H }), kind: 'b', o: step >= 7 ? 1 : 0 });
+    shapes.push({ id: 'leftlab', text: [H(160), 150], label: `Φ(1) = ${Phi(1).toFixed(4)}`, kind: 'b', size: 13, o: step >= 7 ? 1 : 0 });
+    return shapes;
+  },
+};
 
 const f = (x) => normalPdf(x);
 
 export default {
   id: 'normal-curve',
   title: 'The normal curve and z scores',
-  covers: 'The bell-shaped normal curve, z = (x − μ)/σ, the table Φ(z), left, right and middle areas, Φ(−a) = 1 − Φ(a), the 68–95–99.7 rule and 1.96',
-  minutes: 13,
+  covers: 'A pile of measurements becoming the normal curve, areas as proportions, z = (x − μ)/σ, the table Φ(z), left, right and middle areas, Φ(−a) = 1 − Φ(a), and the landmark 1.96',
+  minutes: 15,
   sections: [
     {
-      name: 'z scores and areas',
+      name: 'From a pile to a curve',
       terms: [
-        ['Normal curve', 'The bell-shaped curve: symmetric about the mean $\\mu$, total area $1$, spread set by $\\sigma$.'],
+        ['Normal curve', 'The symmetric, bell-shaped pile: centred on the mean $\\mu$, spread set by $\\sigma$, total area $1$.'],
+        ['Area = proportion', 'The area under the curve between two values is the fraction of the population between them.'],
         ['z score', '$z = \\dfrac{x - \\mu}{\\sigma}$: how many standard deviations $x$ is from the mean.'],
         ['Φ(z)', '$P(Z \\le z)$, the area to the **left** of $z$, read from the normal table.'],
+      ],
+      screens: [
+        { type: 'custom', widget: 'scene', eyebrow: 'Statistics from Zero · Lesson 2', title: 'A hill made of people', graph: scene },
+        {
+          type: 'choice',
+          eyebrow: 'Think about it',
+          prompt: 'On the same curve, what fraction of people are **shorter** than $165$ cm (the mean)?',
+          options: [
+            { text: 'Half: $0.5$', correct: true, why: 'The curve is symmetric about the mean, so the area to the left of the middle is exactly half. In z terms, $\\Phi(0) = 0.5$.' },
+            { text: 'All of them', why: 'Half the hill lies to the right of the mean.' },
+            { text: '$0.8413$', why: 'That is the area left of $171$ cm ($z = 1$).' },
+            { text: 'It depends on $\\sigma$', why: 'Whatever the spread, the mean cuts a symmetric hill in half.' },
+          ],
+        },
+        {
+          type: 'bridge',
+          title: 'The curve: set.',
+          recap: ['Areas under the curve are proportions.', 'z measures distance from the mean in SDs.', 'The table gives the **left** area $\\Phi(z)$.'],
+          why: 'Now use the table for any area you need.',
+        },
+      ],
+    },
+    {
+      name: 'Reading areas',
+      terms: [
         ['Three rules', '$P(Z > a) = 1 - \\Phi(a)$; $P(a < Z < b) = \\Phi(b) - \\Phi(a)$; $\\Phi(-a) = 1 - \\Phi(a)$.'],
         ['Landmarks', 'About $68\\%$ lies within $1\\sigma$, $95\\%$ within $1.96\\sigma$, $99.7\\%$ within $3\\sigma$.'],
       ],
       screens: [
         {
-          type: 'story',
-          eyebrow: 'Statistics from Zero · Lesson 2',
-          title: 'The shape almost everything takes',
-          body: 'Heights, exam marks, the weights of bottles off a machine: plot enough of them and you get a ==normal curve==, a symmetric bell centred on the mean $\\mu$.\n\nAreas under the curve are **probabilities**, and the whole area is $1$.\n\nTo use one table for every normal curve, convert to a ==z score==:\n$$z = \\frac{x - \\mu}{\\sigma}.$$\n$z = 2$ means "two standard deviations above the mean".',
-          cta: 'Shade some areas',
-        },
-        {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
-          title: 'Areas under the standard normal curve',
-          body: 'Move $z$ and switch between the three kinds of area. The table gives the **left** area $\\Phi(z)$; the other two come from it.',
+          eyebrow: 'Play with it',
+          title: 'Left, right and middle areas',
+          body: 'Move $z$ and switch between the three kinds of area. The table gives the **left** area; the other two come from it.',
           graph: {
             x: [-3.6, 3.6], y: [0, 0.45], xs: [[-3], [-2], [-1], [0], [1], [2], [3]], ys: [],
             param: { label: '$z$', min: -3, max: 3, step: 0.1, value: 1 },
@@ -62,8 +123,8 @@ export default {
           eyebrow: 'Your turn',
           prompt: 'Using $\\Phi(1.5) = 0.9332$, find $P(Z < -1.5)$.',
           options: [
-            { text: '$0.0668$', correct: true, why: '$\\Phi(-1.5) = 1 - \\Phi(1.5) = 0.0668$.' },
-            { text: '$0.9332$', why: 'That is the area left of $+1.5$. The curve is symmetric: left of $-1.5$ is the small tail.' },
+            { text: '$0.0668$', correct: true, why: '$\\Phi(-1.5) = 1 - \\Phi(1.5) = 0.0668$: the small left tail mirrors the small right tail.' },
+            { text: '$0.9332$', why: 'That is the area left of $+1.5$. Left of $-1.5$ is the small tail.' },
             { text: '$-0.9332$', why: 'Probabilities are never negative.' },
             { text: '$0.8664$', why: 'That is the middle area $2\\Phi(1.5) - 1$.' },
           ],
@@ -79,11 +140,7 @@ export default {
             { text: '$0.0456$', why: 'That is both tails, beyond $\\pm 2$.' },
           ],
         },
-        {
-          type: 'finish',
-          title: 'The normal curve: done.',
-          body: 'Key terms, ready for revision:',
-        },
+        { type: 'finish', title: 'The normal curve: done.', body: 'Key terms, ready for revision:' },
       ],
     },
   ],

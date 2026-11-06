@@ -1,6 +1,67 @@
-// STA 221 · Sampling · Lesson 3: the three properties of the sample mean, the Central Limit Theorem,
-// probabilities about x̄ (with the finite population correction), and the difference of two means.
+// STA 221 · Sampling · Lesson 4: the bell appearing in the x̄ pile as n grows (the Central Limit
+// Theorem), the three properties of x̄, probabilities with z (and the fpc), and the difference of two
+// means shown as two piles subtracted.
+import { HOURS, MU, SIGMA, X, axis, curvePts, fmt1, mean, pile, sampleOf } from './campus';
 import { fmt, gauss, normalPdf, rng } from './stat';
+
+const NS = [20, 2, 5, 30];
+const MEANS_BY_N = NS.map((n, j) => Array.from({ length: 300 }, (_, k) => mean(sampleOf(5000 + 1000 * j + k, n).map((i) => HOURS[i]))));
+const PILES = MEANS_BY_N.map((ms) => pile(ms, 245, { cols: 1, step: 2.4, width: 0.25 }));
+const TOP = pile(HOURS, 92, { step: 2.4, gap: 2.4 });
+const bell = (n) => curvePts((v) => 245 - 3.5 - 300 * 0.25 * normalPdf(v, MU, SIGMA / Math.sqrt(n)) * 2.4, 1, 26);
+
+const clt = {
+  aria: 'The lopsided pile of student hours on top; below, the pile of sample means becomes a symmetric bell as the sample size grows',
+  steps: [
+    { say: 'Look at the students (top): the pile is **lopsided**, with a long tail of hard workers on the right. Yet the pile of $\\bar x$ values from samples of $20$ (bottom) looked like a symmetric hill. Coincidence?' },
+    { say: 'Try **tiny** samples: just $n = 2$ students each. Now the $\\bar x$ pile is wide and still lopsided, a lot like the students themselves.' },
+    { say: 'Samples of $n = 5$: the pile is narrower, and the lopsided tail is **shrinking**.' },
+    { say: 'Samples of $n = 30$: a narrow, **symmetric bell**. The lopsidedness has averaged away.' },
+    { say: 'Lay a normal curve with centre $\\mu$ and spread $\\frac{\\sigma}{\\sqrt n}$ over it: a near-perfect fit. This is the **Central Limit Theorem**.' },
+    { say: '**The Central Limit Theorem:** for large $n$ (about $30$ or more), the sample mean is approximately **normal**, with mean $\\mu$ and standard error $\\frac{\\sigma}{\\sqrt n}$, **whatever** shape the population has. So any question about $\\bar x$ becomes a normal-curve question.' },
+  ],
+  draw: (step) => {
+    const j = [0, 1, 2, 3, 3, 3][step];
+    const shapes = HOURS.map((h, i) => ({ id: `p${i}`, dot: TOP[i], r: 1.4, kind: 'a', o: 0.6 }));
+    shapes.push(...axis('top', 92));
+    shapes.push({ id: 'mu', vline: X(MU), y1: 18, y2: 248, kind: 'a', dash: true });
+    shapes.push({ id: 'mul', text: [X(MU), 12], label: `μ = ${fmt1(MU)}`, kind: 'a', size: 11 });
+    MEANS_BY_N[j].forEach((m, k) => shapes.push({ id: `m${k}`, dot: PILES[j][k], r: 1.4, kind: 'e', delay: k * 2 }));
+    shapes.push(...axis('low', 245));
+    shapes.push({ id: 'nlab', text: [300, 140], label: `n = ${NS[j]}`, kind: 'e', size: 14, anchor: 'end' });
+    shapes.push({ id: 'bell', curve: bell(30), kind: 'd', o: step >= 4 ? 1 : 0 });
+    shapes.push({ id: 'belllab', text: [X(MU) + 34, 160], label: 'normal curve', kind: 'd', size: 11, anchor: 'start', o: step >= 4 ? 1 : 0 });
+    return shapes;
+  },
+};
+
+// Bulbs: x̄_A ~ N(1200, 90²/50), x̄_B ~ N(1150, 120²/60), difference ~ N(50, 402).
+const SA = 90 / Math.sqrt(50);
+const SB = 120 / Math.sqrt(60);
+const SD = Math.sqrt(SA * SA + SB * SB);
+const HX = (v) => 20 + ((v - 1080) / 160) * 300; // hours 1080–1240 for the two means
+const DX = (v) => 20 + ((v + 30) / 160) * 300; // difference −30 … 130
+const hump = (mu, sd, base, at, k = 1800) => curvePts((v) => base - k * normalPdf(v, mu, sd), mu - 3.6 * sd, mu + 3.6 * sd, { at });
+const diff = {
+  aria: 'Two bell curves for the mean bulb lifetimes of brands A and B, and a wider bell for their difference',
+  steps: [
+    { say: 'Brand A bulbs last $1{,}200$ hours on average. Test $50$ of them: their mean $\\bar x_A$ wobbles around $1{,}200$, in a bell with SE $\\frac{90}{\\sqrt{50}} \\approx 12.7$.' },
+    { say: 'Brand B: mean $1{,}150$ hours. Test $60$: $\\bar x_B$ wobbles around $1{,}150$, SE $\\frac{120}{\\sqrt{60}} \\approx 15.5$.' },
+    { say: 'Now ask about the **gap** $\\bar x_A - \\bar x_B$. Each time we test both brands we get one gap. Its bell is centred at $1200 - 1150 = 50$.' },
+    { say: `Notice the gap’s bell is **wider** than either: $\\sqrt{12.7^2 + 15.5^2} \\approx ${fmt(SD)}$. Two wobbly numbers make a wobblier difference: **variances add**, even when you subtract.` },
+  ],
+  draw: (step) => [
+    { id: 'a', curve: hump(1200, SA, 100, HX, 2200), kind: 'a' },
+    { id: 'al', text: [HX(1200), 24], label: 'x̄A', kind: 'a', size: 12 },
+    { id: 'b', curve: hump(1150, SB, 100, HX, 2200), kind: 'b', o: step >= 1 ? 1 : 0 },
+    { id: 'bl', text: [HX(1150), 36], label: 'x̄B', kind: 'b', size: 12, o: step >= 1 ? 1 : 0 },
+    ...axis('h', 100, { at: HX, ticks: [1100, 1150, 1200].map((v) => [v, String(v)]) }),
+    { id: 'd', curve: hump(50, SD, 225, DX, 4200), kind: 'e', o: step >= 2 ? 1 : 0 },
+    { id: 'dl', text: [DX(50), 132], label: 'x̄A − x̄B', kind: 'e', size: 12, o: step >= 2 ? 1 : 0 },
+    ...axis('d', 225, { at: DX, ticks: [0, 50, 100].map((v) => [v, String(v)]), o: step >= 2 ? 1 : 0 }),
+    { id: 'sdl', text: [DX(50 + SD) + 4, 180], label: `SE ≈ ${fmt(SD)}`, kind: 'e', size: 11, anchor: 'start', o: step >= 3 ? 1 : 0 },
+  ],
+};
 
 const POPS = [
   { draw: (r) => 10 * r(), mu: 5, sd: 10 / Math.sqrt(12), name: 'flat' },
@@ -30,7 +91,7 @@ export default {
   id: 'central-limit',
   title: 'The Central Limit Theorem',
   covers: 'Centre, spread and shape of the sampling distribution of x̄, σ/√n, the finite population correction, the Central Limit Theorem, probabilities about x̄ with z, the difference of two means',
-  minutes: 18,
+  minutes: 20,
   sections: [
     {
       name: 'The sample mean',
@@ -44,17 +105,18 @@ export default {
         {
           type: 'choice',
           poll: 'cltGuess',
-          eyebrow: 'Sampling · Lesson 3',
+          eyebrow: 'Sampling · Lesson 4',
           prompt: 'Waiting times are very lopsided: most short, a few very long. If you average the waits of $30$ random customers, again and again, what shape will those averages make?',
           options: [{ text: 'The same lopsided shape' }, { text: 'A symmetric bell' }, { text: 'A flat shape' }],
           pollTitle: 'A bell, almost every time.',
           pollBody: 'That is the **Central Limit Theorem**. See it happen on the next screen.',
         },
+        { type: 'custom', widget: 'scene', eyebrow: 'See it', title: 'The bell appears', graph: clt },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
-          title: 'Averages become normal',
+          eyebrow: 'Play with it',
+          title: 'Try it on other shapes',
           body: 'Each bar chart shows $1{,}500$ sample means. At $n = 1$ you see the population itself. Raise $n$: whatever the starting shape, the means pile into a bell (the curve is $N(\\mu, \\sigma^2/n)$) that gets narrower.',
           graph: {
             x: [0, 10], y: [0, 1.15], xs: [[0], [2], [4], [5], [6], [8], [10]], ys: [],
@@ -114,6 +176,7 @@ export default {
         ['Variances add', 'Subtracting two uncertain values never makes the result less uncertain: always $+$ under the root.'],
       ],
       screens: [
+        { type: 'custom', widget: 'scene', eyebrow: 'See it', title: 'Two means, one gap', graph: diff },
         {
           type: 'story',
           eyebrow: 'Worked example',

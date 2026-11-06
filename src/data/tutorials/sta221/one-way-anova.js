@@ -8,6 +8,43 @@ const NOISE = [1, 3];
 const groupMean = (j, s) => 50 + (j - 1) * s;
 const F = (s, v) => (2 * s * s) / (NOISE[v] * NOISE[v]);
 
+// The fertiliser example: yields of 12 plots under three fertilisers.
+const YIELDS = [[20, 24, 22, 26], [28, 30, 27, 31, 29], [23, 25, 24]];
+const GX = [80, 170, 260];
+const YY = (v) => 236 - (v - 17) * 12;
+const GMEAN = [23, 29, 24];
+const GRAND = 25.75;
+const jit = (k) => [-14, -5, 4, 13, 22][k] - 4;
+const groups = {
+  aria: 'Twelve plot yields in three fertiliser groups, with the grand mean, group means, and arrows for between-group and within-group variation',
+  steps: [
+    { say: 'Twelve plots of land, three fertilisers (A, B, C). Each dot is one plot’s yield in kg. Do the fertilisers give the **same** mean yield?' },
+    { say: `First, the mean of **all 12** yields: the **grand mean**, $${GRAND}$ (dashed line).` },
+    { say: 'Next, each fertiliser’s own mean: $23$, $29$ and $24$ (short lines).' },
+    { say: '**Between-group variation:** how far each group mean sits from the grand mean (green arrows). If the fertilisers all worked the same, these would be small.' },
+    { say: '**Within-group variation:** how far each plot sits from its **own** group mean (red arrows). That is ordinary plot-to-plot randomness.' },
+    { say: 'Now compare: the green arrows are long next to the red ones. The groups differ by **more** than random wobble can explain.' },
+    { say: 'ANOVA turns that comparison into one number: $F = \\dfrac{\\text{between-groups mean square}}{\\text{within-groups mean square}} = 12.97$. If the fertilisers were really equal, $F$ would be near $1$. Here it beats the table value $4.26$: the fertilisers **differ**.' },
+  ],
+  draw: (step) => {
+    const shapes = [];
+    YIELDS.forEach((ys, g) => ys.forEach((v, k) => {
+      shapes.push({ id: `y${g}${k}`, dot: [GX[g] + jit(k), YY(v)], r: 5, kind: ['a', 'b', 'c'][g] });
+      shapes.push({ id: `w${g}${k}`, bar: [GX[g] + jit(k) - 1, Math.max(YY(v), YY(GMEAN[g]))], w: 2, h: step >= 4 ? Math.abs(YY(v) - YY(GMEAN[g])) : 0, kind: 'd', o: step >= 4 ? 1 : 0, delay: k * 60 });
+    }));
+    shapes.push({ id: 'grand', line: [30, YY(GRAND), 320, YY(GRAND)], kind: 's', dash: true, o: step >= 1 ? 1 : 0 });
+    shapes.push({ id: 'grandl', text: [318, YY(GRAND) - 6], label: `grand mean ${GRAND}`, kind: 's', size: 10, anchor: 'end', o: step >= 1 ? 1 : 0 });
+    GMEAN.forEach((m, g) => {
+      shapes.push({ id: `gm${g}`, line: [GX[g] - 28, YY(m), GX[g] + 28, YY(m)], kind: ['a', 'b', 'c'][g], o: step >= 2 ? 1 : 0 });
+      shapes.push({ id: `gml${g}`, text: [GX[g] - 32, YY(m) + 4], label: String(m), kind: ['a', 'b', 'c'][g], size: 11, anchor: 'end', o: step >= 2 ? 1 : 0 });
+      shapes.push({ id: `bt${g}`, bar: [GX[g] + 34, Math.max(YY(m), YY(GRAND))], w: 5, h: step >= 3 ? Math.abs(YY(m) - YY(GRAND)) : 0, kind: 'b', o: step >= 3 ? 1 : 0 });
+      shapes.push({ id: `lab${g}`, text: [GX[g], 252], label: ['A', 'B', 'C'][g], kind: ['a', 'b', 'c'][g], size: 13 });
+    });
+    shapes.push({ id: 'F', text: [170, 22], label: 'F = 12.97 > 4.26', kind: 'd', size: 14, o: step >= 6 ? 1 : 0 });
+    return shapes;
+  },
+};
+
 export default {
   id: 'one-way-anova',
   title: 'One-way ANOVA',
@@ -24,17 +61,11 @@ export default {
         ['Terms', 'Response: what is measured. Factor: what may affect it. Levels: its values. Treatments: the levels compared.'],
       ],
       screens: [
-        {
-          type: 'story',
-          eyebrow: 'ANOVA · Lesson 2',
-          title: 'Compare many means in one go',
-          body: 'Three fertilisers, three groups of plots. Are the mean yields all the same?\n\nTesting each pair at $5\\%$ (with $5$ treatments that is $10$ pairs) gives a big chance that one pair looks "significant" by pure luck. ==Analysis of variance== asks the single question "are **all** the means equal?" at one level of significance.\n\nThe trick: compare the variation **between** the groups with the variation **within** them.',
-          cta: 'Pull the groups apart',
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'ANOVA · Lesson 2', title: 'Between the groups, within the groups', graph: groups },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
+          eyebrow: 'Play with it',
           title: 'Between-group spread against within-group spread',
           body: 'Three groups of five (dots); short lines mark the group means, the dashed line the grand mean. Pull the group means apart, and compare with lots of noise inside the groups. $F$ must beat $F_{0.05}(2, 12) = 3.89$.',
           graph: {

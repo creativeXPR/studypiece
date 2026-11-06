@@ -5,6 +5,42 @@ const DATA = [
   { rows: [[10, 90], [25, 75]], exp: [[17.5, 82.5], [17.5, 82.5]], say: 'Yates: $\\chi^2 = 6.788 > 3.841$ (df $= 1$): **reject** independence. Vaccinated people were infected less often.' },
 ];
 
+import { fmt } from './stat';
+
+const OBS = [[30, 20, 50], [40, 25, 35]];
+const EXP = [[35, 22.5, 42.5], [35, 22.5, 42.5]];
+const CELLX = [78, 168, 258];
+const ROWY = [92, 196];
+// Dots for one cell: 10 across, stacked upwards from the row's base line.
+const cellDots = (r, c) => Array.from({ length: OBS[r][c] }, (_, k) => [CELLX[c] - 20 + (k % 10) * 4.5, ROWY[r] - 4 - Math.floor(k / 10) * 4.5]);
+const part = (r, c) => ((OBS[r][c] - EXP[r][c]) ** 2) / EXP[r][c];
+
+const table = {
+  aria: 'Two hundred students sorted into a two by three table of faculty and study time, compared with the counts expected if the two were unrelated',
+  steps: [
+    { say: '$200$ students, $100$ from Science and $100$ from Arts, say when they prefer to study: morning, afternoon or night. Each dot is a student, sorted into its cell.' },
+    { say: 'Over everyone: $70$ morning, $45$ afternoon, $85$ night. That is $35\\%$, $22.5\\%$, $42.5\\%$ of the $200$.' },
+    { say: 'If faculty made **no difference**, each faculty of $100$ would split the same way: $35$, $22.5$, $42.5$. These are the **expected** counts: $E = \\frac{\\text{row total} \\times \\text{column total}}{\\text{grand total}}$.' },
+    { say: 'Now compare each cell’s observed count with its expected count, exactly as with the die: $\\frac{(O - E)^2}{E}$ per cell.' },
+    { say: 'Add all six: $\\chi^2 = 4.631$. Degrees of freedom: $(2 - 1)(3 - 1) = 2$, so the table value is $5.991$. $4.631 < 5.991$: **no significant evidence** that study time depends on faculty.' },
+  ],
+  draw: (step) => {
+    const shapes = [];
+    for (let r = 0; r < 2; r++) {
+      for (let c = 0; c < 3; c++) {
+        cellDots(r, c).forEach((p, k) => shapes.push({ id: `c${r}${c}-${k}`, dot: p, r: 1.8, kind: r ? 'b' : 'a', delay: k * 8 }));
+        shapes.push({ id: `o${r}${c}`, text: [CELLX[c] + 2, ROWY[r] + 14], label: step >= 3 ? `${OBS[r][c]} vs ${EXP[r][c]}` : String(OBS[r][c]), kind: r ? 'b' : 'a', size: 11 });
+        shapes.push({ id: `e${r}${c}`, text: [CELLX[c] + 2, ROWY[r] - 62], label: step >= 3 ? fmt(part(r, c), 3) : `E = ${EXP[r][c]}`, kind: 'd', size: 11, o: step >= 2 ? 1 : 0 });
+      }
+      shapes.push({ id: `row${r}`, text: [6, ROWY[r] - 20], label: r ? 'Arts' : 'Science', kind: r ? 'b' : 'a', size: 11, anchor: 'start' });
+    }
+    ['Morning', 'Afternoon', 'Night'].forEach((h, c) => shapes.push({ id: `col${c}`, text: [CELLX[c] + 2, 12], label: h, kind: 's', size: 11 }));
+    [70, 45, 85].forEach((n, c) => shapes.push({ id: `tot${c}`, text: [CELLX[c] + 2, 236], label: `total ${n}`, kind: 'c', size: 11, o: step >= 1 ? 1 : 0 }));
+    shapes.push({ id: 'chi', text: [170, 254], label: 'χ² = 4.631 < 5.991 (df 2)', kind: 'd', size: 12, o: step >= 4 ? 1 : 0 });
+    return shapes;
+  },
+};
+
 export default {
   id: 'contingency-tables',
   title: 'Contingency tables',
@@ -20,17 +56,11 @@ export default {
         ['Check', 'The expected table has the same row and column totals as the observed one.'],
       ],
       screens: [
-        {
-          type: 'story',
-          eyebrow: 'Chi-Square · Lesson 3',
-          title: 'Are two attributes related?',
-          body: '$200$ students were asked when they prefer to study:\n\nScience: Morning $30$, Afternoon $20$, Night $50$ (total $100$).\nArts: Morning $40$, Afternoon $25$, Night $35$ (total $100$).\nColumn totals: $70$, $45$, $85$.\n\nIf study time had nothing to do with faculty, each faculty would split the same way. That gives the **expected** counts:\n$$E = \\frac{R \\times C}{G}: \\quad \\frac{100 \\times 70}{200} = 35, \\quad \\frac{100 \\times 45}{200} = 22.5, \\quad \\frac{100 \\times 85}{200} = 42.5.$$',
-          cta: 'Compare them',
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'Chi-Square · Lesson 3', title: 'Are two things related?', graph: table },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
+          eyebrow: 'Play with it',
           title: 'Observed bars against expected dashes',
           body: 'In each column, the left bar is the first row and the right bar the second; dashes mark the expected counts. Big gaps make a big $\\chi^2$.',
           graph: {

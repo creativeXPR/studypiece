@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { burstAt } from './fx';
 import { Bisection, GraphLab, MeanValue, RiemannSums, Taylor } from './analysisWidgets';
 import { FieldLab, SpaceLab } from './vectorWidgets';
+import { Scene } from './sceneWidget';
 import { Inline } from './Rich';
 
 // One-off interactive pieces used by `type: 'custom'` screens (`widget: 'venn'`).
@@ -1391,6 +1392,7 @@ export const WIDGETS = {
   graph: GraphLab,
   space: SpaceLab,
   field: FieldLab,
+  scene: Scene,
   rootRace: RootRace,
   epsilonDelta: EpsilonDelta,
   uniformDelta: UniformDelta,

@@ -1,10 +1,52 @@
 // STA 221 · Estimation · Lesson 1: confidence intervals for a mean, critical values, the vocabulary
 // (interval, limits, level, coefficient), the finite population version and the sample size.
-import { fmt, gauss, rng } from './stat';
+import { HOURS, MU, SIGMA, areaPts, axis, curvePts, fmt1, mean, sampleOf } from './campus';
+import { fmt, gauss, normalPdf, rng } from './stat';
+
+const SE20 = SIGMA / Math.sqrt(20);
+const CX = (v) => 20 + ((v - 4) / 13) * 300; // hours 4–17 across the picture
+const XBARS = Array.from({ length: 20 }, (_, k) => mean(sampleOf(3251 + k).map((i) => HOURS[i])));
+const dens = (v) => 105 - 240 * normalPdf(v, MU, SE20);
+const hoop = (x, i, step, k) => {
+  const lo = x - 1.96 * SE20;
+  const hi = x + 1.96 * SE20;
+  const hit = lo <= MU && MU <= hi;
+  return [
+    { id: `h${k}`, line: [CX(lo), 128 + i * 6.2, CX(hi), 128 + i * 6.2], kind: hit ? 'b' : 'd', o: step },
+    { id: `hd${k}`, dot: [CX(x), 128 + i * 6.2], r: 2.2, kind: hit ? 'b' : 'd', o: step },
+  ];
+};
+
+const scene = {
+  aria: 'The bell of sample means with its middle 95% shaded, then intervals built around sample means, most of which catch μ',
+  steps: [
+    { say: 'Back to the pile of sample means (samples of $20$ students): a bell centred on $\\mu$, with standard error SE $= \\frac{\\sigma}{\\sqrt n}$.' },
+    { say: 'Shade the **middle 95%** of the bell. It reaches $1.96$ standard errors either side of $\\mu$. So $95\\%$ of all samples give an $\\bar x$ inside the shaded zone.' },
+    { say: 'In real life we don’t know $\\mu$; we only have **our** $\\bar x$ (the dot). Turn the idea around: reach $1.96$ SE either side of $\\bar x$. This range is a **confidence interval**.' },
+    { say: 'If our $\\bar x$ landed in the shaded zone, it is within $1.96$ SE of $\\mu$, so our interval **catches** $\\mu$. Think of throwing a hoop at a peg: the peg ($\\mu$) never moves; the hoop does.' },
+    { say: 'Throw more hoops: take new samples. Green hoops catch $\\mu$; red ones miss.', action: { label: 'Take another sample', need: 4 } },
+    { say: 'Fast-forward to $20$ samples: about $19$ hoops catch $\\mu$, about $1$ misses. That is what **95% confidence** means: the **method** catches $\\mu$ $95\\%$ of the time.' },
+    { say: 'Written as a formula: $\\bar x \\pm 1.96\\dfrac{\\sigma}{\\sqrt n}$. The part after $\\pm$ is the **margin of error**. Want $99\\%$? Use a wider hoop: $2.58$ instead of $1.96$.' },
+  ],
+  draw: (step, presses) => {
+    const shapes = [
+      { id: 'bell', curve: curvePts(dens, 4, 17, { at: CX }), kind: 'e' },
+      ...axis('ax', 105, { at: CX, ticks: [6, 8, 10, 12, 14, 16].map((v) => [v, String(v)]) }),
+      { id: 'mid', area: areaPts(dens, MU - 1.96 * SE20, MU + 1.96 * SE20, 105, { at: CX }), kind: 'e', o: step >= 1 && step <= 3 ? 1 : 0 },
+      { id: 'midl', text: [CX(MU) + 46, 60], label: 'middle 95%', kind: 'e', size: 11, o: step >= 1 && step <= 3 ? 1 : 0 },
+      { id: 'mu', vline: CX(MU), y1: 22, y2: 252, kind: 'a', dash: true },
+      { id: 'mul', text: [CX(MU), 16], label: `μ = ${fmt1(MU)}`, kind: 'a', size: 11 },
+    ];
+    const shown = step < 2 ? 0 : step === 2 || step === 3 ? 1 : step === 4 ? Math.min(1 + presses, 12) : 20;
+    for (let k = 0; k < 20; k++) shapes.push(...hoop(XBARS[k], k, k < shown ? 1 : 0, k));
+    shapes.push({ id: 'count', text: [300, 120], label: `${XBARS.slice(0, shown).filter((x) => Math.abs(x - MU) <= 1.96 * SE20).length} of ${shown} catch μ`, kind: 'b', size: 11, anchor: 'end', o: step >= 4 ? 1 : 0 });
+    return shapes;
+  },
+};
 
 const Z = (() => { const r = rng(2213); return Array.from({ length: 20 }, () => gauss(r)); })();
 const LEVELS = [[0.9, 1.645], [0.95, 1.96], [0.99, 2.58]];
-const SIGMA = 10;
+const PLAY_SD = 10;
 
 export default {
   id: 'confidence-intervals',
@@ -22,18 +64,12 @@ export default {
         ['Meaning', '$95\\%$ of intervals built this way contain $\\mu$. Never "a $95\\%$ probability that $\\mu$ is in this interval".'],
       ],
       screens: [
-        {
-          type: 'story',
-          eyebrow: 'Estimation · Lesson 1',
-          title: 'A guess with a margin',
-          body: 'A single number, $\\bar x$, is almost never exactly $\\mu$. So we give a range:\n$$\\bar x \\pm z_{\\alpha/2}\\frac{\\sigma}{\\sqrt n}.$$\nAbout $95\\%$ of sample means land within $1.96$ standard errors of $\\mu$. Turn that round: reach $1.96$ SE either side of **your** $\\bar x$, and for $95\\%$ of samples you catch $\\mu$.\n\nThink of throwing a hoop at a fixed peg. The peg ($\\mu$) never moves; the hoop does.',
-          cta: 'Throw 20 hoops',
-        },
+        { type: 'custom', widget: 'scene', eyebrow: 'Estimation · Lesson 1', title: 'From the bell to the hoop', graph: scene },
         {
           type: 'custom',
           widget: 'graph',
-          eyebrow: 'See it',
-          title: 'Twenty samples, twenty intervals',
+          eyebrow: 'Play with it',
+          title: 'Change the level and the sample size',
           body: 'The dashed line is the true mean $\\mu = 50$. Each bar is the interval from one sample: green if it catches $\\mu$, red if it misses. Change the confidence level and the sample size.',
           graph: {
             x: [38, 62], y: [0, 21], xs: [[40], [45], [50], [55], [60]], ys: [],
@@ -43,7 +79,7 @@ export default {
               { kind: 'guide', at: () => [50, 0, 50, 21] },
               ...Z.flatMap((z, i) => {
                 const ends = (n, v) => {
-                  const se = SIGMA / Math.sqrt(n);
+                  const se = PLAY_SD / Math.sqrt(n);
                   const m = 50 + z * se;
                   return [m - LEVELS[v][1] * se, i + 1, m + LEVELS[v][1] * se, i + 1];
                 };
@@ -56,7 +92,7 @@ export default {
             ],
             read: (n, v) => {
               const hits = Z.filter((z) => Math.abs(z) < LEVELS[v][1]).length;
-              return `${hits} of 20 intervals catch $\\mu$. Margin $E = ${LEVELS[v][1]} \\times \\frac{10}{\\sqrt{${n}}} = ${fmt((LEVELS[v][1] * SIGMA) / Math.sqrt(n))}$`;
+              return `${hits} of 20 intervals catch $\\mu$. Margin $E = ${LEVELS[v][1]} \\times \\frac{10}{\\sqrt{${n}}} = ${fmt((LEVELS[v][1] * PLAY_SD) / Math.sqrt(n))}$`;
             },
             need: 5,
             action: 'Try all three levels and change n',

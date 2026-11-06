@@ -1,12 +1,13 @@
-// STA 221 · Sampling · Lesson 1: the vocabulary of inference, census versus sample, when sampling
-// is unavoidable, and the random and non-random sampling methods.
+// STA 221 · Sampling · Lesson 2: census versus sample, de facto and de jure enumeration, when
+// sampling is unavoidable, and the random and non-random sampling methods, shown step by step.
 import { rng } from './stat';
 
-// 60 units in a 10 × 6 grid. Rows 0–2 are stratum A (30), rows 3–4 stratum B (20), row 5 stratum C (10).
+// 60 students in a 10 × 6 grid (the sampling frame, numbered 1–60). Rows 0–2 are first-years (30),
+// rows 3–4 second-years (20), row 5 final-years (10). Hostels are 2 × 5 blocks.
 const UNITS = Array.from({ length: 60 }, (_, k) => {
   const row = Math.floor(k / 10);
   const col = k % 10;
-  return { k, row, col, p: [-3.6 + 0.8 * col, 2.2 - 0.8 * row, 0], stratum: row < 3 ? 0 : row < 5 ? 1 : 2 };
+  return { k, row, col, p: [52 + 26 * col, 38 + 28 * row], stratum: row < 3 ? 0 : row < 5 ? 1 : 2 };
 });
 const pickRandom = (list, n, seed) => {
   const r = rng(seed);
@@ -15,78 +16,54 @@ const pickRandom = (list, n, seed) => {
   while (out.length < n) out.push(pool.splice(Math.floor(r() * pool.length), 1)[0].k);
   return out;
 };
-const PICKS = [
-  pickRandom(UNITS, 12, 7),
-  [...pickRandom(UNITS.filter((u) => u.stratum === 0), 6, 3), ...pickRandom(UNITS.filter((u) => u.stratum === 1), 4, 5), ...pickRandom(UNITS.filter((u) => u.stratum === 2), 2, 9)],
-  UNITS.filter((u) => u.row >= 2 && u.row <= 3 && u.col >= 5).map((u) => u.k),
-  UNITS.filter((u) => (u.k + 1) % 5 === 3).map((u) => u.k),
-];
-const box = (x0, y0, x1, y1) => [[x0, y0, 0], [x1, y0, 0], [x1, y1, 0], [x0, y1, 0]];
-const STRATA = [box(-4, 2.6, 4, 0.2), box(-4, 0.2, 4, -1.4), box(-4, -1.4, 4, -2.2)];
+const SRS = pickRandom(UNITS, 12, 7);
+const STRAT = [...pickRandom(UNITS.filter((u) => u.stratum === 0), 6, 3), ...pickRandom(UNITS.filter((u) => u.stratum === 1), 4, 5), ...pickRandom(UNITS.filter((u) => u.stratum === 2), 2, 9)];
+const CLUSTER = UNITS.filter((u) => u.row >= 2 && u.row <= 3 && u.col >= 5).map((u) => u.k);
+const SYST = UNITS.filter((u) => (u.k + 1) % 5 === 3).map((u) => u.k);
+const CONV = UNITS.filter((u) => u.row === 0 && u.col < 6).map((u) => u.k);
+const BANDS = [[22, 3], [106, 2], [162, 1]]; // [top y, rows] of each year group
+
+const scene = {
+  aria: 'Sixty numbered students; each sampling method lights up the 12 it picks',
+  steps: [
+    { say: 'To survey students we first need a **list** of all of them, numbered: the **sampling frame**. Here, $60$ students. Each one is a **sampling unit**. We want a sample of $12$.' },
+    { say: '**Simple random sampling:** put all $60$ numbers in a hat and draw $12$. Every student has the **same chance**.' },
+    { say: 'Now notice: the students fall into **groups that differ**: $30$ first-years, $20$ second-years, $10$ final-years. A simple random draw might miss the final-years altogether.' },
+    { say: '**Stratified sampling:** sample from **every** group (stratum), in proportion to its size: $\\frac{30}{60} \\times 12 = 6$, then $4$, then $2$. Every group is represented.' },
+    { say: 'Another way to see the same students: they live in $6$ hostels of $10$. Visiting $60$ scattered students is costly; visiting one hostel is cheap.' },
+    { say: '**Cluster sampling:** pick **whole** hostels (clusters) at random and survey **everyone** in them. Here one hostel gives our $12$… well, $10$, close enough to show the idea.' },
+    { say: '**Systematic sampling:** go down the numbered list. Step size $k = \\frac{N}{n} = \\frac{60}{12} = 5$. Pick a random start, say $3$, then every $5$th: $3, 8, 13, 18, \\dots$' },
+    { say: 'All four are **random** methods: chance decides who is picked. Compare **convenience** sampling: asking whoever is nearest (the front row). Quick, but those students may not be typical: **bias**.' },
+  ],
+  draw: (step) => {
+    const chosen = new Set([[], SRS, [], STRAT, [], CLUSTER, SYST, CONV][step]);
+    const shapes = [];
+    BANDS.forEach(([y, rows], i) => shapes.push({ id: `band${i}`, bar: [36, y + rows * 28], w: 272, h: step >= 2 && step <= 3 ? rows * 28 : 0, kind: ['a', 'b', 'c'][i], o: step >= 2 && step <= 3 ? 1 : 0, delay: i * 120 }));
+    ['1st years', '2nd years', 'Final'].forEach((label, i) => shapes.push({ id: `bl${i}`, text: [312, BANDS[i][0] + 16], label, kind: ['a', 'b', 'c'][i], size: 9, anchor: 'start', o: step >= 2 && step <= 3 ? 1 : 0 }));
+    for (const x of [39, 169, 299]) shapes.push({ id: `cx${x}`, line: [x, 24, x, 192], kind: 's', dash: true, o: step >= 4 && step <= 5 ? 1 : 0 });
+    for (const y of [24, 80, 136, 192]) shapes.push({ id: `cy${y}`, line: [39, y, 299, y], kind: 's', dash: true, o: step >= 4 && step <= 5 ? 1 : 0 });
+    UNITS.forEach((u) => {
+      const on = chosen.has(u.k);
+      shapes.push({ id: `u${u.k}`, dot: u.p, r: on ? 7 : 5, kind: on ? (step === 7 ? 'c' : 'd') : 's', delay: on ? (step === 6 ? u.k * 25 : (u.k % 12) * 30) : 0 });
+      shapes.push({ id: `n${u.k}`, text: [u.p[0], u.p[1] + 3.5], label: String(u.k + 1), kind: 'a', size: 7, o: step === 0 || step === 6 ? 1 : 0 });
+    });
+    const counts = ['', '12 drawn at random', '', '6 + 4 + 2 = 12', '', 'one whole hostel', 'every 5th from 3', 'nearest 6: convenience'][step];
+    shapes.push({ id: 'count', text: [170, 222], label: counts, kind: 'd', size: 12, o: counts ? 1 : 0 });
+    return shapes;
+  },
+};
 
 export default {
   id: 'sampling-methods',
-  title: 'Populations, samples and sampling methods',
-  covers: 'Statistical inference, population, sample, sampling unit and frame, parameter and statistic, estimator and estimate, kinds of population, census versus sample, when sampling is unavoidable, random and non-random sampling methods',
+  title: 'Census and sampling methods',
+  covers: 'Sampling frame and unit, kinds of population, census versus sample, de facto and de jure enumeration, when sampling is unavoidable, random and non-random sampling methods',
   minutes: 15,
   sections: [
     {
-      name: 'The vocabulary',
-      terms: [
-        ['Statistical inference', 'Drawing conclusions about a population from a sample, using probability to say how reliable they are. Two jobs: **estimation** and **hypothesis testing**.'],
-        ['Population / sample', 'The whole group we care about / the part we actually observe.'],
-        ['Sampling unit / frame', 'One thing we select / a complete numbered list of all units.'],
-        ['Parameter / statistic', 'A number describing the population ($\\mu, \\sigma^2, p$) / a function of the sample with no unknown parameters ($\\bar x, s^2, \\hat p$).'],
-        ['Estimator / estimate', 'The rule (e.g. "use $\\bar x$") / the number it gives for one sample (e.g. $\\bar x = 25$).'],
-        ['Kinds of population', 'Finite or infinite; real (existent) or hypothetical (e.g. all possible tosses of a coin).'],
-      ],
-      screens: [
-        {
-          type: 'story',
-          eyebrow: 'Sampling · Lesson 1',
-          title: 'From a small part to the whole',
-          body: 'You want the average rent of every two-bedroom flat in a city. You can’t visit them all, so you visit $60$ and use them to say something about **all** flats, with a measure of how sure you are. That is ==statistical inference==.\n\nIt has two jobs:\n**Estimation:** "the mean rent is about ₦85,000, give or take ₦4,000".\n**Hypothesis testing:** "is the claim that the mean is ₦75,000 believable?"',
-        },
-        {
-          type: 'story',
-          eyebrow: 'Memory trick',
-          title: 'P–P and S–S',
-          body: '**P**arameter goes with **P**opulation; **S**tatistic goes with **S**ample.\n\nMean: $\\mu$ vs $\\bar x$. Variance: $\\sigma^2$ vs $s^2$. Proportion: $p$ vs $\\hat p$. Size: $N$ vs $n$.\n\nGreek letters for parameters, English letters for statistics.\n\n**Estimator vs estimate:** the estimator is the recipe ("add and divide by $n$"); the estimate is the cake ("$25.3$").',
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Your turn',
-          prompt: '"$38\\%$ of $400$ voters polled support a candidate." The $38\\%$ is',
-          options: [
-            { text: 'a statistic, $\\hat p = 0.38$', correct: true, why: 'It comes from a sample of $400$, not from all voters. It estimates the parameter $p$.' },
-            { text: 'a parameter, $p = 0.38$', why: 'A parameter would need **every** voter.' },
-            { text: 'a sampling frame', why: 'A frame is the list of units, not a result.' },
-            { text: 'a census', why: 'A census counts the whole population.' },
-          ],
-          explain: 'One test settles it: was it computed from everybody (parameter) or from some (statistic)?',
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Watch this one',
-          prompt: 'Is $\\sum(x_i - \\mu)^2$ a statistic when $\\mu$ is unknown?',
-          options: [
-            { text: 'No: a statistic may not contain unknown parameters', correct: true, why: 'You cannot compute it from the sample alone. $\\sum(x_i - \\bar x)^2$ **is** a statistic.' },
-            { text: 'Yes: it is computed from sample values', why: 'It also needs $\\mu$, which is unknown.' },
-            { text: 'Yes, it is the sample variance', why: 'The sample variance uses $\\bar x$, not $\\mu$.' },
-            { text: 'Only for large samples', why: 'Sample size does not matter here.' },
-          ],
-        },
-        {
-          type: 'bridge',
-          title: 'Vocabulary: set.',
-          recap: ['Parameter ↔ population, statistic ↔ sample.', 'Estimator = rule, estimate = number.', 'Inference = estimation + hypothesis testing.'],
-          why: 'Next: how to pick a sample fairly.',
-        },
-      ],
-    },
-    {
       name: 'Sampling methods',
       terms: [
+        ['Sampling frame / unit', 'A complete numbered list of the population / one thing we select from it.'],
+        ['Kinds of population', 'Finite or infinite; real or hypothetical (e.g. all possible tosses of a coin).'],
         ['Census', 'A complete count of every member of the population: complete, but costly, slow and sometimes impossible.'],
         ['De facto enumeration', 'A census that counts each person **where they are found** at the census moment (e.g. census night), wherever they usually live.'],
         ['De jure enumeration', 'A census that counts each person at their **usual place of residence**, even if they were away at the census moment.'],
@@ -101,8 +78,8 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Census or sample?',
-          title: 'When a census is out',
+          eyebrow: 'Sampling · Lesson 2',
+          title: 'Count everyone, or just some?',
           body: 'A ==census== counts everyone. It is complete but expensive, slow, and sometimes impossible. Sampling is unavoidable when any of these holds (**DIRT CS**):\n\n**D**estroyed: testing ruins the unit (bulb lifetimes, crash tests).\n**I**nfinite population.\n**R**ush: results needed quickly.\n**T**ight resources: money and trained staff.\n**C**hanging: the population moves (fish, traffic).\n**S**cattered: units spread widely.',
         },
         {
@@ -129,32 +106,10 @@ export default {
         },
         {
           type: 'custom',
-          widget: 'space',
+          widget: 'scene',
           eyebrow: 'See it',
-          title: 'Four random methods, one population',
-          body: 'Sixty units in three strata (shaded bands). The red dots are the sample each method picks.',
-          graph: {
-            R: 4, bare: true,
-            views: ['Simple random', 'Stratified', 'Cluster', 'Systematic'],
-            draw: (P, v) => {
-              const chosen = new Set(PICKS[v]);
-              const items = v === 1 ? STRATA.map((poly, i) => ({ poly, kind: ['a', 'b', 'c'][i] })) : [];
-              if (v === 2) {
-                for (const x of [-4, 0, 4]) items.push({ seg: [[x, 2.6, 0], [x, -2.2, 0]], kind: 's', dash: true });
-                for (const y of [2.6, 1, -0.6, -2.2]) items.push({ seg: [[-4, y, 0], [4, y, 0]], kind: 's', dash: true });
-              }
-              for (const u of UNITS) items.push({ pt: u.p, kind: chosen.has(u.k) ? 'd' : 's' });
-              return items;
-            },
-            read: (P, v) => [
-              '**Simple random:** $12$ units drawn by chance, like names from a hat. Every unit had the same chance.',
-              '**Stratified:** some from **every** stratum, in proportion to size: $6 + 4 + 2 = 12$.',
-              '**Cluster:** the area is cut into $6$ clusters of $10$; one whole cluster is chosen at random.',
-              '**Systematic:** $k = \\frac{60}{12} = 5$; random start $3$, then every $5$th unit: $3, 8, 13, \\dots$',
-            ][v],
-            need: 4,
-            action: 'Look at all four methods',
-          },
+          title: 'Four ways to choose 12 students',
+          graph: scene,
           asides: [{ label: 'Memory trick', text: 'Stratified = **some from every** group (a buffet plate with a bit of each dish). Cluster = **all from some** groups (finish a few whole dishes).' }],
         },
         {
