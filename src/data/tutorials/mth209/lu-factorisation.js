@@ -15,6 +15,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The matrix inverse method $X = A^{-1}B$ needs',
+          options: [
+            { text: '$|A| \\neq 0$', correct: true, why: 'Otherwise $A^{-1}$ does not exist.' },
+            { text: '$A$ symmetric', why: 'Any non-singular $A$ will do.' },
+            { text: '$B = 0$', why: 'Then $X = 0$ trivially.' },
+            { text: '$A$ triangular', why: 'Triangular systems are just easier; not required.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Systems of linear equations · Lesson 2',
           title: 'Triangular systems are easy',
@@ -128,6 +139,22 @@ export default {
             { text: 'If some $u_{ii} = 0$, the factorisation breaks down unless rows are interchanged.', correct: true, why: '**A zero pivot** means you can’t divide by $u_{ii}$ for the next column of $L$.' },
             { text: 'LU works for any rectangular matrix.', why: '**$A$ must be square** for this method.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Factorise $A = \\begin{pmatrix} 4 & 3 \\\\ 6 & 3 \\end{pmatrix}$ as $LU$ (Doolittle) and solve $AX = \\begin{pmatrix} 10 \\\\ 12 \\end{pmatrix}$.',
+          body: '$L = \\begin{pmatrix} 1 & 0 \\\\ l_{21} & 1 \\end{pmatrix}$, $U = \\begin{pmatrix} u_{11} & u_{12} \\\\ 0 & u_{22} \\end{pmatrix}$.',
+          graph: {
+            steps: [
+              { ask: '$l_{21} = \\frac{6}{u_{11}} = $', answer: 1.5, tol: 0.0001, hint: '$u_{11} = 4$, $u_{12} = 3$ (row 1 of $A$).' },
+              { ask: '$u_{22} = 3 - l_{21}u_{12} = $', answer: -1.5, tol: 0.0001, hint: '$3 - 1.5 \\times 3$.' },
+              { ask: 'Forward: $y_1 = 10$, $y_2 = 12 - 1.5y_1 = $', answer: -3, tol: 0.0001, hint: '$12 - 15$.' },
+              { ask: 'Back: $x_2 = \\frac{y_2}{u_{22}} = $', answer: 2, tol: 0.0001, hint: '$\\frac{-3}{-1.5}$.' },
+              { ask: '$x_1 = \\frac{10 - 3x_2}{4} = $', answer: 1, tol: 0.0001, hint: '$\\frac{10 - 6}{4}$.' },
+            ],
+          },
         },
         {
           type: 'story',

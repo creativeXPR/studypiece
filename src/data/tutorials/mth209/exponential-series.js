@@ -1,4 +1,5 @@
 // MTH 209 · Approximations · Lesson 3: the exponential series.
+import { expTermsScene } from './series-scenes';
 
 export default {
   id: 'exponential-series',
@@ -13,12 +14,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The Maclaurin series of $f$ is built from',
+          options: [
+            { text: 'the values of $f$ and all its derivatives at $x = 0$', correct: true, why: '$f(x) = f(0) + xf\'(0) + \\frac{x^2}{2!}f\'\'(0) + \\cdots$.' },
+            { text: 'values of $f$ at equally spaced points', why: 'That is interpolation.' },
+            { text: 'the roots of $f$', why: 'Roots play no part.' },
+            { text: 'the integral of $f$', why: 'It uses derivatives.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Approximations · Lesson 3',
           title: 'The easiest Maclaurin series of all',
           body: 'For $f(x) = e^x$, **every** derivative is $e^x$ again, so at $x = 0$ every derivative equals $1$.\n\nPut that into Maclaurin’s formula:\n$$e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\frac{x^4}{4!} + \\cdots = \\sum_{n=0}^{\\infty}\\frac{x^n}{n!}.$$\n\nThis is the ==exponential series==. Because $n!$ grows so fast, it converges for **every** $x$.',
           cta: 'Use it',
         },
+        expTermsScene,
         {
           type: 'choice',
           eyebrow: 'Check',
@@ -66,6 +79,21 @@ export default {
           eyebrow: 'Negative x',
           title: '$e^{-x}$: the signs alternate',
           body: 'Replace $x$ by $-x$:\n$$e^{-x} = 1 - x + \\frac{x^2}{2!} - \\frac{x^3}{3!} + \\cdots$$\nFor $e^{-1}$: $1 - 1 + 0.5 - 0.166667 + 0.041667 - 0.008333 + 0.001389 = 0.368056$, against the true $0.367879$.\n\nIn an ==alternating series== with shrinking terms, the error is smaller than the **first term you leave out**. Here that is $\\frac{1}{7!} \\approx 0.0002$.',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Evaluate $e^{-0.3}$ to 4 d.p. from the exponential series.',
+          body: '$e^{-x} = 1 - x + \\frac{x^2}{2!} - \\frac{x^3}{3!} + \\frac{x^4}{4!} - \\cdots$, $x = 0.3$.',
+          graph: {
+            steps: [
+              { ask: '$\\frac{0.3^2}{2} = $', answer: 0.045, tol: 1e-05, hint: '$\\frac{0.09}{2}$.' },
+              { ask: '$\\frac{0.3^3}{6} = $', answer: 0.0045, tol: 1e-05, hint: '$\\frac{0.027}{6}$.' },
+              { ask: '$\\frac{0.3^4}{24} = $ (7 d.p.)', answer: 0.0003375, tol: 2e-07, hint: '$\\frac{0.0081}{24}$.' },
+              { ask: '$e^{-0.3} \\approx$ (4 d.p.)', answer: 0.7408, tol: 5e-05, hint: '$1 - 0.3 + 0.045 - 0.0045 + 0.0003375$; the next term $0.00002$ can’t change the 4th place.' },
+            ],
+          },
         },
         {
           type: 'multi',

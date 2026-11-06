@@ -1,4 +1,5 @@
 // MTH 209 · Initial value problems in ODEs · Lesson 1: IVPs, convex sets and the Lipschitz condition.
+import { slopeFieldScene } from './ivp-scenes';
 
 export default {
   id: 'ivp-intro',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Newton’s method for a system takes the step',
+          options: [
+            { text: '$\\mathbf{x}^{(k+1)} = \\mathbf{x}^{(k)} - J^{-1}F(\\mathbf{x}^{(k)})$', correct: true, why: 'Replace each surface by its tangent plane and solve.' },
+            { text: '$\\mathbf{x}^{(k+1)} = G(\\mathbf{x}^{(k)})$', why: 'That is fixed-point iteration.' },
+            { text: '$\\mathbf{x}^{(k+1)} = \\mathbf{x}^{(k)} + JF$', why: 'Subtract $J^{-1}F$.' },
+            { text: '$\\mathbf{x}^{(k+1)} = \\frac{\\mathbf{x}^{(k)} + \\mathbf{x}^{(k-1)}}{2}$', why: 'That is a midpoint, not Newton.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Initial value problems · Lesson 1',
           title: 'A pendulum needs a starting point',
           body: 'A swinging pendulum of length $L$ obeys\n$$\\frac{d^2\\theta}{dt^2} + \\frac{g}{L}\\sin\\theta = 0,$$\nwhere $\\theta$ is the angle with the vertical and $g$ is the acceleration due to gravity.\n\nThis equation alone allows infinitely many motions. To know **which** one happens, you must say where the pendulum starts, $\\theta(t_0) = \\theta_0$, and how fast, $\\theta\'(t_0) = \\theta\'_0$. A differential equation plus such conditions is an ==initial value problem==.',
           cta: 'Define it',
         },
+        slopeFieldScene,
         {
           type: 'story',
           asides: [
@@ -114,6 +127,20 @@ export default {
           eyebrow: 'A quick test',
           title: 'Bound $\\partial f / \\partial y$',
           body: 'If $f$ is defined on a **convex** set $D$ and a constant $L > 0$ exists with\n$$\\left|\\frac{\\partial f}{\\partial y}(x, y)\\right| \\le L\\quad \\text{for all } (x, y) \\in D,$$\nthen $f$ satisfies a Lipschitz condition on $D$ with constant $L$.\n\nWhy: by the mean value theorem, $f(x, y_2) - f(x, y_1) = \\frac{\\partial f}{\\partial y}(x, \\xi)\\,(y_2 - y_1)$ for some $\\xi$ between $y_1$ and $y_2$. Convexity guarantees $(x, \\xi)$ is in $D$. For $x^2y$ above: $\\frac{\\partial f}{\\partial y} = x^2 \\le 9$. ✓',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Find a Lipschitz constant for $f(x, y) = x\\sin y + 2y$ on $D = \\{0 \\le x \\le 3,\\ -\\infty < y < \\infty\\}$.',
+          body: '$D$ is convex, so it is enough to bound $\\left|\\frac{\\partial f}{\\partial y}\\right|$.',
+          graph: {
+            steps: [
+              { ask: '$\\frac{\\partial f}{\\partial y} = x\\cos y + c$ with $c = $', answer: 2, tol: 0, hint: 'Differentiate $2y$.' },
+              { ask: 'Largest possible $|x\\cos y|$ on $D$', answer: 3, tol: 0, hint: '$|x| \\le 3$ and $|\\cos y| \\le 1$.' },
+              { ask: 'So a Lipschitz constant is $L = $', answer: 5, tol: 0, hint: '$|x\\cos y + 2| \\le 3 + 2$.' },
+            ],
+          },
         },
         {
           type: 'story',

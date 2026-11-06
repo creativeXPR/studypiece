@@ -1,4 +1,5 @@
 // MTH 209 · Error analysis · Lesson 2: propagation of errors through +, −, ×, ÷.
+import { productErrorScene } from './error-scenes';
 
 export default {
   id: 'error-propagation',
@@ -12,6 +13,17 @@ export default {
         ['Error in a sum or difference', 'The maximum absolute error is the sum of the absolute errors: $|\\varepsilon_1| + |\\varepsilon_2|$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'A value correct to $2$ decimal places has a maximum error of',
+          options: [
+            { text: '$0.005$', correct: true, why: '$\\frac12 \\times 10^{-2}$.' },
+            { text: '$0.01$', why: 'That is a whole unit in the 2nd place; rounding gives half of it.' },
+            { text: '$0.05$', why: 'That is for $1$ decimal place.' },
+            { text: '$0.0005$', why: 'That is for $3$ decimal places.' },
+          ],
+        },
         {
           type: 'story',
           eyebrow: 'Error analysis · Lesson 2',
@@ -64,6 +76,7 @@ export default {
         ['Error in a quotient', 'Relative error of $\\frac{X_1}{X_2}$ $\\le \\dfrac{|\\varepsilon_1|}{X_1} + \\dfrac{|\\varepsilon_2|}{X_2}$.'],
       ],
       screens: [
+        productErrorScene,
         {
           type: 'story',
           eyebrow: 'Multiplication',
@@ -86,6 +99,21 @@ export default {
             { text: '$1.981 \\pm 0.055$', why: 'For a quotient, add **relative** errors, then multiply by the result.' },
             { text: '$1.981 \\pm 0$', why: 'Both inputs carry rounding error.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Find $\\frac{24.5}{12.37}$ and its maximum error, where $24.5$ is correct to 1 d.p. and $12.37$ to 2 d.p.',
+          body: 'Relative errors add for a quotient too.',
+          graph: {
+            steps: [
+              { ask: '$\\frac{24.5}{12.37} = $ (4 d.p.)', answer: 1.9806, tol: 0.0001, hint: 'Divide.' },
+              { ask: 'Relative error of $24.5$: $\\frac{0.05}{24.5} = $ (6 d.p.)', answer: 0.002041, tol: 2e-06, hint: 'Max error $0.05$ for 1 d.p.' },
+              { ask: 'Relative error of $12.37$: $\\frac{0.005}{12.37} = $ (6 d.p.)', answer: 0.000404, tol: 2e-06, hint: 'Max error $0.005$ for 2 d.p.' },
+              { ask: 'Maximum error in the quotient (4 d.p.)', answer: 0.0048, tol: 0.0001, hint: '$(0.002041 + 0.000404) \\times 1.9806$.', done: 'Value $1.9806 \\pm 0.0048$' },
+            ],
+          },
         },
         {
           type: 'story',

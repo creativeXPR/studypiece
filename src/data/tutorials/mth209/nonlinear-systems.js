@@ -1,4 +1,5 @@
 // MTH 209 · Systems of non-linear equations · Lesson 1: definitions, fixed points and convergence.
+import { fixedPointScene } from './nonlinear-scenes';
 
 export default {
   id: 'nonlinear-systems',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Gauss-Seidel differs from simple iteration because it',
+          options: [
+            { text: 'uses each new value as soon as it is computed', correct: true, why: 'The staircase walks straight in.' },
+            { text: 'needs the inverse matrix', why: 'Neither iterative method inverts $A$.' },
+            { text: 'needs fewer equations', why: 'Same system.' },
+            { text: 'always diverges', why: 'It usually converges faster.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Systems of non-linear equations · Lesson 1',
           title: 'When the equations bend',
           body: 'Real problems are rarely linear. The pressure needed to sink a circular plate into soil, the balance of a chemical reaction, the forces in a structure: each leads to several equations with squares, sines or exponentials of the unknowns, all to be solved **together**.\n\nThe matrix methods of the last chapter can’t do this. We need new tools: ==fixed-point iteration== and ==Newton’s method==.',
           cta: 'Set it up',
         },
+        fixedPointScene,
         {
           type: 'story',
           eyebrow: 'Notation',
@@ -125,6 +138,21 @@ export default {
             'Stop when $\\|x^{(k)} - x^{(k-1)}\\|_\\infty$ is below the tolerance.',
           ],
           explain: 'The first three steps are the proof; the last two are the computation. Exam questions usually ask for both.',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Fixed-point iteration for $x^2 + y^2 = 4$, $y = x^2 - 1$ using $x = \\sqrt{y + 1}$, $y = \\sqrt{4 - x^2}$ (newest values), from $(1, 1)$.',
+          body: 'Compute $x$ first, then $y$ with the new $x$.',
+          graph: {
+            steps: [
+              { ask: '$x^{(1)} = \\sqrt{2} = $ (4 d.p.)', answer: 1.4142, tol: 0.0001, hint: '$\\sqrt{1 + 1}$.' },
+              { ask: '$y^{(1)} = \\sqrt{4 - 2} = $ (4 d.p.)', answer: 1.4142, tol: 0.0001, hint: '$\\sqrt{4 - (1.4142)^2}$.' },
+              { ask: '$x^{(2)} = $ (4 d.p.)', answer: 1.5538, tol: 0.0001, hint: '$\\sqrt{1.4142 + 1}$.' },
+              { ask: '$y^{(2)} = $ (4 d.p.)', answer: 1.2593, tol: 0.0002, hint: '$\\sqrt{4 - 1.5538^2}$.' },
+            ],
+          },
         },
         {
           type: 'story',

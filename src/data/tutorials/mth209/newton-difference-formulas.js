@@ -1,4 +1,5 @@
 // MTH 209 · Finite differences · Lesson 2: the shift operator E and Newton's forward/backward formulas.
+import { newtonFormulaScene } from './difference-scenes';
 
 export default {
   id: 'newton-difference-formulas',
@@ -14,6 +15,17 @@ export default {
         ['Averaging operator μ', '$\\mu f_k = \\frac12\\left(f_{k+\\frac12} + f_{k-\\frac12}\\right)$'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'For a cubic polynomial tabulated at equal steps, the third differences are',
+          options: [
+            { text: 'constant', correct: true, why: 'And all higher differences are $0$.' },
+            { text: 'zero', why: 'The **fourth** differences are zero.' },
+            { text: 'growing', why: 'Only up to the second differences.' },
+            { text: 'equal to the values', why: 'Differences shrink the polynomial’s degree by one each time.' },
+          ],
+        },
         {
           type: 'story',
           eyebrow: 'Finite differences · Lesson 2',
@@ -80,6 +92,7 @@ export default {
           title: 'Expand $(1 - \\nabla)^{-r}$',
           body: 'From $\\nabla = 1 - E^{-1}$: $E^{-1} = 1 - \\nabla$, so $E^r = (1 - \\nabla)^{-r}$:\n$$f_r = f_n + r\\nabla f_n + \\frac{r(r + 1)}{2!}\\nabla^2f_n + \\frac{r(r + 1)(r + 2)}{3!}\\nabla^3f_n + \\cdots$$\nwith $x = x_n + rh$ (so $r < 0$ inside the table).\n\nThis is ==Newton’s backward difference formula==. It uses the **bottom diagonal**, so use it near the **end** of the table.',
         },
+        newtonFormulaScene,
         {
           type: 'story',
           eyebrow: 'Worked example',
@@ -96,6 +109,22 @@ export default {
             { text: '$-0.6$', why: 'That’s for 1925 measured from 1931.' },
             { text: '$0.5$', why: '1895 is 4 years after 1891, not 5.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Estimate the 1895 population with Newton’s forward formula, $r = 0.4$, top diagonal $46, 20, -5, 2, -3$.',
+          body: '$f_r = f_0 + r\\Delta f_0 + \\frac{r(r - 1)}{2!}\\Delta^2f_0 + \\frac{r(r - 1)(r - 2)}{3!}\\Delta^3f_0 + \\frac{r(r - 1)(r - 2)(r - 3)}{4!}\\Delta^4f_0$.',
+          graph: {
+            steps: [
+              { ask: '$r\\Delta f_0 = $', answer: 8, tol: 0.001, hint: '$0.4 \\times 20$.' },
+              { ask: '$\\frac{r(r - 1)}{2}\\Delta^2f_0 = $', answer: 0.6, tol: 0.001, hint: '$\\frac{0.4(-0.6)}{2}(-5)$.' },
+              { ask: '$\\frac{r(r - 1)(r - 2)}{6}\\Delta^3f_0 = $', answer: 0.128, tol: 0.0005, hint: '$\\frac{0.4(-0.6)(-1.6)}{6}(2)$.' },
+              { ask: '$\\frac{r(r - 1)(r - 2)(r - 3)}{24}\\Delta^4f_0 = $', answer: 0.1248, tol: 0.0005, hint: '$\\frac{0.4(-0.6)(-1.6)(-2.6)}{24}(-3)$.' },
+              { ask: 'Population in 1895 (thousand, 2 d.p.)', answer: 54.85, tol: 0.006, hint: '$46 + 8 + 0.6 + 0.128 + 0.1248$.' },
+            ],
+          },
         },
         {
           type: 'story',

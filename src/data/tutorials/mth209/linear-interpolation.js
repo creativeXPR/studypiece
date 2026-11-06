@@ -1,4 +1,5 @@
 // MTH 209 · Interpolation · Lesson 1: linear interpolation.
+import { linearInterpScene } from './interpolation-scenes';
 
 export default {
   id: 'linear-interpolation',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which root-finding method needs the derivative $f\'(x)$?',
+          options: [
+            { text: 'Newton-Raphson', correct: true, why: '$x_{n+1} = x_n - \\frac{f(x_n)}{f\'(x_n)}$ follows the tangent.' },
+            { text: 'Bisection', why: 'Bisection only uses the signs of $f$.' },
+            { text: 'The secant method', why: 'The secant replaces $f\'$ by a chord slope.' },
+            { text: 'Regula Falsi', why: 'It uses values of $f$ at the bracket ends.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Interpolation · Lesson 1',
           title: 'Reading between the lines of a table',
           body: 'A table gives $\\tan 0.10$ and $\\tan 0.15$, but you need $\\tan 0.12$. A census gives populations for 1891 and 1901, but you need 1895.\n\n==Interpolation== finds a formula, usually a polynomial, that passes **exactly** through the given points, and uses it to estimate values in between.\n\nThe simplest case: two points, one straight line.',
           cta: 'Build the line',
         },
+        linearInterpScene,
         {
           type: 'story',
           eyebrow: 'Step 1 · Set up',
@@ -91,6 +104,21 @@ export default {
             { text: 'Linear interpolation can never estimate logarithms', why: 'It can, with points close enough together.' },
           ],
           explain: 'Fixes: use points closer to $x = 2$, or a higher-degree polynomial (next lesson).',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Estimate $\\ln 2$ by linear interpolation from $\\ln 1 = 0$ and $\\ln 3 = 1.0986$.',
+          body: '$P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$.',
+          graph: {
+            steps: [
+              { ask: 'Weight on $y_1$ at $x = 2$: $\\frac{2 - 1}{3 - 1} = $', answer: 0.5, tol: 0.0001, hint: '$\\frac12$.' },
+              { ask: '$P_1(2) = $ (4 d.p.)', answer: 0.5493, tol: 0.0001, hint: '$0.5 \\times 0 + 0.5 \\times 1.0986$.' },
+              { ask: 'Error $= 0.6931 - P_1(2) = $ (4 d.p.)', answer: 0.1438, tol: 0.0002, hint: 'True value minus estimate.' },
+              { ask: 'Relative error $= $ (%, 1 d.p.)', answer: 20.7, tol: 0.15, hint: '$\\frac{0.1438}{0.6931} \\times 100$.' },
+            ],
+          },
         },
         {
           type: 'story',

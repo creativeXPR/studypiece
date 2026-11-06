@@ -1,4 +1,5 @@
 // MTH 209 · Finite differences · Lesson 1: forward, backward and central differences.
+import { differenceTableScene } from './difference-scenes';
 
 const Y = 'For $x = 0, 0.1, \\ldots, 0.5$: $y_0 = 0.05$, $y_1 = 0.11$, $y_2 = 0.26$, $y_3 = 0.35$, $y_4 = 0.49$, $y_5 = 0.67$.';
 
@@ -18,12 +19,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The relative error of a product $X_1X_2$ is at most',
+          options: [
+            { text: '$\\left|\\frac{\\varepsilon_1}{X_1}\\right| + \\left|\\frac{\\varepsilon_2}{X_2}\\right|$', correct: true, why: 'Relative errors add (two strips, negligible corner).' },
+            { text: '$|\\varepsilon_1| + |\\varepsilon_2|$', why: 'Absolute errors add for sums and differences.' },
+            { text: '$|\\varepsilon_1\\varepsilon_2|$', why: 'That corner is the negligible part.' },
+            { text: '$\\frac{|\\varepsilon_1|}{|\\varepsilon_2|}$', why: 'Relative errors **add**.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Finite differences · Lesson 1',
           title: 'Differences reveal a table’s secrets',
           body: 'Look at $1, 4, 9, 16, 25$. Their differences are $3, 5, 7, 9$, and the differences of **those** are $2, 2, 2$: constant. That tells you the data come from a quadratic.\n\n==Finite differences== are used when we have a table of values $f(x)$ at **equal intervals** $h$ in $x$. We write\n$$x_k = x_0 + kh,\\qquad f_k = f(x_k),\\qquad k = 0, 1, 2, \\ldots$$',
           cta: 'Meet the operators',
         },
+        differenceTableScene,
         {
           type: 'reveal',
           eyebrow: 'Three operators',
@@ -109,6 +122,22 @@ export default {
             { text: '$12, 18, 24$', why: 'That’s the second differences.' },
             { text: 'They keep changing', why: 'For a polynomial they become constant.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'For $x = 9, \\ldots, 14$ and $y = 5.0, 5.4, 6.0, 6.8, 7.5, 8.1$, build the forward difference table.',
+          body: 'Each entry is (the one below-right) minus (the one above-right) in the previous column.',
+          graph: {
+            steps: [
+              { ask: '$\\Delta y_0 = $', answer: 0.4, tol: 0.001, hint: '$5.4 - 5.0$.' },
+              { ask: '$\\Delta y_3 = $', answer: 0.7, tol: 0.001, hint: '$7.5 - 6.8$.' },
+              { ask: '$\\Delta^2 y_0 = $', answer: 0.2, tol: 0.001, hint: '$0.6 - 0.4$.' },
+              { ask: '$\\Delta^3 y_1 = $', answer: -0.3, tol: 0.001, hint: '$\\Delta^2y_2 - \\Delta^2y_1 = -0.1 - 0.2$.' },
+              { ask: '$\\Delta^5 y_0 = $', answer: 0.6, tol: 0.001, hint: '$\\Delta^4y_1 - \\Delta^4y_0 = 0.3 - (-0.3)$.' },
+            ],
+          },
         },
         {
           type: 'bridge',

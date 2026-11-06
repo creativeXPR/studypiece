@@ -1,4 +1,5 @@
 // MTH 209 · Initial value problems in ODEs · Lesson 2: unique solutions and well-posed problems.
+import { wellPosedScene } from './ivp-scenes';
 
 export default {
   id: 'ivp-unique',
@@ -13,12 +14,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: '$f(x, y)$ is Lipschitz in $y$ on $D$ when',
+          options: [
+            { text: '$|f(x, y_1) - f(x, y_2)| \\le L|y_1 - y_2|$ for some constant $L > 0$', correct: true, why: 'Same $x$, any two $y$ values.' },
+            { text: '$f$ is continuous in $x$', why: 'Continuity is a separate condition.' },
+            { text: '$|f(x_1, y) - f(x_2, y)| \\le L|x_1 - x_2|$', why: 'The condition is in $y$, with $x$ fixed.' },
+            { text: '$f(x, y) \\le L$', why: 'It bounds **changes** in $f$, not $f$ itself.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Initial value problems · Lesson 2',
           title: 'Check before you compute',
           body: 'A numerical method will happily produce numbers for **any** IVP, even one with no solution or with several. Those numbers would be meaningless.\n\nSo in numerical analysis, before solving a DE we always **verify that it has a unique solution**. The Lipschitz condition is the tool.',
           cta: 'The theorem',
         },
+        wellPosedScene,
         {
           type: 'story',
           eyebrow: 'The theorem',
@@ -94,6 +107,20 @@ export default {
             'Conclude: $f$ is Lipschitz in $y$, so the IVP has a unique solution.',
           ],
           explain: 'Write the final sentence in full: it is where the theorem is actually used.',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Show that $y\' = e^{-x}y + x$, $0 \\le x \\le 1$, $y(0) = 2$ has a unique solution.',
+          body: '$f(x, y) = e^{-x}y + x$ is continuous on $D = \\{0 \\le x \\le 1, -\\infty < y < \\infty\\}$.',
+          graph: {
+            steps: [
+              { ask: '$\\frac{\\partial f}{\\partial y} = e^{-x}$; its largest value on $D$ is', answer: 1, tol: 0, hint: 'At $x = 0$.' },
+              { ask: 'So $f$ is Lipschitz with $L = $', answer: 1, tol: 0, hint: '$|e^{-x}| \\le 1$ on $D$ (a convex set).' },
+              { ask: 'Conclusion', options: ['A unique solution exists (and the problem is well posed)', 'No conclusion is possible'], answer: 0, hint: 'Continuous + Lipschitz in $y$ ⇒ the existence and uniqueness theorem applies.' },
+            ],
+          },
         },
         {
           type: 'story',

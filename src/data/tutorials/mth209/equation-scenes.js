@@ -3,30 +3,11 @@
 // Regula Falsi stuck at one end, cobwebs for x = g(x), Newton's tangents and the secant's chords.
 // Drawn with the `plane` widget (identity matrix, no grid) so every point glides between steps.
 
+import { frame, sign, view } from './plot';
+
 export const F = (x) => x ** 3 - 2 * x - 5;
 const FP = (x) => 3 * x * x - 2;
 
-// Math box → plane coordinates (plane shows about ±6.4 across and ±5 up at R = 5).
-function view(x0, x1, y0, y1) {
-  const X = (x) => -5.6 + ((x - x0) / (x1 - x0)) * 11.2;
-  const Y = (y) => -4.2 + ((y - y0) / (y1 - y0)) * 8.4;
-  const P = (x, y) => [X(x), Y(y)];
-  const graph = (fn, id = 'f', kind = 'a', a = x0, b = x1) => ({
-    id,
-    path: Array.from({ length: 81 }, (_, i) => {
-      const x = a + ((b - a) * i) / 80;
-      return P(x, Math.max(y0 - 1, Math.min(y1 + 1, fn(x))));
-    }),
-    kind,
-  });
-  const axis = (ticks) => [
-    { id: 'xaxis', seg: [P(x0, 0), P(x1, 0)], kind: 's', dash: false },
-    ...ticks.map((t, i) => ({ id: `tk${i}`, text: [X(t), Y(0) - 0.8], label: String(t), kind: 's', size: 11 })),
-  ];
-  return { X, Y, P, graph, axis };
-}
-const frame = (items, note) => ({ M: [1, 0, 0, 1], R: 5, grid: false, ghost: false, items, note });
-const sign = (y) => (y < 0 ? 'd' : 'b');
 
 // Bisection: halve [2, 3] four times, then zoom in on the tiny bracket.
 function bisectSteps(n) {

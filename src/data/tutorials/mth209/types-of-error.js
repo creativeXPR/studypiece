@@ -1,4 +1,5 @@
 // MTH 209 · Error analysis · Lesson 1: types of error, chopping and rounding, absolute and relative error.
+import { roundingScene } from './error-scenes';
 
 export default {
   id: 'types-of-error',
@@ -14,6 +15,17 @@ export default {
         ['Round-off error', 'Error from keeping only a limited number of digits, e.g. $\\frac23 \\approx 0.667$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Lagrange’s basis polynomial $L_k(x)$ equals',
+          options: [
+            { text: '$1$ at $x_k$ and $0$ at every other node', correct: true, why: 'A switch for the $k$-th point.' },
+            { text: '$y_k$ at $x_k$', why: '$L_k$ is multiplied by $y_k$ afterwards.' },
+            { text: '$0$ at $x_k$', why: 'It is $0$ at the **other** nodes.' },
+            { text: '$1$ at every node', why: 'Only at its own node.' },
+          ],
+        },
         {
           type: 'story',
           eyebrow: 'Error analysis · Lesson 1',
@@ -72,6 +84,7 @@ export default {
         ['Symmetric rounding', 'Add 1 to the last kept digit if the first discarded digit is $\\ge 5$, then chop. Error bound: $\\frac12 \\times 10^{E - d}$.'],
       ],
       screens: [
+        roundingScene,
         {
           type: 'story',
           eyebrow: 'Chopping',
@@ -124,6 +137,20 @@ export default {
             { text: '$0.0507$', why: 'That’s $5\\%$; check the division.' },
             { text: '$3.14$', why: 'That’s the approximation itself.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: '$\\pi = 3.14159265\\ldots$ is approximated by $X = 3.1416$.',
+          body: 'Absolute error $|x_t - X|$, relative error $\\frac{|x_t - X|}{|x_t|}$.',
+          graph: {
+            steps: [
+              { ask: 'Absolute error $= $ (to 7 d.p.)', answer: 7.3e-06, tol: 2e-07, hint: '$3.1416 - 3.1415927$.' },
+              { ask: 'Relative error $\\approx$ (scientific: enter as e.g. `2.3e-6`)', answer: 2.3e-06, tol: 1e-07, hint: '$\\frac{0.0000073}{3.14159}$.' },
+              { ask: 'Is $3.1416$ correct to 4 d.p.?', options: ['Yes: $0.0000073 \\le 0.00005$', 'No'], answer: 0, hint: 'Is the error at most $\\frac12 \\times 10^{-4} = 0.00005$?' },
+            ],
+          },
         },
         {
           type: 'story',

@@ -1,4 +1,5 @@
 // MTH 209 · Systems of linear equations · Lesson 4: the method of simple iteration (SIM).
+import { jacobiScene } from './system-scenes';
 
 export default {
   id: 'simple-iteration',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Gaussian elimination reduces a system to',
+          options: [
+            { text: 'upper triangular form, then back substitution', correct: true, why: 'Eliminate below the diagonal, solve from the bottom.' },
+            { text: 'a diagonal matrix only', why: 'That is Gauss-Jordan, a variant.' },
+            { text: 'lower triangular form', why: 'It clears entries **below** the diagonal, leaving upper triangular.' },
+            { text: 'the identity, with no substitution', why: 'Back substitution finishes the job.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Systems of linear equations · Lesson 4',
           title: 'Solve each equation for its own unknown',
           body: 'Direct methods do a fixed amount of work. For large systems where each unknown dominates its own equation, ==iterative methods== are often simpler: guess, improve, repeat.\n\nTake equation $i$ and solve it for $x_i$:\n$$x_i = \\frac{1}{a_{ii}}\\Big(b_i - \\sum_{j \\neq i} a_{ij}x_j\\Big).$$\n\nIn matrix form this is $X = CX + F$, with\n$$c_{ij} = -\\frac{a_{ij}}{a_{ii}}\\ (i \\neq j),\\quad c_{ii} = 0,\\quad f_i = \\frac{b_i}{a_{ii}}.$$',
           cta: 'Iterate it',
         },
+        jacobiScene,
         {
           type: 'story',
           asides: [
@@ -75,6 +88,22 @@ export default {
             { text: '$4$', why: 'Divide by the diagonal entry 10.' },
           ],
           explain: 'Always state “$\\alpha < 1$, hence the iteration converges”. It carries marks.',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Simple iteration for $10x_1 + x_2 + x_3 = 12$, $2x_1 + 10x_2 + x_3 = 13$, $2x_1 + 2x_2 + 10x_3 = 14$ from $x^{(0)} = 0$.',
+          body: 'Every component of $x^{(k+1)}$ uses the **old** vector $x^{(k)}$.',
+          graph: {
+            steps: [
+              { ask: '$x_1^{(1)} = $', answer: 1.2, tol: 0.0001, hint: '$\\frac{12}{10}$.' },
+              { ask: '$x_2^{(1)} = $', answer: 1.3, tol: 0.0001, hint: '$\\frac{13}{10}$.' },
+              { ask: '$x_3^{(1)} = $', answer: 1.4, tol: 0.0001, hint: '$\\frac{14}{10}$.' },
+              { ask: '$x_1^{(2)} = \\frac{12 - x_2^{(1)} - x_3^{(1)}}{10} = $', answer: 0.93, tol: 0.0001, hint: '$\\frac{12 - 1.3 - 1.4}{10}$.' },
+              { ask: '$x_3^{(2)} = \\frac{14 - 2x_1^{(1)} - 2x_2^{(1)}}{10} = $', answer: 0.9, tol: 0.0001, hint: '$\\frac{14 - 2.4 - 2.6}{10}$.' },
+            ],
+          },
         },
         {
           type: 'story',

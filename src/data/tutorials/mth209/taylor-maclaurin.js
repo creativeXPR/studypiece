@@ -1,4 +1,5 @@
 // MTH 209 · Approximations · Lesson 2: Taylor and Maclaurin series.
+import { taylorScene } from './series-scenes';
 
 export default {
   id: 'taylor-maclaurin',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The binomial series for $(1 + x)^n$ ($n$ negative or a fraction) is valid for',
+          options: [
+            { text: '$|x| < 1$', correct: true, why: 'Outside, the terms grow and the sums never settle.' },
+            { text: 'every $x$', why: 'Only the exponential-type series converge everywhere.' },
+            { text: '$x > 0$ only', why: 'Negative $x$ with $|x| < 1$ is fine.' },
+            { text: '$|x| > 1$', why: 'That is exactly where it fails.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Approximations · Lesson 2',
           title: 'Copy a function near one point',
           body: 'Suppose you know everything about $f$ at one point $a$: its value, its slope, its curvature, and so on. Can you rebuild $f$ nearby?\n\nYes. Choose a polynomial that matches $f(a)$, then $f\'(a)$, then $f\'\'(a)$, … The more derivatives you match, the further the copy stays accurate. Carried on forever, this is the ==Taylor series== of $f$ about $a$.',
           cta: 'See the formula',
         },
+        taylorScene,
         {
           type: 'story',
           eyebrow: 'The formula',
@@ -66,6 +79,20 @@ export default {
         ['Truncation error', 'After $n$ terms the error is the remainder $R_n = \\dfrac{h^{n+1}}{(n+1)!}f^{(n+1)}(\\xi)$ for some $\\xi$ between $a$ and $a + h$.'],
       ],
       screens: [
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Use the Maclaurin series $\\sin x = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\cdots$ to evaluate $\\sin 0.5$ to 6 d.p.',
+          body: 'Angles in radians.',
+          graph: {
+            steps: [
+              { ask: '$\\frac{0.5^3}{3!} = $ (6 d.p.)', answer: 0.020833, tol: 2e-06, hint: '$\\frac{0.125}{6}$.' },
+              { ask: '$\\frac{0.5^5}{5!} = $ (6 d.p.)', answer: 0.00026, tol: 2e-06, hint: '$\\frac{0.03125}{120}$.' },
+              { ask: '$\\sin 0.5 \\approx$ (6 d.p.)', answer: 0.479427, tol: 3e-06, hint: '$0.5 - 0.020833 + 0.000260$. The next term, $\\frac{0.5^7}{7!} \\approx 0.0000016$, changes only the 6th place.' },
+            ],
+          },
+        },
         {
           type: 'story',
           eyebrow: 'Worked example',

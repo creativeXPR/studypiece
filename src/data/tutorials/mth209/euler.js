@@ -1,4 +1,5 @@
 // MTH 209 · Initial value problems in ODEs · Lesson 3: Euler's method.
+import { eulerScene } from './ivp-scenes';
 
 export default {
   id: 'euler',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'An IVP is well posed when',
+          options: [
+            { text: 'it has a unique solution and small changes in the data give small changes in the solution', correct: true, why: 'Guaranteed by continuity + Lipschitz in $y$.' },
+            { text: 'it can be solved exactly', why: 'Most well-posed IVPs have no formula solution.' },
+            { text: '$f$ is a polynomial', why: 'The conditions are continuity and Lipschitz.' },
+            { text: 'its solution is bounded', why: 'Boundedness isn’t the definition.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Initial value problems · Lesson 3',
           title: 'Walk along the tangent',
           body: 'There are many methods for solving a differential equation numerically. ==Euler’s method== is the simplest.\n\nFor the well-posed IVP\n$$y\' = \\frac{dy}{dx} = f(x, y),\\quad a \\le x \\le b,\\quad y(a) = \\alpha,$$\nwe don’t find a formula for $y(x)$. Instead we find **approximate values of $y$ at a set of points** across $[a, b]$, by repeatedly stepping a short distance along the tangent line.',
           cta: 'Set up the points',
         },
+        eulerScene,
         {
           type: 'story',
           eyebrow: 'Mesh points',
@@ -101,6 +114,21 @@ export default {
             { text: 'Euler’s method comes from keeping the first two terms of Taylor’s series.', correct: true, why: '**$y(x + h) \\approx y(x) + h\\,y\'(x)$**.' },
             { text: 'Errors stay the same size at every step.', why: '**They accumulate**: in the table they grow from $0.18$ to $0.87$.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Use Euler’s method with $h = 0.1$ to estimate $y(0.2)$ to 5 d.p. for $y\' = \\frac{-y^2}{1 + x}$, $y(0) = 1$.',
+          body: '$y_{i+1} = y_i + h\\,f(x_i, y_i)$.',
+          graph: {
+            steps: [
+              { ask: '$f(0, 1) = $', answer: -1, tol: 0, hint: '$\\frac{-1}{1}$.' },
+              { ask: '$y_1 \\approx y(0.1) = $', answer: 0.9, tol: 1e-05, hint: '$1 + 0.1(-1)$.' },
+              { ask: '$f(0.1, 0.9) = $ (5 d.p.)', answer: -0.73636, tol: 2e-05, hint: '$\\frac{-0.81}{1.1}$.' },
+              { ask: '$y_2 \\approx y(0.2) = $ (5 d.p.)', answer: 0.82636, tol: 2e-05, hint: '$0.9 + 0.1(-0.73636)$. (Exact: $0.84579$.)' },
+            ],
+          },
         },
         {
           type: 'story',

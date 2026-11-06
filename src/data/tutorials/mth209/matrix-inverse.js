@@ -1,4 +1,5 @@
 // MTH 209 · Systems of linear equations · Lesson 1: general form and the matrix inverse method.
+import { eliminationScene } from './system-scenes';
 
 export default {
   id: 'matrix-inverse',
@@ -15,12 +16,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The exponential series $e^x = \\sum \\frac{x^n}{n!}$ converges for',
+          options: [
+            { text: 'every real $x$', correct: true, why: '$n!$ eventually beats $x^n$.' },
+            { text: '$|x| < 1$ only', why: 'That is the binomial series for negative or fractional powers.' },
+            { text: '$x > 0$ only', why: 'It works for negative $x$ too: $e^{-x}$.' },
+            { text: '$x = 0$ only', why: 'It converges everywhere.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Systems of linear equations · Lesson 1',
           title: 'From one equation to many',
           body: '$2x + 4 = 0$ is solved in one step. But a system like\n$$2x + 4y = 0,\\qquad 2x + 3y = 4$$\nneeds more work, and real problems (structures, circuits, mixtures) give systems with dozens of unknowns.\n\nIn general:\n$$\\begin{aligned} a_{11}x_1 + a_{12}x_2 + \\cdots + a_{1n}x_n &= b_1 \\\\ &\\ \\ \\vdots \\\\ a_{n1}x_1 + a_{n2}x_2 + \\cdots + a_{nn}x_n &= b_n \\end{aligned}$$',
           cta: 'Name the parts',
         },
+        eliminationScene,
         {
           type: 'sort',
           eyebrow: 'Five methods',
@@ -137,6 +150,22 @@ export default {
             { text: '$x = 4$, $y = -2$', why: 'Then $2x + 3y = 2$, not 4.' },
             { text: 'No solution', why: '$\\det A = -2 \\neq 0$, so there is a unique solution.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Solve $x_1 + 2x_2 + 3x_3 = 2$, $x_2 + 4x_3 = -2$, $5x_1 + 6x_2 = 17$ by the matrix inverse method.',
+          body: '$A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & 1 & 4 \\\\ 5 & 6 & 0 \\end{pmatrix}$, $X = A^{-1}B = \\frac{1}{|A|}(\\operatorname{adj}A)B$.',
+          graph: {
+            steps: [
+              { ask: '$|A| = $', answer: 1, tol: 0, hint: '$1(0 - 24) - 2(0 - 20) + 3(0 - 5)$.' },
+              { ask: 'Cofactor $C_{11} = $', answer: -24, tol: 0, hint: '$+\\begin{vmatrix} 1 & 4 \\\\ 6 & 0 \\end{vmatrix}$.' },
+              { ask: '$x_1 = $', answer: 1, tol: 0, hint: 'Row 1 of $\\operatorname{adj}A$ is $(-24, 18, 5)$: $-48 - 36 + 85$.' },
+              { ask: '$x_2 = $', answer: 2, tol: 0, hint: 'Row 2 of $\\operatorname{adj}A$ is $(20, -15, -4)$: $40 + 30 - 68$.' },
+              { ask: '$x_3 = $', answer: -1, tol: 0, hint: 'Row 3 of $\\operatorname{adj}A$ is $(-5, 4, 1)$: $-10 - 8 + 17$.' },
+            ],
+          },
         },
         {
           type: 'story',

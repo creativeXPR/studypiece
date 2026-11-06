@@ -1,4 +1,5 @@
 // MTH 209 · Systems of linear equations · Lesson 5: the Gauss-Seidel method (GSM).
+import { seidelScene } from './system-scenes';
 
 export default {
   id: 'gauss-seidel',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Simple iteration converges for any start when',
+          options: [
+            { text: 'every row sum $\\sum_j |c_{ij}| < 1$ (each unknown dominates its own equation)', correct: true, why: 'Diagonal dominance.' },
+            { text: 'the determinant is $1$', why: 'The determinant isn’t the test.' },
+            { text: 'the starting vector is $0$', why: 'Convergence holds from any start when the condition holds.' },
+            { text: 'the system is $2 \\times 2$', why: 'Size doesn’t matter.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Systems of linear equations · Lesson 5',
           title: 'Use the newest values',
           body: 'In simple iteration, by the time you compute $x^{(1)}_2$ you already **know** $x^{(1)}_1$, a better value than $x^{(0)}_1$. Yet SIM ignores it.\n\nThe ==Gauss-Seidel method== uses each new value **as soon as it is computed**. For a $3 \\times 3$ system:\n$$\\begin{aligned} x^{(k+1)}_1 &= f_1 + c_{12}x^{(k)}_2 + c_{13}x^{(k)}_3 \\\\ x^{(k+1)}_2 &= f_2 + c_{21}x^{(k+1)}_1 + c_{23}x^{(k)}_3 \\\\ x^{(k+1)}_3 &= f_3 + c_{31}x^{(k+1)}_1 + c_{32}x^{(k+1)}_2 \\end{aligned}$$',
           cta: 'Try it',
         },
+        seidelScene,
         {
           type: 'story',
           eyebrow: 'Worked example · k = 1',
@@ -36,6 +49,20 @@ export default {
             { text: '$1.18$', why: 'Use **both** new values, $x_1 = 1.2$ and $x_2 = 1.06$.' },
             { text: '$0.9$', why: 'That’s SIM’s second iterate.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Continue Gauss-Seidel: from $x^{(1)} = (1.2, 1.06, 0.948)$, compute $x^{(2)}$.',
+          body: 'Use each new value as soon as you have it.',
+          graph: {
+            steps: [
+              { ask: '$x_1^{(2)} = \\frac{12 - 1.06 - 0.948}{10} = $ (4 d.p.)', answer: 0.9992, tol: 0.0001, hint: '$\\frac{9.992}{10}$.' },
+              { ask: '$x_2^{(2)} = \\frac{13 - 2x_1^{(2)} - 0.948}{10} = $ (4 d.p.)', answer: 1.0054, tol: 0.0001, hint: 'Use the **new** $x_1 = 0.9992$.' },
+              { ask: '$x_3^{(2)} = \\frac{14 - 2x_1^{(2)} - 2x_2^{(2)}}{10} = $ (4 d.p.)', answer: 0.9991, tol: 0.0001, hint: 'Both new values.' },
+            ],
+          },
         },
         {
           type: 'story',

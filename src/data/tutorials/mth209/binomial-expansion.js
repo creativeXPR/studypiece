@@ -1,4 +1,5 @@
 // MTH 209 · Approximations · Lesson 1: binomial expansion.
+import { binomialScene } from './series-scenes';
 
 export default {
   id: 'binomial-expansion',
@@ -13,6 +14,17 @@ export default {
         ['Binomial series', '$(1 + x)^n = 1 + nx + \\dfrac{n(n-1)}{2!}x^2 + \\dfrac{n(n-1)(n-2)}{3!}x^3 + \\cdots$ for any $n$, valid when $|x| < 1$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The shift operator satisfies',
+          options: [
+            { text: '$E = 1 + \\Delta$', correct: true, why: '$\\Delta f_k = f_{k+1} - f_k = (E - 1)f_k$.' },
+            { text: '$E = 1 - \\Delta$', why: 'That mixes it up with $E^{-1} = 1 - \\nabla$.' },
+            { text: '$E = \\Delta^2$', why: '$E$ shifts one step; $\\Delta = E - 1$.' },
+            { text: '$E = \\delta$', why: '$\\delta = E^{1/2} - E^{-1/2}$.' },
+          ],
+        },
         {
           type: 'story',
           eyebrow: 'Approximations · Lesson 1',
@@ -43,6 +55,7 @@ export default {
           title: 'The binomial series',
           body: 'When $n$ is negative or a fraction, the expansion **never stops**:\n$$(1 + x)^n = 1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\cdots$$\n\nIt only converges for ==$|x| < 1$==. Outside that range the terms grow and the sum is meaningless.\n\nFor $(a + x)^n$, first take out $a^n$: $(a + x)^n = a^n\\left(1 + \\frac{x}{a}\\right)^n$, valid for $|x| < |a|$.',
         },
+        binomialScene,
         {
           type: 'choice',
           eyebrow: 'Check',
@@ -87,6 +100,21 @@ export default {
             { text: '$0.9040$', why: 'Don’t forget the $x^3$ term, $-10(0.02)^3 = -0.00008$.' },
             { text: '$1.1041$', why: 'That is $1.02^5$. Here $x = -0.02$, so the signs alternate.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Use three terms of the binomial series to evaluate $\\frac{1}{\\sqrt{1.04}} = (1 + 0.04)^{-1/2}$.',
+          body: '$(1 + x)^n \\approx 1 + nx + \\frac{n(n - 1)}{2!}x^2$, with $n = -\\frac12$, $x = 0.04$.',
+          graph: {
+            steps: [
+              { ask: '$nx = $', answer: -0.02, tol: 1e-05, hint: '$-\\frac12 \\times 0.04$.' },
+              { ask: '$\\frac{n(n - 1)}{2}x^2 = $', answer: 0.0006, tol: 1e-06, hint: '$\\frac{(-\\frac12)(-\\frac32)}{2}(0.0016) = \\frac38(0.0016)$.' },
+              { ask: 'Sum of three terms (4 d.p.)', answer: 0.9806, tol: 5e-05, hint: '$1 - 0.02 + 0.0006$. True value $0.980581$.' },
+              { ask: 'Is the series valid here?', options: ['Yes: $|0.04| < 1$', 'No'], answer: 0, hint: 'Is $|x| < 1$?' },
+            ],
+          },
         },
         {
           type: 'reveal',

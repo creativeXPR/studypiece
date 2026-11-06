@@ -14,6 +14,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In the LU method, $LY = B$ is solved by',
+          options: [
+            { text: 'forward substitution, then $UX = Y$ by back substitution', correct: true, why: '$L$ is lower triangular: start from $y_1$.' },
+            { text: 'back substitution only', why: '$L$ is lower triangular, so start from the top.' },
+            { text: 'inverting $L$ and $U$', why: 'No inverses needed: substitution is enough.' },
+            { text: 'Cramer’s rule', why: 'Substitution is far quicker for triangular systems.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Systems of linear equations · Lesson 3',
           title: 'Eliminate, then back-substitute',
@@ -97,6 +108,22 @@ export default {
             { text: '$x_1 = -1,\\ x_2 = 3,\\ x_3 = 2,\\ x_4 = 1$', why: 'Work from the bottom: $x_4$ first.' },
             { text: '$x_1 = 1.35,\\ x_2 = 71.2,\\ x_3 = 4.723,\\ x_4 = -1.12$', why: 'Those are right-hand sides, not solutions.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Solve $2a + 3b + c = 9$, $a + 2b + 3c = 6$, $3a + b + 2c = 8$ by Gaussian elimination.',
+          body: 'Divide row 1 by $2$, eliminate $a$, then eliminate $b$, then back-substitute.',
+          graph: {
+            steps: [
+              { ask: 'After eliminating $a$, row 2 is $0.5b + 2.5c = $', answer: 1.5, tol: 0.0001, hint: '$6 - 4.5$ (row 2 $-$ new row 1).' },
+              { ask: 'and row 3 is $-3.5b + 0.5c = $', answer: -5.5, tol: 0.0001, hint: '$8 - 3(4.5)$.' },
+              { ask: 'Dividing row 2 by $0.5$ and eliminating $b$: $18c = 5$, so $c = $ (4 d.p.)', answer: 0.2778, tol: 0.0001, hint: '$0.5 + 3.5(5) = 18$; $-5.5 + 3.5(3) = 5$.' },
+              { ask: '$b = 3 - 5c = $ (4 d.p.)', answer: 1.6111, tol: 0.0001, hint: 'From $b + 5c = 3$.' },
+              { ask: '$a = 4.5 - 1.5b - 0.5c = $ (4 d.p.)', answer: 1.9444, tol: 0.0001, hint: 'From $a + 1.5b + 0.5c = 4.5$.' },
+            ],
+          },
         },
         {
           type: 'multi',

@@ -1,4 +1,5 @@
 // MTH 209 · Interpolation · Lesson 2: higher degree interpolation and Lagrange's formula.
+import { lagrangeScene } from './interpolation-scenes';
 
 export default {
   id: 'lagrange',
@@ -12,6 +13,17 @@ export default {
         ['Interpolating polynomial', 'For $n + 1$ points with distinct $x$-values there is a unique polynomial $P_n(x)$ of degree $\\le n$ with $P_n(x_i) = y_i$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In $P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$, the two weights',
+          options: [
+            { text: 'add up to $1$, and each is $1$ at its own point and $0$ at the other', correct: true, why: 'So $P_1$ passes through both points.' },
+            { text: 'are always equal', why: 'They are equal only at the midpoint.' },
+            { text: 'add up to $0$', why: 'They add to $1$.' },
+            { text: 'are the $y$-values', why: 'They multiply the $y$-values.' },
+          ],
+        },
         {
           type: 'story',
           eyebrow: 'Interpolation · Lesson 2',
@@ -54,6 +66,7 @@ export default {
         ['Lagrange basis function', '$L_k(x) = \\displaystyle\\prod_{j \\neq k}\\frac{x - x_j}{x_k - x_j}$: equal to 1 at $x_k$ and 0 at every other node.'],
       ],
       screens: [
+        lagrangeScene,
         {
           type: 'story',
           eyebrow: 'The trick',
@@ -76,6 +89,21 @@ export default {
             { text: '$\\frac{(x - 2)(x - 3)}{2}$', why: 'That’s $L_0$: it skips $x_0 = 1$.' },
             { text: '$\\frac{(x - 1)(x - 2)}{2}$', why: 'That’s $L_2$.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'For the same data $(1, 4)$, $(2, 0)$, $(3, 12)$, find $P_2(1.5)$ by Lagrange’s formula.',
+          body: '$L_0 = \\frac{(x - 2)(x - 3)}{(1 - 2)(1 - 3)}$, $L_1 = \\frac{(x - 1)(x - 3)}{(2 - 1)(2 - 3)}$, $L_2 = \\frac{(x - 1)(x - 2)}{(3 - 1)(3 - 2)}$.',
+          graph: {
+            steps: [
+              { ask: '$L_0(1.5) = $', answer: 0.375, tol: 0.0005, hint: '$\\frac{(-0.5)(-1.5)}{(-1)(-2)}$.' },
+              { ask: '$L_1(1.5) = $', answer: 0.75, tol: 0.0005, hint: '$\\frac{(0.5)(-1.5)}{(1)(-1)}$.' },
+              { ask: '$L_2(1.5) = $', answer: -0.125, tol: 0.0005, hint: '$\\frac{(0.5)(-0.5)}{(2)(1)}$.' },
+              { ask: '$P_2(1.5) = 4L_0 + 0L_1 + 12L_2 = $', answer: 0, tol: 0.0005, hint: '$1.5 - 1.5$. Check with $8x^2 - 28x + 24$.' },
+            ],
+          },
         },
         {
           type: 'story',

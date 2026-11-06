@@ -1,4 +1,5 @@
 // MTH 209 · Systems of non-linear equations · Lesson 2: Newton's method for systems.
+import { newtonSystemScene } from './nonlinear-scenes';
 
 export default {
   id: 'newton-systems',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'A fixed point of $G$ is a point $p$ with',
+          options: [
+            { text: '$G(p) = p$', correct: true, why: 'Applying $G$ leaves it where it is.' },
+            { text: '$G(p) = 0$', why: 'That is a root of $G$.' },
+            { text: '$G\'(p) = 0$', why: 'That is a stationary point.' },
+            { text: '$p = 0$', why: 'Fixed points can be anywhere.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Systems of non-linear equations · Lesson 2',
           title: 'Newton-Raphson, upgraded',
           body: 'For one equation you know the Newton-Raphson step\n$$x_{n+1} = x_n - \\frac{f(x_n)}{f\'(x_n)}.$$\n\nFor a system $F(x) = 0$, two things change. First, $f(x_n)$ becomes the **vector** $F(x^{(k)})$. Second, the derivative $f\'$ becomes a **matrix** of partial derivatives, the ==Jacobian== $J(x)$, and dividing by it becomes multiplying by $J^{-1}$.',
           cta: 'Meet the Jacobian',
         },
+        newtonSystemScene,
         {
           type: 'story',
           eyebrow: 'The Jacobian',
@@ -115,6 +128,22 @@ export default {
             { text: 'Convergence guaranteed by $\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le \\frac{K}{n}$, $K < 1$', bucket: 'fp', why: '**Fixed-point theorem** condition.' },
           ],
           explain: 'Newton is faster but each step costs more; fixed-point steps are cheap but slow.',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'One Newton step for $x^2 + y^2 - 4 = 0$, $x^2 - y - 1 = 0$ from $(1, 1)$.',
+          body: '$J = \\begin{pmatrix} 2x & 2y \\\\ 2x & -1 \\end{pmatrix}$, $\\mathbf{x}^{(1)} = \\mathbf{x}^{(0)} - J^{-1}F$.',
+          graph: {
+            steps: [
+              { ask: '$F_1(1, 1) = $', answer: -2, tol: 0, hint: '$1 + 1 - 4$.' },
+              { ask: '$F_2(1, 1) = $', answer: -1, tol: 0, hint: '$1 - 1 - 1$.' },
+              { ask: '$\\det J(1, 1) = $', answer: -6, tol: 0, hint: '$J = \\begin{pmatrix} 2 & 2 \\\\ 2 & -1 \\end{pmatrix}$: $-2 - 4$.' },
+              { ask: '$x^{(1)} = $ (4 d.p.)', answer: 1.6667, tol: 0.0001, hint: '$J^{-1}F = -\\frac16\\begin{pmatrix} -1 & -2 \\\\ -2 & 2 \\end{pmatrix}\\begin{pmatrix} -2 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} -0.6667 \\\\ -0.3333 \\end{pmatrix}$.' },
+              { ask: '$y^{(1)} = $ (4 d.p.)', answer: 1.3333, tol: 0.0001, hint: '$1 - (-0.3333)$.' },
+            ],
+          },
         },
         {
           type: 'story',
