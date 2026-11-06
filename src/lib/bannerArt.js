@@ -7,6 +7,7 @@
 const PALETTES = {
   'MTH 209': ['#4338ca', '#7c3aed', '#fde047'],
   'MAT 222': ['#0f766e', '#14b8a6', '#fde68a'],
+  'MTH 205': ['#134e4a', '#4338ca', '#fde047'],
   'MTH 210': ['#1e3a8a', '#0891b2', '#fde047'],
   'MTH 103': ['#1d4ed8', '#0ea5e9', '#fde047'],
   'MAT 142': ['#166534', '#65a30d', '#facc15'],
@@ -105,6 +106,37 @@ const MOTIFS = {
       s += k.circle(sx(x), sy(f(x)), 4, k.dot);
     }
     return s + k.circle(sx(steps[3]), sy(0), 6, k.star) + k.text(378, 40, 'xₙ₊₁ = xₙ − f/f′', k.label);
+  },
+
+  // Linear algebra: the course's running matrix A = (2 1; 1 2) tilting a patch of grid, with Aî
+  // and Aĵ as arrows, its eigen-lines (dashed) and the tilted ellipse of its quadratic form.
+  'MTH 205': (k) => {
+    const S = ([x, y]) => [420 + 18 * x, 120 - 18 * y].map((v) => v.toFixed(1));
+    const A = ([x, y]) => [2 * x + y, x + 2 * y];
+    const seg = (p, q, st) => k.line(...S(p), ...S(q), st);
+    const arrow = (v, st, fill) => {
+      const [x, y] = S(v);
+      const n = Math.hypot(v[0], v[1]);
+      const [ux, uy] = [v[0] / n, -v[1] / n];
+      const head = `M${x},${y}L${(x - 9 * ux - 5 * uy).toFixed(1)},${(y - 9 * uy + 5 * ux).toFixed(1)}L${(x - 9 * ux + 5 * uy).toFixed(1)},${(y - 9 * uy - 5 * ux).toFixed(1)}Z`;
+      return seg([0, 0], v, st) + k.path(head, fill);
+    };
+    let s = '';
+    for (const i of [-0.5, 0, 0.5, 1, 1.5]) {
+      s += seg(A([i, -0.5]), A([i, 1.5]), i === 0 ? k.axis : k.grid.replace('0.12', '0.4'));
+      s += seg(A([-0.5, i]), A([1.5, i]), i === 0 ? k.axis : k.grid.replace('0.12', '0.4'));
+    }
+    s += seg([-2.4, -2.4], [5.6, 5.6], k.dash) + seg([2, -2], [-2.2, 2.2], k.dash);
+    s += k.path(`M${S([0, 0])}L${S(A([1, 0]))}L${S(A([1, 1]))}L${S(A([0, 1]))}Z`, k.band);
+    s += arrow(A([1, 0]), k.curve, k.dot) + arrow(A([0, 1]), k.accent, k.star);
+    const ell = [];
+    for (let i = 0; i <= 48; i++) {
+      const t = (2 * Math.PI * i) / 48;
+      const [a, b] = [19 * Math.cos(t), 34 * Math.sin(t)];
+      ell.push(`${(575 + (a - b) * Math.SQRT1_2).toFixed(1)},${(98 - (a + b) * Math.SQRT1_2).toFixed(1)}`);
+    }
+    s += k.poly(ell.join(' '), k.ring) + k.line(547, 126, 603, 70, k.dash) + k.line(547, 70, 603, 126, k.dash);
+    return s + k.text(532, 38, 'Av = λv', k.label);
   },
 
   // Vectors in space: 3D axes, two vectors spanning a shaded parallelogram, their cross
