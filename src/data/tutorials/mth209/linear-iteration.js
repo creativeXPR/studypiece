@@ -1,4 +1,5 @@
 // MTH 209 · Solutions of equations · Lesson 3: linear (fixed-point) iteration.
+import { cobwebGoodScene, cobwebBadScene } from './equation-scenes';
 
 export default {
   id: 'linear-iteration',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Regula Falsi often converges slowly because',
+          options: [
+            { text: 'one end of the bracket stays fixed, so the estimates creep in from one side', correct: true, why: 'The chords keep pivoting about the same far point.' },
+            { text: 'it uses the derivative', why: 'It uses only values of $f$.' },
+            { text: 'it can lose the root', why: 'It always keeps a sign change.' },
+            { text: 'it always takes the midpoint', why: 'That is bisection.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Solutions of equations · Lesson 3',
           title: 'Feed the answer back in',
           body: 'Type any number into a calculator and press **cos** again and again (in radians). The display settles on $0.7391\\ldots$, the solution of $x = \\cos x$.\n\nThat is ==linear iteration==: write the equation as $x = g(x)$, then keep feeding each answer back into $g$:\n$$x_1 = g(x_0),\\quad x_2 = g(x_1),\\quad \\ldots,\\quad x_{n+1} = g(x_n).$$',
           cta: 'Try one',
         },
+        cobwebGoodScene,
         {
           type: 'choice',
           eyebrow: 'Step 1 · Rearrange',
@@ -31,6 +44,21 @@ export default {
             { text: '$x = x^2 - 3x + 1$', why: 'That would need $f(x) = x$, not $f(x) = 0$.' },
           ],
           explain: 'In general: $x_{n+1} = \\frac13(1 + x_n^2)$.',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Iterate $x_{n+1} = \\frac13(1 + x_n^2)$ for $x^2 - 3x + 1 = 0$, from $x_0 = 0$.',
+          body: 'Picture the cobweb: $g$ is flat near the root, so it should settle quickly.',
+          graph: {
+            steps: [
+              { ask: '$x_1 = $ (4 d.p.)', answer: 0.3333, tol: 0.0001, hint: '$\\frac13(1 + 0)$.' },
+              { ask: '$x_2 = $ (4 d.p.)', answer: 0.3704, tol: 0.0001, hint: '$\\frac13(1 + 0.3333^2)$.' },
+              { ask: '$x_3 = $ (4 d.p.)', answer: 0.3791, tol: 0.0001, hint: '$\\frac13(1 + 0.3704^2)$.' },
+              { ask: '$g\'(x) = \\frac{2x}{3}$. At the root $0.382$, $|g\'| \\approx$ (2 d.p.)', answer: 0.25, tol: 0.006, hint: '$\\frac{2(0.382)}{3}$: less than $1$, so it converges.' },
+            ],
+          },
         },
         {
           type: 'story',
@@ -55,6 +83,7 @@ export default {
         ['Convergence condition', 'The iteration converges to the root $\\alpha$ (from a close enough $x_0$) if $|g\'(x)| < 1$ near $\\alpha$. If $|g\'(\\alpha)| > 1$ it moves away.'],
       ],
       screens: [
+        cobwebBadScene,
         {
           type: 'story',
           eyebrow: 'The test',

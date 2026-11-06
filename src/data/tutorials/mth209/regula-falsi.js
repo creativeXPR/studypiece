@@ -1,4 +1,5 @@
 // MTH 209 · Solutions of equations · Lesson 2: Regula Falsi (method of false position).
+import { falsiScene } from './equation-scenes';
 
 export default {
   id: 'regula-falsi',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Starting from $[2, 3]$, after $3$ bisections the bracket has width',
+          options: [
+            { text: '$\\frac18$', correct: true, why: 'Each step halves it: $\\frac{1}{2^3}$.' },
+            { text: '$\\frac13$', why: 'Halving, not cutting into thirds.' },
+            { text: '$\\frac16$', why: '$\\frac{1}{2 \\times 3}$ would be halving once and thirding once.' },
+            { text: '$\\frac{1}{9}$', why: 'Width after $n$ steps is $\\frac{1}{2^n}$.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Solutions of equations · Lesson 2',
           title: 'Bisection ignores useful information',
           body: 'Suppose $f(a) = -0.01$ and $f(b) = 50$. The root is surely much nearer $a$ than $b$, yet bisection still guesses the midpoint.\n\nThe ==Regula Falsi== method (method of false position) uses the **sizes** of $f(a)$ and $f(b)$, not just their signs. It combines the **guaranteed convergence** of bisection with the **speed** of linear interpolation.',
           cta: 'How?',
         },
+        falsiScene,
         {
           type: 'story',
           eyebrow: 'Step 1 · The secant line',
@@ -91,6 +104,21 @@ export default {
             { text: '$0.2344$', why: 'That’s $|f(b)|$, not a new $x$.' },
             { text: '$0.2500$', why: 'That’s the old end point.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Regula Falsi for $x^3 - 5x + 1 = 0$: carry on from $a = 0$, $b = 0.25$.',
+          body: '$f(0) = 1$, $f(0.25) = -0.234375$. Use $c = \\frac{af(b) - bf(a)}{f(b) - f(a)}$.',
+          graph: {
+            steps: [
+              { ask: '$c_2 = $ (6 d.p.)', answer: 0.202532, tol: 2e-06, hint: '$\\frac{0 \\cdot f(b) - 0.25 \\cdot 1}{-0.234375 - 1}$.' },
+              { ask: '$f(c_2) = $ (6 d.p.)', answer: -0.004351, tol: 3e-06, hint: '$c_2^3 - 5c_2 + 1$.' },
+              { ask: 'Next bracket', options: ['$[0, 0.202532]$', '$[0.202532, 0.25]$'], answer: 0, hint: '$f(0) > 0 > f(c_2)$.' },
+              { ask: '$c_3 = $ (6 d.p.)', answer: 0.201654, tol: 3e-06, hint: 'Same formula with $b = 0.202532$, $f(b) = -0.004351$.' },
+            ],
+          },
         },
         {
           type: 'story',

@@ -5,6 +5,7 @@ import regulaFalsi from './regula-falsi';
 import linearIteration from './linear-iteration';
 import newtonRaphson from './newton-raphson';
 import secant from './secant';
+import examEquations from './exam-equations';
 import linearInterpolation from './linear-interpolation';
 import lagrange from './lagrange';
 import typesOfError from './types-of-error';
@@ -33,7 +34,7 @@ export default {
       n: 1,
       title: 'Solutions of Algebraic and Transcendental Equations',
       by: 'Bisection, Regula Falsi, linear iteration, Newton-Raphson, secant',
-      lessons: [bisection, regulaFalsi, linearIteration, newtonRaphson, secant],
+      lessons: [bisection, regulaFalsi, linearIteration, newtonRaphson, secant, examEquations],
     },
     {
       n: 2,

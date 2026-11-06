@@ -1,4 +1,5 @@
 // MTH 209 · Solutions of equations · Lesson 4: the Newton-Raphson method.
+import { newtonScene, newtonFailScene } from './equation-scenes';
 
 export default {
   id: 'newton-raphson',
@@ -13,12 +14,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The iteration $x_{n+1} = g(x_n)$ converges near a root when',
+          options: [
+            { text: '$|g\'(x)| < 1$ there (the curve is flatter than $y = x$)', correct: true, why: 'Each step shrinks the error by about $|g\'|$.' },
+            { text: '$|g\'(x)| > 1$ there', why: 'Then it spirals away.' },
+            { text: '$g(x) = 0$ there', why: 'The root satisfies $g(x) = x$.' },
+            { text: '$x_0 = 0$', why: 'The starting value alone doesn’t decide it.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Solutions of equations · Lesson 4',
           title: 'Slide down the tangent',
           body: 'Near a root, a smooth curve looks almost like a straight line: its **tangent**.\n\nSo from a guess $x_0$, draw the tangent to $y = f(x)$ at $P(x_0, f(x_0))$ and see where it meets the $x$-axis, at $Q$. That point $x_1$ is usually much closer to the root. Repeat from $x_1$.\n\nThis is the ==Newton-Raphson method==.',
           cta: 'Derive it',
         },
+        newtonScene,
         {
           type: 'story',
           eyebrow: 'The derivation',
@@ -79,6 +92,21 @@ export default {
           ],
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Newton-Raphson for $x^3 - 5x - 40 = 0$ from $x_0 = 4$.',
+          body: '$f\'(x) = 3x^2 - 5$.',
+          graph: {
+            steps: [
+              { ask: '$f(4) = $', answer: 4, tol: 0, hint: '$64 - 20 - 40$.' },
+              { ask: '$f\'(4) = $', answer: 43, tol: 0, hint: '$48 - 5$.' },
+              { ask: '$x_1 = 4 - \\frac{4}{43} = $ (5 d.p.)', answer: 3.90698, tol: 1e-05, hint: '$4 - 0.0930$.' },
+              { ask: '$x_2 = $ (5 d.p.)', answer: 3.90445, tol: 2e-05, hint: '$x_1 - \\frac{f(x_1)}{f\'(x_1)}$ with $f(x_1) \\approx 0.1033$, $f\'(x_1) \\approx 40.79$.' },
+            ],
+          },
+        },
+        {
           type: 'story',
           eyebrow: 'Iteration 2 and 3',
           title: 'Converging fast',
@@ -104,6 +132,13 @@ export default {
     {
       name: 'Strengths and limits',
       screens: [
+        newtonFailScene,
+        {
+          type: 'story',
+          eyebrow: 'Another trap',
+          title: 'Repeated roots slow Newton down',
+          body: 'Newton’s formula for $f(x) = x^ke^x$ simplifies to $x_{n+1} = \\frac{(k - 1)x_n + x_n^2}{k + x_n}$, and the root is $x = 0$.\n\nFrom $x_0 = 1$: with $k = 1$ (a simple root) $x_5 = 0.000000$ to 6 d.p.; with $k = 2$ (a **double** root) $x_5 = 0.072003$, still far off.\n\nWhy? At a double root the curve only **touches** the axis, so the tangents near it are almost flat and each step only about halves the distance: convergence drops from quadratic to linear.',
+        },
         {
           type: 'multi',
           eyebrow: 'Check yourself',

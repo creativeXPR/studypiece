@@ -1,4 +1,5 @@
 // MTH 209 · Solutions of equations · Lesson 5: the secant method, and comparing all five methods.
+import { secantScene } from './equation-scenes';
 
 const HOOK = [
   ['Bisection', 'Reliable, slow', 'About 10 halvings for 3 decimal places from a unit interval.'],
@@ -21,12 +22,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'The Newton-Raphson iteration is',
+          options: [
+            { text: '$x_{n+1} = x_n - \\frac{f(x_n)}{f\'(x_n)}$', correct: true, why: 'Follow the tangent to the axis.' },
+            { text: '$x_{n+1} = x_n + \\frac{f(x_n)}{f\'(x_n)}$', why: 'The sign: you move against the slope.' },
+            { text: '$x_{n+1} = \\frac{f(x_n)}{f\'(x_n)}$', why: 'You subtract the correction from $x_n$.' },
+            { text: '$x_{n+1} = \\frac{x_n + x_{n-1}}{2}$', why: 'That is a midpoint, not a tangent step.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Solutions of equations · Lesson 5',
           title: 'Newton-Raphson, without the derivative',
           body: 'Newton-Raphson is fast, but every step needs $f\'(x_n)$, and for some functions the derivative is messy or unknown.\n\nThe ==secant method== is a simplification of Newton-Raphson: replace the tangent by the **secant line through the last two points**.',
           cta: 'Derive it',
         },
+        secantScene,
         {
           type: 'choice',
           poll: 'hook',
@@ -83,6 +96,20 @@ export default {
             { text: '$x_0 = 3$ and $x_1 = 4$ again', why: 'Then nothing would improve.' },
             { text: 'Only $x_2$', why: 'A slope needs two points.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Secant method for $x^3 - 5x - 40 = 0$ with $x_0 = 3$, $x_1 = 4$.',
+          body: '$x_{n+1} = x_n - f(x_n)\\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$.',
+          graph: {
+            steps: [
+              { ask: '$x_2 = $', answer: 3.875, tol: 0.0001, hint: '$4 - 4 \\cdot \\frac{4 - 3}{4 - (-28)}$.' },
+              { ask: '$f(x_2) = $ (6 d.p.)', answer: -1.189453, tol: 2e-06, hint: '$3.875^3 - 5(3.875) - 40$.' },
+              { ask: '$x_3 = $ (6 d.p.)', answer: 3.903651, tol: 3e-06, hint: 'Use the two newest points, $x_1 = 4$ and $x_2 = 3.875$.' },
+            ],
+          },
         },
         {
           type: 'story',

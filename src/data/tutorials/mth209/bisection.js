@@ -1,4 +1,5 @@
 // MTH 209 · Solutions of equations · Lesson 1: the bisection method.
+import { bisectScene } from './equation-scenes';
 
 export default {
   id: 'bisection',
@@ -21,6 +22,7 @@ export default {
           body: 'You can solve $5x^2 + 11x - 17 = 0$ with the quadratic formula. But what about $x^3 - 5x - 40 = 0$, or $x = \\cos x$?\n\nFor most equations there is no neat formula. ==Numerical methods== find the root **approximately**, to any accuracy we ask for, by repeating a simple step.\n\nThe simplest of them all is ==bisection==: trap the root in an interval, then keep cutting the interval in half.',
           cta: 'Show me',
         },
+        bisectScene,
         {
           type: 'story',
           eyebrow: 'The key theorem',
@@ -80,6 +82,24 @@ export default {
             { text: '$[1, 1.5]$', why: 'Each step must halve the bracket.' },
             { text: '$[1.125, 1.375]$', why: 'The new bracket always has the midpoint as one end.' },
           ],
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Continue the table for $5x^2 + 11x - 17 = 0$ from the bracket $[1, 1.25]$.',
+          body: 'Work each row on paper: midpoint, its value, which half to keep.',
+          graph: {
+            steps: [
+              { ask: 'Row 3: $c = $', answer: 1.125, tol: 0.0001, hint: 'Midpoint of $[1, 1.25]$.' },
+              { ask: '$f(1.125) = $ (4 d.p.)', answer: 1.7031, tol: 0.0006, hint: '$5(1.265625) + 12.375 - 17$.' },
+              { ask: 'Row 4: $c = $', answer: 1.0625, tol: 0.0001, hint: '$f(1.125) > 0$, like $f(1.25)$: the bracket is now $[1, 1.125]$.' },
+              { ask: '$f(1.0625) = $ (4 d.p.)', answer: 0.332, tol: 0.0006, hint: '$5(1.12890625) + 11.6875 - 17$.' },
+              { ask: 'Row 5: $c = $', answer: 1.03125, tol: 1e-05, hint: 'Still positive: bracket $[1, 1.0625]$.' },
+              { ask: '$f(1.03125) = $ (4 d.p.)', answer: -0.3389, tol: 0.0006, hint: '$5(1.0634766) + 11.34375 - 17$.' },
+              { ask: 'So the next bracket is', options: ['$[1.03125, 1.0625]$', '$[1, 1.03125]$'], answer: 0, hint: '$f(1.03125) < 0 < f(1.0625)$.' },
+            ],
+          },
         },
         {
           type: 'story',
