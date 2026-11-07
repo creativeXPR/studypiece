@@ -3496,3 +3496,27 @@ a.learn-les:active {
   .tut-graph > .tut-graph-stage { grid-column: 1; grid-row: 1 / span 12; }
   .tut-graph > :not(.tut-graph-stage) { grid-column: 2; }
 }
+
+/* ---------------- code cell (Python in the browser) ---------------- */
+.tut-codecell { display: flex; flex-direction: column; gap: 12px; }
+.tut-code-task { display: flex; flex-direction: column; gap: 8px; animation: tut-pop var(--dur-slow) var(--ease-spring); }
+.tut-code-editor {
+  width: 100%; box-sizing: border-box; resize: vertical; padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--border-strong); background: #0f172a; color: #e2e8f0; caret-color: #fde047;
+  font: 0.95rem/1.55 Consolas, 'Cascadia Mono', ui-monospace, monospace; tab-size: 4; white-space: pre;
+}
+@media (max-width: 480px) { .tut-code-editor { font-size: 0.8rem; padding: 10px; } }
+.tut-code-editor:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.tut-code-status { margin: 0; font-size: 0.85rem; color: var(--text-2); }
+.tut-code-out { border-radius: 12px; border: 1px solid var(--border); background: var(--surface); padding: 10px 12px; }
+.tut-code-out.ok { border-color: var(--good); }
+.tut-code-out.err { border-color: var(--bad); }
+.tut-code-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); }
+.tut-code-out pre { margin: 4px 0 0; white-space: pre-wrap; font: 0.92rem/1.5 Consolas, ui-monospace, monospace; }
+.tut-code-out.err pre { color: var(--bad); }
+.tut-code-tip, .tut-code-good { margin: 6px 0 0; font-size: 0.92rem; }
+.tut-code-good { color: var(--good); font-weight: 600; }
+.tut-pre {
+  margin: 0.4em 0; padding: 10px 12px; border-radius: 10px; background: #0f172a; color: #e2e8f0;
+  font: 0.88rem/1.5 Consolas, 'Cascadia Mono', ui-monospace, monospace; white-space: pre; overflow-x: auto;
+}

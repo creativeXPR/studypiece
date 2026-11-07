@@ -15,7 +15,7 @@
 //   { id, vec: [x, y], from?, kind, label }   arrow         { id, span: [x, y], kind }  line through 0
 //   { id, poly: [[x, y], …], kind }           filled shape  { id, path: [[x, y], …], kind, closed }
 //   { id, pt: [x, y], kind, label }           dot           { id, text: [x, y], label, kind }
-//   { id, seg: [[x, y], [x, y]], kind, dash? } plain segment (dashed unless dash: false)
+//   { id, seg: [[x, y], [x, y]], kind, dash?, w? } plain segment (dashed unless dash: false; w = width)
 // kind is a colour: a blue | b green (î) | c amber | d red (ĵ) | e purple | s grey. o: opacity.
 import { useEffect, useRef, useState } from 'react';
 import { Inline } from './Rich';
@@ -136,7 +136,7 @@ function PlaneSvg({ f, handles, svgRef, onDown }) {
         {f.items.filter((it) => it.type === 'seg').map((it) => {
           const a = place(it, it.pts[0]);
           const b = place(it, it.pts[1]);
-          return <line key={it.id} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className={`pl-seg k-${it.kind ?? 's'}${it.dash === false ? '' : ' dash'}`} style={{ opacity: it.o }} />;
+          return <line key={it.id} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className={`pl-seg k-${it.kind ?? 's'}${it.dash === false ? '' : ' dash'}`} style={{ opacity: it.o, strokeWidth: it.w }} />;
         })}
         {f.items.filter((it) => it.type === 'path').map((it) => (
           <polyline key={it.id} points={[...it.pts, ...(it.closed ? [it.pts[0]] : [])].map((p) => place(it, p).join(',')).join(' ')} className={`pl-path k-${it.kind ?? 'a'}`} style={{ opacity: it.o }} />

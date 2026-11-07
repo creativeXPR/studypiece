@@ -5,6 +5,7 @@ import { FieldLab, SpaceLab } from './vectorWidgets';
 import { Scene } from './sceneWidget';
 import { Calc, MockClock } from './calcWidget';
 import { Plane, PlaneLab } from './planeWidget';
+import { CodeCell } from './codeWidget';
 import { Inline } from './Rich';
 
 // One-off interactive pieces used by `type: 'custom'` screens (`widget: 'venn'`).
@@ -1394,6 +1395,7 @@ export const WIDGETS = {
   graph: GraphLab,
   space: SpaceLab,
   plane: Plane,
+  code: CodeCell,
   planeLab: PlaneLab,
   field: FieldLab,
   scene: Scene,

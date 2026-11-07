@@ -7,9 +7,10 @@ import mat222 from './mat222';
 import mth209 from './mth209';
 import mth205 from './mth205';
 import mth210 from './mth210';
+import spo101 from './spo101';
 import sta221 from './sta221';
 
-const list = [cos202, ges103, mat222, mth205, mth209, mth210, sta221].map((t) => ({ ...t, slug: courseSlug(t.code) }));
+const list = [cos202, ges103, mat222, mth205, mth209, mth210, spo101, sta221].map((t) => ({ ...t, slug: courseSlug(t.code) }));
 
 export const tutorials = Object.fromEntries(list.map((t) => [t.slug, t]));
 

@@ -8,6 +8,7 @@ const PALETTES = {
   'MTH 209': ['#4338ca', '#7c3aed', '#fde047'],
   'MAT 222': ['#0f766e', '#14b8a6', '#fde68a'],
   'MTH 205': ['#134e4a', '#4338ca', '#fde047'],
+  'SPO 101': ['#0c4a6e', '#0e7490', '#fbbf24'],
   'MTH 210': ['#1e3a8a', '#0891b2', '#fde047'],
   'MTH 103': ['#1d4ed8', '#0ea5e9', '#fde047'],
   'MAT 142': ['#166534', '#65a30d', '#facc15'],
@@ -106,6 +107,23 @@ const MOTIFS = {
       s += k.circle(sx(x), sy(f(x)), 4, k.dot);
     }
     return s + k.circle(sx(steps[3]), sy(0), 6, k.star) + k.text(378, 40, 'xₙ₊₁ = xₙ − f/f′', k.label);
+  },
+
+  // Intro to ML: the course's kiosk notebook (temperature against bottles) with its fitted line and
+  // a few misses, beside a small neural network whose output lights up.
+  'SPO 101': (k) => {
+    const T = [26, 27, 28, 29, 30, 30, 31, 32, 33, 34, 35, 36];
+    const B = [14, 18, 31, 38, 47, 53, 58, 71, 77, 92, 96, 108];
+    const sx = (t) => 362 + (t - 25) * 12.5;
+    const sy = (b) => 132 - b * 0.95;
+    let s = k.line(358, 132, 512, 132, k.axis) + k.line(358, 132, 358, 22, k.axis);
+    s += k.line(sx(25), sy(-0.3), sx(37), sy(116), k.accent);
+    [2, 6, 9].forEach((i) => (s += k.line(sx(T[i]), sy(B[i]), sx(T[i]), sy(9.67 * (T[i] - 30) + 49.7), k.dash)));
+    T.forEach((t, i) => (s += k.circle(sx(t).toFixed(1), sy(B[i]).toFixed(1), 4, k.dot)));
+    const L = [[548, [52, 108]], [584, [36, 80, 124]], [618, [80]]];
+    for (let a = 0; a < 2; a++) for (const y1 of L[a][1]) for (const y2 of L[a + 1][1]) s += k.line(L[a][0], y1, L[a + 1][0], y2, k.grid.replace('0.12', '0.4'));
+    L.forEach(([x, ys], a) => ys.forEach((y) => (s += k.circle(x, y, 7, a === 2 ? k.star : k.hole))));
+    return s + k.text(372, 40, 'learn from data', k.label);
   },
 
   // Linear algebra: the course's running matrix A = (2 1; 1 2) tilting a patch of grid, with Aî
