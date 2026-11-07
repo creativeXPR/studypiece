@@ -1,4 +1,4 @@
-// Code cell: real Python in the browser (Pyodide, loaded once from a CDN on first use), for
+// Code cell: real Python in the browser (Pyodide via ./python, usually preloaded), for
 // learners writing their first lines of code. Each task shows an editor with starter code; the big
 // button runs it. A task passes when its printed output equals `expect` or fits the regular
 // expression `match`, or when the Python expression `test` is true afterwards (or, with `error`,
@@ -10,27 +10,7 @@
 // config: { tasks: [{ ask, code, expect?, match?, test?, error?, hint, solution, done? }], setup?, packages?: ['numpy'] }
 import { useEffect, useRef, useState } from 'react';
 import { Inline } from './Rich';
-
-const PYODIDE = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/';
-let pyodidePromise = null;
-
-function loadPython() {
-  if (!pyodidePromise) {
-    pyodidePromise = new Promise((resolve, reject) => {
-      const start = () => window.loadPyodide({ indexURL: PYODIDE }).then(resolve, reject);
-      if (window.loadPyodide) return start();
-      const s = document.createElement('script');
-      s.src = `${PYODIDE}pyodide.js`;
-      s.onload = start;
-      s.onerror = () => reject(new Error('Could not download Python. Check your internet connection.'));
-      document.head.appendChild(s);
-    }).catch((e) => {
-      pyodidePromise = null;
-      throw e;
-    });
-  }
-  return pyodidePromise;
-}
+import { ensurePython } from './python';
 
 // Plain-English tips for the errors beginners meet first.
 const TIPS = [
@@ -67,11 +47,15 @@ export function CodeCell({ api, config: g, index }) {
   const task = g.tasks[at];
   const finished = at >= g.tasks.length;
 
+  // Make sure Python and this screen's libraries are there (usually already preloaded). One quiet
+  // retry covers a dropped download; after that the learner gets a Try again button.
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let live = true;
-    loadPython()
+    const start = () => ensurePython(g.packages);
+    start()
+      .catch(start)
       .then(async (p) => {
-        if (g.packages?.length) await p.loadPackage(g.packages);
         if (!live) return;
         ns.current = p.globals.get('dict')();
         if (g.setup) await p.runPythonAsync(g.setup, { globals: ns.current });
@@ -81,11 +65,35 @@ export function CodeCell({ api, config: g, index }) {
     return () => {
       live = false;
     };
-  }, [g.packages, g.setup]);
+  }, [g.packages, g.setup, attempt]);
+
+  const retry = () => {
+    setLoadError(null);
+    setAttempt((a) => a + 1);
+  };
+
+  // If the connection comes back while the error is showing, try again without waiting for a tap.
+  useEffect(() => {
+    if (!loadError) return undefined;
+    const back = () => {
+      setLoadError(null);
+      setAttempt((a) => a + 1);
+    };
+    window.addEventListener('online', back);
+    return () => window.removeEventListener('online', back);
+  }, [loadError]);
 
   const run = async () => {
     if (!py || busy) return;
     setBusy(true);
+    // Check again before running: if a library this screen needs isn't in its Python, set the
+    // screen up again (which loads it) instead of running into an import error.
+    if ((g.packages ?? []).some((name) => !py.loadedPackages[name])) {
+      setBusy(false);
+      setPy(null);
+      setAttempt((a) => a + 1);
+      return;
+    }
     const lines = [];
     py.setStdout({ batched: (s) => lines.push(s) });
     py.setStderr({ batched: (s) => lines.push(s) });
@@ -141,6 +149,10 @@ export function CodeCell({ api, config: g, index }) {
       api.setAction(at === g.tasks.length - 1 ? 'Finish' : 'Next task', true, () => nextTask(false));
       return;
     }
+    if (loadError) {
+      api.setAction('Try again', true, retry);
+      return;
+    }
     const show = misses >= 2 ? { label: 'Show me', fn: () => { setCode(task.solution); setOut(null); } } : undefined;
     api.setAction(py ? (busy ? 'Running…' : 'Run') : 'Starting Python…', Boolean(py) && !busy && code.trim() !== '', run, show);
   });
@@ -194,7 +206,7 @@ export function CodeCell({ api, config: g, index }) {
                 : 'Starting Python in your browser… (the first time takes a few seconds)'}
             </p>
           )}
-          {loadError && <p className="tut-calc-hint" role="status"><b>Python couldn’t start.</b> {loadError}</p>}
+          {loadError && <p className="tut-calc-hint" role="status"><b>This screen couldn’t get ready.</b> {loadError}</p>}
           {out && (
             <div ref={outRef} className={`tut-code-out${out.error ? ' err' : out.ok ? ' ok' : ''}`} role="status">
               <span className="tut-code-label">Output</span>
