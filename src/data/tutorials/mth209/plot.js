@@ -6,11 +6,14 @@ export function view(x0, x1, y0, y1) {
   const X = (x) => -5.6 + ((x - x0) / (x1 - x0)) * 11.2;
   const Y = (y) => -4.2 + ((y - y0) / (y1 - y0)) * 8.4;
   const P = (x, y) => [X(x), Y(y)];
+  // Values beyond the box are pinned a full box-height outside it, so the curve visibly leaves
+  // the frame (the picture is clipped) instead of running flat along its edge.
+  const span = y1 - y0;
   const graph = (fn, id = 'f', kind = 'a', a = x0, b = x1, n = 80) => ({
     id,
     path: Array.from({ length: n + 1 }, (_, i) => {
       const x = a + ((b - a) * i) / n;
-      return P(x, Math.max(y0 - 1, Math.min(y1 + 1, fn(x))));
+      return P(x, Math.max(y0 - span, Math.min(y1 + span, fn(x))));
     }),
     kind,
   });

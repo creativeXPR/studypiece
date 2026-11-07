@@ -76,7 +76,11 @@ export const newtonFormulaScene = {
       YEARS.forEach((y, i) => items.push({ id: `p${i}`, pt: v.P(y, POP[i]), kind: 'a', label: String(POP[i]) }));
       if (presses >= 1) items.push(v.graph(newtonForward, 'nf', 'c', 1889, 1933, 60));
       if (step >= 2) {
-        [[1895, 54.85], [1925, 96.84]].forEach(([y, p], i) => items.push({ id: `r${i}`, seg: [v.P(y, 35), v.P(y, p)], kind: 'e' }, { id: `q${i}`, pt: v.P(y, p), kind: 'e', label: String(p), r: 4 }));
+        [[1895, 54.85], [1925, 96.84]].forEach(([y, p], i) => items.push(
+          { id: `r${i}`, seg: [v.P(y, 35), v.P(y, p)], kind: 'e' },
+          { id: `q${i}`, pt: v.P(y, p), kind: 'e', r: 4 },
+          { id: `qt${i}`, text: [v.X(y) + 0.25, v.Y(p) - 0.9], label: String(p), kind: 'e', anchor: 'start' },
+        ));
       }
       return frame(items);
     },

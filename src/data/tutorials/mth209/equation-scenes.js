@@ -206,7 +206,7 @@ export const newtonFailScene = {
       const x0 = 0.9;
       const far = x0 + (3.2 - x0);
       const items = [...v.axis([1, 2, 3]), v.graph(F), { id: 'p0', pt: v.P(x0, F(x0)), kind: 'd', label: 'x₀' }];
-      if (presses >= 1) items.push({ id: 't', seg: [v.P(x0, F(x0)), v.P(far, F(x0) + FP(x0) * (far - x0))], kind: 'c', dash: false }, { id: 'away', text: [5.1, v.Y(-3.2)], label: '→ x₁ ≈ 15', kind: 'c', size: 12 });
+      if (presses >= 1) items.push({ id: 't', seg: [v.P(x0, F(x0)), v.P(far, F(x0) + FP(x0) * (far - x0))], kind: 'c', dash: false }, { id: 'away', text: [5.1, v.Y(-7.6)], label: '→ x₁ ≈ 15', kind: 'c', size: 12 });
       return frame(items, `$f'(${x0}) = ${FP(x0).toFixed(2)}$`);
     },
   },
