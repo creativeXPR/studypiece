@@ -1,4 +1,5 @@
 // COS 202 · Inheritance and polymorphism · Lesson 3: overriding, overloading and runtime polymorphism.
+import { inheritanceScene } from './memory-scenes';
 
 export default {
   id: 'polymorphism',
@@ -16,12 +17,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'If a constructor doesn’t call `super(...)`, what happens?',
+          options: [
+            { text: 'The parent part is skipped', why: 'The parent part is always built.' },
+            { text: 'Java inserts `super()` (the parent’s no-argument constructor) automatically', correct: true, why: 'If the parent has no such constructor, that is a compile error.' },
+            { text: 'It calls the parent’s method of the same name', why: 'Constructors aren’t inherited like that.' },
+            { text: 'Nothing; parents are optional', why: 'Every object is built through its whole chain.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Inheritance and polymorphism · Lesson 3',
           title: 'Same call, different behaviour',
           body: 'A parent variable can hold a child object, because a Dog IS-A Animal:\n\n`Animal a = new Dog();`\n\n`a.sound();`\n\nThe **variable’s type** decides what you may call. The **object’s type** decides which version runs. That is ==polymorphism==: Java picks the method at runtime.',
           cta: 'See it run',
         },
+        inheritanceScene,
         {
           type: 'predict',
           eyebrow: 'Exam favourite',
@@ -175,6 +188,50 @@ public class Main {
             ],
             note: 'Add a `Cow` tomorrow and `chorus` keeps working without a single change. That is the point.',
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'One list, everyone describes themselves',
+          body: 'Student and Lecturer both override `describe()`.\n\nWhat does it print?',
+          code: `class Person {
+    String describe() { return "person"; }
+}
+
+class Student extends Person {
+    @Override
+    String describe() { return "student"; }
+}
+
+class Lecturer extends Person {
+    @Override
+    String describe() { return "lecturer"; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person[] people = {new Student(), new Lecturer(), new Person()};
+        for (Person p : people) System.out.print(p.describe() + " ");
+        System.out.println();
+    }
+}`,
+          options: [
+            { out: 'student lecturer person', correct: true, why: 'Dynamic dispatch: each object answers with its own overriding method, even through a Person variable.' },
+            { out: 'person person person', why: 'Java runs the version belonging to each object, not the variable’s type.' },
+            { out: 'student lecturer', why: 'The third element is a plain Person, which says "person".' },
+            { out: 'Compile error: mixed types in an array', why: 'A Person array can hold any Person subclass.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'What does `@Override` actually do for you?',
+          options: [
+            { text: 'Makes the compiler check that the method really overrides a parent method', correct: true, why: 'A typo like `descibe()` would otherwise silently create a new method instead of overriding.' },
+            { text: 'Makes the method run faster', why: 'It has no runtime effect.' },
+            { text: 'Is required for overriding to work', why: 'Overriding works without it; it adds a check.' },
+            { text: 'Hides the parent method permanently', why: 'super.describe() can still reach it.' },
+          ],
         },
         {
           type: 'finish',

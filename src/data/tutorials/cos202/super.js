@@ -15,6 +15,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What does IS-A mean in inheritance?',
+          options: [
+            { text: 'A parent object can be used as any subclass', why: 'Not every Person is a Student.' },
+            { text: 'The classes are in the same file', why: 'Files don’t matter.' },
+            { text: 'The subclass copies the parent’s code', why: 'It inherits; nothing is copied into the source.' },
+            { text: 'A subclass object can be used wherever the parent type is expected', correct: true, why: 'Every Student is a Person, so a Student can go into a Person variable.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Inheritance and polymorphism · Lesson 2',
           title: 'Let the parent set up its own fields',
@@ -162,6 +173,49 @@ public class Main {
               { lines: [25, 28], text: '**The inherited getter** reads the private name. `println` calls `toString()` automatically.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Who is built first?',
+          body: 'Each constructor prints a line. Watch the order.\n\nWhat does it print?',
+          code: `class Person {
+    Person() { System.out.println("Person part"); }
+}
+
+class Student extends Person {
+    Student() {
+        super();
+        System.out.println("Student part");
+    }
+}
+
+class Finalist extends Student {
+    Finalist() { System.out.println("Finalist part"); }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Finalist();
+    }
+}`,
+          options: [
+            { out: 'Person part\nStudent part\nFinalist part', correct: true, why: 'Every constructor starts by calling its parent’s constructor, so objects are built from the top of the chain down.' },
+            { out: 'Finalist part\nStudent part\nPerson part', why: 'Each constructor calls its parent’s first, so the top of the chain finishes first.' },
+            { out: 'Finalist part', why: 'Java inserts `super()` automatically when you don’t write it.' },
+            { out: 'Person part\nFinalist part', why: 'Student’s constructor runs too, in the middle.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why must `super(...)` be the first statement in a constructor?',
+          options: [
+            { text: 'It’s a formatting rule', why: 'The compiler enforces it for a reason.' },
+            { text: 'So the child can override it', why: 'Order isn’t about overriding.' },
+            { text: 'The parent part must be fully built before the child adds to it', correct: true, why: 'The child’s code may rely on fields the parent sets up.' },
+            { text: 'Because super is a keyword', why: 'Being a keyword doesn’t require it to be first.' },
+          ],
         },
         {
           type: 'finish',

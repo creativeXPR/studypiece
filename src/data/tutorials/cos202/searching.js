@@ -1,4 +1,5 @@
 // COS 202 · Recursion and algorithms · Lesson 2: linear and binary search.
+import { binarySearchScene } from './memory-scenes';
 
 export default {
   id: 'searching',
@@ -15,12 +16,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What happens if a recursive method has no base case?',
+          options: [
+            { text: 'It returns 0', why: 'Nothing makes it return.' },
+            { text: 'The compiler refuses it', why: 'It compiles; it fails when run.' },
+            { text: 'It runs once', why: 'It calls itself again and again.' },
+            { text: 'It keeps calling itself until the stack fills up: StackOverflowError', correct: true, why: 'The base case is what stops the recursion.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Recursion and algorithms · Lesson 2',
           title: 'Two ways to find a name',
           body: '==Linear search== is flipping through a list from the start. It always works, but it can check everything.\n\n==Binary search== is how you use a dictionary: open the middle, then throw away the half that can’t hold your word.\n\nIn 1,000,000 sorted items, linear may need 1,000,000 checks; binary needs about **20**. The catch: the data **must be sorted**.',
           cta: 'Watch it halve',
         },
+        binarySearchScene,
         {
           type: 'order',
           eyebrow: 'Put it in order',
@@ -123,6 +136,43 @@ export default {
             ],
             note: 'Binary search can also be recursive: `return binary(a, key, mid + 1, high);`. The range shrinks with every call, and `low > high` is the base case.',
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Find a matric number',
+          body: 'Linear search through the class list, returning the position or -1.\n\nWhat does it print?',
+          code: `public class Main {
+    static int find(String[] ids, String target) {
+        for (int i = 0; i < ids.length; i++) {
+            if (ids[i].equals(target)) return i;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        String[] ids = {"C04", "C17", "C26", "C09"};
+        System.out.println(find(ids, "C26"));
+        System.out.println(find(ids, "C99"));
+    }
+}`,
+          options: [
+            { out: '2\n-1', correct: true, why: 'C26 sits at index 2; C99 is never found, so the loop ends and the method returns -1.' },
+            { out: '3\n-1', why: 'Positions start at 0: C26 is at index 2.' },
+            { out: '2\n0', why: 'Not found returns -1, a value no real index can have.' },
+            { out: 'C26\nnull', why: 'The method returns the position, an int.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Binary search on this list of IDs gives wrong answers. Why?',
+          options: [
+            { text: 'Binary search only works on numbers', why: 'It works on anything with an order, Strings included.' },
+            { text: 'The list is too short', why: 'Length isn’t the issue.' },
+            { text: 'The list isn’t sorted; binary search only works on sorted data', correct: true, why: 'It throws away half the list on each check, which is only safe if order tells you which half to keep.' },
+            { text: 'It needs a base case', why: 'Even the iterative version needs sorted data.' },
+          ],
         },
         {
           type: 'finish',

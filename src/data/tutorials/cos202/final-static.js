@@ -1,4 +1,5 @@
 // COS 202 · Modifiers · Lesson 2: non-access modifiers.
+import { staticScene } from './memory-scenes';
 
 export default {
   id: 'final-static',
@@ -15,12 +16,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which access level do you get with no modifier at all?',
+          options: [
+            { text: 'public', why: 'You must write public explicitly.' },
+            { text: 'private', why: 'Package access is wider than private.' },
+            { text: 'protected', why: 'protected also includes subclasses elsewhere.' },
+            { text: 'Package access: visible to classes in the same package', correct: true, why: 'It is often called default or package-private.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Modifiers · Lesson 2',
           title: 'Modifiers that add features',
           body: '==final== means “this can’t change”:\n\n`final int MAX = 10;` no reassigning.\n\n`final void pay()` no overriding.\n\n`final class Circle` no subclasses.\n\n==static== means “belongs to the class”: one copy, shared by all objects. Call it through the class: `Math.sqrt(9)` needs no `new Math()`.',
           cta: 'See it shared',
         },
+        staticScene,
         {
           type: 'predict',
           eyebrow: 'Exam favourite',
@@ -169,6 +182,48 @@ public class Main {
             { text: 'Skipped when saving an object', bucket: 't', why: '`transient` fields aren’t serialized.' },
             { text: 'One thread at a time', bucket: 's', why: '`synchronized` methods lock the object.' },
             { text: 'Always read from main memory', bucket: 'v', why: '`volatile` values aren’t cached thread-locally.' },
+          ],
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Count every student',
+          body: 'A static field is shared by all objects, which makes it a natural counter.\n\nWhat does it print?',
+          code: `class Student {
+    static int count = 0;
+    static final double MAX_CGPA = 5.0;
+    String name;
+
+    Student(String name) {
+        this.name = name;
+        count++;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Student("Tobi");
+        new Student("Ada");
+        Student f = new Student("Femi");
+        System.out.println(Student.count + " " + f.count + " " + Student.MAX_CGPA);
+    }
+}`,
+          options: [
+            { out: '3 3 5.0', correct: true, why: 'Three constructions, one shared field: 3, whether you read it through the class or an object.' },
+            { out: '3 1 5.0', why: 'There is only one `count`, shared: reading it through `f` gives 3 too.' },
+            { out: '1 1 5.0', why: 'Each constructor call adds 1 to the same shared count.' },
+            { out: '3 3 5', why: '`MAX_CGPA` is a double, so it prints 5.0.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why can’t a `static` method use an instance field like `name` directly?',
+          options: [
+            { text: 'Static methods can’t use any variables', why: 'They can use static fields and their own locals.' },
+            { text: 'Instance fields are private', why: 'Even public instance fields need an object.' },
+            { text: 'A static method belongs to the class, so there is no particular object whose `name` it could mean', correct: true, why: 'Pass an object in, or make the method an instance method.' },
+            { text: 'It is only a style rule', why: 'The compiler enforces it.' },
           ],
         },
         {

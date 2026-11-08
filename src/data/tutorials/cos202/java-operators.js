@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which line will not compile?',
+          options: [
+            { text: '`int units = 3.5;`', correct: true, why: 'Putting a `double` into an `int` loses the fraction, so Java demands an explicit cast: `(int) 3.5`.' },
+            { text: '`double gp = 3;`', why: 'Widening an int to a double is automatic.' },
+            { text: '`char g = \'A\';`', why: 'A single character in single quotes is a valid char.' },
+            { text: '`final int MAX = 5;`', why: 'A constant with final is fine.' },
+          ],
+        },
+        {
           type: 'reveal',
           eyebrow: 'Maths symbols',
           title: 'Two of these will surprise you',
@@ -179,6 +190,38 @@ export default {
               { lines: [4, 4], text: '**One decimal number is enough.** With `3.0` the division keeps its decimals, and `double` can store them. The brackets make the sum happen first.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Grade points, and a trap',
+          body: 'Tobi earned 47 grade points over 12 units. What is the average?\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        int points = 47;
+        int units = 12;
+        System.out.println(points / units);
+        System.out.println((double) points / units);
+        System.out.println(points % units);
+    }
+}`,
+          options: [
+            { out: '3\n3.9166666666666665\n11', correct: true, why: '`47 / 12` is integer division: 3. Casting one side to double gives the true 3.916…; `%` is the remainder, 11.' },
+            { out: '3.9166666666666665\n3.9166666666666665\n11', why: 'Dividing two ints gives an int: the fraction is thrown away.' },
+            { out: '4\n3.9166666666666665\n11', why: 'Integer division truncates (cuts off) the fraction; it doesn’t round.' },
+            { out: '3\n3.0\n11', why: 'The cast happens before dividing, so the second line is a real division.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'A CGPA program prints 3.0 for everyone. Which bug is most likely?',
+          options: [
+            { text: 'The units are too large', why: 'Size isn’t the issue; the division type is.' },
+            { text: '`%` was used instead of `/`', why: 'That would give remainders, not always 3.0.' },
+            { text: 'Java can’t store decimals', why: '`double` stores them; the division threw them away.' },
+            { text: 'It divides total points by total units as two ints before storing in a double', correct: true, why: '`double cgpa = points / units;` does int division first, then widens the already-cut result.' },
+          ],
         },
         {
           type: 'finish',

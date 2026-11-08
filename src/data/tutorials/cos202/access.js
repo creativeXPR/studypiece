@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What does encapsulation mean?',
+          options: [
+            { text: 'Putting every class in one file', why: 'File layout isn’t encapsulation.' },
+            { text: 'Keeping fields private and controlling access through methods', correct: true, why: 'Data and the rules that protect it live together inside the class.' },
+            { text: 'Making every field public', why: 'That’s the opposite.' },
+            { text: 'Inheriting from a parent class', why: 'That’s inheritance.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Modifiers · Lesson 1',
           title: 'Four levels of access',
@@ -132,6 +143,40 @@ public class Main {
               { lines: [12, 14], text: '**Private helper:** other classes don’t need to know it exists.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Who can see the CGPA?',
+          body: 'Main tries to read the private field directly.\n\nWhat does it print?',
+          code: `class Student {
+    private double cgpa = 4.2;
+    double getCgpa() { return cgpa; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student t = new Student();
+        System.out.println(t.cgpa);
+    }
+}`,
+          options: [
+            { out: 'Compile error: cgpa has private access in Student', correct: true, why: 'Private members are invisible outside their class; Main must call `t.getCgpa()`.' },
+            { out: '4.2', why: '`private` means only code inside Student can use `cgpa` directly.' },
+            { out: '0.0', why: 'The field is 4.2, but Main can’t reach it at all.' },
+            { out: 'An error when it runs', why: 'Access is checked when compiling, before it ever runs.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'A field should be visible to subclasses (even in other packages) but not to unrelated classes. Which modifier?',
+          options: [
+            { text: '`protected`', correct: true, why: '`protected` adds subclass access to package access.' },
+            { text: '`private`', why: 'Subclasses couldn’t see it.' },
+            { text: '`public`', why: 'Everyone could see it.' },
+            { text: 'default (no modifier)', why: 'Only classes in the same package can see it.' },
+          ],
         },
         {
           type: 'finish',

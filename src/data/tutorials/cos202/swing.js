@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What does `throws IOException` in a method header mean?',
+          options: [
+            { text: 'The method may throw it, and callers must handle or declare it', correct: true, why: 'It is required for checked exceptions the method doesn’t catch.' },
+            { text: 'The method always throws it', why: 'Only possibly.' },
+            { text: 'The method catches it', why: 'Declaring isn’t catching.' },
+            { text: 'It turns the exception off', why: 'It passes responsibility to the caller.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Swing GUI and events · Lesson 1',
           title: 'A window in six steps',
@@ -162,6 +173,28 @@ public class Main {
               { lines: [18, 18], text: '**Add the scroll pane**, not the area itself: the pane holds the area.' },
             ],
           },
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Project · Tobi’s records app',
+          prompt: 'Tobi’s records window needs: a box to type the name, a list to pick the department, a button to save, and an area showing all registered courses. Which components?',
+          options: [
+            { text: '`JLabel`, `JLabel`, `JLabel` and `JLabel`', why: 'Labels only show text; users can’t type or click them.' },
+            { text: '`JTextArea`, `JTextField`, `JPanel` and `JFrame`', why: 'A panel and a frame are containers, not a button or a list.' },
+            { text: '`JTextField`, `JComboBox`, `JButton` and a `JTextArea` inside a `JScrollPane`', correct: true, why: 'One-line text, a drop-down choice, a clickable action, and a scrollable multi-line display.' },
+            { text: '`JButton` for everything', why: 'Buttons don’t accept typing or choices.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'A form uses `GridLayout(0, 2)`. What does the 0 mean?',
+          options: [
+            { text: 'Zero rows, so nothing shows', why: '0 means “as many as needed”.' },
+            { text: 'No gaps between cells', why: 'Gaps are separate arguments.' },
+            { text: 'A single column', why: 'The 2 sets two columns.' },
+            { text: 'As many rows as needed, always 2 columns: perfect for label–field pairs', correct: true, why: 'Each added component fills the next cell, left to right, top to bottom.' },
+          ],
         },
         {
           type: 'finish',

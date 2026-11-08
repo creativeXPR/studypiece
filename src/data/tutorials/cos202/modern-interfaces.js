@@ -17,6 +17,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'How many interfaces can one class implement?',
+          options: [
+            { text: 'One', why: 'That limit applies to extends.' },
+            { text: 'Two', why: 'There is no such limit.' },
+            { text: 'None, if it extends a class', why: 'It can do both.' },
+            { text: 'As many as it needs', correct: true, why: 'A class can extend only one class but implement any number of interfaces.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Abstraction and interfaces · Lesson 3',
           title: 'Adding to a contract without breaking it',
@@ -175,6 +186,45 @@ public class Main {
               { lines: [11, 12], text: '**Lambdas:** no class, no `new`, just the one method’s behaviour.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'A grading rule as a lambda',
+          body: 'A functional interface has one abstract method, so a lambda can supply it.\n\nWhat does it print?',
+          code: `interface GradeRule {
+    String grade(int score);
+
+    default String report(int score) {
+        return score + " is " + grade(score);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        GradeRule strict = s -> s >= 70 ? "pass" : "fail";
+        GradeRule lenient = s -> s >= 40 ? "pass" : "fail";
+        System.out.println(strict.report(65));
+        System.out.println(lenient.report(65));
+    }
+}`,
+          options: [
+            { out: '65 is fail\n65 is pass', correct: true, why: 'Each lambda supplies `grade`; the default method `report` builds the sentence around it.' },
+            { out: '65 is pass\n65 is pass', why: 'The strict rule needs 70.' },
+            { out: 'fail\npass', why: '`report` adds the score and “is” in front.' },
+            { out: 'Compile error: interfaces can’t have bodies', why: 'Since Java 8, default methods have bodies.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'What does a default method let a library author do safely?',
+          options: [
+            { text: 'Make interfaces instantiable', why: 'You still can’t `new` an interface.' },
+            { text: 'Give interfaces instance fields', why: 'Interfaces still have no instance fields.' },
+            { text: 'Add a new method to an existing interface without breaking every class that already implements it', correct: true, why: 'Old implementers inherit the default body; that is how `forEach` was added to Java’s collections.' },
+            { text: 'Remove methods', why: 'Defaults only add.' },
+          ],
         },
         {
           type: 'finish',

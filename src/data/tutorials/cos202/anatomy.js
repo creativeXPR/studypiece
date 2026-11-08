@@ -15,6 +15,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which line starts every Java application?',
+          options: [
+            { text: '`public void start()`', why: 'The JVM doesn’t look for start.' },
+            { text: '`import java.main;`', why: 'There is no such import.' },
+            { text: '`class Main extends Program`', why: 'No parent class is required.' },
+            { text: '`public static void main(String[] args)`', correct: true, why: 'The JVM looks for exactly this method to begin running.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Java toolkit · Lesson 1',
           title: 'Every program has the same skeleton',
@@ -179,6 +190,45 @@ export default {
               { lines: [8, 8], text: '**Everything else** is an `F`. A method returning `String` must return on every path.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Grade letter to grade point',
+          body: 'For the CGPA, each letter becomes points on a 5-point scale. A `switch` fits well.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        String[] grades = {"A", "C", "B", "F"};
+        int total = 0;
+        for (String g : grades) {
+            switch (g) {
+                case "A": total += 5; break;
+                case "B": total += 4; break;
+                case "C": total += 3;
+                case "D": total += 2; break;
+                default: total += 0;
+            }
+        }
+        System.out.println(total);
+    }
+}`,
+          options: [
+            { out: '14', correct: true, why: 'A gives 5, B gives 4, and C adds 3 then falls through into D and adds 2 more: 5 + 5 + 4 + 0 = 14.' },
+            { out: '12', why: 'Look at case "C": there is no break, so it falls through and adds the D points too.' },
+            { out: '19', why: 'F goes to `default`, which adds 0.' },
+            { out: '5', why: 'Every grade in the array is added.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why might an exam ask you to spot a missing `break`?',
+          options: [
+            { text: 'Because it crashes the program', why: 'It doesn’t crash.' },
+            { text: 'Because it is a syntax error', why: 'It compiles fine.' },
+            { text: 'The code compiles and runs, but gives wrong results: a semantic error, the hardest kind to notice', correct: true, why: 'Syntax errors are caught by the compiler; fall-through mistakes only show up in wrong output.' },
+            { text: 'Because switch requires break on the last case', why: 'The last case doesn’t need it.' },
+          ],
         },
         {
           type: 'finish',

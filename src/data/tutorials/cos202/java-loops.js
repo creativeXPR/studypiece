@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What happens in a `switch` when a `case` has no `break`?',
+          options: [
+            { text: 'Java reports a compile error', why: 'It compiles.' },
+            { text: 'The switch restarts', why: 'It continues downward.' },
+            { text: 'Execution falls through into the next case’s statements', correct: true, why: 'Fall-through is legal but usually a bug; `break` stops it.' },
+            { text: 'Only the default runs', why: 'The following case runs, then the next, until a break.' },
+          ],
+        },
+        {
           type: 'trace',
           eyebrow: 'Watch it run',
           title: 'The loop that adds up',
@@ -227,6 +238,42 @@ export default {
               { lines: [7, 7], text: '**End the row** after its stars are done.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Add up the units',
+          body: 'Tobi registers five courses of 3, 2, 3, 3 and 1 units. Loop over them.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        int total = 0;
+        int course = 1;
+        while (course <= 5) {
+            if (course == 2) total += 2;
+            else if (course == 5) total += 1;
+            else total += 3;
+            course++;
+        }
+        System.out.println(total + " units in " + (course - 1) + " courses");
+    }
+}`,
+          options: [
+            { out: '12 units in 5 courses', correct: true, why: '3 + 2 + 3 + 3 + 1 = 12, and after the loop `course` is 6.' },
+            { out: '12 units in 6 courses', why: 'The loop ends when `course` is 6, so `course - 1` is 5.' },
+            { out: '15 units in 5 courses', why: 'Courses 2 and 5 add 2 and 1, not 3.' },
+            { out: '3 units in 1 courses', why: 'The loop runs five times before printing.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'A `while (count < 10)` loop never ends. What is the most likely cause?',
+          options: [
+            { text: '10 is too big', why: 'Any limit works if count moves towards it.' },
+            { text: 'Nothing inside the loop changes `count`', correct: true, why: 'A loop condition must eventually become false; forgetting `count++` is the classic infinite loop.' },
+            { text: 'while loops can’t count', why: 'They can; `for` is just tidier for counting.' },
+            { text: 'The condition should use =', why: 'That would be an assignment, not a test.' },
+          ],
         },
         {
           type: 'finish',

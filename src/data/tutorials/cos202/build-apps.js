@@ -343,6 +343,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: '`if (grade = "A")` is which kind of error?',
+          options: [
+            { text: 'A semantic error', why: 'It doesn’t compile at all.' },
+            { text: 'A syntax (compile-time) error: `=` assigns and doesn’t give a boolean', correct: true, why: 'Use `grade.equals("A")` for Strings.' },
+            { text: 'A runtime exception', why: 'It never gets to run.' },
+            { text: 'Not an error', why: 'Java rejects it.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Exam lab · Lesson 2',
           title: 'Everything, in one program',
@@ -604,6 +615,60 @@ public class Main {
             ],
             note: 'Every topic is here: an abstract class, overriding, polymorphism, exceptions, validation and Swing events.',
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Tobi’s CGPA, at last',
+          body: 'Everything joins up: a Student with a list of courses, grade points and units.\n\nWhat does it print?',
+          code: `import java.util.ArrayList;
+
+class Course {
+    String code; int units; String grade;
+    Course(String c, int u, String g) { code = c; units = u; grade = g; }
+}
+
+class Student {
+    String name;
+    ArrayList<Course> courses = new ArrayList<>();
+    Student(String n) { name = n; }
+
+    double cgpa() {
+        int points = 0, units = 0;
+        for (Course c : courses) {
+            points += "FEDCBA".indexOf(c.grade) * c.units;
+            units += c.units;
+        }
+        return (double) points / units;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student t = new Student("Tobi");
+        t.courses.add(new Course("COS 202", 3, "A"));
+        t.courses.add(new Course("MTH 201", 3, "B"));
+        t.courses.add(new Course("GST 211", 2, "C"));
+        System.out.printf("%s: %.2f%n", t.name, t.cgpa());
+    }
+}`,
+          options: [
+            { out: 'Tobi: 4.13', correct: true, why: '`"FEDCBA".indexOf` turns A into 5, B into 4, C into 3. Points: 15 + 12 + 6 = 33 over 8 units is 4.125, printed to two places.' },
+            { out: 'Tobi: 4.00', why: 'Units weight the grades: (15 + 12 + 6) / 8.' },
+            { out: 'Tobi: 4.12', why: '`%.2f` rounds a half upwards: 4.125 becomes 4.13.' },
+            { out: 'Tobi: 4', why: '`%.2f` always prints two decimal places.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Tobi’s app started as one `println`. What is the main benefit of having grown it into classes?',
+          options: [
+            { text: 'Each part (Course, Student, the window) can be tested and changed on its own', correct: true, why: 'That is why real software is built from small, well-named classes.' },
+            { text: 'It runs faster than one long main', why: 'Speed isn’t the point.' },
+            { text: 'It needs fewer lines', why: 'Usually more lines, but clearer ones.' },
+            { text: 'Java requires every program to have several classes', why: 'One class is allowed.' },
+          ],
         },
         {
           type: 'finish',

@@ -17,6 +17,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which layout puts components in North, South, East, West and Center?',
+          options: [
+            { text: '`FlowLayout`', why: 'That puts them in a row, wrapping.' },
+            { text: '`GridLayout`', why: 'That makes equal cells.' },
+            { text: '`BorderLayout`', correct: true, why: 'It is the default layout of a JFrame’s content pane.' },
+            { text: '`BoxLayout`', why: 'That stacks in one direction.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Swing GUI and events · Lesson 2',
           title: 'Don’t call us, we’ll call you',
@@ -199,6 +210,45 @@ public class Main {
             ],
             note: 'In a real window, a `JOptionPane.showMessageDialog` is the usual way to report the error.',
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'What happens when Save is clicked',
+          body: 'A listener is just an object with a method. Here it is called directly, as Swing would on a click.\n\nWhat does it print?',
+          code: `import java.awt.event.ActionListener;
+
+public class Main {
+    static String status = "unsaved";
+
+    public static void main(String[] args) {
+        String name = "  ";
+        ActionListener save = e -> {
+            if (name.isBlank()) status = "Please type a name";
+            else status = "Saved " + name.trim();
+        };
+        System.out.println(status);
+        save.actionPerformed(null);
+        System.out.println(status);
+    }
+}`,
+          options: [
+            { out: 'unsaved\nPlease type a name', correct: true, why: 'Defining the listener runs nothing; calling `actionPerformed` (a click) runs the check, which spots the blank name.' },
+            { out: 'unsaved\nSaved', why: 'The name is only spaces, so `isBlank()` is true.' },
+            { out: 'Please type a name\nPlease type a name', why: 'The listener does nothing until it is called.' },
+            { out: 'unsaved\nunsaved', why: '`actionPerformed` runs the lambda, which changes the status.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why does a Swing program keep running after `main` finishes?',
+          options: [
+            { text: 'main never finishes in Swing', why: 'main finishes quickly after showing the window.' },
+            { text: 'The event dispatch thread keeps waiting for clicks and key presses, and runs your listeners', correct: true, why: 'That is event-driven programming: the program reacts instead of running top to bottom.' },
+            { text: 'The JVM ignores the end of main', why: 'It waits for non-daemon threads such as the event thread.' },
+            { text: 'setVisible blocks forever', why: 'It returns straight away.' },
+          ],
         },
         {
           type: 'finish',

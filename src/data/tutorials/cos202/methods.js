@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'For `int[][] m = new int[3][4];`, what is `m[0].length`?',
+          options: [
+            { text: '3', why: 'That is `m.length`.' },
+            { text: '12', why: 'Java doesn’t store the total.' },
+            { text: '0', why: 'Each row is created with 4 slots.' },
+            { text: '4', correct: true, why: '`m.length` is the number of rows (3); each row has 4 columns.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Java toolkit · Lesson 3',
           title: 'Write it once, call it often',
@@ -178,6 +189,47 @@ public static void main(String[] args) {
               { lines: [10, 12], text: '**One `double`:** the same count as the square, but a different type, so it is still legal.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Overloading the average',
+          body: 'A plain average and a unit-weighted one, under the same name.\n\nWhat does it print?',
+          code: `public class Main {
+    static double average(int[] s) {
+        int sum = 0;
+        for (int x : s) sum += x;
+        return (double) sum / s.length;
+    }
+
+    static double average(int[] points, int[] units) {
+        int sum = 0, u = 0;
+        for (int i = 0; i < points.length; i++) { sum += points[i] * units[i]; u += units[i]; }
+        return (double) sum / u;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(average(new int[]{5, 3}));
+        System.out.println(average(new int[]{5, 3}, new int[]{1, 3}));
+    }
+}`,
+          options: [
+            { out: '4.0\n3.5', correct: true, why: 'Java picks the version by the arguments. Plain: (5 + 3) / 2 = 4.0. Weighted: (5×1 + 3×3) / 4 = 3.5.' },
+            { out: '4.0\n4.0', why: 'The second call weights the 3 by three units.' },
+            { out: '4\n3.5', why: '`average` returns a double, so it prints with a decimal.' },
+            { out: 'Compile error: duplicate method', why: 'Different parameter lists make legal overloads.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Can two methods differ only in their return type, like `int total()` and `double total()`?',
+          options: [
+            { text: 'Yes, Java picks by the variable you store it in', why: 'Java chooses by arguments only.' },
+            { text: 'Yes, if one is static', why: 'Static doesn’t make them distinguishable.' },
+            { text: 'No: overloads must differ in their parameter lists', correct: true, why: 'At a call like `total()`, Java couldn’t tell which one you meant.' },
+            { text: 'Only in interfaces', why: 'The rule is the same everywhere.' },
+          ],
         },
         {
           type: 'finish',

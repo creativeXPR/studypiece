@@ -21,6 +21,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What does `return` do in a method?',
+          options: [
+            { text: 'Prints the value', why: 'Printing is println’s job.' },
+            { text: 'Ends the method and hands a value back to the caller', correct: true, why: 'In a void method, a bare `return;` just ends it early.' },
+            { text: 'Restarts the method', why: 'It ends it.' },
+            { text: 'Stores the value in a global variable', why: 'It goes back to whoever called the method.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Intro to Java · Module 9',
           title: 'One goal, several styles',
@@ -224,6 +235,28 @@ public static void main(String[] args) {
               { lines: [3, 3], text: '**The rule is the code.** No `if` is needed: the expression is already true or false.' },
             ],
           },
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Project · Tobi’s records app',
+          prompt: 'So far the records app is a list of steps with a `grade` method. Later chapters turn it into `Student` and `Course` classes. Which change of style is that?',
+          options: [
+            { text: 'From functional to logic programming', why: 'Neither style describes this app.' },
+            { text: 'From compiled to interpreted', why: 'Style and compilation are separate questions.' },
+            { text: 'From top-down to scripting', why: 'Scripting describes languages, not this change.' },
+            { text: 'From procedural (steps and functions) to object-oriented (objects with data and behaviour)', correct: true, why: 'Grouping a student’s data with the methods that use it is what object-oriented programming adds.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why is object-oriented style popular for large programs like a university records system?',
+          options: [
+            { text: 'It keeps each thing’s data and rules together, so parts can change without breaking the rest', correct: true, why: 'A Student class can change how it stores grades while other code keeps calling the same methods.' },
+            { text: 'It runs faster than any other style', why: 'Speed isn’t the main reason.' },
+            { text: 'It needs no planning', why: 'Good class design takes planning.' },
+            { text: 'It removes the need for methods', why: 'Classes are full of methods.' },
+          ],
         },
         {
           type: 'finish',

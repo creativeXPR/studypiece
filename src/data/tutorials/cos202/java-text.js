@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What is `17 % 5`?',
+          options: [
+            { text: '3', why: 'That’s `17 / 5`.' },
+            { text: '3.4', why: 'That’s the real-number division.' },
+            { text: '2', correct: true, why: '`%` gives the remainder: 17 = 3 × 5 + 2.' },
+            { text: '0', why: 'Only if 5 divided 17 exactly.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Text',
           title: 'A String is a row of numbered boxes',
@@ -145,6 +156,39 @@ public class Main {
               { lines: [8, 9], text: '**Work on the values and print them.** A real program reads different answers every time, so don’t write `ADA` directly.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Tidy the student’s name',
+          body: 'Names arrive typed in all sorts of ways. String methods clean them.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        String name = "  tobi adewale ";
+        name = name.trim();
+        String first = name.substring(0, 4);
+        System.out.println(first.toUpperCase());
+        System.out.println(name.length());
+        System.out.println(name.equals("tobi adewale"));
+    }
+}`,
+          options: [
+            { out: 'TOBI\n12\ntrue', correct: true, why: '`trim()` strips the outer spaces (12 characters left); `substring(0, 4)` is positions 0–3, “tobi”.' },
+            { out: 'TOBI\n15\ntrue', why: '`trim()` removed the spaces at both ends, so the length is 12.' },
+            { out: 'tobi\n12\ntrue', why: '`toUpperCase()` returns the capitalised copy, and that is what’s printed.' },
+            { out: 'TOBI\n12\nfalse', why: 'After trimming, the text matches exactly, so `equals` is true.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: '`name.toUpperCase();` on its own line leaves `name` unchanged. Why?',
+          options: [
+            { text: 'toUpperCase only works on literals', why: 'It works on any String.' },
+            { text: 'Strings are immutable: the method returns a new String, which was thrown away', correct: true, why: 'Write `name = name.toUpperCase();` to keep the result.' },
+            { text: 'It needs an argument', why: 'It takes none.' },
+            { text: 'Java forgot to save it', why: 'Nothing is saved unless you assign the returned String.' },
+          ],
         },
         {
           type: 'finish',

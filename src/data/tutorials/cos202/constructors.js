@@ -1,4 +1,5 @@
 // COS 202 · Classes and objects · Lesson 2: constructors and this.
+import { constructorScene } from './memory-scenes';
 
 export default {
   id: 'constructors',
@@ -17,12 +18,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'After `Student b = a;`, how many Student objects exist?',
+          options: [
+            { text: 'Two', why: 'No `new` means no new object.' },
+            { text: 'Still one: `b` and `a` refer to the same object', correct: true, why: 'Only `new` creates objects; assignment copies the reference.' },
+            { text: 'None', why: 'The object made earlier still exists.' },
+            { text: 'It depends on the fields', why: 'Fields don’t affect it.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Classes and objects · Lesson 2',
           title: 'Born ready',
           body: 'A ==constructor== gives a new object its starting values:\n\n`class Car {`\n\n`    int year;`\n\n`    Car(int year) { this.year = year; }`\n\n`}`\n\n`Car c = new Car(2024);`\n\nTwo rules examiners love: its name **matches the class exactly**, and it has **no return type**. Add `void` and it stops being a constructor.',
           cta: 'See the types',
         },
+        constructorScene,
         {
           type: 'reveal',
           eyebrow: 'Four kinds',
@@ -162,6 +175,50 @@ public class Main {
               { lines: [14, 16], text: '**Copy:** a new object, built from another’s values. Setting the fields directly works too.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Build a student in one line',
+          body: 'A constructor fills in the fields when the object is created.\n\nWhat does it print?',
+          code: `class Student {
+    String name;
+    double cgpa;
+
+    Student(String name) {
+        this(name, 0.0);
+    }
+
+    Student(String name, double cgpa) {
+        this.name = name;
+        this.cgpa = cgpa;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student t = new Student("Tobi", 4.2);
+        Student f = new Student("Femi");
+        System.out.println(t.name + " " + t.cgpa + ", " + f.name + " " + f.cgpa);
+    }
+}`,
+          options: [
+            { out: 'Tobi 4.2, Femi 0.0', correct: true, why: '`this(name, 0.0)` hands over to the two-argument constructor, so Femi gets cgpa 0.0.' },
+            { out: 'Tobi 4.2, Femi null', why: 'cgpa is a double; the one-argument constructor passes 0.0.' },
+            { out: 'Compile error: two constructors', why: 'Constructors can be overloaded like methods.' },
+            { out: 'null 0.0, null 0.0', why: '`this.name = name` stores the parameter in the field.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'You add `Student(String name)` to a class and now `new Student()` stops compiling. Why?',
+          options: [
+            { text: 'Java only supplies the free no-argument constructor when a class declares none', correct: true, why: 'Once you write any constructor, add a no-argument one yourself if you still need it.' },
+            { text: 'Constructors can’t be overloaded', why: 'They can.' },
+            { text: 'The name parameter is required by all classes', why: 'It’s only required by the constructor you wrote.' },
+            { text: 'new needs an argument in Java 17', why: 'No such rule.' },
+          ],
         },
         {
           type: 'finish',

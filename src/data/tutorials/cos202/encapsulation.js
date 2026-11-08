@@ -14,6 +14,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In a constructor, what does `this.name = name;` do?',
+          options: [
+            { text: 'Copies the field into the parameter', why: 'It’s the other way round.' },
+            { text: 'Nothing: both names are the same variable', why: 'They are different variables with the same name.' },
+            { text: 'Calls another constructor', why: 'That would be `this(...)`.' },
+            { text: 'Copies the parameter `name` into the object’s field `name`', correct: true, why: '`this.name` is the field; plain `name` is the parameter that hides it.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Classes and objects · Lesson 3',
           title: 'Keep the fields private',
@@ -167,6 +178,48 @@ public class Main {
               { lines: [18, 23], text: '**Validate, then assign.** A bad value never reaches the field.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Protect the CGPA',
+          body: 'A CGPA must stay between 0 and 5. Make the field private and guard it.\n\nWhat does it print?',
+          code: `class Student {
+    private double cgpa;
+
+    public double getCgpa() { return cgpa; }
+
+    public void setCgpa(double cgpa) {
+        if (cgpa >= 0 && cgpa <= 5) this.cgpa = cgpa;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student t = new Student();
+        t.setCgpa(4.2);
+        t.setCgpa(7.5);
+        t.setCgpa(-1);
+        System.out.println(t.getCgpa());
+    }
+}`,
+          options: [
+            { out: '4.2', correct: true, why: 'Only 4.2 passes the setter’s check; the bad values are refused, so the CGPA stays valid.' },
+            { out: '-1.0', why: 'The setter ignores values outside 0 to 5.' },
+            { out: '7.5', why: '7.5 fails the check, so it is never stored.' },
+            { out: '0.0', why: 'The first call, 4.2, passed the check and was stored.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why is a setter with validation better than a public field?',
+          options: [
+            { text: 'Setters run faster', why: 'They are slightly slower, if anything.' },
+            { text: 'Public fields can’t be read', why: 'They can be read and written by anyone, which is the problem.' },
+            { text: 'Every change goes through one place that can refuse bad values', correct: true, why: 'With a public field, any code anywhere could set cgpa to 7.5.' },
+            { text: 'Java requires setters', why: 'It doesn’t; it is good design.' },
+          ],
         },
         {
           type: 'finish',

@@ -1,4 +1,5 @@
 // COS 202 · Inheritance and polymorphism · Lesson 1: extends, IS-A and the five inheritance types.
+import { inheritanceScene } from './memory-scenes';
 
 export default {
   id: 'inheritance',
@@ -15,12 +16,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What does `final` mean on a class?',
+          options: [
+            { text: 'Its fields can’t change', why: 'final on fields does that; on a class it blocks subclasses.' },
+            { text: 'Nobody can extend it', correct: true, why: '`String` is a final class, for example.' },
+            { text: 'It can’t be instantiated', why: 'That’s abstract.' },
+            { text: 'It runs first', why: 'final has nothing to do with order.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Inheritance and polymorphism · Lesson 1',
           title: 'Write it once in the parent',
           body: '`class Animal { void eat() { … } }`\n\n`class Dog extends Animal { void bark() { … } }`\n\nA `Dog` now has **both** `eat()` and `bark()`. `Animal` is the ==superclass==, `Dog` the ==subclass==, and a Dog ==IS-A== Animal.\n\nA subclass can: use inherited members, add its own, override inherited methods, and call the parent’s constructor. It can’t see the parent’s `private` members directly, and it can’t extend a `final` class.',
           cta: 'Name the types',
         },
+        inheritanceScene,
         {
           type: 'sort',
           eyebrow: 'Sort them',
@@ -161,6 +174,47 @@ public class Main {
               { lines: [13, 19], text: '**Two levels down:** `SeniorManager` has everything above it, plus its own.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Students and lecturers are people',
+          body: 'Both need a name. Put it in a `Person` parent once.\n\nWhat does it print?',
+          code: `class Person {
+    protected String name;
+    Person(String name) { this.name = name; }
+    String describe() { return name; }
+}
+
+class Student extends Person {
+    double cgpa;
+    Student(String name, double cgpa) { super(name); this.cgpa = cgpa; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student t = new Student("Tobi", 4.2);
+        System.out.println(t.describe() + " " + t.cgpa);
+        System.out.println(t instanceof Person);
+    }
+}`,
+          options: [
+            { out: 'Tobi 4.2\ntrue', correct: true, why: 'Student inherits `name` and `describe()` from Person, and every Student is a Person.' },
+            { out: 'Tobi 4.2\nfalse', why: 'A Student IS-A Person, so `instanceof Person` is true.' },
+            { out: 'Compile error: Student has no describe()', why: 'Student inherits `describe()` from Person.' },
+            { out: 'null 4.2\ntrue', why: '`super(name)` passes the name up to Person’s constructor.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why doesn’t Java allow `class Student extends Person, Employee`?',
+          options: [
+            { text: 'Multiple inheritance of classes can create ambiguity when both parents define the same method (the diamond problem)', correct: true, why: 'Java allows a class to implement many interfaces instead.' },
+            { text: 'It would use too much memory', why: 'Memory isn’t the reason.' },
+            { text: 'Two parents can’t have constructors', why: 'They could; the issue is ambiguity.' },
+            { text: 'It does allow it', why: 'Only one class may follow extends.' },
+          ],
         },
         {
           type: 'finish',

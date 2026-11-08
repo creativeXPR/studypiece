@@ -187,6 +187,36 @@ export default {
           ],
         },
         {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Tobi’s records app, day one',
+          body: 'Through this course you’ll grow one program: a student records app for Tobi, which ends up calculating CGPAs in a window. It starts with two lines.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        System.out.print("Student: ");
+        System.out.println("Tobi");
+        System.out.println("Dept: Computer Science");
+    }
+}`,
+          options: [
+            { out: 'Student: Tobi\nDept: Computer Science', correct: true, why: '`print` leaves the cursor on the same line, so “Tobi” follows straight after “Student: ”.' },
+            { out: 'Student: \nTobi\nDept: Computer Science', why: '`print` doesn’t end the line; only `println` does.' },
+            { out: 'Student: Tobi Dept: Computer Science', why: 'Each `println` ends its line, so “Dept” starts a new one.' },
+            { out: '"Student: Tobi"\n"Dept: Computer Science"', why: 'The quote marks aren’t printed; they only mark the text.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Java compiles to **bytecode** that runs on the JVM, rather than straight to machine code for one processor. What does that buy?',
+          options: [
+            { text: 'The same compiled program runs on Windows, Mac or Linux, wherever a JVM exists', correct: true, why: '“Write once, run anywhere”: the JVM translates bytecode for the machine it runs on.' },
+            { text: 'Programs no longer need compiling', why: 'They are still compiled, to bytecode.' },
+            { text: 'Programs can’t have errors', why: 'Bytecode can still contain logic errors.' },
+            { text: 'It makes Java an interpreted-only language', why: 'Java is compiled to bytecode, and the JVM can also compile hot code to machine code.' },
+          ],
+        },
+        {
           type: 'finish',
           title: 'You’ve written real Java.',
           body: 'You know what a language is and how Java runs. Key terms, ready for revision:',

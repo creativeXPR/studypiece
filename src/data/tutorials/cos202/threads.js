@@ -17,6 +17,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In `button.addActionListener(e -> save())`, when does `save()` run?',
+          options: [
+            { text: 'Each time the button is clicked', correct: true, why: 'Adding the listener only registers it.' },
+            { text: 'Immediately, once', why: 'Registering doesn’t run it.' },
+            { text: 'When the window closes', why: 'Only clicks trigger it.' },
+            { text: 'Never, without a loop', why: 'Swing’s event thread calls it.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Swing GUI and events · Lesson 3',
           title: 'A second path through the code',
@@ -157,6 +168,40 @@ public class Main {
               { lines: [23, 23], text: '**Then wait for each one**, before reading the result.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Save in the background',
+          body: 'Saving many records takes time, so it runs on its own thread. `join` waits for it.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        int[] saved = {0};
+        Thread worker = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) saved[0]++;
+        });
+        worker.start();
+        worker.join();
+        System.out.println("saved " + saved[0] + " records");
+    }
+}`,
+          options: [
+            { out: 'saved 1000 records', correct: true, why: '`start()` runs the worker on its own thread; `join()` waits for it, so all 1000 saves are counted.' },
+            { out: 'saved 0 records', why: '`join()` makes main wait until the worker has finished.' },
+            { out: 'saved 999 records', why: 'The loop runs for i = 0 to 999: 1000 times.' },
+            { out: 'It prints a different number each run', why: 'Only one thread updates the count, and main waits for it.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Two threads each add 1000 to the same counter without `synchronized`. Why might the total be less than 2000?',
+          options: [
+            { text: 'Threads run at half speed', why: 'Speed isn’t the issue.' },
+            { text: 'int can’t hold 2000', why: 'It easily can.' },
+            { text: 'join() deletes some updates', why: 'join only waits.' },
+            { text: 'Both read the same old value and write back the same new value, losing an update (a race condition)', correct: true, why: '`count++` is read, add, write: three steps that can interleave.' },
+          ],
         },
         {
           type: 'finish',

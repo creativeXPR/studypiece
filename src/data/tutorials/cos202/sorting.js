@@ -1,4 +1,5 @@
 // COS 202 · Recursion and algorithms · Lesson 3: selection, bubble and insertion sort.
+import { selectionSortScene } from './memory-scenes';
 
 export default {
   id: 'sorting',
@@ -16,12 +17,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Why is binary search faster than linear search on sorted data?',
+          options: [
+            { text: 'It checks two items at a time', why: 'It halves the search space.' },
+            { text: 'Each check throws away half of what is left', correct: true, why: 'About 20 checks find one item among a million.' },
+            { text: 'It starts from the end', why: 'It starts from the middle.' },
+            { text: 'It uses recursion', why: 'The iterative version is just as fast.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Recursion and algorithms · Lesson 3',
           title: 'Selection sort, one pass at a time',
           body: '==Selection sort==: find the smallest element, swap it to the front, then repeat on the rest.\n\n`Start:  29 10 14 37 13`\n\n`Pass 1: 10 29 14 37 13` (10 swaps with 29)\n\n`Pass 2: 10 13 14 37 29` (13 swaps with 29)\n\n`Pass 3: 10 13 14 37 29` (14 is already in place)\n\n`Pass 4: 10 13 14 29 37` (29 swaps with 37)\n\nAn array of `n` elements needs `n − 1` passes: the last element is then in place automatically.',
           cta: 'Your trace',
         },
+        selectionSortScene,
         {
           type: 'choice',
           eyebrow: 'Trace it',
@@ -128,6 +141,43 @@ export default {
               { lines: [8, 10], text: '**Swap** with a temporary variable, so nothing is lost.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Rank the class by CGPA',
+          body: 'One pass of selection sort: find the smallest in the unsorted part and swap it to the front.\n\nWhat does it print?',
+          code: `import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        double[] cgpa = {3.1, 4.5, 2.8, 4.0};
+        for (int i = 0; i < 2; i++) {
+            int min = i;
+            for (int j = i + 1; j < cgpa.length; j++)
+                if (cgpa[j] < cgpa[min]) min = j;
+            double t = cgpa[i]; cgpa[i] = cgpa[min]; cgpa[min] = t;
+        }
+        System.out.println(Arrays.toString(cgpa));
+    }
+}`,
+          options: [
+            { out: '[2.8, 3.1, 4.5, 4.0]', correct: true, why: 'Pass 1 swaps 2.8 to the front; pass 2 swaps 3.1 into index 1. Indexes 2 and 3 are untouched.' },
+            { out: '[2.8, 3.1, 4.0, 4.5]', why: 'The loop does only two passes (i = 0 and 1).' },
+            { out: '[2.8, 4.5, 3.1, 4.0]', why: 'That is after one pass; the second pass swaps 3.1 into index 1.' },
+            { out: '[4.5, 4.0, 3.1, 2.8]', why: 'The comparison `<` sorts smallest first.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Selection sort always makes about $n^2/2$ comparisons, even on a list that is already sorted. Which sort does much better on nearly sorted data?',
+          options: [
+            { text: 'Insertion sort', correct: true, why: 'On sorted input each new item is compared once and stays put, so it takes about $n$ steps.' },
+            { text: 'Selection sort', why: 'It scans the whole unsorted part every pass regardless.' },
+            { text: 'They are all the same', why: 'Insertion sort adapts to existing order.' },
+            { text: 'Binary search', why: 'That finds items; it doesn’t sort.' },
+          ],
         },
         {
           type: 'finish',

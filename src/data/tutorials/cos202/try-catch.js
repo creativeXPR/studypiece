@@ -1,4 +1,5 @@
 // COS 202 · Exceptions · Lesson 1: try, catch and finally.
+import { exceptionScene } from './memory-scenes';
 
 export default {
   id: 'try-catch',
@@ -17,12 +18,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which Iterator method safely removes the current item?',
+          options: [
+            { text: '`it.delete()`', why: 'There is no such method.' },
+            { text: '`list.remove(i)` inside for-each', why: 'That throws ConcurrentModificationException.' },
+            { text: '`it.next(null)`', why: 'next takes no arguments.' },
+            { text: '`it.remove()`', correct: true, why: 'It removes the item most recently returned by `next()`.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Exceptions · Lesson 1',
           title: 'Plan for the crash',
           body: 'A user types `abc` where a number belongs. Without handling, the program dies. With it:\n\n`try {`\n\n`    int n = Integer.parseInt(text);`\n\n`} catch (NumberFormatException e) {`\n\n`    System.out.println("Enter a number");`\n\n`}`\n\nWhen a line in `try` throws, the rest of the `try` is **skipped** and Java jumps to the first matching `catch`. Catch specific exceptions, not just `Exception`.',
           cta: 'Trace the flow',
         },
+        exceptionScene,
         {
           type: 'predict',
           eyebrow: 'Exam favourite',
@@ -152,6 +165,45 @@ export default {
               { lines: [5, 6], text: '**A specific catch** handles only what you expected. Real bugs still show up.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'A typo in a score',
+          body: 'The score was typed as "7O" (a letter O). The app must not crash.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        String[] typed = {"72", "7O", "65"};
+        int total = 0;
+        for (String t : typed) {
+            try {
+                total += Integer.parseInt(t);
+            } catch (NumberFormatException e) {
+                System.out.println("Bad score: " + t);
+            } finally {
+                System.out.println("checked " + t);
+            }
+        }
+        System.out.println(total);
+    }
+}`,
+          options: [
+            { out: 'checked 72\nBad score: 7O\nchecked 7O\nchecked 65\n137', correct: true, why: 'The bad score is caught and reported; `finally` runs for every score; the good ones add to 137.' },
+            { out: 'checked 72\nBad score: 7O\nchecked 65\n137', why: '`finally` runs after the catch for "7O" too.' },
+            { out: 'Bad score: 7O\n137', why: '`finally` runs every time, error or not.' },
+            { out: 'checked 72\nBad score: 7O', why: 'The exception is caught, so the loop carries on.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why is `catch (Exception e) { }` with an empty body a bad habit?',
+          options: [
+            { text: 'It doesn’t compile', why: 'It compiles.' },
+            { text: 'It catches nothing', why: 'It catches almost everything.' },
+            { text: 'It silently hides every error, so bugs go unnoticed and data quietly goes wrong', correct: true, why: 'Catch the specific exception you expect, and at least report it.' },
+            { text: 'It makes the program slower', why: 'Speed isn’t the issue.' },
+          ],
         },
         {
           type: 'finish',

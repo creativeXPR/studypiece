@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'When does a `finally` block run?',
+          options: [
+            { text: 'Only if an exception happened', why: 'It runs either way.' },
+            { text: 'After the try (and any catch), whether or not an exception happened', correct: true, why: 'It is the place for clean-up such as closing files.' },
+            { text: 'Only if no exception happened', why: 'It runs either way.' },
+            { text: 'Before the try', why: 'It runs after.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Exceptions · Lesson 2',
           title: 'throw raises it, throws warns about it',
@@ -157,6 +168,49 @@ public class Main {
               { lines: [19, 24], text: '**Check first, change last:** a refused withdrawal leaves the balance untouched.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Refuse an impossible grade',
+          body: 'The app should complain loudly about a grade that doesn’t exist.\n\nWhat does it print?',
+          code: `public class Main {
+    static int points(String g) {
+        switch (g) {
+            case "A": return 5;
+            case "B": return 4;
+            case "C": return 3;
+            default: throw new IllegalArgumentException("No such grade: " + g);
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(points("B"));
+            System.out.println(points("Z"));
+            System.out.println(points("A"));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}`,
+          options: [
+            { out: '4\nNo such grade: Z', correct: true, why: '`throw` stops `points` immediately; control jumps to the catch, skipping the call for "A".' },
+            { out: '4\nNo such grade: Z\n5', why: 'Once the exception is thrown, the rest of the try block is skipped.' },
+            { out: '4\n0\n5', why: 'Z reaches `default`, which throws instead of returning.' },
+            { out: 'No such grade: Z', why: 'The first call, `points("B")`, prints 4 before the error.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'What is the difference between `throw` and `throws`?',
+          options: [
+            { text: '`throw` actually raises an exception; `throws` in a method header warns callers it might', correct: true, why: '`void save() throws IOException` declares; `throw new IOException()` happens.' },
+            { text: 'They are the same keyword in two spellings', why: 'They do different jobs.' },
+            { text: '`throws` catches exceptions', why: 'catch does that.' },
+            { text: '`throw` is only for checked exceptions', why: 'You can throw any exception.' },
+          ],
         },
         {
           type: 'finish',

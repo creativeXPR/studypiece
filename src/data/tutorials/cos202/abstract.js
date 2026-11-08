@@ -15,6 +15,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What is runtime polymorphism?',
+          options: [
+            { text: 'Choosing between overloads by argument types', why: 'That is compile-time polymorphism.' },
+            { text: 'Changing a variable’s type while running', why: 'Types don’t change.' },
+            { text: 'Running two methods at once', why: 'That would be threads.' },
+            { text: 'Java choosing which overridden method to run from the actual object, while the program runs', correct: true, why: 'Also called dynamic dispatch.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Abstraction and interfaces · Lesson 1',
           title: 'A promise the children must keep',
@@ -181,6 +192,52 @@ public class Main {
               { lines: [26, 26], text: '**Runtime polymorphism:** `total` never needs to know which shape it holds.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Every person has a role',
+          body: 'There is no such thing as a plain “person” at the university: make Person abstract.\n\nWhat does it print?',
+          code: `abstract class Person {
+    protected String name;
+    Person(String name) { this.name = name; }
+    abstract String role();
+    String card() { return name + " (" + role() + ")"; }
+}
+
+class Student extends Person {
+    Student(String n) { super(n); }
+    String role() { return "student"; }
+}
+
+class Lecturer extends Person {
+    Lecturer(String n) { super(n); }
+    String role() { return "lecturer"; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person[] all = {new Student("Tobi"), new Lecturer("Dr Bello")};
+        for (Person p : all) System.out.println(p.card());
+    }
+}`,
+          options: [
+            { out: 'Tobi (student)\nDr Bello (lecturer)', correct: true, why: 'The concrete `card()` method calls the abstract `role()`, and each subclass fills it in.' },
+            { out: 'Compile error: Person is abstract', why: 'You can’t write `new Person(...)`, but Person variables and arrays are fine.' },
+            { out: 'Tobi (null)\nDr Bello (null)', why: 'Each subclass returns its own role.' },
+            { out: 'Tobi\nDr Bello', why: '`card()` adds the role in brackets.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why can an abstract class have a constructor if you can never `new` it?',
+          options: [
+            { text: 'It can’t have one', why: 'It can, and usually does.' },
+            { text: 'For reflection only', why: 'Normal subclassing uses it.' },
+            { text: 'Subclass constructors call it through `super(...)` to set up the shared fields', correct: true, why: 'Person’s constructor sets `name` for every Student and Lecturer.' },
+            { text: 'It runs when the class loads', why: 'It runs whenever a subclass object is built.' },
+          ],
         },
         {
           type: 'finish',

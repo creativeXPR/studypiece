@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: '`list.remove(1)` on `[A, B, C]` leaves what?',
+          options: [
+            { text: '`[B, C]`', why: 'Index 1 is the second item.' },
+            { text: '`[A, C]`', correct: true, why: 'Index 1 (B) is removed and C slides left into index 1.' },
+            { text: '`[A, B]`', why: 'That removes index 2.' },
+            { text: '`[A, null, C]`', why: 'ArrayLists close the gap.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Using the Java API · Lesson 3',
           title: 'A finger on the list',
@@ -138,6 +149,43 @@ public class Main {
               { lines: [8, 8], text: '**`it.remove()`** removes the item `next()` just returned.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Drop the failed courses',
+          body: 'Removing while looping needs an Iterator.\n\nWhat does it print?',
+          code: `import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> grades = new ArrayList<>(List.of("A", "F", "F", "B", "F"));
+        Iterator<String> it = grades.iterator();
+        while (it.hasNext()) {
+            if (it.next().equals("F")) it.remove();
+        }
+        System.out.println(grades);
+    }
+}`,
+          options: [
+            { out: '[A, B]', correct: true, why: '`it.remove()` deletes the item `next()` just returned, keeping the iterator in step with the list.' },
+            { out: '[A, F, B]', why: 'The iterator removes every F safely, including two in a row.' },
+            { out: 'ConcurrentModificationException', why: 'That happens when you call the list’s own remove inside a for-each; `it.remove()` is the safe way.' },
+            { out: '[A, B, F]', why: 'The last F is checked and removed too.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why does removing with `grades.remove(g)` inside a for-each loop throw ConcurrentModificationException?',
+          options: [
+            { text: 'The hidden iterator notices the list changed behind its back and stops rather than skip or repeat items', correct: true, why: 'Use `Iterator.remove()` or `removeIf(g -> g.equals("F"))`.' },
+            { text: 'for-each can’t read Strings', why: 'It reads them fine.' },
+            { text: 'remove is not allowed on ArrayList', why: 'It is, just not mid-iteration.' },
+            { text: 'The list becomes null', why: 'It changes size, which confuses the iterator.' },
+          ],
         },
         {
           type: 'finish',

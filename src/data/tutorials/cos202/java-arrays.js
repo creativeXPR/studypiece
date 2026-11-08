@@ -1,4 +1,5 @@
 // COS 202 · Intro to Java · Module 7: arrays, traversal, 2D arrays, java.util.Arrays.
+import { arraysScene } from './memory-scenes';
 
 export default {
   id: 'java-arrays',
@@ -16,12 +17,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which loop is guaranteed to run its body at least once?',
+          options: [
+            { text: '`do { ... } while (cond);`', correct: true, why: 'It checks the condition after the body.' },
+            { text: '`while (cond) { ... }`', why: 'It checks first, so it may run zero times.' },
+            { text: '`for (...) { ... }`', why: 'A for loop also checks first.' },
+            { text: 'None of them', why: 'do-while always runs once.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Why arrays',
           title: 'One name for a whole row',
           body: 'Fifty marks would need fifty variables. An ==array== keeps them in one numbered row:\n\n`int[] marks = {70, 55, 88};`\n\n`marks[0]` is 70, `marks[1]` is 55, and `marks[2]` is 88.\n\nThree rules: the size is **fixed** once created, every value has the **same type**, and counting **starts at 0**.\n\nTo make an empty one, say how many slots: `int[] a = new int[5];` gives five zeros. (`double` slots start at `0.0`, `boolean` at `false`, `String` at `null`.)',
           cta: 'See one in action',
         },
+        arraysScene,
         {
           type: 'trace',
           eyebrow: 'Watch it run',
@@ -199,6 +212,41 @@ public class Main {
             { out: '[1, 2, 5, 8]\n3', correct: true, why: 'After sorting, 8 sits at position 3.' },
             { out: '[5, 2, 8, 1]\n2', why: '`sort` changes the array itself, so 8 has moved.' },
             { out: '[1, 2, 5, 8]\n4', why: 'Positions start at 0, so the fourth slot is position 3.' },
+          ],
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Store all of Tobi’s scores',
+          body: 'Five variables would be clumsy. One array holds them all.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        int[] scores = {72, 58, 65, 81, 49};
+        int best = scores[0];
+        int sum = 0;
+        for (int s : scores) {
+            sum += s;
+            if (s > best) best = s;
+        }
+        System.out.println("best " + best + ", average " + sum / scores.length);
+    }
+}`,
+          options: [
+            { out: 'best 81, average 65', correct: true, why: 'The for-each loop visits every score: the best is 81 and 325 / 5 is 65 (int division).' },
+            { out: 'best 81, average 65.0', why: '`sum / scores.length` divides two ints, so there is no decimal.' },
+            { out: 'best 72, average 65', why: '`best` is updated whenever a bigger score appears: 81.' },
+            { out: 'best 81, average 325', why: 'The sum is divided by 5.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why do arrays start at index 0?',
+          options: [
+            { text: 'It’s a mistake Java copied from C', why: 'It’s a deliberate design: index means offset.' },
+            { text: 'Index 0 stores the length', why: 'The length is a separate field.' },
+            { text: 'To save one element of memory', why: 'No memory is saved.' },
+            { text: 'The index is the distance from the start of the array, so the first element is 0 steps in', correct: true, why: 'That’s why the last index is `length - 1`, and why `<= length` in a loop overshoots.' },
           ],
         },
         {

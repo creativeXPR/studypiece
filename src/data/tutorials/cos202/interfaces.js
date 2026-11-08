@@ -16,6 +16,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'Which class must be declared abstract?',
+          options: [
+            { text: 'One with a constructor', why: 'Ordinary classes have constructors.' },
+            { text: 'One that has at least one abstract method', correct: true, why: 'A class with an unfinished method can’t be instantiated, so it must be abstract.' },
+            { text: 'One with private fields', why: 'Encapsulated classes are normal.' },
+            { text: 'One that is extended', why: 'Plenty of concrete classes are extended.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Abstraction and interfaces · Lesson 2',
           title: 'Anything that can do this job',
@@ -201,6 +212,52 @@ public class Main {
               { lines: [26, 26], text: '**Dynamic dispatch:** two unrelated classes, one loop.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Anything that charges fees',
+          body: 'Students pay school fees and hostels charge rent. An interface describes “can be charged”.\n\nWhat does it print?',
+          code: `interface Payable {
+    double RATE = 5000;
+    double amount();
+}
+
+class Student implements Payable {
+    int units;
+    Student(int units) { this.units = units; }
+    public double amount() { return units * RATE; }
+}
+
+class Hostel implements Payable {
+    public double amount() { return 40000; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Payable[] bills = {new Student(20), new Hostel()};
+        double total = 0;
+        for (Payable b : bills) total += b.amount();
+        System.out.println(total);
+    }
+}`,
+          options: [
+            { out: '140000.0', correct: true, why: 'Student: 20 × 5000 = 100000; Hostel: 40000. One loop handles both through the interface.' },
+            { out: '140000', why: '`total` is a double, so it prints with a decimal.' },
+            { out: '100000.0', why: 'The hostel’s 40000 is added too.' },
+            { out: 'Compile error: RATE is not declared', why: 'Interface variables are public, static and final automatically, and visible to implementers.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why must `amount()` be declared `public` in Student?',
+          options: [
+            { text: 'Interface methods are public, and an implementation can’t make them less visible', correct: true, why: 'Leaving it at default access is a compile error: “attempting to assign weaker access privileges”.' },
+            { text: 'Because Student is public', why: 'It would be needed even if Student weren’t.' },
+            { text: 'So it can be static', why: 'Interface methods implemented this way are instance methods.' },
+            { text: 'It isn’t needed', why: 'Removing it fails to compile.' },
+          ],
         },
         {
           type: 'finish',

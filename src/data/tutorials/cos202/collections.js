@@ -1,4 +1,5 @@
 // COS 202 · Using the Java API · Lesson 2: ArrayList, Stack and Queue.
+import { arrayListScene } from './memory-scenes';
 
 export default {
   id: 'collections',
@@ -14,12 +15,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What does `Integer.parseInt("12") + 3` give?',
+          options: [
+            { text: '"123"', why: 'That would be the String "12" plus 3.' },
+            { text: '123', why: 'After parsing, + is addition.' },
+            { text: 'An exception', why: '"12" is a valid number.' },
+            { text: '15', correct: true, why: 'parseInt turns the text into the int 12.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Using the Java API · Lesson 2',
           title: 'An array that grows',
           body: 'An array’s size is fixed. An ==ArrayList== grows and shrinks:\n\n`ArrayList<String> c = new ArrayList<>();`\n\n`c.add("COS202");`\n\n`c.get(0);` not `c[0]`\n\n`c.size();` not `c.length`\n\nIt holds **objects**, so numbers go in through wrappers: `ArrayList<Integer>`. It lives in `java.util`, so import it.',
           cta: 'Trace one',
         },
+        arrayListScene,
         {
           type: 'predict',
           eyebrow: 'Predict',
@@ -247,6 +260,43 @@ public class Main {
               { lines: [17, 17], text: '**Finish empty:** anything left was never closed.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Register and drop courses',
+          body: 'An `ArrayList` grows as Tobi registers and shrinks when a course is dropped.\n\nWhat does it print?',
+          code: `import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> courses = new ArrayList<>();
+        courses.add("MTH 201");
+        courses.add("COS 202");
+        courses.add("STA 221");
+        courses.add(0, "GST 211");
+        courses.remove("COS 202");
+        System.out.println(courses);
+        System.out.println(courses.size() + " " + courses.get(1));
+    }
+}`,
+          options: [
+            { out: '[GST 211, MTH 201, STA 221]\n3 MTH 201', correct: true, why: 'GST goes to the front, COS is removed by value and the rest close up: index 1 is MTH 201.' },
+            { out: '[MTH 201, STA 221, GST 211]\n3 STA 221', why: '`add(0, ...)` inserts at the front, not the end.' },
+            { out: '[GST 211, MTH 201, COS 202, STA 221]\n4 MTH 201', why: '`remove("COS 202")` removes it by value.' },
+            { out: '[GST 211, MTH 201, STA 221]\n3 GST 211', why: '`get(1)` is the second item: MTH 201.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'When is a plain array still a better choice than an ArrayList?',
+          options: [
+            { text: 'Never', why: 'Fixed-size primitive data suits arrays well.' },
+            { text: 'When you need to remove items', why: 'Removal is ArrayList’s strength.' },
+            { text: 'When the size is fixed and known, and you want primitives without boxing, such as a 7-day sales table', correct: true, why: 'ArrayList only holds objects (Integer, not int) and shines when the size changes.' },
+            { text: 'When the data is text', why: 'Both can hold Strings.' },
+          ],
         },
         {
           type: 'finish',

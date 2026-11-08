@@ -17,6 +17,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What is a functional interface?',
+          options: [
+            { text: 'Any interface with a default method', why: 'Defaults don’t count towards the one abstract method.' },
+            { text: 'An interface with exactly one abstract method, which a lambda can implement', correct: true, why: '`Runnable` and `Comparator` are examples.' },
+            { text: 'An interface with no methods', why: 'That is a marker interface.' },
+            { text: 'A class full of static methods', why: 'That isn’t an interface.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Using the Java API · Lesson 1',
           title: 'Don’t write what Java already has',
@@ -176,6 +187,40 @@ public class Main {
               { lines: [16, 16], text: '**Parse, then add.** Without parsing, `+` would join the text: `2022`.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Reading scores typed as text',
+          body: 'Scores typed into a form arrive as Strings. Wrapper classes convert them.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        String typed = "72";
+        System.out.println(typed + 5);
+        int score = Integer.parseInt(typed);
+        System.out.println(score + 5);
+        String dept = new String("COS");
+        System.out.println(dept == "COS");
+        System.out.println(dept.equals("COS"));
+    }
+}`,
+          options: [
+            { out: '725\n77\nfalse\ntrue', correct: true, why: 'Text plus a number joins; `parseInt` turns text into a number; `==` compares objects, `equals` compares text.' },
+            { out: '77\n77\ntrue\ntrue', why: 'A String plus a number joins them: "725".' },
+            { out: '725\n725\ntrue\ntrue', why: 'After parsing, `score + 5` is arithmetic: 77.' },
+            { out: '725\n77\ntrue\ntrue', why: '`new String` makes a separate object, so `==` is false.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why does `Integer.parseInt("7O")` (letter O) not just return 7?',
+          options: [
+            { text: 'It refuses anything that isn’t a whole number and throws NumberFormatException, so bad input can’t slip through silently', correct: true, why: 'Guessing would hide typos; the exception forces the program to handle them (Chapter 8).' },
+            { text: 'It does return 7', why: 'It throws an exception.' },
+            { text: 'It returns 0 for bad input', why: 'It throws instead.' },
+            { text: 'Strings can’t be converted to numbers', why: 'They can, when they contain a valid number.' },
+          ],
         },
         {
           type: 'finish',

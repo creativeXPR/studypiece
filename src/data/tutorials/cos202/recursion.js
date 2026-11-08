@@ -1,4 +1,5 @@
 // COS 202 · Recursion and algorithms · Lesson 1: recursion (base case, tracing, factorial, Fibonacci).
+import { recursionScene } from './memory-scenes';
 
 const SUM = `public class Main {
     static int sum(int k) {
@@ -51,12 +52,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What decides which overloaded method Java calls?',
+          options: [
+            { text: 'The return type', why: 'Return types can’t distinguish overloads.' },
+            { text: 'The number and types of the arguments', correct: true, why: 'The return type plays no part.' },
+            { text: 'The order they were written in', why: 'Order doesn’t matter.' },
+            { text: 'Whichever is shorter', why: 'Length is irrelevant.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Recursion and algorithms · Lesson 1',
           title: 'A method that calls itself',
           body: '==Recursion== is when a method calls **itself** to solve a smaller copy of the same problem.\n\nEvery recursive method has two parts:\n\n**1. The base case:** the simplest input, answered straight away with no more calls. This is what stops it.\n\n**2. The recursive step:** do a little work, then call the method again on a **smaller** input, one step closer to the base case.',
           cta: 'See one run',
         },
+        recursionScene,
         {
           type: 'code',
           eyebrow: 'Try it',
@@ -363,6 +376,41 @@ public class Main {
             { label: 'The button says `Compute`', src: 'new\\s+JButton\\s*\\(\\s*"Compute"\\s*\\)', fail: 'Change `new JButton("Go")` to `new JButton("Compute")`.' },
           ],
           explain: 'A button, a text box and your recursive method, working together. That’s a GUI program.',
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Total units, recursively',
+          body: 'The sum of the units from position `i` onwards is this course’s units plus the sum of the rest.\n\nWhat does it print?',
+          code: `public class Main {
+    static int total(int[] units, int i) {
+        if (i == units.length) return 0;
+        return units[i] + total(units, i + 1);
+    }
+
+    public static void main(String[] args) {
+        int[] units = {3, 2, 3, 3, 1};
+        System.out.println(total(units, 0));
+        System.out.println(total(units, 3));
+    }
+}`,
+          options: [
+            { out: '12\n4', correct: true, why: 'Each call adds one course and asks for the rest; the base case returns 0 past the end. From index 3: 3 + 1 = 4.' },
+            { out: '12\n12', why: 'The second call starts at index 3: only 3 + 1.' },
+            { out: '12\n7', why: 'From index 3 the courses are 3 and 1: 4.' },
+            { out: 'StackOverflowError', why: 'The base case `i == units.length` stops the recursion.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Every recursive call adds a frame to the call stack. When is a loop the better choice?',
+          options: [
+            { text: 'When the recursion would go very deep, such as summing a million items', correct: true, why: 'Deep recursion risks StackOverflowError; recursion shines on naturally recursive problems like trees and divide-and-conquer.' },
+            { text: 'Never: recursion is always better', why: 'Each call costs stack space.' },
+            { text: 'When the method is static', why: 'Static doesn’t matter.' },
+            { text: 'When there is a base case', why: 'Every correct recursion has one.' },
+          ],
         },
         {
           type: 'finish',

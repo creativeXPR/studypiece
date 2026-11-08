@@ -1,4 +1,5 @@
 // COS 202 · Classes and objects · Lesson 1: classes, objects, attributes, new, null.
+import { objectsScene } from './memory-scenes';
 
 export default {
   id: 'classes',
@@ -16,12 +17,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In selection sort, how many passes does it take to sort $n$ values?',
+          options: [
+            { text: '$n$', why: 'The last pass would have nothing to compare.' },
+            { text: '$\\log_2 n$', why: 'That’s how many checks binary search needs.' },
+            { text: '$n^2$', why: 'That’s roughly the number of comparisons, not passes.' },
+            { text: '$n - 1$', correct: true, why: 'After $n - 1$ passes the last value is automatically in place.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Classes and objects · Lesson 1',
           title: 'One blueprint, many objects',
           body: 'A ==class== is a blueprint; an ==object== is a thing built from it. `Car` is the class; your neighbour’s car is an object.\n\n`class Car { int speed; }`\n\n`Car a = new Car();`\n\n`a.speed = 80;`\n\nEvery object has **state** (its field values), **behaviour** (its methods) and **identity** (it is its own object, even if another holds the same values).',
           cta: 'Build some',
         },
+        objectsScene,
         {
           type: 'predict',
           eyebrow: 'Predict',
@@ -141,6 +154,45 @@ public class Main {
               { lines: [10, 12], text: '**Dot syntax** sets this object’s fields.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Tobi becomes an object',
+          body: 'Time to stop juggling loose variables. A `Student` class groups a student’s data.\n\nWhat does it print?',
+          code: `class Student {
+    String name;
+    double cgpa;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student a = new Student();
+        a.name = "Tobi";
+        Student b = a;
+        b.cgpa = 4.2;
+        Student c = new Student();
+        System.out.println(a.name + " " + a.cgpa);
+        System.out.println(c.name + " " + c.cgpa);
+    }
+}`,
+          options: [
+            { out: 'Tobi 4.2\nnull 0.0', correct: true, why: '`a` and `b` point at one object, so its cgpa is 4.2. `c` is a fresh object: name null, cgpa 0.0.' },
+            { out: 'Tobi 0.0\nnull 0.0', why: '`b = a` copies the reference, so `b.cgpa = 4.2` changes Tobi’s object.' },
+            { out: 'Tobi 4.2\nTobi 4.2', why: '`c` is a separate new object with default fields.' },
+            { out: 'Tobi 4.2\n 0.0', why: 'An unset String field is `null`, and printing it shows the word null.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'What is the difference between a class and an object?',
+          options: [
+            { text: 'They are two words for the same thing', why: 'The blueprint and the built things differ.' },
+            { text: 'An object is a small class', why: 'Objects are instances, not classes.' },
+            { text: 'A class is the blueprint; objects are the individual things built from it, each with its own field values', correct: true, why: 'One `Student` class, thousands of student objects.' },
+            { text: 'Classes hold data; objects hold methods', why: 'Classes define both; objects hold their own data.' },
+          ],
         },
         {
           type: 'finish',

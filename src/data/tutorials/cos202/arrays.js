@@ -1,4 +1,5 @@
 // COS 202 · Java toolkit · Lesson 2: arrays and 2D arrays.
+import { arraysScene } from './memory-scenes';
 
 export default {
   id: 'arrays',
@@ -15,12 +16,24 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What is `7 / 2` in Java when both are ints?',
+          options: [
+            { text: '3.5', why: 'Only if one side is a double.' },
+            { text: '3', correct: true, why: 'Integer division throws away the fraction.' },
+            { text: '4', why: 'It truncates rather than rounding.' },
+            { text: '1', why: 'That’s `7 % 2`.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Java toolkit · Lesson 2',
           title: 'A row of numbered boxes',
           body: 'An ==array== holds many values of **one type**. Its size is fixed once created.\n\n`int[] a = new int[4];` makes 4 boxes, all `0`.\n\n`int[] b = {10, 20, 30};` creates and fills in one go.\n\nReach a box by its index: `b[0]` is `10`, and `b[2]` is the last one. `b[3]` crashes with `ArrayIndexOutOfBoundsException`.',
           cta: 'Try it',
         },
+        arraysScene,
         {
           type: 'predict',
           eyebrow: 'Predict',
@@ -254,6 +267,42 @@ export default {
               { lines: [4, 8], text: '**Nested loops** visit every cell, row by row.' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Scores for two students',
+          body: 'A 2D array: one row per student, one column per course.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        int[][] scores = {
+            {72, 58, 65},
+            {81, 77, 90}
+        };
+        System.out.println(scores[1][2]);
+        System.out.println(scores.length + " x " + scores[0].length);
+        int sum = 0;
+        for (int s : scores[0]) sum += s;
+        System.out.println(sum);
+    }
+}`,
+          options: [
+            { out: '90\n2 x 3\n195', correct: true, why: 'Row index first, then column: `scores[1][2]` is 90. Row 0 adds up to 195.' },
+            { out: '58\n2 x 3\n195', why: '`[1][2]` is row 1 (the second row), column 2: 90.' },
+            { out: '90\n3 x 2\n195', why: '`scores.length` counts rows (2); `scores[0].length` counts columns (3).' },
+            { out: '90\n2 x 3\n243', why: 'Only row 0 is added: 72 + 58 + 65.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'Why does `int[] b = a;` followed by `b[0] = 0;` also change `a[0]`?',
+          options: [
+            { text: 'Both variables hold a reference to the same array object', correct: true, why: 'Copy the contents with `a.clone()` or `Arrays.copyOf(a, a.length)` when you need a separate array.' },
+            { text: 'Arrays are always global', why: 'They are objects reached through references.' },
+            { text: 'b[0] is a pointer to a[0]', why: 'b refers to the whole same array.' },
+            { text: 'Java copies changes back automatically', why: 'There is only one array; nothing is copied.' },
+          ],
         },
         {
           type: 'finish',

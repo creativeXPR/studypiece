@@ -15,6 +15,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'How should two Strings be compared for the same text?',
+          options: [
+            { text: '`a.equals(b)`', correct: true, why: '`==` checks whether both variables point to the same object, not whether the text matches.' },
+            { text: '`a == b`', why: 'That compares references, which can differ for equal text.' },
+            { text: '`a = b`', why: 'That assigns.' },
+            { text: '`a.compare(b)`', why: 'There is `compareTo`, which returns a number, not a yes/no.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Think before typing',
           title: 'Write the plan in plain English',
@@ -234,6 +245,40 @@ public class Main {
               { lines: [16, 16], text: '**Print the winner.**' },
             ],
           },
+        },
+        {
+          type: 'predict',
+          eyebrow: 'Project · Tobi’s records app',
+          title: 'Score to grade',
+          body: 'The records app needs to turn a score into a letter. Order matters in an else-if ladder.\n\nWhat does it print?',
+          code: `public class Main {
+    public static void main(String[] args) {
+        int score = 67;
+        String grade;
+        if (score >= 70) grade = "A";
+        else if (score >= 60) grade = "B";
+        else if (score >= 50) grade = "C";
+        else grade = "F";
+        System.out.println(score + " -> " + grade);
+    }
+}`,
+          options: [
+            { out: '67 -> B', correct: true, why: 'Tests run top to bottom and the first true one wins: 67 fails `>= 70` and passes `>= 60`.' },
+            { out: '67 -> C', why: 'The ladder stops at the first true test, which is `score >= 60`.' },
+            { out: '67 -> BC', why: 'Only one branch of an else-if ladder runs.' },
+            { out: '67 -> A', why: '67 isn’t at least 70.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'A ladder tests `score >= 50` first, then `score >= 70`. What goes wrong?',
+          options: [
+            { text: 'Nothing: order never matters', why: 'In an else-if ladder, the first true condition wins.' },
+            { text: 'It won’t compile', why: 'It compiles; the logic is wrong.' },
+            { text: 'Scores under 50 crash', why: 'They fall to the final else.' },
+            { text: 'Every score of 50 or more gets the first grade; the `>= 70` branch can never be reached', correct: true, why: 'Order the tests from the strictest down (or use ranges) so each branch is reachable.' },
+          ],
         },
         {
           type: 'finish',

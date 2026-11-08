@@ -14,6 +14,17 @@ export default {
       ],
       screens: [
         {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'What is a race condition?',
+          options: [
+            { text: 'A loop that runs too fast', why: 'Loops don’t race.' },
+            { text: 'Two programs competing for a file name', why: 'That isn’t the usual meaning.' },
+            { text: 'A compile error', why: 'It happens at run time.' },
+            { text: 'When the result depends on the timing of threads touching shared data', correct: true, why: '`synchronized` makes threads take turns.' },
+          ],
+        },
+        {
           type: 'story',
           eyebrow: 'Exam lab · Lesson 1',
           title: 'One question settles it',
@@ -178,6 +189,28 @@ class Student {
             { line: 3, kind: 'syntax', fixes: ['switch (grade.toUpperCase()) {', 'switch grade.toUpperCase() {', 'switch (grade.upper()) {'], why: '`toUpperCase` is a method, so it needs brackets.' },
             { line: 9, kind: 'semantic', fixes: ['case "F": return 0;', 'case "f": return 1;', 'case "F": break;'], why: 'It compiles, but an F earns 0 points.' },
             { line: 11, kind: 'syntax', fixes: ['throw new IllegalArgumentException("Invalid grade: " + grade);', 'throws new IllegalArgumentException("Invalid grade: " + grade);', 'new throw IllegalArgumentException("Invalid grade: " + grade);'], why: 'An exception must be created with `new`.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Project · Tobi’s records app',
+          prompt: 'This compiles, but every student’s CGPA prints as a whole number: `double cgpa = totalPoints / totalUnits;` (both ints). What kind of error is it, and the fix?',
+          options: [
+            { text: 'A syntax error; add a semicolon', why: 'It compiles, so the syntax is fine.' },
+            { text: 'A semantic error; cast first: `(double) totalPoints / totalUnits`', correct: true, why: 'It compiles, so it isn’t a syntax error, but integer division gives the wrong meaning.' },
+            { text: 'A semantic error; change `double` to `int`', why: 'That makes the result worse, not better.' },
+            { text: 'A runtime exception; add try/catch', why: 'Nothing is thrown; the answer is quietly wrong.' },
+          ],
+        },
+        {
+          type: 'choice',
+          eyebrow: 'Think deeper',
+          prompt: 'In a “find N errors” exam question, why fix and recompile one error at a time when stuck?',
+          options: [
+            { text: 'Compilers only report one error', why: 'They report many, some of them knock-on effects.' },
+            { text: 'It is slower but required', why: 'It’s a debugging strategy, not a rule.' },
+            { text: 'One error can cause several confusing compiler messages; fixing the first often removes the rest', correct: true, why: 'A missing brace can make the compiler report errors on lines that are fine.' },
+            { text: 'Because semantic errors come first', why: 'The compiler reports syntax errors.' },
           ],
         },
         {
