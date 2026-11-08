@@ -9,6 +9,7 @@ const PALETTES = {
   'MAT 222': ['#0f766e', '#14b8a6', '#fde68a'],
   'MTH 205': ['#134e4a', '#4338ca', '#fde047'],
   'SPO 101': ['#0c4a6e', '#0e7490', '#fbbf24'],
+  'ACP 111': ['#312e81', '#0f766e', '#fde047'],
   'MTH 210': ['#1e3a8a', '#0891b2', '#fde047'],
   'MTH 103': ['#1d4ed8', '#0ea5e9', '#fde047'],
   'MAT 142': ['#166534', '#65a30d', '#facc15'],
@@ -107,6 +108,18 @@ const MOTIFS = {
       s += k.circle(sx(x), sy(f(x)), 4, k.dot);
     }
     return s + k.circle(sx(steps[3]), sy(0), 6, k.star) + k.text(378, 40, 'xₙ₊₁ = xₙ − f/f′', k.label);
+  },
+
+  // Academic papers (first paper: even pseudoprimes): bars of 1/N shrinking fast along a number
+  // line, the first liars marked, and the paper's bound.
+  'ACP 111': (k) => {
+    let s = k.line(360, 128, 620, 128, k.axis);
+    for (let i = 0; i < 12; i++) {
+      const h = 92 / (1 + i) ** 1.6;
+      s += k.line(372 + i * 20, 128, 372 + i * 20, (128 - h).toFixed(1), i < 3 ? k.accent : k.dash);
+      s += k.circle(372 + i * 20, (128 - h).toFixed(1), i < 3 ? 5 : 3, i < 3 ? k.star : k.dot);
+    }
+    return s + k.text(470, 44, 'Σ 1/N < 0.0059', k.label);
   },
 
   // Intro to ML: the course's kiosk notebook (temperature against bottles) with its fitted line and

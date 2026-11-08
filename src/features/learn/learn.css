@@ -3520,3 +3520,22 @@ a.learn-les:active {
   margin: 0.4em 0; padding: 10px 12px; border-radius: 10px; background: #0f172a; color: #e2e8f0;
   font: 0.88rem/1.5 Consolas, 'Cascadia Mono', ui-monospace, monospace; white-space: pre; overflow-x: auto;
 }
+
+/* Fermat-test bench (ACP lessons) */
+.tut-fermat { display: flex; flex-direction: column; gap: 10px; }
+.tut-fermat-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.tut-fermat-chips button { font: inherit; font-size: 0.92rem; font-variant-numeric: tabular-nums; padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--border-strong); background: var(--bg); color: var(--text); cursor: pointer; }
+.tut-fermat-chips button.on { border-color: var(--primary); background: var(--primary-soft); }
+.tut-fermat-out { padding: 12px 14px; border-radius: 14px; border: 1.5px solid var(--border); background: var(--surface); display: flex; flex-direction: column; gap: 4px; animation: tut-pop var(--dur-slow) var(--ease-spring); }
+.tut-fermat-out p { margin: 0; }
+.tut-fermat-out.fail { border-color: var(--bad); }
+.tut-fermat-out.prime { border-color: var(--good); }
+.tut-fermat-out.liar, .tut-fermat-out.even { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 8%, var(--surface)); }
+.tut-fermat-calc { font-size: 1.05rem; overflow-x: auto; }
+.tut-fermat-factors { color: var(--text-2); font-size: 0.95rem; overflow-x: auto; }
+.tut-fermat-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+.tut-fermat-table th, .tut-fermat-table td { text-align: right; padding: 3px 6px; border-bottom: 1px solid var(--border); }
+.tut-fermat-table th { font-weight: 600; color: var(--text-2); }
+.tut-fermat-goals { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.85rem; }
+.tut-fermat-goals li { padding: 3px 10px; border-radius: 999px; background: var(--surface); border: 1px dashed var(--border-strong); color: var(--text-2); }
+.tut-fermat-goals li.got { border-style: solid; border-color: var(--good); color: var(--good); font-weight: 600; }

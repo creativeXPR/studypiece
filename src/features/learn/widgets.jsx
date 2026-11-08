@@ -3,6 +3,7 @@ import { burstAt } from './fx';
 import { Bisection, GraphLab, MeanValue, RiemannSums, Taylor } from './analysisWidgets';
 import { FieldLab, SpaceLab } from './vectorWidgets';
 import { Scene } from './sceneWidget';
+import { FermatBench } from './paperWidgets';
 import { Calc, MockClock } from './calcWidget';
 import { Plane, PlaneLab } from './planeWidget';
 import { CodeCell } from './codeWidget';
@@ -1399,6 +1400,7 @@ export const WIDGETS = {
   planeLab: PlaneLab,
   field: FieldLab,
   scene: Scene,
+  fermat: FermatBench,
   calc: Calc,
   mockClock: MockClock,
   rootRace: RootRace,

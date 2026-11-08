@@ -98,8 +98,8 @@ export const DEPARTMENTS = [
 export const LEVELS = ['100', '200', '300', '400', '500', '600', '700'];
 
 // Course-code prefixes each department sees under "For you". General studies
-// codes and StudyPiece Originals (SPO) apply to everyone; departments not listed here get only those.
-const GENERAL = ['GST', 'GES', 'SPO'];
+// codes, StudyPiece Originals (SPO) and Academic Papers (ACP) apply to everyone; departments not listed here get only those.
+const GENERAL = ['GST', 'GES', 'SPO', 'ACP'];
 const DEPARTMENT_PREFIXES = {
   mathematics: ['MTH', 'MAT'],
   physics: ['PHY'],
