@@ -4,7 +4,7 @@ export default {
   id: 'super',
   title: 'super and constructor chains',
   covers: 'super(...) as the first statement, the implicit super(), super.method(), private fields through getters',
-  minutes: 11,
+  minutes: 14,
   sections: [
     {
       name: 'Talking to the parent',

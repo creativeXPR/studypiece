@@ -5,7 +5,7 @@ export default {
   id: 'constructors',
   title: 'Constructors and this',
   covers: 'What a constructor is, default, parameterised, copy and private constructors, this, the default constructor rule',
-  minutes: 14,
+  minutes: 18,
   sections: [
     {
       name: 'Setting up an object',
@@ -207,17 +207,6 @@ public class Main {
             { out: 'Tobi 4.2, Femi null', why: 'cgpa is a double; the one-argument constructor passes 0.0.' },
             { out: 'Compile error: two constructors', why: 'Constructors can be overloaded like methods.' },
             { out: 'null 0.0, null 0.0', why: '`this.name = name` stores the parameter in the field.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'You add `Student(String name)` to a class and now `new Student()` stops compiling. Why?',
-          options: [
-            { text: 'Java only supplies the free no-argument constructor when a class declares none', correct: true, why: 'Once you write any constructor, add a no-argument one yourself if you still need it.' },
-            { text: 'Constructors can’t be overloaded', why: 'They can.' },
-            { text: 'The name parameter is required by all classes', why: 'It’s only required by the constructor you wrote.' },
-            { text: 'new needs an argument in Java 17', why: 'No such rule.' },
           ],
         },
         {

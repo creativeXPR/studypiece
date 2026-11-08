@@ -4,7 +4,7 @@ export default {
   id: 'methods',
   title: 'Methods and overloading',
   covers: 'Declaring and calling methods, parameters and arguments, return values, void, pass by value, overloading',
-  minutes: 13,
+  minutes: 14,
   sections: [
     {
       name: 'Methods',
@@ -116,29 +116,6 @@ public static void main(String[] args) {
         ['Overloading', 'Several methods share a name but differ in their parameter types or count. The compiler picks one at compile time.'],
       ],
       screens: [
-        {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Which one gets called?',
-          body: 'Java chooses by the **arguments’ types**. The return type alone can’t tell two overloads apart.',
-          code: `static String show(int x) { return "int"; }
-static String show(double x) { return "double"; }
-static String show(String x) { return "String"; }
-static String show(int x, int y) { return "two"; }
-
-public static void main(String[] args) {
-    System.out.println(show(3));
-    System.out.println(show(3.0));
-    System.out.println(show("3"));
-    System.out.println(show(3, 3));
-}`,
-          options: [
-            { out: 'int\ndouble\nString\ntwo', correct: true, why: 'Each call matches exactly one parameter list.' },
-            { out: 'int\nint\nString\ntwo', why: '`3.0` has a decimal point, so it is a `double`.' },
-            { out: 'double\ndouble\nString\ntwo', why: 'An exact match wins: `3` is an `int`.' },
-            { out: 'int\ndouble\nint\ntwo', why: 'Double quotes make `"3"` a `String`.' },
-          ],
-        },
         {
           type: 'code',
           eyebrow: 'Your turn',

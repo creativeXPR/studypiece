@@ -4,7 +4,7 @@ export default {
   id: 'modern-interfaces',
   title: 'Default, static and private methods',
   covers: 'JDK 8 default and static methods, functional interfaces and lambdas, JDK 9 private methods, extending interfaces',
-  minutes: 13,
+  minutes: 14,
   sections: [
     {
       name: 'Interfaces with bodies',
@@ -48,40 +48,6 @@ export default {
             { text: 'Called as `Vehicle.create()`', bucket: 'sta', why: '**static** methods are called through the interface, and aren’t inherited.' },
             { text: 'A helper hidden from implementing classes', bucket: 'pri', why: '**private** (JDK 9) methods are internal.' },
             { text: 'Added in JDK 9', bucket: 'pri', why: '**private** came a version after the other two.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Default, overridden and private',
-          code: `interface Vehicle {
-    private void start() { System.out.println("Engine on"); }
-    default void drive() {
-        start();
-        System.out.println("Driving");
-    }
-    static void info() { System.out.println("Info"); }
-}
-
-class Car implements Vehicle { }
-
-class Bike implements Vehicle {
-    @Override
-    public void drive() { System.out.println("Pedalling"); }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        new Car().drive();
-        new Bike().drive();
-        Vehicle.info();
-    }
-}`,
-          options: [
-            { out: 'Engine on\nDriving\nPedalling\nInfo', correct: true, why: '`Car` inherits `drive()`, which calls the private helper. `Bike` overrides it. `info()` goes through the interface’s name.' },
-            { out: 'Driving\nPedalling\nInfo', why: '`drive()` calls `start()` first.' },
-            { out: 'Engine on\nDriving\nEngine on\nDriving\nInfo', why: '`Bike` overrides `drive()`, so the default doesn’t run.' },
-            { out: 'Engine on\nDriving\nPedalling', why: '`Vehicle.info();` runs too.' },
           ],
         },
         {

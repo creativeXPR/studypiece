@@ -4,7 +4,7 @@ export default {
   id: 'threads',
   title: 'Threads basics',
   covers: 'Thread and Runnable, start vs run, join, race conditions and synchronized, keeping a GUI responsive',
-  minutes: 11,
+  minutes: 13,
   sections: [
     {
       name: 'Doing two things at once',
@@ -190,17 +190,6 @@ public class Main {
             { out: 'saved 0 records', why: '`join()` makes main wait until the worker has finished.' },
             { out: 'saved 999 records', why: 'The loop runs for i = 0 to 999: 1000 times.' },
             { out: 'It prints a different number each run', why: 'Only one thread updates the count, and main waits for it.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Two threads each add 1000 to the same counter without `synchronized`. Why might the total be less than 2000?',
-          options: [
-            { text: 'Threads run at half speed', why: 'Speed isn’t the issue.' },
-            { text: 'int can’t hold 2000', why: 'It easily can.' },
-            { text: 'join() deletes some updates', why: 'join only waits.' },
-            { text: 'Both read the same old value and write back the same new value, losing an update (a race condition)', correct: true, why: '`count++` is read, add, write: three steps that can interleave.' },
           ],
         },
         {

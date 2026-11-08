@@ -31,37 +31,7 @@ export default {
           eyebrow: 'Exceptions · Lesson 2',
           title: 'throw raises it, throws warns about it',
           body: '`void setUnit(int u) {`\n\n`    if (u <= 0) throw new IllegalArgumentException("Bad unit");`\n\n`}`\n\n==throw== is an action, followed by a new exception object.\n\n==throws== is a label on a method: `void save() throws IOException`.\n\nTwo handy ones: `IllegalArgumentException` (a bad value was passed in) and `IllegalStateException` (the object isn’t ready, like computing a CGPA with too few courses).',
-          cta: 'Follow one up the stack',
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Exam favourite',
-          title: 'Up the call stack',
-          code: `static void c() {
-    System.out.println("c start");
-    throw new IllegalStateException("oops");
-}
-
-static void b() {
-    System.out.println("b start");
-    c();
-    System.out.println("b end");
-}
-
-public static void main(String[] args) {
-    try {
-        b();
-        System.out.println("main end");
-    } catch (IllegalStateException e) {
-        System.out.println("caught " + e.getMessage());
-    }
-}`,
-          options: [
-            { out: 'b start\nc start\ncaught oops', correct: true, why: 'The exception leaves `c`, skips the rest of `b`, skips the rest of the `try`, and lands in the `catch`.' },
-            { out: 'b start\nc start\nb end\ncaught oops', why: 'Nothing in `b` catches it, so `b end` is skipped.' },
-            { out: 'b start\nc start\nb end\nmain end', why: 'A thrown exception interrupts every caller until it is caught.' },
-            { out: 'c start\nb start\ncaught oops', why: '`b` starts first, then calls `c`.' },
-          ],
+          cta: 'Hunt the bugs',
         },
         {
           type: 'bug',

@@ -4,7 +4,7 @@ export default {
   id: 'iterators',
   title: 'Iterators and for-each',
   covers: 'Iterator, hasNext, next and remove, for-each loops, ConcurrentModificationException, Enumeration',
-  minutes: 9,
+  minutes: 11,
   sections: [
     {
       name: 'Walking through a collection',
@@ -174,17 +174,6 @@ public class Main {
             { out: '[A, F, B]', why: 'The iterator removes every F safely, including two in a row.' },
             { out: 'ConcurrentModificationException', why: 'That happens when you call the list’s own remove inside a for-each; `it.remove()` is the safe way.' },
             { out: '[A, B, F]', why: 'The last F is checked and removed too.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Why does removing with `grades.remove(g)` inside a for-each loop throw ConcurrentModificationException?',
-          options: [
-            { text: 'The hidden iterator notices the list changed behind its back and stops rather than skip or repeat items', correct: true, why: 'Use `Iterator.remove()` or `removeIf(g -> g.equals("F"))`.' },
-            { text: 'for-each can’t read Strings', why: 'It reads them fine.' },
-            { text: 'remove is not allowed on ArrayList', why: 'It is, just not mid-iteration.' },
-            { text: 'The list becomes null', why: 'It changes size, which confuses the iterator.' },
           ],
         },
         {

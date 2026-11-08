@@ -85,28 +85,6 @@ export default {
       ],
       screens: [
         {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'The missing break',
-          body: 'A `switch` jumps to the matching `case`, then keeps going until it meets a `break`.',
-          code: `public static void main(String[] args) {
-    String grade = "B";
-    switch (grade) {
-        case "A": System.out.println(5);
-        case "B": System.out.println(4);
-        case "C": System.out.println(3);
-            break;
-        default: System.out.println(0);
-    }
-}`,
-          options: [
-            { out: '4\n3', correct: true, why: 'It jumps to `"B"`, prints 4, **falls through** to `"C"`, prints 3, then hits `break`.' },
-            { out: '4', why: 'There is no `break` after `"B"`, so it carries on into `"C"`.' },
-            { out: '5\n4\n3', why: 'It starts at the matching case, not at the top.' },
-            { out: '4\n3\n0', why: 'The `break` stops it before `default`.' },
-          ],
-        },
-        {
           type: 'fill',
           eyebrow: 'Build it',
           title: 'Add up the even numbers',
@@ -217,17 +195,6 @@ export default {
             { out: '12', why: 'Look at case "C": there is no break, so it falls through and adds the D points too.' },
             { out: '19', why: 'F goes to `default`, which adds 0.' },
             { out: '5', why: 'Every grade in the array is added.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Why might an exam ask you to spot a missing `break`?',
-          options: [
-            { text: 'Because it crashes the program', why: 'It doesn’t crash.' },
-            { text: 'Because it is a syntax error', why: 'It compiles fine.' },
-            { text: 'The code compiles and runs, but gives wrong results: a semantic error, the hardest kind to notice', correct: true, why: 'Syntax errors are caught by the compiler; fall-through mistakes only show up in wrong output.' },
-            { text: 'Because switch requires break on the last case', why: 'The last case doesn’t need it.' },
           ],
         },
         {

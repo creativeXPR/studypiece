@@ -4,7 +4,7 @@ export default {
   id: 'java-start',
   title: 'What programming is, and your first program',
   covers: 'programming languages, syntax and semantics, the five generations, compilers and interpreters, bytecode and the JVM, Hello World',
-  minutes: 9,
+  minutes: 10,
   sections: [
     {
       name: 'Talking to a computer',
@@ -59,16 +59,6 @@ export default {
             { title: '3GL High-level', text: '`int sum = 5 + 3;`. Close to English and easy to read. Java, C++ and Python live here.' },
             { title: '4GL Very high-level', text: 'You state the result you want, as in SQL and MATLAB.' },
             { title: '5GL Logic and AI', text: 'You give facts and rules, and the system finds the answer, as in Prolog and Mercury.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Check',
-          prompt: 'Why is machine language fast to run but hard to write?',
-          options: [
-            { text: 'It needs no translation, but it is only 0s and 1s', correct: true, why: 'The processor runs it directly, while people struggle to read long rows of binary.' },
-            { text: 'It is the newest kind of language', why: 'It is the oldest: first generation.' },
-            { text: 'It works the same on every computer', why: 'The opposite: it is unique to each processor type.' },
           ],
         },
         {
@@ -203,17 +193,6 @@ export default {
             { out: 'Student: \nTobi\nDept: Computer Science', why: '`print` doesn’t end the line; only `println` does.' },
             { out: 'Student: Tobi Dept: Computer Science', why: 'Each `println` ends its line, so “Dept” starts a new one.' },
             { out: '"Student: Tobi"\n"Dept: Computer Science"', why: 'The quote marks aren’t printed; they only mark the text.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Java compiles to **bytecode** that runs on the JVM, rather than straight to machine code for one processor. What does that buy?',
-          options: [
-            { text: 'The same compiled program runs on Windows, Mac or Linux, wherever a JVM exists', correct: true, why: '“Write once, run anywhere”: the JVM translates bytecode for the machine it runs on.' },
-            { text: 'Programs no longer need compiling', why: 'They are still compiled, to bytecode.' },
-            { text: 'Programs can’t have errors', why: 'Bytecode can still contain logic errors.' },
-            { text: 'It makes Java an interpreted-only language', why: 'Java is compiled to bytecode, and the JVM can also compile hot code to machine code.' },
           ],
         },
         {

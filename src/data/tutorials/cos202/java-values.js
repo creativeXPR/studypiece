@@ -5,7 +5,7 @@ export default {
   id: 'java-values',
   title: 'Variables and data types',
   covers: 'variables, naming rules, the eight primitive types, reference types, final constants, widening and narrowing casts',
-  minutes: 8,
+  minutes: 10,
   sections: [
     {
       name: 'Boxes with names',
@@ -187,38 +187,6 @@ export default {
             { out: '5.0\n9', correct: true, why: 'An `int` placed in a `double` gains `.0`. A cast chops off the decimal part, even .99.' },
             { out: '5\n10', why: 'A `double` always shows its decimal point, and casting never rounds up.' },
             { out: '5.0\n10', why: 'Casting **truncates**: it cuts off the decimals without rounding.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Project · Tobi’s records app',
-          title: 'Store Tobi’s first course',
-          body: 'One course, stored in variables of the right types.\n\nWhat does it print?',
-          code: `public class Main {
-    public static void main(String[] args) {
-        String code = "COS 202";
-        int units = 3;
-        char grade = 'B';
-        double points = 4;
-        System.out.println(code + " " + units + " " + grade + " " + points);
-    }
-}`,
-          options: [
-            { out: 'COS 202 3 B 4.0', correct: true, why: 'Joining with Strings turns each value into text; `double points = 4` stores 4.0, and prints as `4.0`.' },
-            { out: 'COS 202 3 B 4', why: 'A `double` always prints with a decimal point: `4.0`.' },
-            { out: 'COS 202 3 66 4.0', why: 'A `char` joined to a String prints as the letter, not its code.' },
-            { out: 'code units grade points', why: 'Without quotes, the names stand for their values.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Why is `String` written with a capital S while `int` is lowercase?',
-          options: [
-            { text: 'It’s a typing convention with no meaning', why: 'It reflects a real difference: class versus primitive.' },
-            { text: '`String` is a class (a reference type); `int` is a primitive type built into the language', correct: true, why: 'Class names start with a capital by convention. A String variable holds a reference to an object; an int holds the number itself.' },
-            { text: 'Strings are more important', why: 'Importance has nothing to do with it.' },
-            { text: 'Capitals make it run faster', why: 'Case doesn’t affect speed.' },
           ],
         },
         {

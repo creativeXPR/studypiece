@@ -4,7 +4,7 @@ export default {
   id: 'access',
   title: 'Access modifiers',
   covers: 'public, private, protected and default access, classes, attributes and methods, packages',
-  minutes: 9,
+  minutes: 12,
   sections: [
     {
       name: 'Who can see what',

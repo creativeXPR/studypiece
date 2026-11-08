@@ -1,5 +1,4 @@
 // COS 202 · Inheritance and polymorphism · Lesson 3: overriding, overloading and runtime polymorphism.
-import { inheritanceScene } from './memory-scenes';
 
 export default {
   id: 'polymorphism',
@@ -32,38 +31,7 @@ export default {
           eyebrow: 'Inheritance and polymorphism · Lesson 3',
           title: 'Same call, different behaviour',
           body: 'A parent variable can hold a child object, because a Dog IS-A Animal:\n\n`Animal a = new Dog();`\n\n`a.sound();`\n\nThe **variable’s type** decides what you may call. The **object’s type** decides which version runs. That is ==polymorphism==: Java picks the method at runtime.',
-          cta: 'See it run',
-        },
-        inheritanceScene,
-        {
-          type: 'predict',
-          eyebrow: 'Exam favourite',
-          title: 'Which sound?',
-          code: `class Animal {
-    void sound() { System.out.println("Some sound"); }
-}
-
-class Dog extends Animal {
-    @Override
-    void sound() { System.out.println("Bark"); }
-}
-
-class Cat extends Animal { }
-
-public class Main {
-    public static void main(String[] args) {
-        Animal[] pets = { new Dog(), new Cat(), new Animal() };
-        for (Animal p : pets) {
-            p.sound();
-        }
-    }
-}`,
-          options: [
-            { out: 'Bark\nSome sound\nSome sound', correct: true, why: 'The object decides. `Dog` overrides; `Cat` doesn’t, so it inherits the parent’s version.' },
-            { out: 'Some sound\nSome sound\nSome sound', why: 'The variable’s type doesn’t choose the version. The object’s type does.' },
-            { out: 'Bark\nMeow\nSome sound', why: '`Cat` has no `sound` of its own.' },
-            { out: 'Bark', why: 'The loop visits all three objects.' },
-          ],
+          cta: 'Tell them apart',
         },
         {
           type: 'sort',
@@ -220,17 +188,6 @@ public class Main {
             { out: 'person person person', why: 'Java runs the version belonging to each object, not the variable’s type.' },
             { out: 'student lecturer', why: 'The third element is a plain Person, which says "person".' },
             { out: 'Compile error: mixed types in an array', why: 'A Person array can hold any Person subclass.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'What does `@Override` actually do for you?',
-          options: [
-            { text: 'Makes the compiler check that the method really overrides a parent method', correct: true, why: 'A typo like `descibe()` would otherwise silently create a new method instead of overriding.' },
-            { text: 'Makes the method run faster', why: 'It has no runtime effect.' },
-            { text: 'Is required for overriding to work', why: 'Overriding works without it; it adds a check.' },
-            { text: 'Hides the parent method permanently', why: 'super.describe() can still reach it.' },
           ],
         },
         {

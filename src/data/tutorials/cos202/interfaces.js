@@ -112,37 +112,6 @@ public class Main {
           ],
         },
         {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Through the interface',
-          code: `interface Shape {
-    double area();
-}
-
-class Square implements Shape {
-    public double area() { return 4; }
-}
-
-class Disc implements Shape {
-    public double area() { return 3; }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Shape[] all = { new Square(), new Disc(), new Square() };
-        double sum = 0;
-        for (Shape s : all) sum += s.area();
-        System.out.println(sum);
-    }
-}`,
-          options: [
-            { out: '11.0', correct: true, why: '`4 + 3 + 4`, and a `double` prints with `.0`.' },
-            { out: '11', why: '`sum` is a `double`, so it prints `11.0`.' },
-            { out: '0.0', why: 'The classes supply real bodies, and Java runs them.' },
-            { out: '12.0', why: 'Each object answers for itself: the `Disc` gives 3.' },
-          ],
-        },
-        {
           type: 'code',
           eyebrow: 'Your turn',
           title: 'Things that can be paid',
@@ -246,17 +215,6 @@ public class Main {
             { out: '140000', why: '`total` is a double, so it prints with a decimal.' },
             { out: '100000.0', why: 'The hostel’s 40000 is added too.' },
             { out: 'Compile error: RATE is not declared', why: 'Interface variables are public, static and final automatically, and visible to implementers.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Why must `amount()` be declared `public` in Student?',
-          options: [
-            { text: 'Interface methods are public, and an implementation can’t make them less visible', correct: true, why: 'Leaving it at default access is a compile error: “attempting to assign weaker access privileges”.' },
-            { text: 'Because Student is public', why: 'It would be needed even if Student weren’t.' },
-            { text: 'So it can be static', why: 'Interface methods implemented this way are instance methods.' },
-            { text: 'It isn’t needed', why: 'Removing it fails to compile.' },
           ],
         },
         {

@@ -4,7 +4,7 @@ export default {
   id: 'events',
   title: 'Events and listeners',
   covers: 'Event-driven programming, ActionListener, anonymous classes and lambdas, getText and setText, getSelectedItem, validation, JOptionPane',
-  minutes: 15,
+  minutes: 18,
   sections: [
     {
       name: 'Making it respond',

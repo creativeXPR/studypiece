@@ -5,7 +5,7 @@ export default {
   id: 'classes',
   title: 'Classes, objects and attributes',
   covers: 'Class as blueprint, objects with new, state, behaviour and identity, dot syntax, default values, references and null',
-  minutes: 14,
+  minutes: 16,
   sections: [
     {
       name: 'Blueprints and objects',
@@ -59,34 +59,6 @@ public class Main {
             { out: 'Ada 200\nAda 200', why: 'Each object has its own fields. Only `static` fields are shared.' },
             { out: 'Ada 200\n 0', why: 'An unset `String` field is `null`, not empty text.' },
             { out: 'Ada 200', why: 'The second `println` still prints `b`’s default values.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Exam favourite',
-          title: 'Two names, one object',
-          body: 'A variable of a class type holds a **reference** to an object, not the object itself.',
-          code: `class Car {
-    int speed;
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Car a = new Car();
-        Car b = a;
-        b.speed = 80;
-        System.out.println(a.speed);
-        System.out.println(a == b);
-        Car c = new Car();
-        c.speed = 80;
-        System.out.println(a == c);
-    }
-}`,
-          options: [
-            { out: '80\ntrue\nfalse', correct: true, why: '`b = a` copies the reference, so both name one car. `==` compares identity, so `c` (a different object with the same value) is not `==`.' },
-            { out: '0\nfalse\nfalse', why: '`Car b = a` does not build a new car: only `new` does that.' },
-            { out: '80\ntrue\ntrue', why: '`==` on objects asks “the same object?”, not “the same values?”.' },
-            { out: '0\ntrue\nfalse', why: 'Changing the car through `b` is visible through `a`.' },
           ],
         },
         {

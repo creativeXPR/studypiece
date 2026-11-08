@@ -4,7 +4,7 @@ export default {
   id: 'java-loops',
   title: 'Loops: repeating work',
   covers: 'for, while, do-while, choosing a loop, infinite loops, break, continue, nested loops',
-  minutes: 8,
+  minutes: 10,
   sections: [
     {
       name: 'Three loops',
@@ -262,17 +262,6 @@ export default {
             { out: '12 units in 6 courses', why: 'The loop ends when `course` is 6, so `course - 1` is 5.' },
             { out: '15 units in 5 courses', why: 'Courses 2 and 5 add 2 and 1, not 3.' },
             { out: '3 units in 1 courses', why: 'The loop runs five times before printing.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'A `while (count < 10)` loop never ends. What is the most likely cause?',
-          options: [
-            { text: '10 is too big', why: 'Any limit works if count moves towards it.' },
-            { text: 'Nothing inside the loop changes `count`', correct: true, why: 'A loop condition must eventually become false; forgetting `count++` is the classic infinite loop.' },
-            { text: 'while loops can’t count', why: 'They can; `for` is just tidier for counting.' },
-            { text: 'The condition should use =', why: 'That would be an assignment, not a test.' },
           ],
         },
         {

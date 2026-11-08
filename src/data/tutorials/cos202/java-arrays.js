@@ -1,11 +1,10 @@
 // COS 202 · Intro to Java · Module 7: arrays, traversal, 2D arrays, java.util.Arrays.
-import { arraysScene } from './memory-scenes';
 
 export default {
   id: 'java-arrays',
   title: 'Arrays: many values, one name',
   covers: 'creating arrays, indexes, length, default values, for and for-each traversal, 2D arrays, java.util.Arrays',
-  minutes: 7,
+  minutes: 9,
   sections: [
     {
       name: 'A row of boxes',
@@ -34,7 +33,6 @@ export default {
           body: 'Fifty marks would need fifty variables. An ==array== keeps them in one numbered row:\n\n`int[] marks = {70, 55, 88};`\n\n`marks[0]` is 70, `marks[1]` is 55, and `marks[2]` is 88.\n\nThree rules: the size is **fixed** once created, every value has the **same type**, and counting **starts at 0**.\n\nTo make an empty one, say how many slots: `int[] a = new int[5];` gives five zeros. (`double` slots start at `0.0`, `boolean` at `false`, `String` at `null`.)',
           cta: 'See one in action',
         },
-        arraysScene,
         {
           type: 'trace',
           eyebrow: 'Watch it run',
@@ -236,17 +234,6 @@ public class Main {
             { out: 'best 81, average 65.0', why: '`sum / scores.length` divides two ints, so there is no decimal.' },
             { out: 'best 72, average 65', why: '`best` is updated whenever a bigger score appears: 81.' },
             { out: 'best 81, average 325', why: 'The sum is divided by 5.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Why do arrays start at index 0?',
-          options: [
-            { text: 'It’s a mistake Java copied from C', why: 'It’s a deliberate design: index means offset.' },
-            { text: 'Index 0 stores the length', why: 'The length is a separate field.' },
-            { text: 'To save one element of memory', why: 'No memory is saved.' },
-            { text: 'The index is the distance from the start of the array, so the first element is 0 steps in', correct: true, why: 'That’s why the last index is `length - 1`, and why `<= length` in a loop overshoots.' },
           ],
         },
         {

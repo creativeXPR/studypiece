@@ -4,7 +4,7 @@ export default {
   id: 'swing',
   title: 'Windows and components',
   covers: 'JFrame, JLabel, JTextField, JButton, JComboBox, JTextArea, JScrollPane, JPanel, FlowLayout, BorderLayout, GridLayout',
-  minutes: 14,
+  minutes: 15,
   sections: [
     {
       name: 'Building a window',
@@ -173,17 +173,6 @@ public class Main {
               { lines: [18, 18], text: '**Add the scroll pane**, not the area itself: the pane holds the area.' },
             ],
           },
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Project · Tobi’s records app',
-          prompt: 'Tobi’s records window needs: a box to type the name, a list to pick the department, a button to save, and an area showing all registered courses. Which components?',
-          options: [
-            { text: '`JLabel`, `JLabel`, `JLabel` and `JLabel`', why: 'Labels only show text; users can’t type or click them.' },
-            { text: '`JTextArea`, `JTextField`, `JPanel` and `JFrame`', why: 'A panel and a frame are containers, not a button or a list.' },
-            { text: '`JTextField`, `JComboBox`, `JButton` and a `JTextArea` inside a `JScrollPane`', correct: true, why: 'One-line text, a drop-down choice, a clickable action, and a scrollable multi-line display.' },
-            { text: '`JButton` for everything', why: 'Buttons don’t accept typing or choices.' },
-          ],
         },
         {
           type: 'choice',

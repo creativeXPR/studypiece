@@ -4,7 +4,7 @@ export default {
   id: 'java-methods',
   title: 'Methods and modularity',
   covers: 'modular code, defining and calling methods, parameters, return values, void, pass by value, overloading, recursion, Java modules',
-  minutes: 9,
+  minutes: 10,
   sections: [
     {
       name: 'Name a job, reuse it',
@@ -281,43 +281,6 @@ public static void main(String[] args) {
             { title: 'Class', text: 'Related methods and data.' },
             { title: 'Package', text: 'Related classes, like a folder: `java.util`.' },
             { title: 'Module', text: 'Related packages, since Java 9. A `module-info.java` file names it, lists what it `exports` to others, and what it `requires`. The benefits: strong encapsulation, reliable configuration and a scalable structure.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Project · Tobi’s records app',
-          title: 'A method for the grade',
-          body: 'The grading ladder will be needed everywhere, so give it a name.\n\nWhat does it print?',
-          code: `public class Main {
-    static String grade(int score) {
-        if (score >= 70) return "A";
-        if (score >= 60) return "B";
-        if (score >= 50) return "C";
-        return "F";
-    }
-
-    public static void main(String[] args) {
-        int[] scores = {72, 58, 65};
-        for (int s : scores) System.out.print(grade(s) + " ");
-        System.out.println();
-    }
-}`,
-          options: [
-            { out: 'A C B', correct: true, why: '`return` ends the method immediately, so each score gets the first grade it qualifies for: A, C, B.' },
-            { out: 'A B C', why: 'Check 58: it fails `>= 60` and passes `>= 50`.' },
-            { out: 'AC B', why: 'Each grade is followed by a space.' },
-            { out: '72 58 65', why: 'The method’s returned letter is printed, not the score.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'A method `void addBonus(int score) { score += 5; }` is called with `addBonus(tobiScore)`. Why doesn’t `tobiScore` change?',
-          options: [
-            { text: 'void methods can’t do arithmetic', why: 'They can; they just don’t return a result.' },
-            { text: 'Java passes a copy of the value; the method changes its own copy', correct: true, why: 'To change it, return the new value: `tobiScore = addBonus(tobiScore);`.' },
-            { text: '+= doesn’t work on parameters', why: 'It works on the local copy.' },
-            { text: 'The method must be static', why: 'Static has nothing to do with copying.' },
           ],
         },
         {

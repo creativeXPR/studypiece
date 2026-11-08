@@ -4,7 +4,7 @@ export default {
   id: 'java-text',
   title: 'Text and keyboard input',
   covers: 'String methods, zero-based positions, immutability, equals versus ==, joining text, reading input with Scanner',
-  minutes: 7,
+  minutes: 9,
   sections: [
     {
       name: 'Working with text',
@@ -43,25 +43,6 @@ export default {
             { title: 'Change case', text: '`"hi".toUpperCase()` is `HI`. `"HI".toLowerCase()` is `hi`.' },
             { title: 'Clean and swap', text: '`"  hi  ".trim()` is `hi`. `"cat".replace(\'c\', \'b\')` is `bat`.' },
             { title: 'Ask', text: '`"Hello".contains("ell")` is `true`. `"a".equals("a")` is `true`.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Slice and join',
-          body: 'One idea at a time: positions start at 0, `substring` stops before its end, and `+` joins.',
-          code: `public static void main(String[] args) {
-    String course = "cos202";
-    System.out.println(course.length());
-    System.out.println(course.substring(0, 3).toUpperCase());
-    System.out.println("Age: " + 21);
-    course.toUpperCase();
-    System.out.println(course);
-}`,
-          options: [
-            { out: '6\nCOS\nAge: 21\ncos202', correct: true, why: 'Strings are ==immutable==: `toUpperCase()` makes a **new** String. Nothing stored it, so `course` stays lowercase.' },
-            { out: '6\nCOS\nAge: 21\nCOS202', why: 'The method returned a new String, which was never stored. To keep it: `course = course.toUpperCase();`' },
-            { out: '5\nCOS2\nAge: 21\ncos202', why: 'There are 6 characters, and `substring(0, 3)` stops before index 3.' },
           ],
         },
         {

@@ -5,7 +5,7 @@ export default {
   id: 'collections',
   title: 'ArrayList, Stack and Queue',
   covers: 'ArrayList methods and generics, arrays vs ArrayList, Stack (LIFO), Queue (FIFO)',
-  minutes: 14,
+  minutes: 17,
   sections: [
     {
       name: 'ArrayList',
@@ -33,32 +33,6 @@ export default {
           cta: 'Trace one',
         },
         arrayListScene,
-        {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Removing shifts everything',
-          code: `import java.util.ArrayList;
-
-public class Main {
-    public static void main(String[] args) {
-        ArrayList<String> c = new ArrayList<>();
-        c.add("A");
-        c.add("B");
-        c.add("C");
-        c.add(1, "X");
-        c.remove(0);
-        System.out.println(c);
-        System.out.println(c.get(1));
-        System.out.println(c.size());
-    }
-}`,
-          options: [
-            { out: '[X, B, C]\nB\n3', correct: true, why: '`add(1, "X")` inserts: `[A, X, B, C]`. `remove(0)` shifts the rest left.' },
-            { out: '[B, X, C]\nX\n3', why: 'Inserting at index 1 puts `X` right after `A`.' },
-            { out: '[A, X, B, C]\nX\n4', why: '`remove(0)` takes `A` out.' },
-            { out: '[X, B, C]\nX\n3', why: 'After the shift, index 1 holds `B`.' },
-          ],
-        },
         {
           type: 'bug',
           eyebrow: 'Bug hunt',

@@ -5,7 +5,7 @@ export default {
   id: 'sorting',
   title: 'Sorting',
   covers: 'Selection sort pass by pass, bubble sort, insertion sort, swapping, writing selection sort',
-  minutes: 15,
+  minutes: 17,
   sections: [
     {
       name: 'Three simple sorts',
@@ -32,20 +32,9 @@ export default {
           eyebrow: 'Recursion and algorithms · Lesson 3',
           title: 'Selection sort, one pass at a time',
           body: '==Selection sort==: find the smallest element, swap it to the front, then repeat on the rest.\n\n`Start:  29 10 14 37 13`\n\n`Pass 1: 10 29 14 37 13` (10 swaps with 29)\n\n`Pass 2: 10 13 14 37 29` (13 swaps with 29)\n\n`Pass 3: 10 13 14 37 29` (14 is already in place)\n\n`Pass 4: 10 13 14 29 37` (29 swaps with 37)\n\nAn array of `n` elements needs `n − 1` passes: the last element is then in place automatically.',
-          cta: 'Your trace',
+          cta: 'Watch the passes',
         },
         selectionSortScene,
-        {
-          type: 'choice',
-          eyebrow: 'Trace it',
-          prompt: 'Selection sort on `{8, 3, 5, 1}`. What does the array look like after **pass 2**?',
-          options: [
-            { text: '`{1, 3, 5, 8}`', correct: true, why: 'Pass 1 swaps 1 with 8: `{1, 3, 5, 8}`. Pass 2 finds 3 already in place.' },
-            { text: '`{1, 3, 8, 5}`', why: 'Pass 1 swaps the smallest (1) with the first element (8), not with its neighbour.' },
-            { text: '`{3, 1, 5, 8}`', why: 'That is more like bubble sort. Selection puts the smallest at the front first.' },
-            { text: '`{3, 8, 5, 1}`', why: 'A pass finds the smallest of **all** the remaining elements.' },
-          ],
-        },
         {
           type: 'sort',
           eyebrow: 'Sort the sorts',

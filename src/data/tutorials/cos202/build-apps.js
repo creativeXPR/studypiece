@@ -334,7 +334,7 @@ export default {
   id: 'build-apps',
   title: 'Build two full apps',
   covers: 'Student records with CGPA and a Swing front end, then a payment processor with an abstract class, exceptions and a window',
-  minutes: 30,
+  minutes: 32,
   sections: [
     {
       name: 'Student records',
@@ -657,17 +657,6 @@ public class Main {
             { out: 'Tobi: 4.00', why: 'Units weight the grades: (15 + 12 + 6) / 8.' },
             { out: 'Tobi: 4.12', why: '`%.2f` rounds a half upwards: 4.125 becomes 4.13.' },
             { out: 'Tobi: 4', why: '`%.2f` always prints two decimal places.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Tobi’s app started as one `println`. What is the main benefit of having grown it into classes?',
-          options: [
-            { text: 'Each part (Course, Student, the window) can be tested and changed on its own', correct: true, why: 'That is why real software is built from small, well-named classes.' },
-            { text: 'It runs faster than one long main', why: 'Speed isn’t the point.' },
-            { text: 'It needs fewer lines', why: 'Usually more lines, but clearer ones.' },
-            { text: 'Java requires every program to have several classes', why: 'One class is allowed.' },
           ],
         },
         {

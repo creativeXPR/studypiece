@@ -4,7 +4,7 @@ export default {
   id: 'abstract',
   title: 'Abstract classes',
   covers: 'Abstraction, abstract classes and methods, concrete methods, constructors in abstract classes, when to use them',
-  minutes: 13,
+  minutes: 14,
   sections: [
     {
       name: 'What, not how',
@@ -71,51 +71,6 @@ class CardPayment extends PaymentMethod {
           errors: [
             { line: 9, kind: 'syntax', fixes: ['public abstract void process(double amount);', 'public void abstract process(double amount) { }', 'abstract public process(double amount);'], why: 'An abstract method has no body: end it with `;` instead of `{ }`.' },
             { line: 15, kind: 'semantic', fixes: ['amountPaid = amount * 1.015;', 'amountPaid = amount + 0.015;', 'amountPaid = 0.015;'], why: 'It compiles, but it charges only the fee. The total is the amount plus 1.5%: `amount * 1.015`.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Abstract parent, concrete child',
-          code: `abstract class Shape {
-    String color;
-
-    Shape(String color) {
-        System.out.println("Shape constructor");
-        this.color = color;
-    }
-
-    abstract double area();
-
-    String describe() {
-        return color + " area " + area();
-    }
-}
-
-class Square extends Shape {
-    double side;
-
-    Square(String color, double side) {
-        super(color);
-        this.side = side;
-        System.out.println("Square constructor");
-    }
-
-    @Override
-    double area() { return side * side; }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Shape s = new Square("Red", 3);
-        System.out.println(s.describe());
-    }
-}`,
-          options: [
-            { out: 'Shape constructor\nSquare constructor\nRed area 9.0', correct: true, why: 'The parent’s constructor runs first. `describe()` lives in `Shape`, yet its `area()` call runs the `Square` version. And `double` prints as `9.0`.' },
-            { out: 'Square constructor\nShape constructor\nRed area 9.0', why: '`super(color)` runs first.' },
-            { out: 'Shape constructor\nSquare constructor\nRed area 9', why: '`area()` returns a `double`, which prints with `.0`.' },
-            { out: 'Square constructor\nRed area 9.0', why: 'An abstract class’s constructor still runs.' },
           ],
         },
         {

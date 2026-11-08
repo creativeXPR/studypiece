@@ -41,7 +41,7 @@ export default {
   id: 'recursion',
   title: 'Recursion',
   covers: 'Base case and recursive step, tracing the call stack, StackOverflowError, factorial and Fibonacci, writing and debugging recursive methods',
-  minutes: 20,
+  minutes: 17,
   sections: [
     {
       name: 'Calling yourself',
@@ -128,31 +128,6 @@ export default {
       ],
       screens: [
         {
-          type: 'story',
-          eyebrow: 'The call stack',
-          title: 'Down to the base, then back up',
-          body: 'When `sum(3)` runs, it can’t finish until `sum(2)` answers, which waits for `sum(1)`, which waits for `sum(0)`. Each waiting call sits on the ==call stack==.\n\n`sum(3) = 3 + sum(2)`\n`       = 3 + (2 + sum(1))`\n`       = 3 + (2 + (1 + sum(0)))`\n`       = 3 + (2 + (1 + 0)) = 6`\n\nThe calls go **down** until the base case, then the answers come back **up** and combine.',
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'What does this print?',
-          code: `static int sum(int k) {
-    if (k == 0) return 0;
-    return k + sum(k - 1);
-}
-
-public static void main(String[] args) {
-    System.out.println(sum(4));
-}`,
-          options: [
-            { out: '10', correct: true, why: '`4 + 3 + 2 + 1 + 0 = 10`.' },
-            { out: '4', why: 'That is only the first call’s `k`. Every call adds its own `k`.' },
-            { out: '6', why: 'That is `sum(3)`. Don’t forget the `4` from the first call.' },
-            { out: '0', why: '`0` is only what the base case returns; the other calls add to it on the way back up.' },
-          ],
-        },
-        {
           type: 'predict',
           eyebrow: 'Exam favourite',
           title: 'Code before and after the call',
@@ -186,12 +161,6 @@ public static void main(String[] args) {
             '`factorial(3)` returns `3 × 2 = 6`',
           ],
           explain: 'Calls go down to the base case; results come back up, each multiplying as it returns.',
-        },
-        {
-          type: 'bridge',
-          title: 'You can trace it.',
-          recap: ['Calls stack up until the base case.', 'Code after the call runs on the way back, deepest first.'],
-          why: 'Now spot what goes wrong in broken recursive code.',
         },
       ],
     },
@@ -270,12 +239,6 @@ public static void main(String[] args) {
           ],
           points: ['Keep **one** base case where you can: extra ones are noise.', 'Use `<=` rather than `==`, so bad input like `-3` still stops.'],
         },
-        {
-          type: 'bridge',
-          title: 'Bugs squashed.',
-          recap: ['Missing base case: semantic (it compiles, then overflows).', 'Missing `;`: syntax (it won’t compile).'],
-          why: 'Time to write recursion yourself.',
-        },
       ],
     },
     {
@@ -338,46 +301,6 @@ public static void main(String[] args) {
           },
         },
         {
-          type: 'code',
-          eyebrow: 'Bonus',
-          title: 'Put it in a window',
-          body: 'Press **▶ Run** and your window appears below. Then rename the button to `Compute` and run it again. Want to type in it? Choose **Try it live**. Chapter 9 explains every line.',
-          swing: true,
-          starter: `import javax.swing.*;
-import java.awt.*;
-
-public class Main {
-    static long factorial(int n) {
-        if (n <= 1) return 1;
-        return n * factorial(n - 1);
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Factorial");
-        frame.setLayout(new FlowLayout());
-        JTextField input = new JTextField(5);
-        JButton button = new JButton("Go");
-        JLabel result = new JLabel("Type a number");
-
-        button.addActionListener(e -> {
-            int n = Integer.parseInt(input.getText().trim());
-            result.setText(n + "! = " + factorial(n));
-        });
-
-        frame.add(input);
-        frame.add(button);
-        frame.add(result);
-        frame.setSize(340, 120);
-        frame.setVisible(true);
-    }
-}
-`,
-          tests: [
-            { label: 'The button says `Compute`', src: 'new\\s+JButton\\s*\\(\\s*"Compute"\\s*\\)', fail: 'Change `new JButton("Go")` to `new JButton("Compute")`.' },
-          ],
-          explain: 'A button, a text box and your recursive method, working together. That’s a GUI program.',
-        },
-        {
           type: 'predict',
           eyebrow: 'Project · Tobi’s records app',
           title: 'Total units, recursively',
@@ -399,17 +322,6 @@ public class Main {
             { out: '12\n12', why: 'The second call starts at index 3: only 3 + 1.' },
             { out: '12\n7', why: 'From index 3 the courses are 3 and 1: 4.' },
             { out: 'StackOverflowError', why: 'The base case `i == units.length` stops the recursion.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Every recursive call adds a frame to the call stack. When is a loop the better choice?',
-          options: [
-            { text: 'When the recursion would go very deep, such as summing a million items', correct: true, why: 'Deep recursion risks StackOverflowError; recursion shines on naturally recursive problems like trees and divide-and-conquer.' },
-            { text: 'Never: recursion is always better', why: 'Each call costs stack space.' },
-            { text: 'When the method is static', why: 'Static doesn’t matter.' },
-            { text: 'When there is a base case', why: 'Every correct recursion has one.' },
           ],
         },
         {

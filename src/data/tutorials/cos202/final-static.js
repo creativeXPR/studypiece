@@ -5,7 +5,7 @@ export default {
   id: 'final-static',
   title: 'final, static and friends',
   covers: 'Constants with final, final methods and classes, static fields and methods, abstract, transient, synchronized, volatile',
-  minutes: 13,
+  minutes: 15,
   sections: [
     {
       name: 'final and static',
@@ -34,36 +34,6 @@ export default {
           cta: 'See it shared',
         },
         staticScene,
-        {
-          type: 'predict',
-          eyebrow: 'Exam favourite',
-          title: 'One counter, many objects',
-          code: `class Counter {
-    static int total = 0;
-    int mine = 0;
-
-    Counter() {
-        total++;
-        mine++;
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Counter a = new Counter();
-        Counter b = new Counter();
-        Counter c = new Counter();
-        System.out.println(Counter.total);
-        System.out.println(c.mine);
-    }
-}`,
-          options: [
-            { out: '3\n1', correct: true, why: 'All objects share one `total`, so it reaches 3. Each object has its own `mine`, which is 1.' },
-            { out: '1\n1', why: '`static` means one shared `total`, and each constructor adds to it.' },
-            { out: '3\n3', why: '`mine` isn’t static, so each object starts its own at 0.' },
-            { out: '1\n3', why: 'It’s the other way round: `total` is shared.' },
-          ],
-        },
         {
           type: 'bug',
           eyebrow: 'Bug hunt',

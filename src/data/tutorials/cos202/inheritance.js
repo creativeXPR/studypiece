@@ -5,7 +5,7 @@ export default {
   id: 'inheritance',
   title: 'Inheritance and IS-A',
   covers: 'extends, superclass and subclass, IS-A, single, multilevel, hierarchical, multiple and hybrid inheritance, what a subclass can do',
-  minutes: 14,
+  minutes: 18,
   sections: [
     {
       name: 'Reusing a class',
@@ -203,17 +203,6 @@ public class Main {
             { out: 'Tobi 4.2\nfalse', why: 'A Student IS-A Person, so `instanceof Person` is true.' },
             { out: 'Compile error: Student has no describe()', why: 'Student inherits `describe()` from Person.' },
             { out: 'null 4.2\ntrue', why: '`super(name)` passes the name up to Person’s constructor.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Why doesn’t Java allow `class Student extends Person, Employee`?',
-          options: [
-            { text: 'Multiple inheritance of classes can create ambiguity when both parents define the same method (the diamond problem)', correct: true, why: 'Java allows a class to implement many interfaces instead.' },
-            { text: 'It would use too much memory', why: 'Memory isn’t the reason.' },
-            { text: 'Two parents can’t have constructors', why: 'They could; the issue is ambiguity.' },
-            { text: 'It does allow it', why: 'Only one class may follow extends.' },
           ],
         },
         {

@@ -4,7 +4,7 @@ export default {
   id: 'encapsulation',
   title: 'Encapsulation',
   covers: 'private fields, public getters and setters, protecting data with validation, why it matters',
-  minutes: 12,
+  minutes: 15,
   sections: [
     {
       name: 'Protecting the data',

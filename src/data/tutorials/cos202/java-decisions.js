@@ -4,7 +4,7 @@ export default {
   id: 'java-decisions',
   title: 'Planning and decisions',
   covers: 'sequence, selection and iteration, pseudocode, flowcharts, if, else, else-if ladders, nested if, switch and fall-through',
-  minutes: 9,
+  minutes: 10,
   sections: [
     {
       name: 'Plan first',
@@ -91,27 +91,6 @@ export default {
             { line: 9, note: 'The `else` block is skipped. The program carries on after the closing bracket.', print: 'Done' },
           ],
           cta: 'More than two paths',
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Exam favourite',
-          title: 'Order matters on a ladder',
-          body: 'An else-if ladder stops at the **first** true condition. This one checks the low mark first. What does a score of 75 get?',
-          code: `public static void main(String[] args) {
-    int score = 75;
-    if (score >= 40) {
-        System.out.println("E");
-    } else if (score >= 60) {
-        System.out.println("B");
-    } else if (score >= 70) {
-        System.out.println("A");
-    }
-}`,
-          options: [
-            { out: 'E', correct: true, why: '75 passes the very first test, so the rest are never looked at. Always check the **highest first**.' },
-            { out: 'A', why: 'That would need `>= 70` to be checked first.' },
-            { out: 'E\nB\nA', why: 'A ladder runs only one branch. Separate `if`s would run all three.' },
-          ],
         },
         {
           type: 'predict',
@@ -267,17 +246,6 @@ public class Main {
             { out: '67 -> C', why: 'The ladder stops at the first true test, which is `score >= 60`.' },
             { out: '67 -> BC', why: 'Only one branch of an else-if ladder runs.' },
             { out: '67 -> A', why: '67 isn’t at least 70.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'A ladder tests `score >= 50` first, then `score >= 70`. What goes wrong?',
-          options: [
-            { text: 'Nothing: order never matters', why: 'In an else-if ladder, the first true condition wins.' },
-            { text: 'It won’t compile', why: 'It compiles; the logic is wrong.' },
-            { text: 'Scores under 50 crash', why: 'They fall to the final else.' },
-            { text: 'Every score of 50 or more gets the first grade; the `>= 70` branch can never be reached', correct: true, why: 'Order the tests from the strictest down (or use ranges) so each branch is reachable.' },
           ],
         },
         {

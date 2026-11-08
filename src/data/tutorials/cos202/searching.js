@@ -5,7 +5,7 @@ export default {
   id: 'searching',
   title: 'Searching',
   covers: 'Linear search, binary search on sorted data, divide and conquer, iterative and recursive versions',
-  minutes: 12,
+  minutes: 16,
   sections: [
     {
       name: 'Linear and binary search',

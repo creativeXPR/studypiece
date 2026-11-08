@@ -4,7 +4,7 @@ export default {
   id: 'java-operators',
   title: 'Operators and expressions',
   covers: 'arithmetic, integer division, modulus, compound assignment, increment, comparisons, AND, OR, NOT, precedence, the ternary operator',
-  minutes: 8,
+  minutes: 9,
   sections: [
     {
       name: 'Doing maths',
@@ -34,22 +34,6 @@ export default {
             { title: '+  -  *', text: 'Add, subtract, multiply: `10 * 3` is `30`.' },
             { title: '/  divide', text: 'Two whole numbers give a whole number: `10 / 3` is `3`. The rest is thrown away.' },
             { title: '%  remainder', text: 'What is left after dividing: `10 % 3` is `1`. Called ==modulus==.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Whole or decimal?',
-          body: 'If **either** number has a decimal point, the answer keeps its decimals.',
-          code: `public static void main(String[] args) {
-    System.out.println(10 / 4);
-    System.out.println(10.0 / 4);
-    System.out.println(10 % 4);
-}`,
-          options: [
-            { out: '2\n2.5\n2', correct: true, why: '`10 / 4` drops the .5. `10.0 / 4` keeps it. 4 goes into 10 twice, leaving a remainder of 2.' },
-            { out: '2.5\n2.5\n2', why: 'Two `int`s give an `int`, so the first line is `2`.' },
-            { out: '2\n2.5\n2.5', why: '`%` is the remainder, not division.' },
           ],
         },
         {
@@ -210,17 +194,6 @@ export default {
             { out: '3.9166666666666665\n3.9166666666666665\n11', why: 'Dividing two ints gives an int: the fraction is thrown away.' },
             { out: '4\n3.9166666666666665\n11', why: 'Integer division truncates (cuts off) the fraction; it doesn’t round.' },
             { out: '3\n3.0\n11', why: 'The cast happens before dividing, so the second line is a real division.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'A CGPA program prints 3.0 for everyone. Which bug is most likely?',
-          options: [
-            { text: 'The units are too large', why: 'Size isn’t the issue; the division type is.' },
-            { text: '`%` was used instead of `/`', why: 'That would give remainders, not always 3.0.' },
-            { text: 'Java can’t store decimals', why: '`double` stores them; the division threw them away.' },
-            { text: 'It divides total points by total units as two ints before storing in a double', correct: true, why: '`double cgpa = points / units;` does int division first, then widens the already-cut result.' },
           ],
         },
         {

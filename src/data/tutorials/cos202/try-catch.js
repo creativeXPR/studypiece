@@ -5,7 +5,7 @@ export default {
   id: 'try-catch',
   title: 'try, catch and finally',
   covers: 'What exceptions are, try/catch/finally flow, multiple catches, checked vs unchecked, the common exceptions',
-  minutes: 13,
+  minutes: 15,
   sections: [
     {
       name: 'When things go wrong',
@@ -36,29 +36,6 @@ export default {
           cta: 'Trace the flow',
         },
         exceptionScene,
-        {
-          type: 'predict',
-          eyebrow: 'Exam favourite',
-          title: 'Trace the jump',
-          code: `public static void main(String[] args) {
-    try {
-        System.out.println("A");
-        int x = 10 / 0;
-        System.out.println("B");
-    } catch (ArithmeticException e) {
-        System.out.println("C");
-    } finally {
-        System.out.println("D");
-    }
-    System.out.println("E");
-}`,
-          options: [
-            { out: 'A\nC\nD\nE', correct: true, why: '`10 / 0` throws, so `B` is skipped. The catch runs, `finally` always runs, and the program carries on.' },
-            { out: 'A\nB\nC\nD\nE', why: 'Once a line throws, the rest of the `try` is skipped.' },
-            { out: 'A\nC\nE', why: '`finally` always runs.' },
-            { out: 'A\nC\nD', why: 'The exception was handled, so the program continues to `E`.' },
-          ],
-        },
         {
           type: 'sort',
           eyebrow: 'Sort them',

@@ -4,7 +4,7 @@ export default {
   id: 'api',
   title: 'Packages, Strings and wrappers',
   covers: 'Packages and import, using the API, String methods, equals vs ==, wrapper classes, parsing numbers',
-  minutes: 13,
+  minutes: 14,
   sections: [
     {
       name: 'Standing on the API',
@@ -53,24 +53,6 @@ export default {
             { out: '9\nJ\nJava\n5\nJava Code', why: 'Indexes start at 0, so `charAt(1)` is `a`.' },
             { out: '9\na\nJava\n5\nJAVA CODE', why: 'Strings never change. It would need `s = s.toUpperCase();`.' },
             { out: '9\na\nJava \n5\nJava Code', why: '`substring(0, 4)` covers indexes 0 to 3: no space.' },
-          ],
-        },
-        {
-          type: 'predict',
-          eyebrow: 'Exam favourite',
-          title: 'equals or ==?',
-          code: `public static void main(String[] args) {
-    String a = new String("Cash");
-    String b = new String("Cash");
-    System.out.println(a == b);
-    System.out.println(a.equals(b));
-    System.out.println("cash".equalsIgnoreCase(a));
-}`,
-          options: [
-            { out: 'false\ntrue\ntrue', correct: true, why: 'Two separate objects with equal contents: `==` is false, `equals` is true.' },
-            { out: 'true\ntrue\ntrue', why: '`new` always builds a separate object, so `==` is false.' },
-            { out: 'false\nfalse\ntrue', why: '`equals` compares the characters, and they match.' },
-            { out: 'true\nfalse\nfalse', why: 'It’s the other way round.' },
           ],
         },
         {

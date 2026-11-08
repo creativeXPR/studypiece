@@ -5,7 +5,7 @@ export default {
   id: 'arrays',
   title: 'Arrays and 2D arrays',
   covers: 'Declaring and creating arrays, default values, length, traversing, min and max, 2D arrays and matrices',
-  minutes: 15,
+  minutes: 17,
   sections: [
     {
       name: 'Arrays',
@@ -193,24 +193,6 @@ export default {
       ],
       screens: [
         {
-          type: 'predict',
-          eyebrow: 'Predict',
-          title: 'Reading a table',
-          body: 'In a 2D array, `m.length` counts the **rows**, and `m[0].length` counts the columns in row 0.',
-          code: `public static void main(String[] args) {
-    int[][] m = { {1, 2, 3}, {4, 5, 6} };
-    System.out.println(m.length);
-    System.out.println(m[0].length);
-    System.out.println(m[1][2]);
-}`,
-          options: [
-            { out: '2\n3\n6', correct: true, why: '2 rows, 3 columns, and row 1 column 2 (both counted from 0) is `6`.' },
-            { out: '3\n2\n6', why: '`m.length` counts rows: there are 2 inner arrays.' },
-            { out: '2\n3\n2', why: '`m[1][2]` is row index 1, the second row.' },
-            { out: '6\n3\n6', why: '`m.length` is the number of rows, not the number of cells.' },
-          ],
-        },
-        {
           type: 'code',
           eyebrow: 'Your turn',
           title: 'Add two matrices',
@@ -291,17 +273,6 @@ export default {
             { out: '58\n2 x 3\n195', why: '`[1][2]` is row 1 (the second row), column 2: 90.' },
             { out: '90\n3 x 2\n195', why: '`scores.length` counts rows (2); `scores[0].length` counts columns (3).' },
             { out: '90\n2 x 3\n243', why: 'Only row 0 is added: 72 + 58 + 65.' },
-          ],
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Think deeper',
-          prompt: 'Why does `int[] b = a;` followed by `b[0] = 0;` also change `a[0]`?',
-          options: [
-            { text: 'Both variables hold a reference to the same array object', correct: true, why: 'Copy the contents with `a.clone()` or `Arrays.copyOf(a, a.length)` when you need a separate array.' },
-            { text: 'Arrays are always global', why: 'They are objects reached through references.' },
-            { text: 'b[0] is a pointer to a[0]', why: 'b refers to the whole same array.' },
-            { text: 'Java copies changes back automatically', why: 'There is only one array; nothing is copied.' },
           ],
         },
         {
