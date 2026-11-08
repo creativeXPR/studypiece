@@ -8,11 +8,12 @@ import {
   signOut as fbSignOut,
   updateProfile,
 } from 'firebase/auth';
-import { arrayRemove, arrayUnion, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, deleteField, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { auth, db, googleProvider } from '../lib/firebase';
 import { dayKey } from '../lib/dates';
 import { readJSON, writeJSON } from '../lib/storage';
 import { startSync, stopSync } from '../lib/sync';
+import { clearSentUsage, pendingUsage } from '../lib/usage';
 
 const AuthContext = createContext(null);
 
@@ -33,12 +34,13 @@ async function loadProfile(user) {
       department: (data.department || data.courseDepartment || cached?.department || '').toLowerCase(),
       level: String(data.level || cached?.level || ''),
       favourites: Array.isArray(data.favourites) ? data.favourites : cached?.favourites ?? [],
+      ratings: data.ratings && typeof data.ratings === 'object' ? data.ratings : cached?.ratings ?? {},
     };
     writeJSON(profileKey(user.uid), profile);
     return profile;
   } catch (err) {
     console.warn('Using cached profile:', err.message);
-    return cached ?? { username: user.displayName || '', department: '', level: '', favourites: [] };
+    return cached ?? { username: user.displayName || '', department: '', level: '', favourites: [], ratings: {} };
   }
 }
 
@@ -58,7 +60,9 @@ export function AuthProvider({ children }) {
         startSync(u.uid);
         setProfile(await loadProfile(u));
         setUser(u);
-        // Base fields, same shape the previous app wrote.
+        // Base fields, same shape the previous app wrote, plus the course visits counted on this
+        // device since the last start (see lib/usage.js), so usage costs no extra write.
+        const usage = pendingUsage();
         setDoc(
           doc(db, 'users', u.uid),
           {
@@ -70,9 +74,12 @@ export function AuthProvider({ children }) {
             // One entry per day the user opens the app (arrayUnion keeps it unique).
             loginDays: arrayUnion(dayKey()),
             ...(u.metadata?.creationTime ? { createdAt: new Date(u.metadata.creationTime) } : {}),
+            ...(usage ? { courseUse: usage.courseUse } : {}),
           },
           { merge: true },
-        ).catch((err) => console.warn('Could not update user record:', err.message));
+        )
+          .then(() => usage && clearSentUsage(usage.snapshot))
+          .catch((err) => console.warn('Could not update user record:', err.message));
       }),
     [],
   );
@@ -133,6 +140,22 @@ export function AuthProvider({ children }) {
     [profile, user],
   );
 
+  // A 1–5 star rating per course (by code), saved like favourites. 0 removes it.
+  const rateCourse = useCallback(
+    (code, stars) => {
+      const ratings = { ...(profile?.ratings ?? {}) };
+      if (stars) ratings[code] = stars;
+      else delete ratings[code];
+      const next = { ...profile, ratings };
+      writeJSON(profileKey(user.uid), next);
+      setProfile(next);
+      setDoc(doc(db, 'users', user.uid), { ratings: { [code]: stars ? stars : deleteField() } }, { merge: true }).catch((err) =>
+        console.warn('Rating saved locally only:', err.message),
+      );
+    },
+    [profile, user],
+  );
+
   const needsOnboarding = !!user && (!profile?.department || !profile?.level);
 
   return (
@@ -147,6 +170,7 @@ export function AuthProvider({ children }) {
         signOut,
         saveProfile,
         toggleFavourite,
+        rateCourse,
       }}>
       {children}
     </AuthContext.Provider>

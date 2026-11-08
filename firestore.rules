@@ -17,8 +17,9 @@ service cloud.firestore {
         && request.auth.token.email in ['adedamolar96@gmail.com', 'adedamolarichard79@gmail.com'];
     }
 
-    // users/{uid}: profile (department, level, name) and login history
-    // (loginDays). Keyed by Firebase Auth uid; each user writes only their own.
+    // users/{uid}: profile (department, level, name), login history (loginDays), course
+    // visits per day (courseUse) and star ratings (ratings). Keyed by Firebase Auth uid; each
+    // user writes only their own.
     match /users/{userId} {
       allow get: if signedIn() && (request.auth.uid == userId || isAdmin());
       allow list: if isAdmin();
@@ -47,6 +48,28 @@ service cloud.firestore {
       allow create, update: if isAdmin()
         && request.resource.data.keys().hasOnly(['courses'])
         && request.resource.data.courses is map;
+    }
+
+    // feedback/{id}: one message per document from a signed-in student. Students can only
+    // send (never read, change or delete); admins read and clear them on the /admin page.
+    match /feedback/{id} {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'email', 'message', 'course', 'page', 'createdAt'])
+        && request.resource.data.keys().hasAll(['uid', 'message', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 2000
+        && request.resource.data.get('name', '') is string
+        && request.resource.data.get('name', '').size() <= 120
+        && request.resource.data.get('email', '') == request.auth.token.get('email', '')
+        && request.resource.data.get('course', '') is string
+        && request.resource.data.get('course', '').size() <= 20
+        && request.resource.data.get('page', '') is string
+        && request.resource.data.get('page', '').size() <= 200
+        && request.resource.data.createdAt == request.time;
+      allow get, list, delete: if isAdmin();
+      allow update: if false;
     }
 
     // Everything else is closed by default.

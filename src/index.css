@@ -1551,39 +1551,335 @@ a {
 }
 
 /* ---------- Admin ---------- */
-.admin-page {
+/* Minimal: one section at a time behind text tabs, numbers without boxes, hairline tables. */
+.adm {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
+  max-width: 1040px;
 }
 
-.admin-head,
-.admin-list-head {
+.adm-top {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
-.admin-actions,
-.admin-filters,
-.date-range {
+.adm-top h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.adm-top-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.adm-tabs {
+  display: flex;
+  gap: 22px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.adm-tabs button {
+  flex: none;
+  padding: 0 0 10px;
+  margin-bottom: -1px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--text-2);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.adm-tabs button:hover {
+  color: var(--text);
+}
+
+.adm-tabs button.active {
+  color: var(--text);
+  border-bottom-color: var(--primary);
+}
+
+/* All five tabs, and the time presets, fit on a phone without sideways scrolling. */
+@media (max-width: 440px) {
+  .adm-tabs {
+    gap: 14px;
+  }
+
+  .adm-tabs button {
+    font-size: 0.88rem;
+  }
+
+  .adm-presets button {
+    padding: 5px 10px;
+    font-size: 0.82rem;
+  }
+
+  .adm-table th,
+  .adm-table td {
+    padding-right: 8px;
+  }
+}
+
+/* Presets show short labels (7d, 30d, 90d) on a phone; screen readers get the full words. */
+.adm-short {
+  display: none;
+}
+
+@media (max-width: 440px) {
+  .adm-long {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .adm-short {
+    display: inline;
+  }
+
+  .adm-table .col-perday {
+    display: none;
+  }
+}
+
+.adm-range {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 8px 14px;
 }
 
-.date-range label {
+.adm-presets {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--pill);
+  background: var(--surface-2);
+}
+
+.adm-presets button {
+  padding: 5px 12px;
+  border: 0;
+  border-radius: var(--pill);
+  background: none;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.adm-presets button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+}
+
+.adm-dates {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .input-date {
   width: auto;
-  height: 38px;
+  height: 36px;
+}
+
+.adm-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .adm-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.adm-stats dt {
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+
+.adm-stats dd {
+  margin: 2px 0 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.adm-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+/* Straight after the tabs or the range bar, a section needs no second divider. */
+.adm-tabs + .adm-section,
+.adm-range + .adm-section {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.adm-h {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.adm-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.adm-section-head p {
+  margin: 0;
+}
+
+.adm-search {
+  flex: 0 1 260px;
+  height: 36px;
+}
+
+.adm-error {
+  color: var(--bad);
+  margin: 0;
+}
+
+.adm-empty {
+  margin: 8px 0;
+}
+
+.adm-note {
+  max-width: 70ch;
+  margin: 0;
+}
+
+/* Wide tables scroll inside their section, never the page. */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.adm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.adm-table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  padding: 0 12px 8px 0;
+}
+
+.adm-table td {
+  padding: 10px 12px 10px 0;
+  border-top: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+
+.adm-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.adm-sub {
+  display: block;
+  font-size: 0.82rem;
+}
+
+/* The course column wraps its title, so the numbers stay on screen on a phone. */
+.adm-table td.adm-course {
+  white-space: normal;
+  min-width: 9em;
+}
+
+.adm-more {
+  align-self: flex-start;
+}
+
+@media (max-width: 640px) {
+  .col-email,
+  .col-dept,
+  .col-level {
+    display: none;
+  }
+}
+
+.adm-feedback {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.adm-feedback li {
+  padding: 12px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.adm-feedback li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.adm-feedback-msg {
+  margin: 0 0 6px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.adm-feedback-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+}
+
+.adm-tag {
+  padding: 1px 8px;
+  border-radius: var(--pill);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.adm-delete {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+}
+
+/* The For you tab sits flat inside the page, not in its own card. */
+.adm .foryou-admin {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.adm .foryou-admin .card-title {
+  display: none;
 }
 
 .foryou-list {
@@ -1634,88 +1930,10 @@ a {
   gap: 2px;
 }
 
-.admin-range {
-  margin-bottom: -4px;
-}
-
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-@media (min-width: 760px) {
-  .stat-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.stat-tile {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 16px 18px;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--text-2);
-}
-
-.stat-value {
-  font-size: 1.75rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
 .card-title {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 14px;
-}
-
-.admin-list-head .card-title {
-  margin-bottom: 0;
-}
-
-.admin-search {
-  flex: 0 1 280px;
-  height: 38px;
-}
-
-.admin-list-head {
-  margin-bottom: 12px;
-}
-
-/* Wide tables scroll inside their card, never the page. */
-.table-scroll {
-  overflow-x: auto;
-  margin: 0 -4px;
-}
-
-.admin-table td,
-.admin-table th {
-  white-space: nowrap;
-}
-
-.cell-email {
-  color: var(--text-2);
-}
-
-.admin-more {
-  margin-top: 12px;
-}
-
-.admin-note {
-  max-width: 70ch;
-}
-
-@media (max-width: 640px) {
-  .col-dept,
-  .col-level {
-    display: none;
-  }
 }
 
 /* Single-series column chart: thin bars, 4px rounded tops, hairline grid. */
@@ -2679,4 +2897,134 @@ button.list-row {
   .link-btn:hover {
     text-decoration: underline;
   }
+}
+
+/* ---------- Feedback and ratings ---------- */
+.feedback-dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feedback-dialog h2 {
+  margin: 0;
+}
+
+.feedback-dialog p {
+  margin: 0;
+}
+
+.feedback-text {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px 12px;
+  resize: vertical;
+  font: inherit;
+  line-height: 1.5;
+}
+
+.feedback-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.feedback-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.feedback-error {
+  color: var(--bad);
+}
+
+/* The feedback button sits quietly beside the theme toggle. Until it is first opened, a small
+   dot (and, once, a short hint) lets students know it exists. */
+.feedback-btn {
+  position: relative;
+}
+
+.feedback-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.feedback-hint {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 30;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: feedback-hint 7s ease forwards;
+}
+
+@keyframes feedback-hint {
+  0% { opacity: 0; transform: translateY(-4px); }
+  6%, 85% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+/* Reduced motion: no slide, just the fade (it must still end, which marks the hint as shown). */
+@keyframes feedback-hint-fade {
+  0%, 85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback-hint {
+    animation-name: feedback-hint-fade;
+  }
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+}
+
+.stars {
+  display: inline-flex;
+}
+
+.star {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--border-strong);
+  cursor: pointer;
+}
+
+.star:hover,
+.star:focus-visible {
+  background: var(--surface-2);
+}
+
+.star.on {
+  color: #f5b301;
+}
+
+.star.on svg {
+  fill: currentColor;
 }

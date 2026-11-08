@@ -173,3 +173,13 @@ export const PanelIcon = (p) => (
     <path d="M9 4v16" />
   </Icon>
 );
+export const ChatIcon = (p) => (
+  <Icon {...p}>
+    <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z" />
+  </Icon>
+);
+export const TrashIcon = (p) => (
+  <Icon {...p}>
+    <path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3" />
+  </Icon>
+);

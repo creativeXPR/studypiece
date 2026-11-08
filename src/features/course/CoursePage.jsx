@@ -6,6 +6,7 @@ import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import ShareButtons from '../../lib/ShareButtons';
 import ShuffleToggles from '../../lib/ShuffleToggles';
+import StarRating from '../../lib/StarRating';
 import useShufflePrefs from '../../lib/useShufflePrefs';
 import { BulbIcon, ChevronLeft, ChevronRight } from '../../lib/icons';
 import NotFound from './NotFound';
@@ -40,6 +41,7 @@ export default function CoursePage() {
             <p className="muted small">
               {course.sets.length} sets · {course.questionCount} questions
             </p>
+            <StarRating code={course.code} />
           </div>
           <ShareButtons path={coursePath(course)} text={`${course.code} practice tests on StudyPiece`} />
         </div>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthProvider';
 import { TestProvider, useTest } from './TestProvider';
@@ -14,6 +15,9 @@ import AppShell from './AppShell';
 import AdminPage from '../features/admin/AdminPage';
 import TutorialHomePage from '../features/learn/TutorialHomePage';
 import LessonPage from '../features/learn/LessonPage';
+import { getCourseBySlug } from '../data/courses';
+import { getTutorial } from '../data/tutorials';
+import { recordVisit } from '../lib/usage';
 
 function FullScreenLoader() {
   return (
@@ -21,6 +25,17 @@ function FullScreenLoader() {
       <div className="spinner" aria-label="Loading" />
     </div>
   );
+}
+
+// Counts a visit whenever a signed-in student opens a course's page, tutorial, lesson or test
+// intro (/course/:slug… or /learn/:slug…). See lib/usage.js: it is free in Firestore terms.
+function UsageTracker() {
+  const { pathname } = useLocation();
+  const slug = pathname.match(/^\/(?:course|learn)\/([^/]+)/)?.[1];
+  useEffect(() => {
+    if (slug) recordVisit(getCourseBySlug(slug)?.code ?? getTutorial(slug)?.code);
+  }, [slug]);
+  return <Outlet />;
 }
 
 // A shared test link opened while signed out should land on that test after
@@ -61,22 +76,24 @@ export default function App() {
               <Route path="/login" element={<AuthPage />} />
             </Route>
             <Route element={<RequireAuth />}>
-              <Route path="/onboarding" element={<OnboardingPage />} />
-              {/* Lessons are full-screen: no tab bar while learning. */}
-              <Route path="/learn/:courseId/:lessonId" element={<LessonPage />} />
-              <Route element={<AppShell />}>
-                <Route path="/" element={<SelectTestPage />} />
-                <Route path="/course/:courseId" element={<CoursePage />} />
-                <Route path="/course/:courseId/:setId" element={<TestIntroPage />} />
-                <Route path="/learn/:courseId" element={<TutorialHomePage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/admin" element={<AdminPage />} />
-                <Route element={<RequireSession submitted={false} />}>
-                  <Route path="/test" element={<TestPage />} />
-                </Route>
-                <Route element={<RequireSession submitted />}>
-                  <Route path="/results" element={<ResultsPage />} />
-                  <Route path="/review" element={<ReviewPage />} />
+              <Route element={<UsageTracker />}>
+                <Route path="/onboarding" element={<OnboardingPage />} />
+                {/* Lessons are full-screen: no tab bar while learning. */}
+                <Route path="/learn/:courseId/:lessonId" element={<LessonPage />} />
+                <Route element={<AppShell />}>
+                  <Route path="/" element={<SelectTestPage />} />
+                  <Route path="/course/:courseId" element={<CoursePage />} />
+                  <Route path="/course/:courseId/:setId" element={<TestIntroPage />} />
+                  <Route path="/learn/:courseId" element={<TutorialHomePage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/admin" element={<AdminPage />} />
+                  <Route element={<RequireSession submitted={false} />}>
+                    <Route path="/test" element={<TestPage />} />
+                  </Route>
+                  <Route element={<RequireSession submitted />}>
+                    <Route path="/results" element={<ResultsPage />} />
+                    <Route path="/review" element={<ReviewPage />} />
+                  </Route>
                 </Route>
               </Route>
             </Route>

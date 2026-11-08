@@ -13,7 +13,63 @@ export function normalizeUser(id, data) {
     lastActive,
     lastActiveDay: lastActive ? dayKey(lastActive) : null,
     createdAt: toDate(data.createdAt),
+    courseUse: cleanUse(data.courseUse),
+    ratings: cleanRatings(data.ratings),
   };
+}
+
+// users/{uid}.courseUse is { code: { 'YYYY-MM-DD': visits } } (see lib/usage.js). Students write
+// their own record, so anything malformed is dropped rather than trusted.
+function cleanUse(raw) {
+  const out = {};
+  if (!raw || typeof raw !== 'object') return out;
+  for (const [code, days] of Object.entries(raw)) {
+    if (!days || typeof days !== 'object') continue;
+    const clean = {};
+    for (const [day, n] of Object.entries(days)) {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(day) && Number.isFinite(n) && n > 0) clean[day] = Math.min(n, 500);
+    }
+    if (Object.keys(clean).length) out[code] = clean;
+  }
+  return out;
+}
+
+function cleanRatings(raw) {
+  const out = {};
+  if (!raw || typeof raw !== 'object') return out;
+  for (const [code, stars] of Object.entries(raw)) if (Number.isInteger(stars) && stars >= 1 && stars <= 5) out[code] = stars;
+  return out;
+}
+
+// Per course, for the chosen days: how many students opened it, how many visits that was,
+// visits per day, and its star rating (all ratings, not just this period's).
+export function courseStats(users, fromKey, toKey, catalogue) {
+  const days = Math.max(1, daysBetween(fromKey, toKey).length);
+  const rows = new Map(catalogue.map((c) => [c.code, { ...c, students: 0, visits: 0, everStudents: 0, stars: 0, raters: 0 }]));
+  const row = (code) => {
+    if (!rows.has(code)) rows.set(code, { code, title: '', students: 0, visits: 0, everStudents: 0, stars: 0, raters: 0 });
+    return rows.get(code);
+  };
+  for (const user of users) {
+    for (const [code, perDay] of Object.entries(user.courseUse)) {
+      const r = row(code);
+      r.everStudents++;
+      let visits = 0;
+      for (const [day, n] of Object.entries(perDay)) if (day >= fromKey && day <= toKey) visits += n;
+      if (visits) {
+        r.students++;
+        r.visits += visits;
+      }
+    }
+    for (const [code, stars] of Object.entries(user.ratings)) {
+      const r = row(code);
+      r.stars += stars;
+      r.raters++;
+    }
+  }
+  return [...rows.values()]
+    .map((r) => ({ ...r, perDay: r.visits / days, rating: r.raters ? r.stars / r.raters : null }))
+    .sort((a, b) => b.visits - a.visits || b.everStudents - a.everStudents || a.code.localeCompare(b.code));
 }
 
 export function daysBetween(fromKey, toKey) {
