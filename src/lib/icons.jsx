@@ -175,7 +175,8 @@ export const PanelIcon = (p) => (
 );
 export const ChatIcon = (p) => (
   <Icon {...p}>
-    <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z" />
+    <path d="M7.5 16.5 4 19.5V6.5a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6.5v7.5a2.5 2.5 0 0 1-2.5 2.5z" />
+    <path d="M8.5 9h7M8.5 12.5h4" />
   </Icon>
 );
 export const TrashIcon = (p) => (

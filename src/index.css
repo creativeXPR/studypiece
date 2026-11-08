@@ -2914,13 +2914,17 @@ button.list-row {
   margin: 0;
 }
 
-.feedback-text {
+/* .input is a single-line pill; a message box needs rounded corners and room around the text. */
+.input.feedback-text {
+  display: block;
   width: 100%;
-  min-height: 120px;
-  padding: 10px 12px;
+  height: auto;
+  min-height: 132px;
+  padding: 14px 16px;
+  border-radius: 14px;
   resize: vertical;
   font: inherit;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .feedback-meta {
@@ -2943,19 +2947,20 @@ button.list-row {
 
 /* The feedback button sits quietly beside the theme toggle. Until it is first opened, a small
    dot (and, once, a short hint) lets students know it exists. */
-.feedback-btn {
+.icon-btn.feedback-btn {
   position: relative;
+  overflow: visible; /* .icon-btn clips; the hint hangs below the button */
 }
 
 .feedback-dot {
   position: absolute;
-  top: 7px;
-  right: 7px;
-  width: 7px;
-  height: 7px;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--primary);
-  box-shadow: 0 0 0 2px var(--surface);
+  box-shadow: 0 0 0 2px var(--bg);
 }
 
 .feedback-hint {
