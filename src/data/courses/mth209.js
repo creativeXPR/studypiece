@@ -4,7 +4,7 @@
 
 export default {
   "code": "MTH 209",
-  "updated": "2026-10-29",
+  "updated": "2026-11-08",
   "title": "Numerical Analysis",
   "sets": [
     {
@@ -27,10 +27,10 @@ export default {
           "options": [
             "$x = 1$ is a root",
             "There are exactly two roots in $[1, 2]$",
-            "There is no root in $[1, 2]$",
-            "There is a root between $x = 1$ and $x = 2$"
+            "There is a root between $x = 1$ and $x = 2$",
+            "There is no root in $[1, 2]$"
           ],
-          "answer": 3,
+          "answer": 2,
           "explanation": "$f$ is continuous and changes sign from negative to positive between 1 and 2, so at least one root lies in $(1, 2)$. (In fact the root is about $1.047$.)"
         },
         {
@@ -38,32 +38,32 @@ export default {
           "options": [
             "$[1.25, 1.75]$",
             "$[0, 1.5]$",
-            "$[1, 1.5]$",
-            "$[1.5, 2]$"
+            "$[1.5, 2]$",
+            "$[1, 1.5]$"
           ],
-          "answer": 2,
+          "answer": 3,
           "explanation": "$f(1) < 0$ and $f(1.5) > 0$, so the sign change (and the root) is in $[1, 1.5]$. Keep the half where the signs still differ."
         },
         {
           "question": "Starting with an interval of length 1, how long is the bracketing interval after 3 bisections?",
           "options": [
-            "$0.5$",
             "$0.125$",
+            "$0.5$",
             "$0.0625$",
             "$0.25$"
           ],
-          "answer": 1,
-          "explanation": "Each bisection halves the interval: $1 \\to 0.5 \\to 0.25 \\to 0.125 = 2^{-3}$."
+          "answer": 0,
+          "explanation": "Each bisection halves the interval: $1 \\to 0.5 \\to 0.25 \\to 0.125 = 2^{-3}$. $0.25$ stops one halving short, and $0.0625$ halves once too often."
         },
         {
           "question": "Starting from an interval of length 1, what is the least number of bisections needed to make the interval shorter than $0.001$?",
           "options": [
-            "$10$",
             "$1000$",
+            "$10$",
             "$8$",
             "$9$"
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "We need $2^{-n} < 0.001$, i.e. $2^n > 1000$. Since $2^9 = 512$ and $2^{10} = 1024$, $n = 10$."
         },
         {
@@ -80,78 +80,78 @@ export default {
         {
           "question": "Use Regula Falsi on $f(x) = x^3 - 5x + 1$ with $a = 0$, $b = 1$. What is the first estimate $c$?",
           "options": [
-            "$0.25$",
             "$0.75$",
             "$0.5$",
-            "$0.2$"
+            "$0.2$",
+            "$0.25$"
           ],
-          "answer": 0,
+          "answer": 3,
           "explanation": "$f(0) = 1$, $f(1) = -3$. So $c = \\frac{0(-3) - 1(1)}{-3 - 1} = \\frac{-1}{-4} = 0.25$."
         },
         {
           "question": "Continuing Regula Falsi on $x^3 - 5x + 1 = 0$: $f(0.25) = -0.2344$, so the bracket becomes $[0, 0.25]$. What is the next estimate (4 d.p.)?",
           "options": [
+            "$0.2025$",
             "$0.2016$",
             "$0.2344$",
-            "$0.1250$",
-            "$0.2025$"
+            "$0.1250$"
           ],
-          "answer": 3,
-          "explanation": "$c = \\frac{0 \\cdot f(0.25) - 0.25 \\cdot f(0)}{f(0.25) - f(0)} = \\frac{-0.25}{-0.2344 - 1} = \\frac{-0.25}{-1.2344} = 0.2025$. The root is $0.2016$ (4 d.p.)."
+          "answer": 0,
+          "explanation": "$c = \\frac{0 \\cdot f(0.25) - 0.25 \\cdot f(0)}{f(0.25) - f(0)} = \\frac{-0.25}{-0.2344 - 1} = \\frac{-0.25}{-1.2344} = 0.2025$. The root is $0.2016$ (4 d.p.). $0.2016$ is the root itself; one Regula Falsi step only gets close to it."
         },
         {
           "question": "Regula Falsi is described as combining",
           "options": [
-            "the guaranteed convergence of bisection with the speed of linear interpolation",
             "the speed of Newton-Raphson with the simplicity of the secant method",
+            "the guaranteed convergence of bisection with the speed of linear interpolation",
             "two Newton-Raphson steps per iteration",
             "Taylor series with bisection"
           ],
-          "answer": 0,
-          "explanation": "Like bisection it always keeps a bracket $[a, b]$ with a sign change (so it cannot lose the root), but it picks the point by linear interpolation instead of the midpoint, which is usually faster."
+          "answer": 1,
+          "explanation": "Like bisection it always keeps a bracket $[a, b]$ with a sign change (so it cannot lose the root), but it picks the point by linear interpolation instead of the midpoint, which is usually faster. It uses no derivative, so it doesn’t borrow anything from Newton-Raphson."
         },
         {
           "question": "To solve $f(x) = 0$ by linear (fixed-point) iteration, we first",
           "options": [
-            "rearrange the equation as $x = g(x)$ and iterate $x_{n+1} = g(x_n)$",
             "draw the secant through two points",
             "differentiate $f$",
+            "rearrange the equation as $x = g(x)$ and iterate $x_{n+1} = g(x_n)$",
             "halve an interval containing the root"
           ],
-          "answer": 0,
-          "explanation": "Linear iteration rewrites $f(x) = 0$ as $x = g(x)$, picks $x_0$, and repeats $x_{n+1} = g(x_n)$ until successive values agree."
+          "answer": 2,
+          "explanation": "Linear iteration rewrites $f(x) = 0$ as $x = g(x)$, picks $x_0$, and repeats $x_{n+1} = g(x_n)$ until successive values agree. Halving an interval is bisection, and drawing a secant is the secant method."
         },
         {
           "question": "For $x^2 - 3x + 1 = 0$, use $x_{n+1} = \\frac{1}{3}(1 + x_n^2)$ with $x_0 = 0$. What are $x_1$ and $x_2$ (4 d.p.)?",
           "options": [
             "$x_1 = 0.3333,\\ x_2 = 0.3333$",
             "$x_1 = 0.3704,\\ x_2 = 0.3791$",
-            "$x_1 = 0.3333,\\ x_2 = 0.3704$",
-            "$x_1 = 1,\\ x_2 = 0.6667$"
+            "$x_1 = 1,\\ x_2 = 0.6667$",
+            "$x_1 = 0.3333,\\ x_2 = 0.3704$"
           ],
-          "answer": 2,
+          "answer": 3,
           "explanation": "$x_1 = \\frac13(1 + 0) = 0.3333$; $x_2 = \\frac13(1 + 0.3333^2) = \\frac13(1.1111) = 0.3704$. The iterates go on to $0.382$."
         },
         {
           "question": "The iteration $x_{n+1} = g(x_n)$ converges to a root $\\alpha$ (for $x_0$ close enough) if",
           "options": [
+            "$|g'(x)| < 1$ near $\\alpha$",
             "$g(\\alpha) = 0$",
             "$|g'(x)| > 1$ near $\\alpha$",
-            "$|g'(x)| < 1$ near $\\alpha$",
             "$g'(\\alpha) = 1$"
           ],
-          "answer": 2,
-          "explanation": "Near the root, errors are multiplied by roughly $g'(\\alpha)$ each step, so they shrink when $|g'(x)| < 1$ in a neighbourhood of $\\alpha$."
+          "answer": 0,
+          "explanation": "Near the root, errors are multiplied by roughly $g'(\\alpha)$ each step, so they shrink when $|g'(x)| < 1$ in a neighbourhood of $\\alpha$. $g(\\alpha) = 0$ is the tempting slip: at a fixed point $g(\\alpha) = \\alpha$, and convergence depends on the slope $g'$."
         },
         {
           "question": "Which rearrangement of $x^2 - 3x + 1 = 0$ converges to the root $0.382$ from $x_0 = 0$?",
           "options": [
-            "$x = \\frac{1}{3}(1 + x^2)$",
             "$x = \\sqrt{3x - 1}$",
+            "$x = \\frac{1}{3}(1 + x^2)$",
             "$x = x^2 - 2x + 1$",
             "$x = 3 - \\frac{1}{x}$"
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "For $g(x) = \\frac13(1 + x^2)$, $g'(x) = \\frac{2x}{3} \\approx 0.25$ at $0.382$, so $|g'| < 1$. For $3 - \\frac1x$, $|g'| = \\frac{1}{x^2} \\approx 6.9$; for $x^2 - 2x + 1$, $|g'| = |2x - 2| \\approx 1.24$; and $\\sqrt{3x - 1}$ isn't even defined at $x_0 = 0$."
         },
         {
@@ -163,28 +163,28 @@ export default {
             "$x_{n+1} = x_n - \\dfrac{f'(x_n)}{f(x_n)}$"
           ],
           "answer": 2,
-          "explanation": "The tangent at $(x_n, f(x_n))$ has slope $f'(x_n)$ and crosses the $x$-axis at $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$."
+          "explanation": "The tangent at $(x_n, f(x_n))$ has slope $f'(x_n)$ and crosses the $x$-axis at $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$. Using a plus sign moves away from the root, because the step goes the wrong way along the tangent."
         },
         {
           "question": "Geometrically, one Newton-Raphson step from $x_n$ moves to the point where",
           "options": [
             "the chord through $(a, f(a))$ and $(b, f(b))$ meets the $x$-axis",
-            "the tangent to $y = f(x)$ at $x_n$ meets the $x$-axis",
             "the midpoint of the interval lies",
-            "the curve has a turning point"
+            "the curve has a turning point",
+            "the tangent to $y = f(x)$ at $x_n$ meets the $x$-axis"
           ],
-          "answer": 1,
-          "explanation": "Newton-Raphson replaces the curve by its tangent line at $x_n$ and takes the tangent's $x$-intercept as the next approximation."
+          "answer": 3,
+          "explanation": "Newton-Raphson replaces the curve by its tangent line at $x_n$ and takes the tangent's $x$-intercept as the next approximation. A chord through two points is what Regula Falsi and the secant method use."
         },
         {
           "question": "Apply Newton-Raphson to $f(x) = x^3 - 5x - 40$ with $x_0 = 4$. What is $x_1$ (3 d.p.)?",
           "options": [
-            "$3.875$",
             "$3.907$",
+            "$3.875$",
             "$4.093$",
             "$3.904$"
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "$f(4) = 64 - 20 - 40 = 4$ and $f'(x) = 3x^2 - 5$, so $f'(4) = 43$. Then $x_1 = 4 - \\frac{4}{43} = 3.907$. ($3.875$ is the secant/Regula Falsi first step.)"
         },
         {
@@ -196,7 +196,7 @@ export default {
             "$3.1250$"
           ],
           "answer": 1,
-          "explanation": "$x_1 = 3 - \\frac{9 - 10}{2(3)} = 3 + \\frac16 = 3.1667$. One more step gives $3.1623 \\approx \\sqrt{10}$."
+          "explanation": "$x_1 = 3 - \\frac{9 - 10}{2(3)} = 3 + \\frac16 = 3.1667$. One more step gives $3.1623 \\approx \\sqrt{10}$. $3.1623$ is $\\sqrt{10}$ itself, which takes a second step to reach."
         },
         {
           "question": "Newton-Raphson for $\\sqrt[3]{7}$ uses $f(x) = x^3 - 7$. Which iteration does this give?",
@@ -207,39 +207,39 @@ export default {
             "$x_{n+1} = \\dfrac{x_n^3 + 7}{3x_n^2}$"
           ],
           "answer": 2,
-          "explanation": "$x_{n+1} = x_n - \\frac{x_n^3 - 7}{3x_n^2} = \\frac{3x_n^3 - x_n^3 + 7}{3x_n^2} = \\frac{2x_n^3 + 7}{3x_n^2}$. From $x_0 = 2$ it gives $1.9167, 1.9129, \\dots$"
+          "explanation": "$x_{n+1} = x_n - \\frac{x_n^3 - 7}{3x_n^2} = \\frac{3x_n^3 - x_n^3 + 7}{3x_n^2} = \\frac{2x_n^3 + 7}{3x_n^2}$. From $x_0 = 2$ it gives $1.9167, 1.9129, \\dots$ $\\frac{x_n^3 + 7}{3x_n^2}$ comes from forgetting that $x_n = \\frac{3x_n^3}{3x_n^2}$ when combining the fractions."
         },
         {
           "question": "Newton-Raphson runs into trouble when",
           "options": [
             "$f(x_n)$ is very small",
-            "$f'(x_n) = 0$ or is very close to 0",
             "$x_n$ is negative",
-            "the root is irrational"
+            "the root is irrational",
+            "$f'(x_n) = 0$ or is very close to 0"
           ],
-          "answer": 1,
-          "explanation": "Dividing by $f'(x_n) \\approx 0$ sends $x_{n+1}$ very far away: the tangent is (almost) horizontal and meets the $x$-axis far from the root, or not at all."
+          "answer": 3,
+          "explanation": "Dividing by $f'(x_n) \\approx 0$ sends $x_{n+1}$ very far away: the tangent is (almost) horizontal and meets the $x$-axis far from the root, or not at all. A small $f(x_n)$ is good news: it means $x_n$ is already near the root."
         },
         {
           "question": "The secant method's iteration is",
           "options": [
-            "$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$",
             "$x_{n+1} = x_n - f(x_n)\\dfrac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$",
+            "$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$",
             "$x_{n+1} = x_n - \\dfrac{f(x_n)}{f'(x_n)}$",
             "$x_{n+1} = x_n - f(x_n)\\dfrac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$"
           ],
-          "answer": 1,
-          "explanation": "Newton-Raphson with $f'(x_n)$ replaced by the slope $\\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$ gives $x_{n+1} = x_n - f(x_n)\\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$."
+          "answer": 0,
+          "explanation": "Newton-Raphson with $f'(x_n)$ replaced by the slope $\\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$ gives $x_{n+1} = x_n - f(x_n)\\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$. The last option has the slope upside down; the step divides by the slope."
         },
         {
           "question": "The secant method is obtained from Newton-Raphson by",
           "options": [
             "using the second derivative",
+            "replacing $f'(x_n)$ with a backward difference approximation using $x_n$ and $x_{n-1}$",
             "halving the step each time",
-            "always keeping a sign change",
-            "replacing $f'(x_n)$ with a backward difference approximation using $x_n$ and $x_{n-1}$"
+            "always keeping a sign change"
           ],
-          "answer": 3,
+          "answer": 1,
           "explanation": "$f'(x_n) \\approx \\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$, the slope through the last two points. No derivative is needed."
         },
         {
@@ -251,39 +251,39 @@ export default {
             "$3.907$"
           ],
           "answer": 2,
-          "explanation": "$f(3) = -28$, $f(4) = 4$. $x_2 = 4 - 4\\cdot\\frac{4 - 3}{4 - (-28)} = 4 - \\frac{4}{32} = 3.875$."
+          "explanation": "$f(3) = -28$, $f(4) = 4$. $x_2 = 4 - 4\\cdot\\frac{4 - 3}{4 - (-28)} = 4 - \\frac{4}{32} = 3.875$. $3.907$ is the Newton-Raphson step from $x_0 = 4$, which uses $f'(4)$ instead of the chord."
         },
         {
           "question": "What is the main difference between the secant method and Regula Falsi?",
           "options": [
             "The secant method uses the midpoint",
             "Regula Falsi needs $f'(x)$",
-            "The secant method always uses the two latest points; Regula Falsi keeps two points whose function values have opposite signs",
-            "There is no difference"
+            "There is no difference",
+            "The secant method always uses the two latest points; Regula Falsi keeps two points whose function values have opposite signs"
           ],
-          "answer": 2,
+          "answer": 3,
           "explanation": "Both use the same chord formula. Regula Falsi keeps a bracket (guaranteed, sometimes slow); the secant method drops the oldest point (faster, but it can lose the root)."
         },
         {
           "question": "Close to a simple root, which method usually converges fastest?",
           "options": [
-            "Linear iteration with $|g'| \\approx 0.9$",
             "Newton-Raphson",
+            "Linear iteration with $|g'| \\approx 0.9$",
             "Regula Falsi",
             "Bisection"
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "Newton-Raphson converges quadratically (the number of correct digits roughly doubles each step). Secant is a little slower (order about 1.6); bisection and linear iteration are linear."
         },
         {
           "question": "For $f(x) = x^3 - 5x - 40$, $f(3) = -28$ and $f(4) = 4$. Why is $x_0 = 4$ a sensible Newton-Raphson starting value?",
           "options": [
             "Because $4$ is an integer",
+            "Because $|f(4)|$ is much smaller than $|f(3)|$, so the root is probably nearer 4",
             "Because $f(4) > 0$ is required",
-            "Because $f'(4) = 0$",
-            "Because $|f(4)|$ is much smaller than $|f(3)|$, so the root is probably nearer 4"
+            "Because $f'(4) = 0$"
           ],
-          "answer": 3,
+          "answer": 1,
           "explanation": "$|f(4)| = 4$ is much smaller than $|f(3)| = 28$, so the curve is closer to zero at 4. Indeed the root is $3.904$."
         }
       ]
@@ -295,13 +295,13 @@ export default {
         {
           "question": "Interpolation is the process of",
           "options": [
+            "finding a formula (often a polynomial) whose graph passes through a given set of points",
             "rounding numbers to fewer digits",
             "differentiating tabulated data",
-            "finding a formula (often a polynomial) whose graph passes through a given set of points",
             "finding the roots of a polynomial"
           ],
-          "answer": 2,
-          "explanation": "Given points $(x_0, y_0), \\dots, (x_n, y_n)$, interpolation finds a function (usually a polynomial) with $P(x_i) = y_i$, then uses it to estimate values in between."
+          "answer": 0,
+          "explanation": "Given points $(x_0, y_0), \\dots, (x_n, y_n)$, interpolation finds a function (usually a polynomial) with $P(x_i) = y_i$, then uses it to estimate values in between. Finding roots is a different problem: interpolation estimates values between known points."
         },
         {
           "question": "The linear interpolating polynomial through $(x_0, y_0)$ and $(x_1, y_1)$ is",
@@ -312,28 +312,28 @@ export default {
             "$P_1(x) = y_0 + \\dfrac{x_1 - x_0}{y_1 - y_0}(x - x_0)$"
           ],
           "answer": 2,
-          "explanation": "$P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$. Check: at $x = x_0$ it gives $y_0$; at $x = x_1$ it gives $y_1$."
+          "explanation": "$P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$. Check: at $x = x_0$ it gives $y_0$; at $x = x_1$ it gives $y_1$. The first wrong option has $x - x_1$ instead of $x_1 - x$, so it gives $0$ instead of $y_0$ at $x_0$."
         },
         {
           "question": "Find $P_1(3.5)$ for the data points $(2, 3)$ and $(5, 7)$.",
           "options": [
-            "$5$",
             "$5.5$",
             "$4.5$",
-            "$6$"
+            "$6$",
+            "$5$"
           ],
-          "answer": 0,
-          "explanation": "$P_1(3.5) = \\frac{5 - 3.5}{3}(3) + \\frac{3.5 - 2}{3}(7) = 0.5(3) + 0.5(7) = 5$. ($3.5$ is the midpoint, so we get the average of 3 and 7.)"
+          "answer": 3,
+          "explanation": "$P_1(3.5) = \\frac{5 - 3.5}{3}(3) + \\frac{3.5 - 2}{3}(7) = 0.5(3) + 0.5(7) = 5$. ($3.5$ is the midpoint, so we get the average of 3 and 7.) $5.5$ is tempting if you take $3.5$ as being nearer to 7 than to 3, but it is exactly halfway."
         },
         {
           "question": "Simplify the linear interpolant through $(2, 3)$ and $(5, 7)$.",
           "options": [
-            "$P_1(x) = \\dfrac{3x + 4}{4}$",
             "$P_1(x) = \\dfrac{4x + 1}{3}$",
+            "$P_1(x) = \\dfrac{3x + 4}{4}$",
             "$P_1(x) = 4x - 5$",
             "$P_1(x) = \\dfrac{4x - 1}{3}$"
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "Slope $= \\frac{7 - 3}{5 - 2} = \\frac43$, so $P_1(x) = 3 + \\frac43(x - 2) = \\frac{9 + 4x - 8}{3} = \\frac{4x + 1}{3}$. Check: $P_1(5) = 21/3 = 7$."
         },
         {
@@ -345,7 +345,7 @@ export default {
             "$2.2871$"
           ],
           "answer": 1,
-          "explanation": "$P_1(0.826) = \\frac{0.004}{0.01}(2.270500) + \\frac{0.006}{0.01}(2.293319) = 0.4(2.270500) + 0.6(2.293319) = 0.90820 + 1.37599 = 2.2842$."
+          "explanation": "$P_1(0.826) = \\frac{0.004}{0.01}(2.270500) + \\frac{0.006}{0.01}(2.293319) = 0.4(2.270500) + 0.6(2.293319) = 0.90820 + 1.37599 = 2.2842$. $2.2819$ swaps the weights: $0.826$ is nearer $0.83$, so $y_1$ gets the larger weight."
         },
         {
           "question": "Using linear interpolation between $(1, 0)$ and $(6, 1.7918)$ for $y = \\ln x$, the estimate of $\\ln 2$ is",
@@ -356,7 +356,7 @@ export default {
             "$0.6931$"
           ],
           "answer": 2,
-          "explanation": "$P_1(2) = \\frac{6 - 2}{5}(0) + \\frac{2 - 1}{5}(1.7918) = 0.3584$."
+          "explanation": "$P_1(2) = \\frac{6 - 2}{5}(0) + \\frac{2 - 1}{5}(1.7918) = 0.3584$. $0.6931$ is the true $\\ln 2$; the straight line falls well short of it."
         },
         {
           "question": "The true value of $\\ln 2$ is $0.6931$. What is the relative error of the estimate $0.3584$ (to 1 d.p.)?",
@@ -372,12 +372,12 @@ export default {
         {
           "question": "How could the linear estimate of $\\ln 2$ be improved most simply?",
           "options": [
-            "Use points further apart, e.g. $(1, 0)$ and $(10, 2.3026)$",
             "Use points closer to $x = 2$, e.g. $(1, 0)$ and $(4, 1.3863)$",
+            "Use points further apart, e.g. $(1, 0)$ and $(10, 2.3026)$",
             "Use the midpoint of $[1, 6]$",
             "Round $\\ln 6$ to 2 d.p."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "A straight line approximates a curve better over a shorter interval. With $(1, 0)$ and $(4, 1.3863)$ we get $0.4621$, much closer to $0.6931$. A higher-degree polynomial helps too."
         },
         {
@@ -389,7 +389,7 @@ export default {
             "exactly $n + 1$"
           ],
           "answer": 1,
-          "explanation": "There is a unique polynomial of degree at most $n$ through $n + 1$ points: 2 points give a line, 3 points a quadratic (or less), and so on."
+          "explanation": "There is a unique polynomial of degree at most $n$ through $n + 1$ points: 2 points give a line, 3 points a quadratic (or less), and so on. “Exactly $n + 1$” is the usual slip: $n + 1$ points fix a polynomial of degree at most $n$."
         },
         {
           "question": "The Lagrange basis polynomials $L_k(x)$ for nodes $x_0, \\dots, x_n$ satisfy",
@@ -406,22 +406,22 @@ export default {
           "question": "For any set of nodes, $L_0(x) + L_1(x) + \\cdots + L_n(x)$ equals",
           "options": [
             "$n$",
-            "$1$",
             "$0$",
-            "$x$"
+            "$x$",
+            "$1$"
           ],
-          "answer": 1,
-          "explanation": "Interpolating the constant data $y_k = 1$ gives $\\sum L_k(x)$; the unique interpolant of a constant is that constant, so the sum is 1 for every $x$."
+          "answer": 3,
+          "explanation": "Interpolating the constant data $y_k = 1$ gives $\\sum L_k(x)$; the unique interpolant of a constant is that constant, so the sum is 1 for every $x$. $0$ is tempting because each $L_k$ is $0$ at most nodes, but at every node exactly one of them is $1$."
         },
         {
           "question": "Find the quadratic $P_2(x) = a_0 + a_1 x + a_2 x^2$ through $(1, 4)$, $(2, 0)$ and $(3, 12)$.",
           "options": [
+            "$P_2(x) = 24 - 28x + 8x^2$",
             "$P_2(x) = 8 - 4x + x^2$",
             "$P_2(x) = 4 + 2x - 2x^2$",
-            "$P_2(x) = 24 - 28x + 8x^2$",
             "$P_2(x) = 12 - 8x + 4x^2$"
           ],
-          "answer": 2,
+          "answer": 0,
           "explanation": "Solve $a_0 + a_1 + a_2 = 4$, $a_0 + 2a_1 + 4a_2 = 0$, $a_0 + 3a_1 + 9a_2 = 12$ to get $a_0 = 24$, $a_1 = -28$, $a_2 = 8$. Check: $24 - 56 + 32 = 0$ at $x = 2$."
         },
         {
@@ -433,18 +433,18 @@ export default {
             "$2$"
           ],
           "answer": 1,
-          "explanation": "$P_2(2.5) = 24 - 70 + 8(6.25) = 24 - 70 + 50 = 4$."
+          "explanation": "$P_2(2.5) = 24 - 70 + 8(6.25) = 24 - 70 + 50 = 4$. The Lagrange form gives $4$ at $x = 2.5$ too, a quick cross-check."
         },
         {
           "question": "For nodes $x_0 = 1$, $x_1 = 2$, $x_2 = 3$, the Lagrange basis polynomial $L_0(x)$ is",
           "options": [
             "$-(x - 1)(x - 3)$",
-            "$\\dfrac{(x - 2)(x - 3)}{2}$",
             "$\\dfrac{(x - 1)(x - 2)}{2}$",
+            "$\\dfrac{(x - 2)(x - 3)}{2}$",
             "$(x - 2)(x - 3)$"
           ],
-          "answer": 1,
-          "explanation": "$L_0(x) = \\frac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} = \\frac{(x - 2)(x - 3)}{(-1)(-2)} = \\frac{(x - 2)(x - 3)}{2}$."
+          "answer": 2,
+          "explanation": "$L_0(x) = \\frac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} = \\frac{(x - 2)(x - 3)}{(-1)(-2)} = \\frac{(x - 2)(x - 3)}{2}$. $\\frac{(x - 1)(x - 2)}{2}$ is $L_2$, the switch for the last node."
         },
         {
           "question": "For nodes $1, 2, 3$, the Lagrange basis polynomial $L_1(x)$ is",
@@ -455,7 +455,7 @@ export default {
             "$-(x - 1)(x - 3)$"
           ],
           "answer": 3,
-          "explanation": "$L_1(x) = \\frac{(x - 1)(x - 3)}{(2 - 1)(2 - 3)} = \\frac{(x - 1)(x - 3)}{-1} = -(x - 1)(x - 3)$."
+          "explanation": "$L_1(x) = \\frac{(x - 1)(x - 3)}{(2 - 1)(2 - 3)} = \\frac{(x - 1)(x - 3)}{-1} = -(x - 1)(x - 3)$. Without the minus sign, $L_1(2)$ would be $-1$ instead of $1$."
         },
         {
           "question": "The quadratic through $(0, 1)$, $(1, 3)$ and $(2, 7)$ is evaluated at $x = 1.5$. The result is",
@@ -471,46 +471,46 @@ export default {
         {
           "question": "Quadratic interpolation through $(1, 1)$, $(2, 8)$, $(3, 27)$ (from $y = x^3$) gives $P_2(2.5) = 16$. The true value is $2.5^3 = 15.625$. Why is there an error?",
           "options": [
-            "A quadratic cannot exactly reproduce a cubic",
             "The points are not equally spaced",
+            "A quadratic cannot exactly reproduce a cubic",
             "Interpolation is always exact",
             "Lagrange's formula was misapplied"
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "Three points determine a quadratic, which can match the cubic only at the nodes. Between them there is an interpolation error (here $0.375$)."
         },
         {
           "question": "The points $(0, 0)$, $(1, 1)$, $(3, 9)$ lie on $y = x^2$. Quadratic interpolation through them gives $P_2(2) = $",
           "options": [
-            "$4$",
             "$5$",
             "$4.5$",
+            "$4$",
             "$3$"
           ],
-          "answer": 0,
-          "explanation": "The data come from a quadratic, and the interpolant of degree $\\le 2$ through 3 points is unique, so $P_2(x) = x^2$ exactly and $P_2(2) = 4$."
+          "answer": 2,
+          "explanation": "The data come from a quadratic, and the interpolant of degree $\\le 2$ through 3 points is unique, so $P_2(x) = x^2$ exactly and $P_2(2) = 4$. $5$ or $4.5$ would mean the interpolant isn’t $x^2$, but it must be, by uniqueness."
         },
         {
           "question": "Estimate $\\sqrt{5}$ by linear interpolation between $(4, 2)$ and $(9, 3)$.",
           "options": [
             "$2.236$",
-            "$2.2$",
             "$2.25$",
-            "$2.5$"
+            "$2.5$",
+            "$2.2$"
           ],
-          "answer": 1,
-          "explanation": "$P_1(5) = \\frac{9 - 5}{5}(2) + \\frac{5 - 4}{5}(3) = 1.6 + 0.6 = 2.2$. The true value is $2.236$."
+          "answer": 3,
+          "explanation": "$P_1(5) = \\frac{9 - 5}{5}(2) + \\frac{5 - 4}{5}(3) = 1.6 + 0.6 = 2.2$. The true value is $2.236$. $2.236$ is the true value; a straight line between $(4, 2)$ and $(9, 3)$ can’t follow the square-root curve exactly."
         },
         {
           "question": "Linear interpolation between $(10, 5)$ and $(20, 15)$ gives the value at $x = 12$ as",
           "options": [
-            "$7.5$",
             "$7$",
+            "$7.5$",
             "$12$",
             "$6$"
           ],
-          "answer": 1,
-          "explanation": "Slope $= \\frac{15 - 5}{10} = 1$, so $P_1(12) = 5 + 1(12 - 10) = 7$."
+          "answer": 0,
+          "explanation": "Slope $= \\frac{15 - 5}{10} = 1$, so $P_1(12) = 5 + 1(12 - 10) = 7$. $7.5$ would need a slope of $1.25$; here the slope is exactly $1$."
         },
         {
           "question": "To find $P_2(x) = a_0 + a_1x + a_2x^2$ through $(1, 4)$, $(2, 0)$, $(3, 12)$, which equation comes from the point $(2, 0)$?",
@@ -521,50 +521,50 @@ export default {
             "$a_0 + 4a_1 + 2a_2 = 0$"
           ],
           "answer": 1,
-          "explanation": "Substitute $x = 2$, $P_2(2) = 0$: $a_0 + a_1(2) + a_2(2)^2 = a_0 + 2a_1 + 4a_2 = 0$."
+          "explanation": "Substitute $x = 2$, $P_2(2) = 0$: $a_0 + a_1(2) + a_2(2)^2 = a_0 + 2a_1 + 4a_2 = 0$. The power of $x$ goes on $x$, not on $a_2$: $(2)^2 = 4$ multiplies $a_2$."
         },
         {
           "question": "Using an interpolating polynomial to estimate a value outside the range of the given $x$-values is called",
           "options": [
             "bisection",
             "truncation",
-            "interpolation",
-            "extrapolation"
+            "extrapolation",
+            "interpolation"
           ],
-          "answer": 3,
-          "explanation": "Inside the data range it is interpolation; outside it is extrapolation, which is usually much less reliable."
+          "answer": 2,
+          "explanation": "Inside the data range it is interpolation; outside it is extrapolation, which is usually much less reliable. Truncation is an error from cutting a series short, not a way of estimating values."
         },
         {
           "question": "For nodes $1, 2, 3$ at $x = 2.5$: $L_0 = -0.125$, $L_1 = 0.75$, $L_2 = 0.375$. With $y$-values $4, 0, 12$, what is $P_2(2.5)$?",
           "options": [
             "$12.375$",
-            "$4$",
             "$4.5$",
-            "$-0.5$"
+            "$-0.5$",
+            "$4$"
           ],
-          "answer": 1,
+          "answer": 3,
           "explanation": "$P_2(2.5) = 4(-0.125) + 0(0.75) + 12(0.375) = -0.5 + 0 + 4.5 = 4$, matching $24 - 28x + 8x^2$ at $2.5$. Note $-0.125 + 0.75 + 0.375 = 1$."
         },
         {
           "question": "How many Lagrange basis polynomials, and of what degree, are used for interpolation through 4 points?",
           "options": [
-            "1 polynomial of degree 3",
             "4 polynomials, each of degree 3",
+            "1 polynomial of degree 3",
             "4 polynomials, each of degree 4",
             "3 polynomials, each of degree 4"
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "One basis polynomial per node, so 4. Each $L_k$ is a product of 3 linear factors $(x - x_j)$, $j \\neq k$, so it has degree 3."
         },
         {
           "question": "Which statement about the linear interpolant $P_1$ through $(x_0, y_0)$ and $(x_1, y_1)$ is always true?",
           "options": [
             "$P_1$ is exact for every function",
+            "$P_1(x_0) = y_0$ and $P_1(x_1) = y_1$",
             "$P_1$ has degree 2",
-            "$P_1(x) = y_0 y_1$",
-            "$P_1(x_0) = y_0$ and $P_1(x_1) = y_1$"
+            "$P_1(x) = y_0 y_1$"
           ],
-          "answer": 3,
+          "answer": 1,
           "explanation": "By construction the line passes through both data points. It is exact for linear functions only."
         }
       ]
@@ -577,11 +577,11 @@ export default {
           "question": "Writing $0.5791$ when the value you actually obtained was $0.5971$ is an example of",
           "options": [
             "truncation error",
-            "gross error (blunder or mistake)",
             "propagated error",
+            "gross error (blunder or mistake)",
             "round-off error"
           ],
-          "answer": 1,
+          "answer": 2,
           "explanation": "A gross error (blunder) is a human mistake such as copying digits in the wrong order. It is not caused by the method or by rounding."
         },
         {
@@ -589,10 +589,10 @@ export default {
           "options": [
             "a computer runs out of memory",
             "two nearly equal numbers are added",
-            "an infinite process is replaced by a finite one",
-            "a number is copied incorrectly"
+            "a number is copied incorrectly",
+            "an infinite process is replaced by a finite one"
           ],
-          "answer": 2,
+          "answer": 3,
           "explanation": "For example, stopping the series $(1 + x)^{1/2} = 1 + \\frac12 x - \\frac18 x^2 + \\cdots$ after a few terms. The discarded terms are the truncation error."
         },
         {
@@ -600,32 +600,32 @@ export default {
           "options": [
             "choosing the wrong method",
             "misreading a table",
-            "representing numbers with a limited number of digits",
-            "using too few terms of a series"
+            "using too few terms of a series",
+            "representing numbers with a limited number of digits"
           ],
-          "answer": 2,
-          "explanation": "Most numbers (like $\\frac23 = 0.6666\\ldots$) have infinitely many digits and must be rounded or chopped to fit, e.g. $0.667$."
+          "answer": 3,
+          "explanation": "Most numbers (like $\\frac23 = 0.6666\\ldots$) have infinitely many digits and must be rounded or chopped to fit, e.g. $0.667$. Using too few series terms causes truncation error, not round-off error."
         },
         {
           "question": "On a machine that keeps 4 significant digits, chopping $72.32451$ gives",
           "options": [
+            "$72.32$",
             "$72.30$",
             "$72.3245$",
-            "$72.32$",
             "$72.33$"
           ],
-          "answer": 2,
+          "answer": 0,
           "explanation": "Chopping simply drops the extra digits: $72.32|451 \\to 72.32$. The chopping error is $0.00451$."
         },
         {
           "question": "Round $0.666666$ to 3 decimal places by chopping and by symmetric rounding.",
           "options": [
             "Both give $0.666$",
+            "Chopping: $0.666$; rounding: $0.667$",
             "Chopping: $0.667$; rounding: $0.666$",
-            "Both give $0.667$",
-            "Chopping: $0.666$; rounding: $0.667$"
+            "Both give $0.667$"
           ],
-          "answer": 3,
+          "answer": 1,
           "explanation": "Chopping drops the digits: $0.666$. Symmetric rounding adds 1 to the last kept digit because the first discarded digit (6) is $\\ge 5$: $0.667$."
         },
         {
@@ -637,7 +637,7 @@ export default {
             "$\\dfrac{|x_t - X|}{|x_t|}$"
           ],
           "answer": 2,
-          "explanation": "Absolute error $|\\varepsilon| = |x_t - X|$, the size of the difference regardless of sign."
+          "explanation": "Absolute error $|\\varepsilon| = |x_t - X|$, the size of the difference regardless of sign. The last option, divided by $|x_t|$, is the relative error."
         },
         {
           "question": "Relative error is defined as",
@@ -659,7 +659,7 @@ export default {
             "$3.3 \\times 10^{-3}$"
           ],
           "answer": 0,
-          "explanation": "$|0.666666\\ldots - 0.667| = 0.000333\\ldots \\approx 3.3 \\times 10^{-4}$. (The relative error is $\\frac{0.000333}{0.6667} = 5 \\times 10^{-4}$.)"
+          "explanation": "$|0.666666\\ldots - 0.667| = 0.000333\\ldots \\approx 3.3 \\times 10^{-4}$. (The relative error is $\\frac{0.000333}{0.6667} = 5 \\times 10^{-4}$.) $5.0 \\times 10^{-4}$ is the relative error, not the absolute error."
         },
         {
           "question": "$\\pi = 3.14159\\ldots$ is approximated by $3.14$. The relative error is about",
@@ -677,55 +677,55 @@ export default {
           "options": [
             "$|x - x_d| = 0$",
             "$|x - x_d| \\le 10^{d}$",
-            "$|x - x_d| \\le \\frac12 \\times 10^{d}$",
-            "$|x - x_d| \\le \\frac12 \\times 10^{-d}$"
+            "$|x - x_d| \\le \\frac12 \\times 10^{-d}$",
+            "$|x - x_d| \\le \\frac12 \\times 10^{d}$"
           ],
-          "answer": 3,
-          "explanation": "Rounding to $d$ decimal places makes an error of at most half a unit in the $d$-th place: $|x - x_d| \\le \\frac12 \\times 10^{-d}$."
+          "answer": 2,
+          "explanation": "Rounding to $d$ decimal places makes an error of at most half a unit in the $d$-th place: $|x - x_d| \\le \\frac12 \\times 10^{-d}$. With $10^{d}$ instead of $10^{-d}$ the bound would grow with more decimal places, which is backwards."
         },
         {
           "question": "$\\frac17 = 0.142857\\ldots$ is rounded to 2 decimal places as $0.14$. Which check is correct?",
           "options": [
             "$|0.142857 - 0.14| = 0.002857 \\le 0.0005$",
             "$|0.142857 - 0.14| = 0.02857 \\le 0.05$",
-            "$|0.142857 - 0.14| = 0.002857 \\le 0.005$",
-            "$0.14$ is not correct to 2 d.p."
+            "$0.14$ is not correct to 2 d.p.",
+            "$|0.142857 - 0.14| = 0.002857 \\le 0.005$"
           ],
-          "answer": 2,
+          "answer": 3,
           "explanation": "The error is $0.002857$ and the bound for 2 d.p. is $\\frac12 \\times 10^{-2} = 0.005$. Since $0.002857 \\le 0.005$, $0.14$ is correct to 2 d.p."
         },
         {
           "question": "$24.5$ is a number correct to 1 decimal place. What is the magnitude of its maximum possible error?",
           "options": [
+            "$0.05$",
             "$0.5$",
             "$0.005$",
-            "$0.1$",
-            "$0.05$"
+            "$0.1$"
           ],
-          "answer": 3,
-          "explanation": "Correct to 1 d.p. means the error is at most $\\frac12 \\times 10^{-1} = 0.05$."
+          "answer": 0,
+          "explanation": "Correct to 1 d.p. means the error is at most $\\frac12 \\times 10^{-1} = 0.05$. $0.5$ is the bound for a whole number; one decimal place gives $0.05$."
         },
         {
           "question": "The numbers $3.14$ (2 d.p.) and $2.718$ (3 d.p.) are added. What is the maximum possible absolute error in the sum?",
           "options": [
             "$0.00025$",
-            "$0.005$",
             "$0.0055$",
+            "$0.005$",
             "$0.0005$"
           ],
-          "answer": 2,
-          "explanation": "In a sum, the absolute errors add: $0.005 + 0.0005 = 0.0055$."
+          "answer": 1,
+          "explanation": "In a sum, the absolute errors add: $0.005 + 0.0005 = 0.0055$. $0.005$ forgets the second number’s error of $0.0005$."
         },
         {
           "question": "The numbers $5.43$ (2 d.p.) and $2.1$ (1 d.p.) are subtracted. The maximum possible absolute error in $5.43 - 2.1$ is",
           "options": [
-            "$0.055$",
             "$0.05$",
             "$0.005$",
+            "$0.055$",
             "$0.045$"
           ],
-          "answer": 0,
-          "explanation": "For a difference the worst case still adds the absolute errors: $|\\varepsilon_1 - \\varepsilon_2| \\le |\\varepsilon_1| + |\\varepsilon_2| = 0.005 + 0.05 = 0.055$."
+          "answer": 2,
+          "explanation": "For a difference the worst case still adds the absolute errors: $|\\varepsilon_1 - \\varepsilon_2| \\le |\\varepsilon_1| + |\\varepsilon_2| = 0.005 + 0.05 = 0.055$. $0.045$ subtracts the errors, but in the worst case they combine to $0.055$."
         },
         {
           "question": "When two approximate numbers are multiplied, the relative error of the product is approximately",
@@ -736,18 +736,18 @@ export default {
             "the sum of the relative errors"
           ],
           "answer": 3,
-          "explanation": "$x_1x_2 - X_1X_2 \\approx X_1\\varepsilon_2 + X_2\\varepsilon_1$, so dividing by $X_1X_2$ gives relative error $\\approx \\frac{\\varepsilon_1}{X_1} + \\frac{\\varepsilon_2}{X_2}$."
+          "explanation": "$x_1x_2 - X_1X_2 \\approx X_1\\varepsilon_2 + X_2\\varepsilon_1$, so dividing by $X_1X_2$ gives relative error $\\approx \\frac{\\varepsilon_1}{X_1} + \\frac{\\varepsilon_2}{X_2}$. The product of the relative errors is the tiny term that gets dropped."
         },
         {
           "question": "In deriving the error of a product $(X_1 + \\varepsilon_1)(X_2 + \\varepsilon_2)$, the term $\\varepsilon_1\\varepsilon_2$ is neglected because",
           "options": [
+            "it is the product of two small errors, so it is much smaller than the other terms",
             "it is always zero",
             "it is always negative",
-            "it cancels with $X_1X_2$",
-            "it is the product of two small errors, so it is much smaller than the other terms"
+            "it cancels with $X_1X_2$"
           ],
-          "answer": 3,
-          "explanation": "If $\\varepsilon_1, \\varepsilon_2$ are small (say $10^{-3}$), then $\\varepsilon_1\\varepsilon_2 \\approx 10^{-6}$ is negligible compared with $X_1\\varepsilon_2$ and $X_2\\varepsilon_1$."
+          "answer": 0,
+          "explanation": "If $\\varepsilon_1, \\varepsilon_2$ are small (say $10^{-3}$), then $\\varepsilon_1\\varepsilon_2 \\approx 10^{-6}$ is negligible compared with $X_1\\varepsilon_2$ and $X_2\\varepsilon_1$. It is not zero, just negligible: around $10^{-6}$ against terms around $10^{-3}$."
         },
         {
           "question": "For a quotient $\\frac{x_1}{x_2}$, the maximum relative error is bounded by",
@@ -758,39 +758,39 @@ export default {
             "$|\\varepsilon_1| \\cdot |\\varepsilon_2|$"
           ],
           "answer": 1,
-          "explanation": "Just as for a product, the relative errors add in the worst case: $\\left|\\frac{\\varepsilon_1}{X_1}\\right| + \\left|\\frac{\\varepsilon_2}{X_2}\\right|$."
+          "explanation": "Just as for a product, the relative errors add in the worst case: $\\left|\\frac{\\varepsilon_1}{X_1}\\right| + \\left|\\frac{\\varepsilon_2}{X_2}\\right|$. Subtracting the relative errors gives the best case, not the worst case."
         },
         {
           "question": "Evaluate $\\frac{24.5}{12.37}$ and its maximum possible error, given the numbers are correct to the digits shown.",
           "options": [
             "$2.053 \\pm 0.005$",
             "$1.98 \\pm 0.0005$",
-            "$1.981 \\pm 0.05$",
-            "$1.981 \\pm 0.005$"
+            "$1.981 \\pm 0.005$",
+            "$1.981 \\pm 0.05$"
           ],
-          "answer": 3,
+          "answer": 2,
           "explanation": "$\\frac{24.5}{12.37} = 1.9806$. Errors: $0.05$ and $0.005$. Max error $= \\left(\\frac{0.05}{24.5} + \\frac{0.005}{12.37}\\right)1.9806 = 0.0048 \\approx 0.005$."
         },
         {
           "question": "$2.36$ and $1.76$ are each correct to 2 d.p. Their product is $4.1536$. What is the maximum possible absolute error in the product (3 d.p.)?",
           "options": [
             "$0.010$",
-            "$0.021$",
             "$0.005$",
-            "$0.041$"
+            "$0.041$",
+            "$0.021$"
           ],
-          "answer": 1,
+          "answer": 3,
           "explanation": "Relative error $\\le \\frac{0.005}{2.36} + \\frac{0.005}{1.76} = 0.00212 + 0.00284 = 0.00496$. Absolute error $\\le 4.1536 \\times 0.00496 = 0.0206 \\approx 0.021$."
         },
         {
           "question": "$e^{0.2}$ is estimated by the first three terms of $e^x = 1 + x + \\frac{x^2}{2!} + \\cdots$. What are the estimate and the truncation error (approximately)?",
           "options": [
-            "$1.2$; $0.02$",
             "$1.22$; $0.0014$",
+            "$1.2$; $0.02$",
             "$1.2214$; $0$",
             "$1.22$; $0.014$"
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "$1 + 0.2 + \\frac{0.04}{2} = 1.22$. The neglected terms $\\frac{0.2^3}{6} + \\frac{0.2^4}{24} + \\cdots \\approx 0.00133 + 0.00007 = 0.0014$. ($e^{0.2} = 1.2214$.)"
         },
         {
@@ -802,28 +802,28 @@ export default {
             "the same, $10^{E - d}$"
           ],
           "answer": 1,
-          "explanation": "Symmetric rounding never moves the number by more than half a unit in the last place, so its bound is half the chopping bound: $\\frac12 \\times 10^{E - d}$."
+          "explanation": "Symmetric rounding never moves the number by more than half a unit in the last place, so its bound is half the chopping bound: $\\frac12 \\times 10^{E - d}$. Rounding is twice as accurate as chopping, not equally accurate."
         },
         {
           "question": "The normalised floating-point form of $72.32451$ is",
           "options": [
             "$0.7232451 \\times 10^{-2}$",
-            "$0.7232451 \\times 10^{2}$",
             "$7.232451 \\times 10^{1}$",
+            "$0.7232451 \\times 10^{2}$",
             "$72.32451 \\times 10^{0}$"
           ],
-          "answer": 1,
-          "explanation": "Normalised form puts the decimal point before the first non-zero digit: $0.7232451 \\times 10^2$."
+          "answer": 2,
+          "explanation": "Normalised form puts the decimal point before the first non-zero digit: $0.7232451 \\times 10^2$. $7.232451 \\times 10^1$ is scientific notation, which puts one non-zero digit before the point."
         },
         {
           "question": "Subtracting two nearly equal approximate numbers (e.g. $1.2345 - 1.2341$) is dangerous because",
           "options": [
             "the result is always zero",
             "truncation error appears",
-            "the relative error of the result can become very large",
-            "the absolute error becomes very large"
+            "the absolute error becomes very large",
+            "the relative error of the result can become very large"
           ],
-          "answer": 2,
+          "answer": 3,
           "explanation": "The absolute errors still add, but the result ($0.0004$) is tiny, so the error relative to it is huge. This is called loss of significant digits."
         },
         {
@@ -841,12 +841,12 @@ export default {
           "question": "To evaluate $x^2 - 2 + \\frac{1}{x^2}$ at $x = 1.473$ with less arithmetic (and less round-off), first write it as",
           "options": [
             "$(x + \\frac1x)^2$, giving $4.6306$",
-            "$(x - 1)^2$, giving $0.2237$",
             "$(x - \\frac1x)^2$, giving $0.6306$",
+            "$(x - 1)^2$, giving $0.2237$",
             "$x^2 - \\frac{1}{x^2}$, giving $1.7088$"
           ],
-          "answer": 2,
-          "explanation": "$x^2 - 2 + \\frac1{x^2} = \\left(x - \\frac1x\\right)^2$. With $x = 1.473$: $\\frac1x = 0.67889$, $x - \\frac1x = 0.79411$, squared $= 0.6306$."
+          "answer": 1,
+          "explanation": "$x^2 - 2 + \\frac1{x^2} = \\left(x - \\frac1x\\right)^2$. With $x = 1.473$: $\\frac1x = 0.67889$, $x - \\frac1x = 0.79411$, squared $= 0.6306$. $(x + \\frac1x)^2$ expands to $x^2 + 2 + \\frac{1}{x^2}$, with the wrong sign on the 2."
         }
       ]
     },
@@ -874,29 +874,29 @@ export default {
             "$\\nabla f_k = f_{k+1} - f_k$"
           ],
           "answer": 2,
-          "explanation": "Backward looks behind: $\\nabla f_k = f_k - f_{k-1}$."
+          "explanation": "Backward looks behind: $\\nabla f_k = f_k - f_{k-1}$. $f_{k+1} - f_k$ is the forward difference, which looks ahead."
         },
         {
           "question": "The central difference operator $\\delta$ is defined by",
           "options": [
             "$\\delta f_k = f_{k+1} - f_{k-1}$",
             "$\\delta f_k = f_k - f_{k-1}$",
-            "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$",
-            "$\\delta f_k = \\frac12(f_{k+1} + f_{k-1})$"
+            "$\\delta f_k = \\frac12(f_{k+1} + f_{k-1})$",
+            "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$"
           ],
-          "answer": 2,
-          "explanation": "The central difference is centred on $x_k$, using the half-step points: $\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$."
+          "answer": 3,
+          "explanation": "The central difference is centred on $x_k$, using the half-step points: $\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$. $f_{k+1} - f_{k-1}$ spans two whole steps, twice the width of $\\delta f_k$."
         },
         {
           "question": "In terms of ordinates, $\\Delta^2 f_k$ equals",
           "options": [
-            "$f_{k+2} - f_k$",
             "$f_{k+2} - 2f_{k+1} + f_k$",
+            "$f_{k+2} - f_k$",
             "$f_{k+2} + 2f_{k+1} + f_k$",
             "$f_{k+1} - 2f_k + f_{k-1}$"
           ],
-          "answer": 1,
-          "explanation": "$\\Delta^2 f_k = \\Delta f_{k+1} - \\Delta f_k = (f_{k+2} - f_{k+1}) - (f_{k+1} - f_k) = f_{k+2} - 2f_{k+1} + f_k$."
+          "answer": 0,
+          "explanation": "$\\Delta^2 f_k = \\Delta f_{k+1} - \\Delta f_k = (f_{k+2} - f_{k+1}) - (f_{k+1} - f_k) = f_{k+2} - 2f_{k+1} + f_k$. $f_{k+1} - 2f_k + f_{k-1}$ is the central second difference $\\delta^2 f_k$, centred one step earlier."
         },
         {
           "question": "In terms of ordinates, $\\Delta^3 f_k$ equals",
@@ -907,128 +907,128 @@ export default {
             "$f_{k+3} - f_k$"
           ],
           "answer": 1,
-          "explanation": "The coefficients are the binomial coefficients $1, 3, 3, 1$ with alternating signs: $f_{k+3} - 3f_{k+2} + 3f_{k+1} - f_k$."
+          "explanation": "The coefficients are the binomial coefficients $1, 3, 3, 1$ with alternating signs: $f_{k+3} - 3f_{k+2} + 3f_{k+1} - f_k$. All plus signs would give a sum, but differences alternate in sign."
         },
         {
           "question": "For the table $x$: $0, 0.1, 0.2, 0.3, 0.4, 0.5$ and $y$: $0.05, 0.11, 0.26, 0.35, 0.49, 0.67$ (so $y_0 = 0.05, \\dots, y_5 = 0.67$), find $\\Delta y_3$.",
           "options": [
             "$0.35$",
             "$0.09$",
-            "$0.18$",
-            "$0.14$"
+            "$0.14$",
+            "$0.18$"
           ],
-          "answer": 3,
-          "explanation": "$\\Delta y_3 = y_4 - y_3 = 0.49 - 0.35 = 0.14$."
+          "answer": 2,
+          "explanation": "$\\Delta y_3 = y_4 - y_3 = 0.49 - 0.35 = 0.14$. $0.35$ is $y_3$ itself, not a difference."
         },
         {
           "question": "For the table $x$: $0, 0.1, 0.2, 0.3, 0.4, 0.5$ and $y$: $0.05, 0.11, 0.26, 0.35, 0.49, 0.67$ (so $y_0 = 0.05, \\dots, y_5 = 0.67$), find $\\Delta^3 y_2$.",
           "options": [
             "$-0.13$",
-            "$-0.01$",
             "$0.13$",
-            "$0.01$"
+            "$0.01$",
+            "$-0.01$"
           ],
-          "answer": 1,
-          "explanation": "$\\Delta^3 y_2 = y_5 - 3y_4 + 3y_3 - y_2 = 0.67 - 1.47 + 1.05 - 0.26 = -0.01$."
+          "answer": 3,
+          "explanation": "$\\Delta^3 y_2 = y_5 - 3y_4 + 3y_3 - y_2 = 0.67 - 1.47 + 1.05 - 0.26 = -0.01$. $-0.13$ comes from using $2$ instead of $3$ in the middle coefficients."
         },
         {
           "question": "The relation between the forward difference operator $\\Delta$ and the shift operator $E$ is",
           "options": [
+            "$\\Delta = E - 1$",
             "$\\Delta = E + 1$",
             "$\\Delta = E^{\\frac12} - E^{-\\frac12}$",
-            "$\\Delta = 1 - E^{-1}$",
-            "$\\Delta = E - 1$"
+            "$\\Delta = 1 - E^{-1}$"
           ],
-          "answer": 3,
-          "explanation": "$\\Delta f_k = f_{k+1} - f_k = Ef_k - f_k = (E - 1)f_k$, so $\\Delta = E - 1$."
+          "answer": 0,
+          "explanation": "$\\Delta f_k = f_{k+1} - f_k = Ef_k - f_k = (E - 1)f_k$, so $\\Delta = E - 1$. $1 - E^{-1}$ is the backward operator $\\nabla$."
         },
         {
           "question": "The relation between the backward difference operator $\\nabla$ and $E$ is",
           "options": [
             "$\\nabla = E - 1$",
+            "$\\nabla = 1 - E^{-1}$",
             "$\\nabla = 1 + E$",
-            "$\\nabla = E^{-1} - 1$",
-            "$\\nabla = 1 - E^{-1}$"
+            "$\\nabla = E^{-1} - 1$"
           ],
-          "answer": 3,
-          "explanation": "$\\nabla f_k = f_k - f_{k-1} = f_k - E^{-1}f_k = (1 - E^{-1})f_k$."
+          "answer": 1,
+          "explanation": "$\\nabla f_k = f_k - f_{k-1} = f_k - E^{-1}f_k = (1 - E^{-1})f_k$. $E - 1$ is $\\Delta$, which looks forward."
         },
         {
           "question": "In terms of $E$, the central difference operator is",
           "options": [
             "$\\delta = E - E^{-1}$",
             "$\\delta = \\frac12(E + E^{-1})$",
-            "$\\delta = E^2 - 1$",
-            "$\\delta = E^{\\frac12} - E^{-\\frac12}$"
+            "$\\delta = E^{\\frac12} - E^{-\\frac12}$",
+            "$\\delta = E^2 - 1$"
           ],
-          "answer": 3,
-          "explanation": "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12} = E^{\\frac12}f_k - E^{-\\frac12}f_k$."
+          "answer": 2,
+          "explanation": "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12} = E^{\\frac12}f_k - E^{-\\frac12}f_k$. $E - E^{-1}$ spans two steps instead of one."
         },
         {
           "question": "Which identity is true?",
           "options": [
             "$\\Delta = \\nabla$",
             "$\\delta = \\Delta\\nabla$",
-            "$\\delta^2 = \\Delta\\nabla$",
-            "$\\delta^2 = \\Delta + \\nabla$"
+            "$\\delta^2 = \\Delta + \\nabla$",
+            "$\\delta^2 = \\Delta\\nabla$"
           ],
-          "answer": 2,
-          "explanation": "$\\delta^2 = (E^{\\frac12} - E^{-\\frac12})^2 = E - 2 + E^{-1} = (E - 1)(1 - E^{-1}) = \\Delta\\nabla$."
+          "answer": 3,
+          "explanation": "$\\delta^2 = (E^{\\frac12} - E^{-\\frac12})^2 = E - 2 + E^{-1} = (E - 1)(1 - E^{-1}) = \\Delta\\nabla$. $\\delta^2 = \\Delta + \\nabla$ fails: $\\Delta + \\nabla = E - E^{-1}$, which is not $E - 2 + E^{-1}$."
         },
         {
           "question": "The values of $y = x^3$ at $x = 1, 2, 3, 4, 5$ are $1, 8, 27, 64, 125$. The third differences are",
           "options": [
+            "all equal to $6$",
             "$12, 18, 24$",
             "all equal to $0$",
-            "$7, 19, 37$",
-            "all equal to $6$"
+            "$7, 19, 37$"
           ],
-          "answer": 3,
+          "answer": 0,
           "explanation": "First differences: $7, 19, 37, 61$. Second: $12, 18, 24$. Third: $6, 6$. For a polynomial of degree $n$ (with $h = 1$), the $n$-th differences are constant ($n! \\times$ leading coefficient $= 3! = 6$)."
         },
         {
           "question": "For $f(x) = x^2$ with step $h = 1$, $\\Delta^2 f(x)$ equals",
           "options": [
-            "$2$",
             "$2x$",
+            "$2$",
             "$1$",
             "$0$"
           ],
-          "answer": 0,
-          "explanation": "$\\Delta^2 x^2 = (x + 2)^2 - 2(x + 1)^2 + x^2 = 2$. The second differences of a quadratic are constant."
+          "answer": 1,
+          "explanation": "$\\Delta^2 x^2 = (x + 2)^2 - 2(x + 1)^2 + x^2 = 2$. The second differences of a quadratic are constant. $2x$ is the derivative of $x^2$, not its second difference."
         },
         {
           "question": "For $f(x) = x^2 + 2x$ with $h = 1$, the forward difference $\\Delta f(3) = f(4) - f(3)$ equals",
           "options": [
             "$7$",
             "$24$",
-            "$8$",
-            "$9$"
+            "$9$",
+            "$8$"
           ],
-          "answer": 3,
+          "answer": 2,
           "explanation": "$\\Delta f(x) = f(x + 1) - f(x) = 2x + 3$, so $\\Delta f(3) = 9$. (Check: $f(4) - f(3) = 24 - 15 = 9$.)"
         },
         {
           "question": "For $f(x) = x^2 + 2x$ with $h = 1$, the backward difference $\\nabla f(3)$ equals",
           "options": [
             "$9$",
-            "$7$",
             "$8$",
-            "$15$"
+            "$15$",
+            "$7$"
           ],
-          "answer": 1,
+          "answer": 3,
           "explanation": "$\\nabla f(x) = f(x) - f(x - 1) = 2x + 1$, so $\\nabla f(3) = 7$. (Check: $15 - 8 = 7$.)"
         },
         {
           "question": "For $f(x) = x^2 + 2x$, the true derivative at $x = 3$ is $8$. With $h = 1$, which difference gives exactly $8$?",
           "options": [
+            "Central difference",
             "Forward difference",
             "Backward difference",
-            "None of the three",
-            "Central difference"
+            "None of the three"
           ],
-          "answer": 3,
-          "explanation": "$\\delta f(3) = f(3.5) - f(2.5) = 19.25 - 11.25 = 8$. Forward gives 9 and backward 7; the central difference is exact for quadratics."
+          "answer": 0,
+          "explanation": "$\\delta f(3) = f(3.5) - f(2.5) = 19.25 - 11.25 = 8$. Forward gives 9 and backward 7; the central difference is exact for quadratics. Forward and backward differences err in opposite directions here (9 and 7), and the central one sits exactly between."
         },
         {
           "question": "Which relation between forward and backward differences is correct?",
@@ -1046,87 +1046,87 @@ export default {
           "options": [
             "$\\dfrac{r(r + 1)}{2!}\\Delta^2 f_0$",
             "$r^2\\Delta^2 f_0$",
-            "$\\dfrac{r^2}{2}\\Delta^2 f_0$",
-            "$\\dfrac{r(r - 1)}{2!}\\Delta^2 f_0$"
+            "$\\dfrac{r(r - 1)}{2!}\\Delta^2 f_0$",
+            "$\\dfrac{r^2}{2}\\Delta^2 f_0$"
           ],
-          "answer": 3,
-          "explanation": "From $E^r = (1 + \\Delta)^r = 1 + r\\Delta + \\frac{r(r - 1)}{2!}\\Delta^2 + \\cdots$, the second-difference term is $\\frac{r(r - 1)}{2!}\\Delta^2 f_0$."
+          "answer": 2,
+          "explanation": "From $E^r = (1 + \\Delta)^r = 1 + r\\Delta + \\frac{r(r - 1)}{2!}\\Delta^2 + \\cdots$, the second-difference term is $\\frac{r(r - 1)}{2!}\\Delta^2 f_0$. With $r(r + 1)$ instead you get the backward formula’s coefficient."
         },
         {
           "question": "In Newton's backward difference formula $f_r = f_n + r\\nabla f_n + \\cdots$, the term in $\\nabla^2 f_n$ is",
           "options": [
-            "$\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$",
             "$\\dfrac{r(r - 1)}{2!}\\nabla^2 f_n$",
             "$r^2\\nabla^2 f_n$",
-            "$-\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$"
+            "$-\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$",
+            "$\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$"
           ],
-          "answer": 0,
-          "explanation": "$E^r = (1 - \\nabla)^{-r} = 1 + r\\nabla + \\frac{r(r + 1)}{2!}\\nabla^2 + \\cdots$, so the term is $\\frac{r(r + 1)}{2!}\\nabla^2 f_n$."
+          "answer": 3,
+          "explanation": "$E^r = (1 - \\nabla)^{-r} = 1 + r\\nabla + \\frac{r(r + 1)}{2!}\\nabla^2 + \\cdots$, so the term is $\\frac{r(r + 1)}{2!}\\nabla^2 f_n$. Using $r(r - 1)$ here borrows the forward formula’s coefficient."
         },
         {
           "question": "Populations (thousands) are given for 1891, 1901, 1911, 1921, 1931. To estimate 1895 by Newton's forward formula from $x_0 = 1891$, what is $r$?",
           "options": [
+            "$0.4$",
             "$0.6$",
             "$-0.6$",
-            "$4$",
-            "$0.4$"
+            "$4$"
           ],
-          "answer": 3,
-          "explanation": "$x = x_0 + rh$ with $h = 10$: $1895 = 1891 + 10r$, so $r = 0.4$."
+          "answer": 0,
+          "explanation": "$x = x_0 + rh$ with $h = 10$: $1895 = 1891 + 10r$, so $r = 0.4$. $0.6$ measures from the next entry, 1901, but $r$ counts steps from $x_0 = 1891$."
         },
         {
           "question": "Populations: 1891: 46, 1901: 66, 1911: 81, 1921: 93, 1931: 101. The forward differences from 1891 are $\\Delta = 20$, $\\Delta^2 = -5$, $\\Delta^3 = 2$, $\\Delta^4 = -3$. Newton's forward formula with $r = 0.4$ estimates the 1895 population as about",
           "options": [
             "$56.4$",
-            "$52.8$",
             "$54.9$",
+            "$52.8$",
             "$58.0$"
           ],
-          "answer": 2,
-          "explanation": "$46 + 0.4(20) + \\frac{0.4(-0.6)}{2}(-5) + \\frac{0.4(-0.6)(-1.6)}{6}(2) + \\frac{0.4(-0.6)(-1.6)(-2.6)}{24}(-3) = 46 + 8 + 0.6 + 0.128 + 0.1248 = 54.85$."
+          "answer": 1,
+          "explanation": "$46 + 0.4(20) + \\frac{0.4(-0.6)}{2}(-5) + \\frac{0.4(-0.6)(-1.6)}{6}(2) + \\frac{0.4(-0.6)(-1.6)(-2.6)}{24}(-3) = 46 + 8 + 0.6 + 0.128 + 0.1248 = 54.85$. $54$ (stopping after two terms) is close, but each extra difference refines the estimate."
         },
         {
           "question": "For the same population table, which formula is better for estimating the 1925 population, and why?",
           "options": [
             "Newton forward from 1891, because it uses the most data",
-            "Newton backward from 1931, because 1925 is near the end of the table",
             "Neither; extrapolation is required",
+            "Newton backward from 1931, because 1925 is near the end of the table",
             "Newton forward from 1931"
           ],
-          "answer": 1,
+          "answer": 2,
           "explanation": "Use the backward formula near the end of a table (here $r = \\frac{1925 - 1931}{10} = -0.6$) and the forward formula near the start. The estimate is $96.84$."
         },
         {
           "question": "The shift operator $E$ acts as",
           "options": [
             "$Ef_k = f_{k-1}$",
-            "$Ef_k = f_{k+1}$ and $E^j f_k = f_{k+j}$",
             "$Ef_k = kf_k$",
-            "$Ef_k = f_k + 1$"
+            "$Ef_k = f_k + 1$",
+            "$Ef_k = f_{k+1}$ and $E^j f_k = f_{k+j}$"
           ],
-          "answer": 1,
-          "explanation": "$E$ shifts one step forward: $Ef_k = f_{k+1}$, $E^{-1}f_k = f_{k-1}$, $E^j f_k = f_{k+j}$."
+          "answer": 3,
+          "explanation": "$E$ shifts one step forward: $Ef_k = f_{k+1}$, $E^{-1}f_k = f_{k-1}$, $E^j f_k = f_{k+j}$. $Ef_k = f_k + 1$ adds 1 to the value; $E$ shifts the position instead."
         },
         {
           "question": "For a polynomial of degree $n$ tabulated at equal steps, which differences are zero?",
           "options": [
+            "The $(n + 1)$-th and all higher differences",
             "The $n$-th differences",
             "No differences are ever zero",
-            "The $(n + 1)$-th and all higher differences",
             "The first differences"
           ],
-          "answer": 2,
+          "answer": 0,
           "explanation": "The $n$-th differences are constant, so the $(n + 1)$-th and higher differences are zero. That is why Newton's formulas reproduce polynomials exactly."
         },
         {
           "question": "For $x$: $9, 10, 11, 12, 13, 14$ and $y$: $5.0, 5.4, 6.0, 6.8, 7.5, 8.1$, what is $\\Delta^2 y_0$?",
           "options": [
             "$1.0$",
-            "$0.4$",
             "$0.2$",
+            "$0.4$",
             "$0.6$"
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": "$\\Delta y_0 = 0.4$, $\\Delta y_1 = 0.6$, so $\\Delta^2 y_0 = 0.6 - 0.4 = 0.2$. (Equivalently $y_2 - 2y_1 + y_0 = 6.0 - 10.8 + 5.0 = 0.2$.)"
         }
       ]
@@ -1139,78 +1139,78 @@ export default {
           "question": "How many terms does the binomial expansion of $(a + x)^n$ have when $n$ is a positive integer?",
           "options": [
             "$n$",
+            "$n + 1$",
             "$n - 1$",
-            "Infinitely many",
-            "$n + 1$"
+            "Infinitely many"
           ],
-          "answer": 3,
-          "explanation": "For a positive integer $n$ the expansion stops: the powers of $x$ run from $x^0$ to $x^n$, giving $n + 1$ terms."
+          "answer": 1,
+          "explanation": "For a positive integer $n$ the expansion stops: the powers of $x$ run from $x^0$ to $x^n$, giving $n + 1$ terms. Infinitely many terms only happens for negative or fractional $n$."
         },
         {
           "question": "What is the coefficient of $x^2$ in $(2 + x)^4$?",
           "options": [
             "$16$",
-            "$24$",
             "$32$",
+            "$24$",
             "$6$"
           ],
-          "answer": 1,
-          "explanation": "General term $\\binom{4}{r}2^{4-r}x^r$ with $r = 2$: $\\binom{4}{2} \\cdot 2^2 = 6 \\times 4 = 24$."
+          "answer": 2,
+          "explanation": "General term $\\binom{4}{r}2^{4-r}x^r$ with $r = 2$: $\\binom{4}{2} \\cdot 2^2 = 6 \\times 4 = 24$. $6$ is just $\\binom42$; the factor $2^2$ from the $2$ in $(2 + x)$ is easy to forget."
         },
         {
           "question": "The general (the $(r+1)$th) term of $(a + x)^n$, for a positive integer $n$, is",
           "options": [
             "$\\binom{n}{r}x^{n-r}$",
-            "$\\binom{n}{r}a^{n-r}x^r$",
             "$\\binom{n}{r}a^{n}x^r$",
-            "$\\dfrac{n!}{r!}a^{n-r}x^r$"
+            "$\\dfrac{n!}{r!}a^{n-r}x^r$",
+            "$\\binom{n}{r}a^{n-r}x^r$"
           ],
-          "answer": 1,
-          "explanation": "$\\binom{n}{r} = \\frac{n!}{r!(n-r)!}$, and the powers of $a$ and $x$ always add up to $n$."
+          "answer": 3,
+          "explanation": "$\\binom{n}{r} = \\frac{n!}{r!(n-r)!}$, and the powers of $a$ and $x$ always add up to $n$. $\\frac{n!}{r!}$ is missing the $(n - r)!$ in the denominator."
         },
         {
           "question": "For a negative or fractional power $n$, the binomial series for $(1 + x)^n$ is valid when",
           "options": [
+            "$|x| < 1$",
             "$|x| > 1$",
             "for every real $x$",
-            "$x > 0$ only",
-            "$|x| < 1$"
+            "$x > 0$ only"
           ],
-          "answer": 3,
-          "explanation": "The series never stops for such $n$, and its terms only shrink to zero when $|x| < 1$."
+          "answer": 0,
+          "explanation": "The series never stops for such $n$, and its terms only shrink to zero when $|x| < 1$. For $|x| > 1$ the terms grow, so the series diverges."
         },
         {
           "question": "The first three terms of the expansion of $(1 + x)^{-1}$ are",
           "options": [
             "$1 + x - x^2$",
-            "$1 + x + x^2$",
             "$1 - x + x^2$",
+            "$1 + x + x^2$",
             "$1 - x - x^2$"
           ],
-          "answer": 2,
-          "explanation": "$n = -1$: $1 + (-1)x + \\frac{(-1)(-2)}{2!}x^2 = 1 - x + x^2$."
+          "answer": 1,
+          "explanation": "$n = -1$: $1 + (-1)x + \\frac{(-1)(-2)}{2!}x^2 = 1 - x + x^2$. $1 + x + x^2$ is the expansion of $(1 - x)^{-1}$."
         },
         {
           "question": "Up to $x^2$, the expansion of $(1 + x)^{1/2}$ is",
           "options": [
             "$1 + 2x + x^2$",
-            "$1 + \\frac12 x - \\frac18 x^2$",
             "$1 - \\frac12 x - \\frac18 x^2$",
+            "$1 + \\frac12 x - \\frac18 x^2$",
             "$1 + \\frac12 x + \\frac18 x^2$"
           ],
-          "answer": 1,
-          "explanation": "$1 + \\frac12 x + \\frac{\\frac12\\left(-\\frac12\\right)}{2!}x^2 = 1 + \\frac12 x - \\frac18 x^2$."
+          "answer": 2,
+          "explanation": "$1 + \\frac12 x + \\frac{\\frac12\\left(-\\frac12\\right)}{2!}x^2 = 1 + \\frac12 x - \\frac18 x^2$. The $x^2$ coefficient is negative because $\\frac12\\left(-\\frac12\\right) < 0$."
         },
         {
           "question": "Using three terms of the binomial series, $\\sqrt{1.02} \\approx$",
           "options": [
-            "$1.00995$",
             "$1.00950$",
             "$1.01005$",
-            "$1.01000$"
+            "$1.01000$",
+            "$1.00995$"
           ],
-          "answer": 0,
-          "explanation": "$(1 + 0.02)^{1/2} \\approx 1 + 0.01 - \\frac18(0.0004) = 1 + 0.01 - 0.00005 = 1.00995$. True value: $1.0099505$."
+          "answer": 3,
+          "explanation": "$(1 + 0.02)^{1/2} \\approx 1 + 0.01 - \\frac18(0.0004) = 1 + 0.01 - 0.00005 = 1.00995$. True value: $1.0099505$. $1.01000$ stops after two terms; the third term subtracts $0.00005$."
         },
         {
           "question": "Use the binomial expansion of $(1 - x)^5$ with $x = 0.02$ to find $0.98^5$ correct to 4 decimal places.",
@@ -1221,7 +1221,7 @@ export default {
             "$1.1041$"
           ],
           "answer": 0,
-          "explanation": "$1 - 5(0.02) + 10(0.02)^2 - 10(0.02)^3 + \\cdots = 1 - 0.1 + 0.004 - 0.00008 = 0.90392 \\approx 0.9039$."
+          "explanation": "$1 - 5(0.02) + 10(0.02)^2 - 10(0.02)^3 + \\cdots = 1 - 0.1 + 0.004 - 0.00008 = 0.90392 \\approx 0.9039$. $0.9040$ rounds up wrongly: the digit after $0.9039$ is $2$, so it rounds down."
         },
         {
           "question": "For what values of $x$ is the binomial expansion of $(3 + x)^{-2}$ valid?",
@@ -1232,18 +1232,18 @@ export default {
             "$|x| < 1$"
           ],
           "answer": 1,
-          "explanation": "$(3 + x)^{-2} = 3^{-2}\\left(1 + \\frac{x}{3}\\right)^{-2}$, which needs $\\left|\\frac{x}{3}\\right| < 1$, i.e. $|x| < 3$."
+          "explanation": "$(3 + x)^{-2} = 3^{-2}\\left(1 + \\frac{x}{3}\\right)^{-2}$, which needs $\\left|\\frac{x}{3}\\right| < 1$, i.e. $|x| < 3$. $|x| < 1$ forgets to factor out the $3$ first."
         },
         {
           "question": "Up to $x^2$, the expansion of $(1 - 2x)^{-1/2}$ is",
           "options": [
-            "$1 + x + \\frac32 x^2$",
             "$1 + 2x + 6x^2$",
             "$1 + x + \\frac38 x^2$",
+            "$1 + x + \\frac32 x^2$",
             "$1 - x + \\frac32 x^2$"
           ],
-          "answer": 0,
-          "explanation": "With $u = -2x$, $n = -\\frac12$: $1 - \\frac12 u + \\frac38 u^2 = 1 + x + \\frac38(4x^2) = 1 + x + \\frac32 x^2$, valid for $|x| < \\frac12$."
+          "answer": 2,
+          "explanation": "With $u = -2x$, $n = -\\frac12$: $1 - \\frac12 u + \\frac38 u^2 = 1 + x + \\frac38(4x^2) = 1 + x + \\frac32 x^2$, valid for $|x| < \\frac12$. $1 + x + \\frac38 x^2$ forgets to square the $-2$ in $u = -2x$."
         },
         {
           "question": "The Taylor series of $f$ about the point $a$ is",
@@ -1254,29 +1254,29 @@ export default {
             "$f(a + h) = f(a) + hf'(a) + \\dfrac{h^2}{2!}f''(a) + \\cdots$"
           ],
           "answer": 3,
-          "explanation": "Each term is (derivative at $a$) $\\times\\ h^n \\div n!$."
+          "explanation": "Each term is (derivative at $a$) $\\times\\ h^n \\div n!$. The last option drops the powers of $h$ and the factorials."
         },
         {
           "question": "The Maclaurin series of $f$ is the Taylor series about",
           "options": [
+            "$a = 0$",
             "the root of $f$",
             "$a = 1$",
-            "$h = 0$",
-            "$a = 0$"
+            "$h = 0$"
           ],
-          "answer": 3,
-          "explanation": "Setting $a = 0$, $h = x$: $f(x) = f(0) + xf'(0) + \\frac{x^2}{2!}f''(0) + \\cdots$"
+          "answer": 0,
+          "explanation": "Setting $a = 0$, $h = x$: $f(x) = f(0) + xf'(0) + \\frac{x^2}{2!}f''(0) + \\cdots$ $h = 0$ would give only $f(a)$ and no series."
         },
         {
           "question": "The Maclaurin series of $\\sin x$ is",
           "options": [
             "$x + \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} + \\cdots$",
+            "$x - \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} - \\cdots$",
             "$1 - \\dfrac{x^2}{2!} + \\dfrac{x^4}{4!} - \\cdots$",
-            "$x - \\dfrac{x^2}{2} + \\dfrac{x^3}{3} - \\cdots$",
-            "$x - \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} - \\cdots$"
+            "$x - \\dfrac{x^2}{2} + \\dfrac{x^3}{3} - \\cdots$"
           ],
-          "answer": 3,
-          "explanation": "At $0$ the derivatives of $\\sin x$ cycle $0, 1, 0, -1$, so only odd powers appear, with alternating signs."
+          "answer": 1,
+          "explanation": "At $0$ the derivatives of $\\sin x$ cycle $0, 1, 0, -1$, so only odd powers appear, with alternating signs. Even powers starting at 1 give $\\cos x$, not $\\sin x$."
         },
         {
           "question": "The Maclaurin series of $\\cos x$ is",
@@ -1287,106 +1287,106 @@ export default {
             "$x - \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} - \\cdots$"
           ],
           "answer": 2,
-          "explanation": "The derivatives of $\\cos x$ at $0$ cycle $1, 0, -1, 0$, so only even powers appear, with alternating signs."
+          "explanation": "The derivatives of $\\cos x$ at $0$ cycle $1, 0, -1, 0$, so only even powers appear, with alternating signs. $x - \\frac{x^3}{3!} + \\cdots$ is $\\sin x$."
         },
         {
           "question": "The Maclaurin series of $\\ln(1 + x)$ is",
           "options": [
             "$1 + x - \\dfrac{x^2}{2} + \\cdots$",
-            "$x - \\dfrac{x^2}{2} + \\dfrac{x^3}{3} - \\dfrac{x^4}{4} + \\cdots$",
             "$x - \\dfrac{x^2}{2!} + \\dfrac{x^3}{3!} - \\cdots$",
-            "$x + \\dfrac{x^2}{2} + \\dfrac{x^3}{3} + \\cdots$"
+            "$x + \\dfrac{x^2}{2} + \\dfrac{x^3}{3} + \\cdots$",
+            "$x - \\dfrac{x^2}{2} + \\dfrac{x^3}{3} - \\dfrac{x^4}{4} + \\cdots$"
           ],
-          "answer": 1,
-          "explanation": "$f^{(n)}(0) = (-1)^{n-1}(n-1)!$, and dividing by $n!$ leaves $\\frac{(-1)^{n-1}}{n}$."
+          "answer": 3,
+          "explanation": "$f^{(n)}(0) = (-1)^{n-1}(n-1)!$, and dividing by $n!$ leaves $\\frac{(-1)^{n-1}}{n}$. Factorials in the denominators belong to $e^x$, $\\sin x$ and $\\cos x$, not to $\\ln(1 + x)$."
         },
         {
           "question": "For which $x$ is the series for $\\ln(1 + x)$ valid?",
           "options": [
-            "$x > -1$",
             "$-1 < x \\le 1$",
+            "$x > -1$",
             "$|x| < 2$",
             "For every real $x$"
           ],
-          "answer": 1,
-          "explanation": "The series converges for $-1 < x \\le 1$ (at $x = -1$, $\\ln 0$ is undefined)."
+          "answer": 0,
+          "explanation": "The series converges for $-1 < x \\le 1$ (at $x = -1$, $\\ln 0$ is undefined). “$x > -1$” is where $\\ln(1 + x)$ is defined, but the series only converges up to $x = 1$."
         },
         {
           "question": "Using the Maclaurin series up to the $x^4$ term, $\\cos 0.2 \\approx$ (6 d.p.)",
           "options": [
-            "$0.980067$",
             "$0.198669$",
+            "$0.980067$",
             "$0.979933$",
             "$0.980000$"
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "$1 - \\frac{0.04}{2} + \\frac{0.0016}{24} = 1 - 0.02 + 0.0000667 = 0.980067$ ($x$ in radians). $0.198669$ is $\\sin 0.2$."
         },
         {
           "question": "Using four terms of the series for $\\ln(1 + x)$, $\\ln 1.1 \\approx$",
           "options": [
             "$0.095333$",
-            "$0.095308$",
             "$0.105361$",
+            "$0.095308$",
             "$0.095000$"
           ],
-          "answer": 1,
-          "explanation": "$0.1 - 0.005 + 0.000333 - 0.000025 = 0.095308$. $0.095333$ stops at three terms; $0.105361 = -\\ln 0.9$."
+          "answer": 2,
+          "explanation": "$0.1 - 0.005 + 0.000333 - 0.000025 = 0.095308$. $0.095333$ stops at three terms; $0.105361 = -\\ln 0.9$. $0.105361$ is $-\\ln 0.9$, a different number."
         },
         {
           "question": "Expanding $\\sqrt x$ about $a = 4$ to the $h^2$ term, $\\sqrt{4.1} \\approx$",
           "options": [
             "$2.025156$",
-            "$2.024844$",
             "$2.025000$",
-            "$2.050000$"
+            "$2.050000$",
+            "$2.024844$"
           ],
-          "answer": 1,
-          "explanation": "$f(4) = 2$, $f'(4) = \\frac14$, $f''(4) = -\\frac{1}{32}$: $2 + 0.025 - \\frac{0.01}{2}\\cdot\\frac{1}{32} = 2.024844$."
+          "answer": 3,
+          "explanation": "$f(4) = 2$, $f'(4) = \\frac14$, $f''(4) = -\\frac{1}{32}$: $2 + 0.025 - \\frac{0.01}{2}\\cdot\\frac{1}{32} = 2.024844$. $2.025$ stops after the $h$ term; the negative $h^2$ term lowers it slightly."
         },
         {
           "question": "After keeping terms up to $h^n$ in a Taylor series, the truncation error is",
           "options": [
+            "$\\dfrac{h^{n+1}}{(n+1)!}f^{(n+1)}(\\xi)$ for some $\\xi$ between $a$ and $a + h$",
             "Always zero for small $h$",
             "$\\dfrac{h^{n}}{n!}f^{(n)}(a)$",
-            "$\\dfrac{h^{n+1}}{(n+1)!}f^{(n+1)}(\\xi)$ for some $\\xi$ between $a$ and $a + h$",
             "$h^{n+1}f(a)$"
           ],
-          "answer": 2,
-          "explanation": "This is the remainder term; it is small when $h$ is small and the derivatives are bounded."
+          "answer": 0,
+          "explanation": "This is the remainder term; it is small when $h$ is small and the derivatives are bounded. It is not zero: it is small when $h$ is small, but only exactly zero for polynomials of low enough degree."
         },
         {
           "question": "The exponential series is",
           "options": [
             "$e^x = \\displaystyle\\sum_{n=0}^{\\infty}nx^n$",
-            "$e^x = \\displaystyle\\sum_{n=0}^{\\infty}(-1)^n\\dfrac{x^n}{n!}$",
             "$e^x = \\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{x^n}{n!}$",
+            "$e^x = \\displaystyle\\sum_{n=0}^{\\infty}(-1)^n\\dfrac{x^n}{n!}$",
             "$e^x = \\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{x^n}{n}$"
           ],
-          "answer": 2,
-          "explanation": "Every derivative of $e^x$ equals $1$ at $x = 0$, so the Maclaurin coefficients are $\\frac{1}{n!}$."
+          "answer": 1,
+          "explanation": "Every derivative of $e^x$ equals $1$ at $x = 0$, so the Maclaurin coefficients are $\\frac{1}{n!}$. Alternating signs give $e^{-x}$."
         },
         {
           "question": "What is the coefficient of $x^5$ in the series for $e^x$?",
           "options": [
             "$\\dfrac{1}{720}$",
-            "$\\dfrac{1}{120}$",
             "$\\dfrac15$",
+            "$\\dfrac{1}{120}$",
             "$\\dfrac{1}{24}$"
           ],
-          "answer": 1,
-          "explanation": "$\\frac{x^5}{5!}$ and $5! = 120$."
+          "answer": 2,
+          "explanation": "$\\frac{x^5}{5!}$ and $5! = 120$. $\\frac15$ forgets the factorial."
         },
         {
           "question": "Use the exponential series to find $e^{0.5}$ correct to 4 decimal places.",
           "options": [
             "$1.6484$",
-            "$1.6487$",
             "$1.6458$",
-            "$1.6500$"
+            "$1.6500$",
+            "$1.6487$"
           ],
-          "answer": 1,
-          "explanation": "$1 + 0.5 + 0.125 + 0.020833 + 0.002604 + 0.000260 + 0.000022 + \\cdots = 1.648721$, so $1.6487$."
+          "answer": 3,
+          "explanation": "$1 + 0.5 + 0.125 + 0.020833 + 0.002604 + 0.000260 + 0.000022 + \\cdots = 1.648721$, so $1.6487$. $1.6458$ stops too early, after four terms."
         },
         {
           "question": "Use the exponential series to find $e^{0.2}$ correct to 4 decimal places.",
@@ -1397,18 +1397,18 @@ export default {
             "$1.2200$"
           ],
           "answer": 0,
-          "explanation": "$1 + 0.2 + 0.02 + 0.0013333 + 0.0000667 = 1.2214000$; the next term ($0.0000027$) can't change the 4th decimal place."
+          "explanation": "$1 + 0.2 + 0.02 + 0.0013333 + 0.0000667 = 1.2214000$; the next term ($0.0000027$) can't change the 4th decimal place. $1.2200$ stops after three terms."
         },
         {
           "question": "How many terms of $e = \\sum \\frac{1}{n!}$ (starting from $n = 0$) are needed for $e$ correct to 4 decimal places?",
           "options": [
             "$6$ (up to $\\frac{1}{5!}$)",
+            "$8$ (up to $\\frac{1}{7!}$)",
             "$5$ (up to $\\frac{1}{4!}$)",
-            "$12$ (up to $\\frac{1}{11!}$)",
-            "$8$ (up to $\\frac{1}{7!}$)"
+            "$12$ (up to $\\frac{1}{11!}$)"
           ],
-          "answer": 3,
-          "explanation": "Up to $\\frac{1}{7!}$ the sum is $2.718254$; the rest is below $0.00003 < 0.00005$, so $e = 2.7183$ (4 d.p.)."
+          "answer": 1,
+          "explanation": "Up to $\\frac{1}{7!}$ the sum is $2.718254$; the rest is below $0.00003 < 0.00005$, so $e = 2.7183$ (4 d.p.). Six terms give $2.716667$, which is not yet correct to 4 d.p."
         }
       ]
     },
@@ -1432,10 +1432,10 @@ export default {
           "options": [
             "$B = 0$",
             "$A$ is symmetric",
-            "$\\det A < 0$",
-            "$\\det A = 0$"
+            "$\\det A = 0$",
+            "$\\det A < 0$"
           ],
-          "answer": 3,
+          "answer": 2,
           "explanation": "$A^{-1} = \\frac{1}{\\det A}\\operatorname{adj}A$ exists only if $\\det A \\neq 0$. If $\\det A = 0$, $A$ is singular and the system has no unique solution."
         },
         {
@@ -1447,7 +1447,7 @@ export default {
             "$-1$"
           ],
           "answer": 3,
-          "explanation": "$\\det A = 2\\begin{vmatrix}-2 & 1\\\\ -1 & 3\\end{vmatrix} - 3\\begin{vmatrix}1 & 1\\\\ 2 & 3\\end{vmatrix} + 4\\begin{vmatrix}1 & -2\\\\ 2 & -1\\end{vmatrix} = 2(-5) - 3(1) + 4(3) = -1$."
+          "explanation": "$\\det A = 2\\begin{vmatrix}-2 & 1\\\\ -1 & 3\\end{vmatrix} - 3\\begin{vmatrix}1 & 1\\\\ 2 & 3\\end{vmatrix} + 4\\begin{vmatrix}1 & -2\\\\ 2 & -1\\end{vmatrix} = 2(-5) - 3(1) + 4(3) = -1$. $13$ forgets the alternating sign on the middle cofactor."
         },
         {
           "question": "Solve $2x_1 + 3x_2 + 4x_3 = 0$, $x_1 - 2x_2 + x_3 = 3$, $2x_1 - x_2 + 3x_3 = 1$.",
@@ -1464,34 +1464,34 @@ export default {
           "question": "Solve $2x + 4y = 0$, $2x + 3y = 4$ by the matrix inverse method.",
           "options": [
             "$x = -8,\\ y = 4$",
-            "$x = 4,\\ y = -2$",
             "$x = 8,\\ y = -4$",
+            "$x = 4,\\ y = -2$",
             "$x = 2,\\ y = -1$"
           ],
-          "answer": 2,
-          "explanation": "$\\det A = 6 - 8 = -2$, $A^{-1} = \\frac{1}{-2}\\begin{pmatrix}3 & -4\\\\ -2 & 2\\end{pmatrix}$, so $X = \\frac{1}{-2}\\begin{pmatrix}-16\\\\ 8\\end{pmatrix} = \\begin{pmatrix}8\\\\ -4\\end{pmatrix}$."
+          "answer": 1,
+          "explanation": "$\\det A = 6 - 8 = -2$, $A^{-1} = \\frac{1}{-2}\\begin{pmatrix}3 & -4\\\\ -2 & 2\\end{pmatrix}$, so $X = \\frac{1}{-2}\\begin{pmatrix}-16\\\\ 8\\end{pmatrix} = \\begin{pmatrix}8\\\\ -4\\end{pmatrix}$. $x = -8,\\ y = 4$ comes from dropping the minus sign in $\\frac{1}{-2}$."
         },
         {
           "question": "The adjoint $\\operatorname{adj}A$ of a square matrix $A$ is",
           "options": [
             "$\\frac{1}{\\det A}A$",
-            "the transpose of the matrix of cofactors",
             "$A^T$",
+            "the transpose of the matrix of cofactors",
             "the matrix of minors"
           ],
-          "answer": 1,
+          "answer": 2,
           "explanation": "Find every cofactor $C_{ij} = (-1)^{i+j}M_{ij}$, then transpose. Equivalently, take the cofactors of $A^T$."
         },
         {
           "question": "For a $3 \\times 3$ matrix, what sign does the cofactor $C_{12}$ carry relative to the minor $M_{12}$?",
           "options": [
-            "$-$",
             "It is always zero",
             "It depends on $\\det A$",
-            "$+$"
+            "$+$",
+            "$-$"
           ],
-          "answer": 0,
-          "explanation": "$C_{12} = (-1)^{1+2}M_{12} = -M_{12}$. The sign pattern is $\\begin{smallmatrix}+ & - & +\\\\ - & + & -\\\\ + & - & +\\end{smallmatrix}$."
+          "answer": 3,
+          "explanation": "$C_{12} = (-1)^{1+2}M_{12} = -M_{12}$. The sign pattern is $\\begin{smallmatrix}+ & - & +\\\\ - & + & -\\\\ + & - & +\\end{smallmatrix}$. The sign depends only on the position $(i + j)$, not on the determinant."
         },
         {
           "question": "The inverse of $\\begin{pmatrix}a & b\\\\ c & d\\end{pmatrix}$ (when $ad - bc \\neq 0$) is",
@@ -1502,7 +1502,7 @@ export default {
             "$\\begin{pmatrix}d & -b\\\\ -c & a\\end{pmatrix}$"
           ],
           "answer": 0,
-          "explanation": "Swap the diagonal entries, change the sign of the off-diagonal entries, and divide by the determinant $ad - bc$."
+          "explanation": "Swap the diagonal entries, change the sign of the off-diagonal entries, and divide by the determinant $ad - bc$. The second option forgets to swap $a$ and $d$."
         },
         {
           "question": "In the LU (Doolittle) method, $A = LU$ where",
@@ -1513,29 +1513,29 @@ export default {
             "$L$ is upper triangular and $U$ is lower triangular"
           ],
           "answer": 1,
-          "explanation": "Fixing $l_{ii} = 1$ makes the factorisation unique: there are $n^2$ equations, and this leaves exactly $n^2$ unknowns."
+          "explanation": "Fixing $l_{ii} = 1$ makes the factorisation unique: there are $n^2$ equations, and this leaves exactly $n^2$ unknowns. Crout’s method puts the 1s on $U$’s diagonal instead; Doolittle puts them on $L$’s."
         },
         {
           "question": "After factorising $A = LU$, the system $AX = B$ is solved by",
           "options": [
             "solving $UY = B$ by back substitution, then $LX = Y$",
-            "solving $LY = B$ by forward substitution, then $UX = Y$ by back substitution",
             "inverting $L$ and $U$",
+            "solving $LY = B$ by forward substitution, then $UX = Y$ by back substitution",
             "Gauss-Seidel iteration on $L$"
           ],
-          "answer": 1,
-          "explanation": "$AX = LUX = B$. Put $Y = UX$: first $LY = B$ (forward substitution, $y_1$ first), then $UX = Y$ (back substitution, $x_n$ first)."
+          "answer": 2,
+          "explanation": "$AX = LUX = B$. Put $Y = UX$: first $LY = B$ (forward substitution, $y_1$ first), then $UX = Y$ (back substitution, $x_n$ first). Forward substitution must come first because $L$ is lower triangular."
         },
         {
           "question": "For $A = \\begin{pmatrix}2 & 3 & 4\\\\ 1 & -2 & 1\\\\ 2 & -1 & 3\\end{pmatrix}$, Doolittle's LU gives $u_{11} = 2$, $u_{12} = 3$, $l_{21} = \\frac12$. What is $u_{22}$?",
           "options": [
             "$\\frac72$",
             "$-2$",
-            "$-\\frac72$",
-            "$-\\frac12$"
+            "$-\\frac12$",
+            "$-\\frac72$"
           ],
-          "answer": 2,
-          "explanation": "$a_{22} = l_{21}u_{12} + u_{22}$, so $-2 = \\frac12(3) + u_{22}$, giving $u_{22} = -2 - \\frac32 = -\\frac72$."
+          "answer": 3,
+          "explanation": "$a_{22} = l_{21}u_{12} + u_{22}$, so $-2 = \\frac12(3) + u_{22}$, giving $u_{22} = -2 - \\frac32 = -\\frac72$. $\\frac72$ drops the minus sign: $-2 - 1.5 = -3.5$."
         },
         {
           "question": "For the same matrix, $l_{31} = 1$, $u_{12} = 3$ and $u_{22} = -\\frac72$. What is $l_{32}$?",
@@ -1546,18 +1546,18 @@ export default {
             "$\\frac47$"
           ],
           "answer": 0,
-          "explanation": "$a_{32} = l_{31}u_{12} + l_{32}u_{22}$: $-1 = 3 - \\frac72 l_{32}$, so $\\frac72 l_{32} = 4$ and $l_{32} = \\frac87$."
+          "explanation": "$a_{32} = l_{31}u_{12} + l_{32}u_{22}$: $-1 = 3 - \\frac72 l_{32}$, so $\\frac72 l_{32} = 4$ and $l_{32} = \\frac87$. $-\\frac87$ is a sign slip when moving $3$ across."
         },
         {
           "question": "If $A = LU$ with $L$ having 1s on its diagonal, then $\\det A$ equals",
           "options": [
             "$l_{21}l_{32}\\cdots$",
+            "$u_{11}u_{22}\\cdots u_{nn}$",
             "$\\det L$",
-            "$1$",
-            "$u_{11}u_{22}\\cdots u_{nn}$"
+            "$1$"
           ],
-          "answer": 3,
-          "explanation": "$\\det A = \\det L \\det U = 1 \\times (u_{11}u_{22}\\cdots u_{nn})$. For example, if $u_{11} = 2$, $u_{22} = -\\frac72$, $u_{33} = \\frac17$: $2 \\cdot (-\\frac72) \\cdot \\frac17 = -1$ ✓."
+          "answer": 1,
+          "explanation": "$\\det A = \\det L \\det U = 1 \\times (u_{11}u_{22}\\cdots u_{nn})$. For example, if $u_{11} = 2$, $u_{22} = -\\frac72$, $u_{33} = \\frac17$: $2 \\cdot (-\\frac72) \\cdot \\frac17 = -1$ ✓. $\\det L = 1$, so it can’t be the answer unless $\\det A$ happens to be 1."
         },
         {
           "question": "What is the main practical advantage of LU factorisation?",
@@ -1584,56 +1584,56 @@ export default {
         {
           "question": "In the Gaussian method, the first step divides equation (1) by $a_{11}$, giving coefficients",
           "options": [
+            "$b_{1j} = \\dfrac{a_{1j}}{a_{11}}$",
             "$b_{1j} = \\dfrac{a_{11}}{a_{1j}}$",
             "$b_{1j} = a_{1j} - a_{11}$",
-            "$b_{1j} = \\dfrac{a_{1j}}{a_{11}}$",
             "$b_{1j} = a_{1j}a_{11}$"
           ],
-          "answer": 2,
-          "explanation": "Dividing row 1 by the pivot $a_{11}$ makes its leading coefficient 1: $b_{1j} = \\frac{a_{1j}}{a_{11}}$."
+          "answer": 0,
+          "explanation": "Dividing row 1 by the pivot $a_{11}$ makes its leading coefficient 1: $b_{1j} = \\frac{a_{1j}}{a_{11}}$. Dividing the other way round would not turn the pivot into 1."
         },
         {
           "question": "The Gaussian elimination formula for the new coefficients after eliminating $x_1$ is",
           "options": [
             "$a^{(1)}_{ij} = a_{ij} + a_{i1}b_{1j}$",
+            "$a^{(1)}_{ij} = a_{ij} - a_{i1}b_{1j}$",
             "$a^{(1)}_{ij} = a_{ij}b_{1j}$",
-            "$a^{(1)}_{ij} = \\dfrac{a_{ij}}{a_{i1}}$",
-            "$a^{(1)}_{ij} = a_{ij} - a_{i1}b_{1j}$"
+            "$a^{(1)}_{ij} = \\dfrac{a_{ij}}{a_{i1}}$"
           ],
-          "answer": 3,
+          "answer": 1,
           "explanation": "Multiply the normalised row 1 by $a_{i1}$ and subtract it from row $i$: new $=$ old $-$ (column entry) $\\times$ (pivot-row entry)."
         },
         {
           "question": "During Gaussian elimination the pivot $a_{11}$ is zero. What should you do?",
           "options": [
             "Stop: the system has no solution",
-            "Interchange equation (1) with a lower equation whose $x_1$ coefficient is non-zero (preferably the largest)",
             "Divide by a small number instead",
+            "Interchange equation (1) with a lower equation whose $x_1$ coefficient is non-zero (preferably the largest)",
             "Set $x_1 = 0$"
           ],
-          "answer": 1,
+          "answer": 2,
           "explanation": "Swapping equations does not change the solution. Choosing the largest available pivot (partial pivoting) also keeps rounding errors small."
         },
         {
           "question": "In a $4 \\times 4$ Gaussian elimination, $a_{24} = -8.5$, $a_{21} = 0.4$ and $b_{14} = 0.5$. What is $a^{(1)}_{24}$?",
           "options": [
             "$8.7$",
-            "$-8.7$",
             "$-8.3$",
-            "$-8.5$"
+            "$-8.5$",
+            "$-8.7$"
           ],
-          "answer": 1,
-          "explanation": "$a^{(1)}_{24} = a_{24} - a_{21}b_{14} = -8.5 - 0.4(0.5) = -8.7$. Subtracting $0.2$ makes it more negative."
+          "answer": 3,
+          "explanation": "$a^{(1)}_{24} = a_{24} - a_{21}b_{14} = -8.5 - 0.4(0.5) = -8.7$. Subtracting $0.2$ makes it more negative. $-8.3$ adds $0.2$ instead of subtracting it."
         },
         {
           "question": "In the method of simple iteration, writing $AX = B$ as $X = CX + F$ gives",
           "options": [
+            "$c_{ij} = -\\dfrac{a_{ij}}{a_{ii}}\\ (i \\neq j)$, $c_{ii} = 0$, $f_i = \\dfrac{b_i}{a_{ii}}$",
             "$c_{ij} = \\dfrac{a_{ij}}{a_{ii}}$, $f_i = b_i$",
             "$c_{ij} = a_{ij}$, $f_i = b_i$",
-            "$c_{ij} = -a_{ii}a_{ij}$, $f_i = a_{ii}b_i$",
-            "$c_{ij} = -\\dfrac{a_{ij}}{a_{ii}}\\ (i \\neq j)$, $c_{ii} = 0$, $f_i = \\dfrac{b_i}{a_{ii}}$"
+            "$c_{ij} = -a_{ii}a_{ij}$, $f_i = a_{ii}b_i$"
           ],
-          "answer": 3,
+          "answer": 0,
           "explanation": "Solve equation $i$ for $x_i$: $x_i = \\frac{1}{a_{ii}}\\left(b_i - \\sum_{j \\neq i} a_{ij}x_j\\right)$. So $c_{ij} = -\\frac{a_{ij}}{a_{ii}}$ and $f_i = \\frac{b_i}{a_{ii}}$."
         },
         {
@@ -1650,12 +1650,12 @@ export default {
         {
           "question": "For the system $10x_1 + x_2 + x_3 = 12$, $2x_1 + 10x_2 + x_3 = 13$, $2x_1 + 2x_2 + 10x_3 = 14$, what is $\\alpha$, the largest row sum of $|c_{ij}|$?",
           "options": [
-            "$0.4$",
             "$0.3$",
             "$1.2$",
+            "$0.4$",
             "$0.2$"
           ],
-          "answer": 0,
+          "answer": 2,
           "explanation": "Row sums: $\\frac{1 + 1}{10} = 0.2$, $\\frac{2 + 1}{10} = 0.3$, $\\frac{2 + 2}{10} = 0.4$. So $\\alpha = 0.4 < 1$ and the iteration converges."
         },
         {
@@ -1672,23 +1672,23 @@ export default {
         {
           "question": "Apply one Gauss-Seidel step to $10x_1 + x_2 + x_3 = 12$, $2x_1 + 10x_2 + x_3 = 13$, $2x_1 + 2x_2 + 10x_3 = 14$ from $x^{(0)} = (0, 0, 0)^T$.",
           "options": [
-            "$x^{(1)} = (1.2, 1.06, 1.4)^T$",
             "$x^{(1)} = (1.2, 1.06, 0.948)^T$",
+            "$x^{(1)} = (1.2, 1.06, 1.4)^T$",
             "$x^{(1)} = (1.2, 1.3, 1.4)^T$",
             "$x^{(1)} = (1, 1, 1)^T$"
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "$x_1 = 1.2$; $x_2 = \\frac{13 - 2(1.2)}{10} = 1.06$ (uses the new $x_1$); $x_3 = \\frac{14 - 2(1.2) - 2(1.06)}{10} = 0.948$. The exact solution is $(1, 1, 1)$."
         },
         {
           "question": "What is the key difference between Gauss-Seidel and simple iteration?",
           "options": [
             "Gauss-Seidel needs $\\det A$",
-            "Simple iteration is a direct method",
             "Gauss-Seidel uses each new value $x_i^{(k+1)}$ as soon as it is computed",
+            "Simple iteration is a direct method",
             "Gauss-Seidel does not need a starting vector"
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": "Simple iteration builds all of $x^{(k+1)}$ from $x^{(k)}$. Gauss-Seidel uses the newest values immediately, so it usually converges in fewer iterations."
         }
       ]
@@ -1702,22 +1702,22 @@ export default {
           "options": [
             "$Ax = b$, where $A$ is $n \\times n$",
             "$F(x) = x$, where $F: \\mathbb{R} \\to \\mathbb{R}^n$",
-            "$x = A^{-1}b$",
-            "$F(x) = 0$, where $F: \\mathbb{R}^n \\to \\mathbb{R}^n$"
+            "$F(x) = 0$, where $F: \\mathbb{R}^n \\to \\mathbb{R}^n$",
+            "$x = A^{-1}b$"
           ],
-          "answer": 3,
-          "explanation": "$F(x) = (f_1(x), \\ldots, f_n(x))^T$ maps the vector $x = (x_1, \\ldots, x_n)^T$ into $\\mathbb{R}^n$."
+          "answer": 2,
+          "explanation": "$F(x) = (f_1(x), \\ldots, f_n(x))^T$ maps the vector $x = (x_1, \\ldots, x_n)^T$ into $\\mathbb{R}^n$. $Ax = b$ is the special case when every equation is linear."
         },
         {
           "question": "Which of these systems is non-linear?",
           "options": [
-            "$x^2 + y^2 = 4,\\ x - y = 1$",
             "$0.5x - 0.2y = 1,\\ 4y = x$",
             "$x + 2y + z = 1,\\ y - z = 0,\\ 3x = 6$",
-            "$2x + 3y = 5,\\ x - y = 1$"
+            "$2x + 3y = 5,\\ x - y = 1$",
+            "$x^2 + y^2 = 4,\\ x - y = 1$"
           ],
-          "answer": 0,
-          "explanation": "The squared unknowns make the first system non-linear; the others contain only first powers."
+          "answer": 3,
+          "explanation": "The squared unknowns make the first system non-linear; the others contain only first powers. The other systems use only first powers of the unknowns, so they are linear."
         },
         {
           "question": "A function $G$ has a fixed point at $p$ if",
@@ -1728,7 +1728,7 @@ export default {
             "$G(p) = p$"
           ],
           "answer": 3,
-          "explanation": "A fixed point is left unchanged by $G$."
+          "explanation": "A fixed point is left unchanged by $G$. $G(p) = 0$ would be a root of $G$, not a fixed point."
         },
         {
           "question": "What are the fixed points of $g(x) = x^2$?",
@@ -1750,40 +1750,40 @@ export default {
             "compute the Jacobian of $F$"
           ],
           "answer": 1,
-          "explanation": "A fixed point of $G$ is then exactly a solution of $F(x) = 0$."
+          "explanation": "A fixed point of $G$ is then exactly a solution of $F(x) = 0$. Computing the Jacobian is the first step of Newton’s method, not of fixed-point iteration."
         },
         {
           "question": "The fixed-point iteration for a system is",
           "options": [
             "$x^{(k)} = G^{-1}(x^{(k-1)})$",
             "$x^{(k)} = x^{(k-1)} - G(x^{(k-1)})$",
-            "$x^{(k)} = F(x^{(k-1)})$",
-            "$x^{(k)} = G(x^{(k-1)})$, $k \\ge 1$"
+            "$x^{(k)} = G(x^{(k-1)})$, $k \\ge 1$",
+            "$x^{(k)} = F(x^{(k-1)})$"
           ],
-          "answer": 3,
-          "explanation": "Start from $x^{(0)}$ and apply $G$ repeatedly."
+          "answer": 2,
+          "explanation": "Start from $x^{(0)}$ and apply $G$ repeatedly. Applying $F$ itself would not converge to its root; you iterate $G$."
         },
         {
           "question": "$G$ is continuous on $D = \\{a_i \\le x_i \\le b_i\\}$. Which extra condition guarantees that $G$ has a fixed point in $D$?",
           "options": [
             "$\\det G \\ne 0$",
-            "$G(x) \\in D$ whenever $x \\in D$",
             "$G(x) = 0$ somewhere in $D$",
-            "$G$ is linear"
+            "$G$ is linear",
+            "$G(x) \\in D$ whenever $x \\in D$"
           ],
-          "answer": 1,
-          "explanation": "If $G$ maps $D$ into itself, the fixed-point theorem gives at least one fixed point in $D$."
+          "answer": 3,
+          "explanation": "If $G$ maps $D$ into itself, the fixed-point theorem gives at least one fixed point in $D$. Being linear is not required; mapping $D$ into itself is."
         },
         {
           "question": "Which condition makes the fixed point unique and the iteration convergent from any $x^{(0)} \\in D$?",
           "options": [
+            "$\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le \\frac{K}{n}$ on $D$ for some $K < 1$",
             "$\\det J \\ne 0$ at $x^{(0)}$",
             "$\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le K$ for some $K > 1$",
-            "$G(x^{(0)}) = x^{(0)}$",
-            "$\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le \\frac{K}{n}$ on $D$ for some $K < 1$"
+            "$G(x^{(0)}) = x^{(0)}$"
           ],
-          "answer": 3,
-          "explanation": "Together with continuous partial derivatives and $G(D) \\subset D$, this is the condition of the fixed-point theorem."
+          "answer": 0,
+          "explanation": "Together with continuous partial derivatives and $G(D) \\subset D$, this is the condition of the fixed-point theorem. $K > 1$ would let errors grow instead of shrink."
         },
         {
           "question": "Under the fixed-point theorem, the error after $k$ iterations satisfies",
@@ -1794,95 +1794,95 @@ export default {
             "$\\|x^{(k)} - p\\|_\\infty \\le K^k$"
           ],
           "answer": 1,
-          "explanation": "Because $K < 1$, $K^k \\to 0$, so the bound shrinks to zero."
+          "explanation": "Because $K < 1$, $K^k \\to 0$, so the bound shrinks to zero. The first wrong option is upside down and would grow as $k$ increases."
         },
         {
           "question": "Solving $3x_1 - \\cos(x_2x_3) - \\frac12 = 0$ for $x_1$ gives",
           "options": [
-            "$g_1 = \\frac13\\cos(x_2x_3) + \\frac16$",
             "$g_1 = \\frac13\\cos(x_2x_3) - \\frac16$",
             "$g_1 = 3\\cos(x_2x_3) + \\frac12$",
+            "$g_1 = \\frac13\\cos(x_2x_3) + \\frac16$",
             "$g_1 = \\cos(x_2x_3) + \\frac12$"
           ],
-          "answer": 0,
-          "explanation": "$3x_1 = \\cos(x_2x_3) + \\frac12$, then divide by 3."
+          "answer": 2,
+          "explanation": "$3x_1 = \\cos(x_2x_3) + \\frac12$, then divide by 3. Moving $\\frac12$ across makes it $+\\frac12$, which becomes $+\\frac16$ after dividing by 3."
         },
         {
           "question": "For a $3 \\times 3$ system, every $\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le 0.281$ on $D$. What is $K$, and does the iteration converge?",
           "options": [
             "$K = 0.094$: it converges",
-            "$K = 0.843 < 1$: it converges to a unique fixed point",
             "$K = 0.843$: it may diverge",
-            "$K = 0.281$: it converges"
+            "$K = 0.281$: it converges",
+            "$K = 0.843 < 1$: it converges to a unique fixed point"
           ],
-          "answer": 1,
-          "explanation": "$\\frac{K}{n} = 0.281$ with $n = 3$ gives $K = 0.843$, which is less than 1."
+          "answer": 3,
+          "explanation": "$\\frac{K}{n} = 0.281$ with $n = 3$ gives $K = 0.843$, which is less than 1. Using $K = 0.281$ forgets to multiply by $n = 3$."
         },
         {
           "question": "With $g_1 = \\frac13\\cos(x_2x_3) + \\frac16$ and $x^{(0)} = (0.1, 0.1, -0.1)^T$, $x_1^{(1)} \\approx$",
           "options": [
+            "$0.49998$",
             "$0.33332$",
             "$0.16667$",
-            "$1.16662$",
-            "$0.49998$"
+            "$1.16662$"
           ],
-          "answer": 3,
-          "explanation": "$\\frac13\\cos(-0.01) + \\frac16 = 0.333317 + 0.166667 = 0.49998$."
+          "answer": 0,
+          "explanation": "$\\frac13\\cos(-0.01) + \\frac16 = 0.333317 + 0.166667 = 0.49998$. $0.33332$ forgets to add the $\\frac16$."
         },
         {
           "question": "The fixed-point iteration for $3x_1 - \\cos(x_2x_3) - \\frac12 = 0$, $x_1^2 - 81(x_2 + 0.1)^2 + \\sin x_3 + 1.06 = 0$, $e^{-x_1x_2} + 20x_3 + \\frac{10\\pi - 3}{3} = 0$ converges to",
           "options": [
-            "$\\left(0.5,\\ 0,\\ -\\frac{\\pi}{6}\\right)$",
             "$\\left(1,\\ 0,\\ -\\frac{\\pi}{3}\\right)$",
+            "$\\left(0.5,\\ 0,\\ -\\frac{\\pi}{6}\\right)$",
             "$(0.5,\\ 0.1,\\ -0.5)$",
             "$(0,\\ 0,\\ 0)$"
           ],
-          "answer": 0,
-          "explanation": "Check: $3(0.5) - \\cos 0 - \\frac12 = 0$, $0.25 - 0.81 - \\frac12 + 1.06 = 0$, $1 - \\frac{10\\pi}{6} + \\frac{10\\pi - 3}{3} = 0$."
+          "answer": 1,
+          "explanation": "Check: $3(0.5) - \\cos 0 - \\frac12 = 0$, $0.25 - 0.81 - \\frac12 + 1.06 = 0$, $1 - \\frac{10\\pi}{6} + \\frac{10\\pi - 3}{3} = 0$. Substituting it back into all three equations is the quickest check."
         },
         {
           "question": "A usual stopping rule for fixed-point iteration is to stop when",
           "options": [
             "$x^{(k)} = 0$",
-            "$\\|x^{(k)} - x^{(k-1)}\\|_\\infty$ is below the tolerance",
             "$k = n$",
+            "$\\|x^{(k)} - x^{(k-1)}\\|_\\infty$ is below the tolerance",
             "$K < 1$"
           ],
-          "answer": 1,
-          "explanation": "Successive iterates agreeing to the required accuracy signals convergence."
+          "answer": 2,
+          "explanation": "Successive iterates agreeing to the required accuracy signals convergence. $K < 1$ is a condition for convergence, not a stopping rule."
         },
         {
           "question": "What is $\\|(0.3, -0.7, 0.2)^T\\|_\\infty$?",
           "options": [
-            "$0.7$",
             "$1.2$",
             "$0.787$",
-            "$0.2$"
+            "$0.2$",
+            "$0.7$"
           ],
-          "answer": 0,
-          "explanation": "The infinity norm is the largest absolute component: $\\max(0.3, 0.7, 0.2) = 0.7$."
+          "answer": 3,
+          "explanation": "The infinity norm is the largest absolute component: $\\max(0.3, 0.7, 0.2) = 0.7$. $1.2$ adds the absolute values, which is the 1-norm."
         },
         {
           "question": "The Jacobian matrix of $F = (f_1, \\ldots, f_n)^T$ is",
           "options": [
+            "$J(x) = \\left[\\frac{\\partial f_i}{\\partial x_j}\\right]$: row $i$ holds the partial derivatives of $f_i$",
             "$J(x) = \\left[f_i(x_j)\\right]$",
             "the matrix of coefficients $a_{ij}$ of the system",
-            "$J(x) = \\left[\\frac{\\partial x_j}{\\partial f_i}\\right]$",
-            "$J(x) = \\left[\\frac{\\partial f_i}{\\partial x_j}\\right]$: row $i$ holds the partial derivatives of $f_i$"
+            "$J(x) = \\left[\\frac{\\partial x_j}{\\partial f_i}\\right]$"
           ],
-          "answer": 3,
-          "explanation": "Row = function, column = variable."
+          "answer": 0,
+          "explanation": "Row = function, column = variable. The coefficient matrix only applies to linear systems."
         },
         {
           "question": "Newton’s method for the system $F(x) = 0$ is",
           "options": [
-            "$x^{(k+1)} = x^{(k)} - J^{-1}(x^{(k)})F(x^{(k)})$",
             "$x^{(k+1)} = x^{(k)} + J(x^{(k)})F(x^{(k)})$",
+            "$x^{(k+1)} = x^{(k)} - J^{-1}(x^{(k)})F(x^{(k)})$",
             "$x^{(k+1)} = J^{-1}(x^{(k)})F(x^{(k)})$",
             "$x^{(k+1)} = x^{(k)} - \\dfrac{F(x^{(k)})}{x^{(k)}}$"
           ],
-          "answer": 0,
-          "explanation": "It generalises $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$: $f'$ becomes the Jacobian and division becomes multiplication by $J^{-1}$."
+          "answer": 1,
+          "explanation": "It generalises $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$: $f'$ becomes the Jacobian and division becomes multiplication by $J^{-1}$. Adding $JF$ instead of subtracting $J^{-1}F$ moves away from the root."
         },
         {
           "question": "Newton’s method for systems cannot be applied at $x^{(k)}$ when",
@@ -1893,29 +1893,29 @@ export default {
             "$n > 2$"
           ],
           "answer": 2,
-          "explanation": "The step needs $J^{-1}$ (or solving $Jy = -F$), which requires a non-singular Jacobian."
+          "explanation": "The step needs $J^{-1}$ (or solving $Jy = -F$), which requires a non-singular Jacobian. Negative components of $F$ are normal; only a singular Jacobian stops the method."
         },
         {
           "question": "For $f_2 = 2x_1^2 + x_2^2 - 4x_3$, row 2 of the Jacobian is",
           "options": [
             "$(4x_1,\\ 2x_2,\\ 0)$",
-            "$(4x_1,\\ 2x_2,\\ -4)$",
             "$(4x_1,\\ 2x_2,\\ -4x_3)$",
-            "$(2x_1,\\ 2x_2,\\ -4)$"
+            "$(2x_1,\\ 2x_2,\\ -4)$",
+            "$(4x_1,\\ 2x_2,\\ -4)$"
           ],
-          "answer": 1,
-          "explanation": "$\\frac{\\partial f_2}{\\partial x_1} = 4x_1$, $\\frac{\\partial f_2}{\\partial x_2} = 2x_2$, $\\frac{\\partial f_2}{\\partial x_3} = -4$."
+          "answer": 3,
+          "explanation": "$\\frac{\\partial f_2}{\\partial x_1} = 4x_1$, $\\frac{\\partial f_2}{\\partial x_2} = 2x_2$, $\\frac{\\partial f_2}{\\partial x_3} = -4$. The $x_3$ term is $-4x_3$, so its derivative is the constant $-4$."
         },
         {
           "question": "For $F = (x_1^2 + x_2^2 + x_3^2 - 1,\\ 2x_1^2 + x_2^2 - 4x_3,\\ 3x_1^2 - 4x_2 + x_3^2)^T$, what is $\\det J$ at $(0.5, 0.5, 0.5)$?",
           "options": [
-            "$-8$",
             "$-40$",
+            "$-8$",
             "$40$",
             "$0$"
           ],
-          "answer": 1,
-          "explanation": "$J = \\begin{pmatrix} 1 & 1 & 1 \\\\ 2 & 1 & -4 \\\\ 3 & -4 & 1 \\end{pmatrix}$: $1(-15) - 1(14) + 1(-11) = -40$."
+          "answer": 0,
+          "explanation": "$J = \\begin{pmatrix} 1 & 1 & 1 \\\\ 2 & 1 & -4 \\\\ 3 & -4 & 1 \\end{pmatrix}$: $1(-15) - 1(14) + 1(-11) = -40$. $40$ is a sign slip in the expansion along the first row."
         },
         {
           "question": "For the same $F$, what is $F(0.5, 0.5, 0.5)$?",
@@ -1926,7 +1926,7 @@ export default {
             "$(0.75,\\ 0.75,\\ 1.0)^T$"
           ],
           "answer": 1,
-          "explanation": "$0.75 - 1 = -0.25$; $0.5 + 0.25 - 2 = -1.25$; $0.75 - 2 + 0.25 = -1.0$."
+          "explanation": "$0.75 - 1 = -0.25$; $0.5 + 0.25 - 2 = -1.25$; $0.75 - 2 + 0.25 = -1.0$. A sign slip in the middle entry gives $+1.25$, but $0.5 + 0.25 - 2$ is negative."
         },
         {
           "question": "Given $J^{-1}F = (-0.375, 0, 0.125)^T$ at $x^{(0)} = (0.5, 0.5, 0.5)^T$, Newton’s method gives $x^{(1)} =$",
@@ -1937,18 +1937,18 @@ export default {
             "$(-0.375,\\ 0,\\ 0.125)^T$"
           ],
           "answer": 2,
-          "explanation": "$x^{(1)} = x^{(0)} - J^{-1}F = (0.5 + 0.375,\\ 0.5 - 0,\\ 0.5 - 0.125)$."
+          "explanation": "$x^{(1)} = x^{(0)} - J^{-1}F = (0.5 + 0.375,\\ 0.5 - 0,\\ 0.5 - 0.125)$. Subtracting $-0.375$ adds it, which is why $x_1$ rises to $0.875$."
         },
         {
           "question": "For $f_1 = x^2 + y^2 - 4$, $f_2 = x^2 - y - 1$ at $(x, y) = (1.5, 1)$, $F =$",
           "options": [
-            "$(-0.75,\\ 0.25)^T$",
             "$(-1.75,\\ 0.25)^T$",
             "$(-0.75,\\ -0.25)^T$",
-            "$(0.75,\\ -0.25)^T$"
+            "$(0.75,\\ -0.25)^T$",
+            "$(-0.75,\\ 0.25)^T$"
           ],
-          "answer": 0,
-          "explanation": "$2.25 + 1 - 4 = -0.75$ and $2.25 - 1 - 1 = 0.25$."
+          "answer": 3,
+          "explanation": "$2.25 + 1 - 4 = -0.75$ and $2.25 - 1 - 1 = 0.25$. $-1.75$ uses $y^2 = 2$ instead of $1$."
         },
         {
           "question": "For the same system from $(1.5, 1)$, with $J = \\begin{pmatrix} 2x & 2y \\\\ 2x & -1 \\end{pmatrix}$, one Newton step gives",
@@ -1964,13 +1964,13 @@ export default {
         {
           "question": "Near the root, how fast does Newton’s method for systems usually converge?",
           "options": [
-            "Quadratically: the error roughly squares each step",
             "Only after exactly $n$ steps",
+            "Quadratically: the error roughly squares each step",
             "It never converges",
             "Linearly, like bisection"
           ],
-          "answer": 0,
-          "explanation": "In the $3 \\times 3$ example the change went $0.085 \\to 0.0046 \\to 0.000014$."
+          "answer": 1,
+          "explanation": "In the $3 \\times 3$ example the change went $0.085 \\to 0.0046 \\to 0.000014$. Linear convergence describes bisection and fixed-point iteration, not Newton."
         }
       ]
     },
@@ -1982,12 +1982,12 @@ export default {
           "question": "An initial value problem is",
           "options": [
             "an algebraic equation solved by iteration",
-            "a differential equation with conditions on the solution specified at the initial point",
             "any differential equation without conditions",
+            "a differential equation with conditions on the solution specified at the initial point",
             "a differential equation with conditions at both ends of the interval"
           ],
-          "answer": 1,
-          "explanation": "Conditions at two different points would make a boundary value problem."
+          "answer": 2,
+          "explanation": "Conditions at two different points would make a boundary value problem. Any differential equation without conditions has a whole family of solutions, not one."
         },
         {
           "question": "How many initial conditions does an $n$th-order differential equation need?",
@@ -1998,7 +1998,7 @@ export default {
             "$n + 1$"
           ],
           "answer": 2,
-          "explanation": "The number of initial conditions equals the order: $y(a), y'(a), \\ldots, y^{(n-1)}(a)$."
+          "explanation": "The number of initial conditions equals the order: $y(a), y'(a), \\ldots, y^{(n-1)}(a)$. $n + 1$ is one condition too many."
         },
         {
           "question": "Which initial conditions does $y''' + xy' - y = \\sin x$ need?",
@@ -2009,51 +2009,51 @@ export default {
             "$y(a)$, $y'(a)$ and $y''(a)$"
           ],
           "answer": 3,
-          "explanation": "Third order, so three conditions at the initial point."
+          "explanation": "Third order, so three conditions at the initial point. Conditions at two points ($y(a)$ and $y(b)$) would make it a boundary value problem."
         },
         {
           "question": "The difference between the general and the particular solution of a DE is that",
           "options": [
+            "the general solution has arbitrary constants; initial conditions fix them to give the particular solution",
             "the particular solution has more arbitrary constants",
             "only linear DEs have particular solutions",
-            "they are always identical",
-            "the general solution has arbitrary constants; initial conditions fix them to give the particular solution"
+            "they are always identical"
           ],
-          "answer": 3,
-          "explanation": "An IVP picks out one particular solution from the general family."
+          "answer": 0,
+          "explanation": "An IVP picks out one particular solution from the general family. The general solution is the family; the particular solution is one member of it."
         },
         {
           "question": "The pendulum equation $\\frac{d^2\\theta}{dt^2} + \\frac{g}{L}\\sin\\theta = 0$ needs how many initial conditions?",
           "options": [
-            "Two: $\\theta(t_0)$ and $\\theta'(t_0)$",
             "Three",
+            "Two: $\\theta(t_0)$ and $\\theta'(t_0)$",
             "None",
             "One: $\\theta(t_0)$"
           ],
-          "answer": 0,
-          "explanation": "It is a second-order equation: the starting angle and starting angular velocity."
+          "answer": 1,
+          "explanation": "It is a second-order equation: the starting angle and starting angular velocity. One condition fixes only the start angle; the pendulum’s starting speed is also needed."
         },
         {
           "question": "A set $D \\subset \\mathbb{R}^2$ is convex if",
           "options": [
             "$D$ is a circle",
-            "the line segment joining any two points of $D$ lies entirely in $D$",
             "$D$ is bounded",
+            "the line segment joining any two points of $D$ lies entirely in $D$",
             "$D$ contains the origin"
           ],
-          "answer": 1,
-          "explanation": "Formally, $((1-\\lambda)x_1 + \\lambda x_2, (1-\\lambda)y_1 + \\lambda y_2) \\in D$ for all $\\lambda \\in [0, 1]$."
+          "answer": 2,
+          "explanation": "Formally, $((1-\\lambda)x_1 + \\lambda x_2, (1-\\lambda)y_1 + \\lambda y_2) \\in D$ for all $\\lambda \\in [0, 1]$. Bounded or circular sets need not be convex: a ring is bounded but not convex."
         },
         {
           "question": "Which set is convex?",
           "options": [
-            "$\\{(x, y): a \\le x \\le b,\\ -\\infty < y < \\infty\\}$",
             "A crescent shape",
             "The ring $\\{1 \\le x^2 + y^2 \\le 4\\}$",
-            "Two separate discs"
+            "Two separate discs",
+            "$\\{(x, y): a \\le x \\le b,\\ -\\infty < y < \\infty\\}$"
           ],
-          "answer": 0,
-          "explanation": "Any segment joining two points of the vertical strip stays inside it."
+          "answer": 3,
+          "explanation": "Any segment joining two points of the vertical strip stays inside it. The ring fails because a segment between opposite points passes through the hole."
         },
         {
           "question": "$f(x, y)$ satisfies a Lipschitz condition in $y$ on $D$ if there is $L > 0$ with",
@@ -2070,34 +2070,34 @@ export default {
           "question": "A Lipschitz constant for $f(x, y) = |xy|$ on $D = \\{1 \\le x \\le 2,\\ -3 \\le y \\le 4\\}$ is",
           "options": [
             "$L = 8$",
-            "$L = 4$",
             "$L = 2$",
+            "$L = 4$",
             "$L = 1$"
           ],
-          "answer": 2,
-          "explanation": "$\\big||xy_1| - |xy_2|\\big| = |x|\\big||y_1| - |y_2|\\big| \\le |x||y_1 - y_2| \\le 2|y_1 - y_2|$."
+          "answer": 1,
+          "explanation": "$\\big||xy_1| - |xy_2|\\big| = |x|\\big||y_1| - |y_2|\\big| \\le |x||y_1 - y_2| \\le 2|y_1 - y_2|$. $L = 8$ multiplies the largest $|x|$ by the largest $|y|$, but only $|x| \\le 2$ matters."
         },
         {
           "question": "A Lipschitz constant for $f(x, y) = x^2y$ on $\\{0 \\le x \\le 3,\\ -\\infty < y < \\infty\\}$ is",
           "options": [
             "$L = 6$",
             "$L = 3$",
-            "No Lipschitz constant exists",
-            "$L = 9$"
+            "$L = 9$",
+            "No Lipschitz constant exists"
           ],
-          "answer": 3,
-          "explanation": "$|x^2y_1 - x^2y_2| = x^2|y_1 - y_2| \\le 9|y_1 - y_2|$."
+          "answer": 2,
+          "explanation": "$|x^2y_1 - x^2y_2| = x^2|y_1 - y_2| \\le 9|y_1 - y_2|$. $L = 6$ uses the derivative of $x^2$, which is about $x$, not $y$."
         },
         {
           "question": "If $D$ is convex, which condition guarantees that $f$ is Lipschitz in $y$ on $D$ with constant $L$?",
           "options": [
             "$f(x, y) \\le L$",
             "$\\left|\\frac{\\partial f}{\\partial x}(x, y)\\right| \\le L$",
-            "$\\left|\\frac{\\partial f}{\\partial y}(x, y)\\right| \\le L$ for all $(x, y) \\in D$",
-            "$f$ is a polynomial"
+            "$f$ is a polynomial",
+            "$\\left|\\frac{\\partial f}{\\partial y}(x, y)\\right| \\le L$ for all $(x, y) \\in D$"
           ],
-          "answer": 2,
-          "explanation": "By the mean value theorem, $f(x, y_2) - f(x, y_1) = \\frac{\\partial f}{\\partial y}(x, \\xi)(y_2 - y_1)$, and convexity keeps $(x, \\xi)$ in $D$."
+          "answer": 3,
+          "explanation": "By the mean value theorem, $f(x, y_2) - f(x, y_1) = \\frac{\\partial f}{\\partial y}(x, \\xi)(y_2 - y_1)$, and convexity keeps $(x, \\xi)$ in $D$. The bound must be on $\\frac{\\partial f}{\\partial y}$, not $\\frac{\\partial f}{\\partial x}$."
         },
         {
           "question": "For $f(x, y) = 1 + x\\sin(xy)$, $\\frac{\\partial f}{\\partial y} =$",
@@ -2108,18 +2108,18 @@ export default {
             "$\\sin(xy) + xy\\cos(xy)$"
           ],
           "answer": 0,
-          "explanation": "Treat $x$ as constant: $\\frac{\\partial}{\\partial y}\\sin(xy) = x\\cos(xy)$, times the factor $x$."
+          "explanation": "Treat $x$ as constant: $\\frac{\\partial}{\\partial y}\\sin(xy) = x\\cos(xy)$, times the factor $x$. $x\\cos(xy)$ forgets the factor $x$ outside the sine."
         },
         {
           "question": "For $y' = 1 + x\\sin(xy)$, $0 \\le x \\le 2$, $y(0) = 0$, which Lipschitz constant shows the IVP has a unique solution?",
           "options": [
             "$L = 1$",
+            "$L = 4$",
             "$L = 2$",
-            "$L = 8$",
-            "$L = 4$"
+            "$L = 8$"
           ],
-          "answer": 3,
-          "explanation": "$|x^2\\cos(xy)| \\le x^2 \\le 4$ on $0 \\le x \\le 2$."
+          "answer": 1,
+          "explanation": "$|x^2\\cos(xy)| \\le x^2 \\le 4$ on $0 \\le x \\le 2$. $L = 2$ uses $|x| \\le 2$ but forgets that the bound is on $x^2$."
         },
         {
           "question": "For $y' = 2xy + x^2$, $0 \\le x \\le 1$, a Lipschitz constant is",
@@ -2130,40 +2130,40 @@ export default {
             "None exists, because $y$ is unbounded"
           ],
           "answer": 2,
-          "explanation": "$\\frac{\\partial f}{\\partial y} = 2x$ and $|2x| \\le 2$ on $[0, 1]$."
+          "explanation": "$\\frac{\\partial f}{\\partial y} = 2x$ and $|2x| \\le 2$ on $[0, 1]$. An unbounded $y$ doesn’t matter, because $\\frac{\\partial f}{\\partial y} = 2x$ doesn’t involve $y$."
         },
         {
           "question": "If $f$ is continuous on $D = \\{a \\le x \\le b,\\ -\\infty < y < \\infty\\}$ and Lipschitz in $y$ on $D$, then $y' = f(x, y)$, $y(a) = \\alpha$",
           "options": [
             "can only be solved exactly",
-            "has a unique solution on $[a, b]$",
             "has exactly two solutions",
-            "has no solution"
+            "has no solution",
+            "has a unique solution on $[a, b]$"
           ],
-          "answer": 1,
-          "explanation": "This is the existence and uniqueness theorem."
+          "answer": 3,
+          "explanation": "This is the existence and uniqueness theorem. Existence alone is not enough for a numerical method; uniqueness is what the Lipschitz condition adds."
         },
         {
           "question": "An IVP is well posed if",
           "options": [
+            "it has a unique solution and small perturbations of the problem cause only small changes in the solution",
             "its solution is a polynomial",
             "its Lipschitz constant is less than 1",
-            "it can be solved by separation of variables",
-            "it has a unique solution and small perturbations of the problem cause only small changes in the solution"
+            "it can be solved by separation of variables"
           ],
-          "answer": 3,
-          "explanation": "For perturbations bounded by $\\varepsilon$, the perturbed solution satisfies $|z(x) - y(x)| < k\\varepsilon$."
+          "answer": 0,
+          "explanation": "For perturbations bounded by $\\varepsilon$, the perturbed solution satisfies $|z(x) - y(x)| < k\\varepsilon$. A Lipschitz constant below 1 is not part of the definition."
         },
         {
           "question": "Why must uniqueness be checked before solving an IVP numerically?",
           "options": [
-            "A numerical method produces numbers even when the problem has no unique solution",
             "Numerical methods only work for linear DEs",
+            "A numerical method produces numbers even when the problem has no unique solution",
             "It is needed to choose the step size",
             "Uniqueness makes Euler’s method exact"
           ],
-          "answer": 0,
-          "explanation": "Without a unique solution, the computed numbers have nothing meaningful to approximate."
+          "answer": 1,
+          "explanation": "Without a unique solution, the computed numbers have nothing meaningful to approximate. It isn’t about step size: the issue is whether the numbers mean anything."
         },
         {
           "question": "Euler’s method for $y' = f(x, y)$, $y(a) = \\alpha$ is",
@@ -2174,7 +2174,7 @@ export default {
             "$y_{i+1} = h\\,f(x_i, y_i)$"
           ],
           "answer": 2,
-          "explanation": "Step along the tangent line: slope $f(x_i, y_i)$, run $h$."
+          "explanation": "Step along the tangent line: slope $f(x_i, y_i)$, run $h$. Without the factor $h$ the step would be far too big."
         },
         {
           "question": "For $a \\le x \\le b$ divided into $n$ equal steps, the step size is",
@@ -2185,73 +2185,73 @@ export default {
             "$h = \\dfrac{b - a}{n}$"
           ],
           "answer": 3,
-          "explanation": "The mesh points are then $x_i = a + ih$, $i = 0, 1, \\ldots, n$."
+          "explanation": "The mesh points are then $x_i = a + ih$, $i = 0, 1, \\ldots, n$. $h = \\frac{n}{b - a}$ is upside down."
         },
         {
           "question": "For $0 \\le x \\le 2$ with $h = 0.5$, the mesh points are",
           "options": [
+            "$0,\\ 0.5,\\ 1.0,\\ 1.5,\\ 2.0$",
             "$0.5,\\ 1.0,\\ 1.5,\\ 2.0$",
             "$0,\\ 1,\\ 2$",
-            "$0,\\ 0.5,\\ 1.0,\\ 1.5,\\ 2.0$",
             "$0,\\ 0.25,\\ 0.5,\\ \\ldots,\\ 2.0$"
           ],
-          "answer": 2,
-          "explanation": "$n = \\frac{2 - 0}{0.5} = 4$ steps, so 5 mesh points starting at $x_0 = 0$."
+          "answer": 0,
+          "explanation": "$n = \\frac{2 - 0}{0.5} = 4$ steps, so 5 mesh points starting at $x_0 = 0$. Leaving out $0$ forgets the starting mesh point $x_0 = a$."
         },
         {
           "question": "Euler’s method comes from",
           "options": [
             "the binomial expansion of $(1 + h)^n$",
+            "Taylor’s series $y(x + h) = y(x) + h\\,y'(x) + \\cdots$ cut after the $h\\,y'$ term",
             "the trapezium rule",
-            "Newton’s divided differences",
-            "Taylor’s series $y(x + h) = y(x) + h\\,y'(x) + \\cdots$ cut after the $h\\,y'$ term"
+            "Newton’s divided differences"
           ],
-          "answer": 3,
-          "explanation": "The dropped $\\frac{h^2}{2}y''(\\xi)$ term is the local truncation error."
+          "answer": 1,
+          "explanation": "The dropped $\\frac{h^2}{2}y''(\\xi)$ term is the local truncation error. The trapezium rule leads to other methods, such as the improved Euler method."
         },
         {
           "question": "For $y' = y - x^2 + 1$, $y(0) = 0.5$, $h = 0.5$, Euler’s method gives $y_1 \\approx y(0.5) =$",
           "options": [
             "$1.4256$",
             "$0.75$",
-            "$1.5$",
-            "$1.25$"
+            "$1.25$",
+            "$1.5$"
           ],
-          "answer": 3,
-          "explanation": "$0.5 + 0.5(0.5 - 0 + 1) = 1.25$. ($1.4256$ is the exact value.)"
+          "answer": 2,
+          "explanation": "$0.5 + 0.5(0.5 - 0 + 1) = 1.25$. ($1.4256$ is the exact value.) $1.5$ forgets to multiply the slope $1.5$ by $h = 0.5$."
         },
         {
           "question": "Continuing the same problem, $y_4 \\approx y(2) =$",
           "options": [
-            "$4.4375$",
             "$3.375$",
             "$4.7797$",
-            "$5.3055$"
+            "$5.3055$",
+            "$4.4375$"
           ],
-          "answer": 0,
+          "answer": 3,
           "explanation": "$y_2 = 2.25$, $y_3 = 3.375$, $y_4 = 3.375 + 0.5(3.375 - 2.25 + 1) = 4.4375$. Exact: $5.3055$."
         },
         {
           "question": "Use Euler’s method with $h = 0.1$ on $y' = x + y$, $y(0) = 1$ to estimate $y(0.2)$.",
           "options": [
+            "$1.22$",
             "$1.32$",
             "$1.11$",
-            "$1.2$",
-            "$1.22$"
+            "$1.2$"
           ],
-          "answer": 3,
+          "answer": 0,
           "explanation": "$y_1 = 1 + 0.1(1) = 1.1$; $y_2 = 1.1 + 0.1(0.1 + 1.1) = 1.22$. Exact: $1.2428$."
         },
         {
           "question": "Halving the step size $h$ in Euler’s method roughly",
           "options": [
-            "halves the error (it is a first-order method)",
             "leaves the error unchanged",
+            "halves the error (it is a first-order method)",
             "quarters the error",
             "doubles the error"
           ],
-          "answer": 0,
-          "explanation": "For $y' = y - x^2 + 1$ at $x = 2$: error $0.87$ with $h = 0.5$, $0.53$ with $h = 0.25$."
+          "answer": 1,
+          "explanation": "For $y' = y - x^2 + 1$ at $x = 2$: error $0.87$ with $h = 0.5$, $0.53$ with $h = 0.25$. Quartering the error would need a second-order method."
         }
       ]
     },
@@ -2263,23 +2263,23 @@ export default {
           "question": "What is a consistent system of linear equations?",
           "options": [
             "A system with exactly one solution",
-            "A system with no solution",
             "A system with at least one solution",
+            "A system with no solution",
             "A system with as many equations as unknowns"
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": "Consistent means at least one solution exists. There may be one solution or infinitely many."
         },
         {
           "question": "A system of linear equations is inconsistent when",
           "options": [
-            "it has no solution",
             "it has infinitely many solutions",
             "its coefficients are fractions",
+            "it has no solution",
             "it has more unknowns than solutions"
           ],
-          "answer": 0,
-          "explanation": "Inconsistent means no values of the unknowns satisfy every equation at once."
+          "answer": 2,
+          "explanation": "Inconsistent means no values of the unknowns satisfy every equation at once. Infinitely many solutions means the system is consistent but has a free variable."
         },
         {
           "question": "Is the system $x + y = 1$, $x + y = 3$ consistent?",
@@ -2295,13 +2295,13 @@ export default {
         {
           "question": "The system $x + y = 2$, $2x + 2y = 4$ is",
           "options": [
-            "inconsistent",
             "consistent, with infinitely many solutions",
+            "inconsistent",
             "consistent, with exactly one solution",
             "impossible to classify"
           ],
-          "answer": 1,
-          "explanation": "The second equation is twice the first, so any pair with $x + y = 2$ works."
+          "answer": 0,
+          "explanation": "The second equation is twice the first, so any pair with $x + y = 2$ works. It isn’t inconsistent: the two equations say the same thing, so they don’t contradict each other."
         },
         {
           "question": "A question says “solve by the Gaussian method”. You use the matrix inverse method and get the right answer. What happens?",
@@ -2319,54 +2319,54 @@ export default {
           "options": [
             "$X = A^{-1}B$ using the adjoint",
             "Elimination, then back substitution only",
-            "Repeated iteration from a starting vector",
-            "$A = LU$, then $LY = B$, then $UX = Y$"
+            "$A = LU$, then $LY = B$, then $UX = Y$",
+            "Repeated iteration from a starting vector"
           ],
-          "answer": 3,
-          "explanation": "LU factorisation means finding $L$ and $U$, then forward substitution followed by back substitution."
+          "answer": 2,
+          "explanation": "LU factorisation means finding $L$ and $U$, then forward substitution followed by back substitution. Using $A^{-1}B$ instead loses marks when the question names a method."
         },
         {
           "question": "Newton’s method gives $x^{(k)} = (0.7852,\\ 0.4966)^T$ and $x^{(k-1)} = (0.7898,\\ 0.4966)^T$, with $\\varepsilon = 10^{-3}$. What next?",
           "options": [
-            "Keep going: one component changed by $0.0046$",
             "Stop: the second component did not change",
             "Stop: the two vectors are close to 2 d.p.",
-            "Restart with a new initial vector"
+            "Restart with a new initial vector",
+            "Keep going: one component changed by $0.0046$"
           ],
-          "answer": 0,
+          "answer": 3,
           "explanation": "The largest change is $0.0046 > 10^{-3}$. If even one component is beyond the bound, you keep going."
         },
         {
           "question": "A Newton’s method question gives no error bound. What should you use?",
           "options": [
+            "$\\varepsilon = 10^{-3}$",
             "$\\varepsilon = 10^{-1}$",
             "$\\varepsilon = 0$",
-            "$\\varepsilon = 10^{-3}$",
             "Stop after exactly three iterations"
           ],
-          "answer": 2,
+          "answer": 0,
           "explanation": "Without a stated bound, use the standard $\\|x^{(k)} - x^{(k-1)}\\| \\le 10^{-3}$. If a bound is given, use that one."
         },
         {
           "question": "With $\\varepsilon = 10^{-3}$, $x^{(k)} = (0.5002,\\ 0.2501)^T$ and $x^{(k-1)} = (0.5000,\\ 0.2500)^T$. What should you do?",
           "options": [
             "Keep going: the vectors are not identical",
+            "Stop: the largest change is $0.0002$",
             "Keep going: only one component passes",
-            "Stop: the components add up to less than 1",
-            "Stop: the largest change is $0.0002$"
+            "Stop: the components add up to less than 1"
           ],
-          "answer": 3,
-          "explanation": "Both changes are within $10^{-3}$, so the stopping test is met."
+          "answer": 1,
+          "explanation": "Both changes are within $10^{-3}$, so the stopping test is met. “Not identical” isn’t the test; agreeing within the tolerance is."
         },
         {
           "question": "For $x_1^2 + x_2^2 + x_3^2 = 1$, $2x_1^2 + x_2^2 - 4x_3 = 0$, $3x_1^2 - 4x_2 + x_3^2 = 0$ with $x^{(0)} = (0.5,\\ 0.5,\\ 0.5)^T$, one Newton step gives",
           "options": [
-            "$x^{(1)} = (0.875,\\ 0.5,\\ 0.375)^T$",
             "$x^{(1)} = (0.75,\\ 0.5,\\ 0.25)^T$",
             "$x^{(1)} = (0.5,\\ 0.875,\\ 0.375)^T$",
+            "$x^{(1)} = (0.875,\\ 0.5,\\ 0.375)^T$",
             "$x^{(1)} = (0.25,\\ 1.25,\\ 1)^T$"
           ],
-          "answer": 0,
+          "answer": 2,
           "explanation": "Here $F(x^{(0)}) = (-0.25,\\ -1.25,\\ -1)^T$ and $\\det J = -40$. Then $x^{(1)} = x^{(0)} - J^{-1}F(x^{(0)})$."
         },
         {
@@ -2374,32 +2374,32 @@ export default {
           "options": [
             "A differential equation with no conditions attached",
             "A system of linear equations with a starting guess",
-            "A differential equation together with initial conditions",
-            "An integral evaluated from a starting point"
+            "An integral evaluated from a starting point",
+            "A differential equation together with initial conditions"
           ],
-          "answer": 2,
-          "explanation": "The conditions state the value of the solution, and possibly its derivatives, at the starting point."
+          "answer": 3,
+          "explanation": "The conditions state the value of the solution, and possibly its derivatives, at the starting point. A starting guess for a linear system belongs to iterative methods, not to IVPs."
         },
         {
           "question": "How many initial conditions does $y''' + xy' - y = \\sin x$ need?",
           "options": [
-            "$1$",
             "$3$",
+            "$1$",
             "$2$",
             "$4$"
           ],
-          "answer": 1,
-          "explanation": "The number of initial conditions equals the order of the equation, and here the order is 3."
+          "answer": 0,
+          "explanation": "The number of initial conditions equals the order of the equation, and here the order is 3. It is third order because of $y'''$, whatever the other terms are."
         },
         {
           "question": "What do the initial conditions do?",
           "options": [
-            "Pick one particular solution from the general solution",
             "Turn a particular solution into the general one",
+            "Pick one particular solution from the general solution",
             "Raise the order of the equation",
             "Make the equation linear"
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "The general solution contains arbitrary constants. Initial conditions fix them."
         },
         {
@@ -2407,55 +2407,55 @@ export default {
           "options": [
             "$y = x^2 + C$",
             "$y = 2x + 3$",
-            "$y = x^2 - 3$",
-            "$y = x^2 + 3$"
+            "$y = x^2 + 3$",
+            "$y = x^2 - 3$"
           ],
-          "answer": 3,
-          "explanation": "The general solution is $y = x^2 + C$, and $y(0) = 3$ gives $C = 3$."
+          "answer": 2,
+          "explanation": "The general solution is $y = x^2 + C$, and $y(0) = 3$ gives $C = 3$. $y = x^2 + C$ is the general solution; the condition fixes $C$."
         },
         {
           "question": "Which of these is a general solution of $y' = 2x$, not a particular one?",
           "options": [
             "$y = x^2$",
-            "$y = x^2 + C$",
             "$y = x^2 + 3$",
-            "$y = x^2 - 1$"
+            "$y = x^2 - 1$",
+            "$y = x^2 + C$"
           ],
-          "answer": 1,
+          "answer": 3,
           "explanation": "A general solution contains an arbitrary constant. The others have the constant fixed."
         },
         {
           "question": "Unless told otherwise, how should you round the final answer $x = \\frac23$?",
           "options": [
+            "$0.67$",
             "$0.66$",
             "$0.6$",
-            "$0.67$",
             "$0.667$"
           ],
-          "answer": 2,
-          "explanation": "To 2 d.p., $\\frac23 = 0.666\\ldots$ rounds up to $0.67$."
+          "answer": 0,
+          "explanation": "To 2 d.p., $\\frac23 = 0.666\\ldots$ rounds up to $0.67$. $0.66$ chops instead of rounding."
         },
         {
           "question": "Why keep exact fractions during the working of a matrix method?",
           "options": [
             "Fractions are required by the method",
-            "Decimals can’t be multiplied in matrices",
             "Rounding early loses accuracy",
+            "Decimals can’t be multiplied in matrices",
             "It makes the determinant larger"
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": "Fractions stay exact. Round once, at the final answer."
         },
         {
           "question": "Rounding each $\\frac13$ to 2 d.p. before adding, $\\frac13 + \\frac13 + \\frac13$ gives",
           "options": [
             "$1.00$, the same as the exact value",
-            "$0.99$, instead of the exact $1$",
             "$1.01$, instead of the exact $1$",
+            "$0.99$, instead of the exact $1$",
             "$0.33$, instead of the exact $1$"
           ],
-          "answer": 1,
-          "explanation": "$0.33 + 0.33 + 0.33 = 0.99$. This is why you round at the end, not during the working."
+          "answer": 2,
+          "explanation": "$0.33 + 0.33 + 0.33 = 0.99$. This is why you round at the end, not during the working. Rounding early is why the total misses the exact answer."
         },
         {
           "question": "In Doolittle’s LU factorisation, the diagonal entries of $L$ are",
@@ -2466,7 +2466,7 @@ export default {
             "all $1$"
           ],
           "answer": 3,
-          "explanation": "Fixing the diagonal of $L$ at 1 makes the factorisation unique."
+          "explanation": "Fixing the diagonal of $L$ at 1 makes the factorisation unique. Putting 1s on $U$’s diagonal instead would be Crout’s method."
         },
         {
           "question": "For $A = \\begin{pmatrix} 2 & 1 \\\\ 4 & 5 \\end{pmatrix}$ with $L$ having 1s on its diagonal, what are $l_{21}$ and $u_{22}$?",
@@ -2477,7 +2477,7 @@ export default {
             "$l_{21} = 2$, $u_{22} = 5$"
           ],
           "answer": 0,
-          "explanation": "$l_{21} = \\frac42 = 2$, and $u_{22} = 5 - 2(1) = 3$."
+          "explanation": "$l_{21} = \\frac42 = 2$, and $u_{22} = 5 - 2(1) = 3$. $u_{22} = 5$ forgets to subtract $l_{21}u_{12} = 2$."
         },
         {
           "question": "After finding $L$ and $U$, what is the best check of your work?",
@@ -2488,50 +2488,50 @@ export default {
             "Add them: $L + U$ should give $A$"
           ],
           "answer": 1,
-          "explanation": "Slips are easy in LU, and multiplying back catches them."
+          "explanation": "Slips are easy in LU, and multiplying back catches them. $L + U$ has no meaning here; only the product is $A$."
         },
         {
           "question": "In the Gaussian method, $a^{(1)}_{ij} = a_{ij} - a_{i1}b_{1j}$ with $b_{1j} = \\frac{a_{1j}}{a_{11}}$. For $A = \\begin{pmatrix} 2 & 4 \\\\ 3 & 7 \\end{pmatrix}$, what is $a^{(1)}_{22}$?",
           "options": [
-            "$1$",
             "$7$",
             "$-5$",
+            "$1$",
             "$13$"
           ],
-          "answer": 0,
-          "explanation": "$b_{12} = \\frac42 = 2$, so $a^{(1)}_{22} = 7 - 3(2) = 1$."
+          "answer": 2,
+          "explanation": "$b_{12} = \\frac42 = 2$, so $a^{(1)}_{22} = 7 - 3(2) = 1$. $13$ adds $a_{21}b_{12}$ instead of subtracting it."
         },
         {
           "question": "When is simple iteration guaranteed to converge for any starting vector?",
           "options": [
             "Only when $\\alpha > 1$ and $\\beta > 1$",
             "Only when the starting vector is $0$",
-            "When $\\alpha < 1$ or $\\beta < 1$",
-            "Whenever $C$ has a zero diagonal"
+            "Whenever $C$ has a zero diagonal",
+            "When $\\alpha < 1$ or $\\beta < 1$"
           ],
-          "answer": 2,
-          "explanation": "Here $\\alpha$ and $\\beta$ are the largest row and column sums of $|c_{ij}|$ for the matrix $C$."
+          "answer": 3,
+          "explanation": "Here $\\alpha$ and $\\beta$ are the largest row and column sums of $|c_{ij}|$ for the matrix $C$. $C$ always has a zero diagonal by construction, so that can’t be what guarantees convergence."
         },
         {
           "question": "In the system with first equation $10x_1 + x_2 + 2x_3 = 6$, what is $c_{12}$ for simple iteration?",
           "options": [
+            "$-\\frac{1}{10}$",
             "$\\frac{1}{10}$",
             "$-10$",
-            "$-\\frac{2}{10}$",
-            "$-\\frac{1}{10}$"
+            "$-\\frac{2}{10}$"
           ],
-          "answer": 3,
-          "explanation": "$c_{ij} = -\\frac{a_{ij}}{a_{ii}}$ for $i \\ne j$, so $c_{12} = -\\frac{1}{10}$."
+          "answer": 0,
+          "explanation": "$c_{ij} = -\\frac{a_{ij}}{a_{ii}}$ for $i \\ne j$, so $c_{12} = -\\frac{1}{10}$. Forgetting the minus sign is the common slip, since the term moves to the other side."
         },
         {
           "question": "Two successive iterates are $1.2346$ and $1.2318$. To what accuracy has the iteration converged?",
           "options": [
-            "2 d.p.: both give $1.23$",
             "4 d.p.: both give $1.2346$",
+            "2 d.p.: both give $1.23$",
             "1 d.p.: only $1.2$ agrees",
             "It has not converged at all"
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "At 2 d.p. both values round to $1.23$. At 3 d.p. they differ: $1.235$ and $1.232$."
         }
       ]

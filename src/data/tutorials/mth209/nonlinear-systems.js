@@ -5,7 +5,7 @@ export default {
   id: 'nonlinear-systems',
   title: 'Definitions, fixed points and convergence',
   covers: 'F(x) = 0 for F: ℝⁿ → ℝⁿ, fixed points, the convergence theorem, a 3 × 3 fixed-point iteration',
-  minutes: 18,
+  minutes: 17,
   sections: [
     {
       name: 'Non-linear systems and fixed points',
@@ -67,15 +67,6 @@ export default {
             { text: '$g_1 = \\cos(x_2x_3) + \\frac12$', why: 'You still have to divide by the coefficient 3.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Fixed points: set.',
-          recap: [
-            '$F(x) = 0$ with $F: \\mathbb{R}^n \\to \\mathbb{R}^n$.',
-            'Rewrite as $x = G(x)$; a fixed point of $G$ solves the system.',
-          ],
-          why: 'But does the iteration actually converge? A theorem tells us when.',
-        },
       ],
     },
     {
@@ -125,19 +116,6 @@ export default {
           eyebrow: 'Worked example',
           title: 'Iterate from $x^{(0)} = (0.1, 0.1, -0.1)^T$',
           body: '$$x^{(1)}_1 = \\tfrac13\\cos\\big((0.1)(-0.1)\\big) + \\tfrac16 = 0.49998$$\n\n$$\\begin{array}{c|ccc|c} k & x_1 & x_2 & x_3 & \\text{change} \\\\ \\hline 0 & 0.1 & 0.1 & -0.1 & \\\\ 1 & 0.49998 & 0.00944 & -0.52310 & 0.42 \\\\ 2 & 0.49999 & 0.00003 & -0.52336 & 0.0094 \\\\ 3 & 0.50000 & 0.00001 & -0.52360 & 0.00023 \\\\ 4 & 0.50000 & 0.00000 & -0.52360 & 1.2{\\times}10^{-5} \\\\ 5 & 0.50000 & 0.00000 & -0.52360 & 3{\\times}10^{-7} \\end{array}$$\n\n(“change” is $\\|x^{(k)} - x^{(k-1)}\\|_\\infty$.) Stop when $\\|x^{(k)} - x^{(k-1)}\\|_\\infty < 10^{-5}$: at $k = 5$. The solution is $(0.5,\\ 0,\\ -0.5236)$, in fact $\\left(\\frac12, 0, -\\frac{\\pi}{6}\\right)$.',
-        },
-        {
-          type: 'order',
-          eyebrow: 'Rebuild the method',
-          prompt: 'Put the steps of a fixed-point solution in order.',
-          items: [
-            'Solve the $i$th equation for $x_i$ to get $x = G(x)$.',
-            'Show that $G$ maps $D$ into $D$ (a fixed point exists).',
-            'Bound every $\\left|\\frac{\\partial g_i}{\\partial x_j}\\right| \\le \\frac{K}{n}$ and check $K < 1$ (unique, convergent).',
-            'Iterate $x^{(k)} = G(x^{(k-1)})$ from $x^{(0)}$.',
-            'Stop when $\\|x^{(k)} - x^{(k-1)}\\|_\\infty$ is below the tolerance.',
-          ],
-          explain: 'The first three steps are the proof; the last two are the computation. Exam questions usually ask for both.',
         },
         {
           type: 'custom',

@@ -5,7 +5,7 @@ export default {
   id: 'exponential-series',
   title: 'The exponential series',
   covers: 'eˣ = Σ xⁿ/n!, computing e^0.5 and e, how many terms you need, e^0.2 to 4 d.p.',
-  minutes: 12,
+  minutes: 11,
   sections: [
     {
       name: 'The series for eˣ',
@@ -60,15 +60,6 @@ export default {
             { text: 'You need infinitely many terms', why: 'For a fixed accuracy, a finite number of terms is enough.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Series: in use.',
-          recap: [
-            '$e^x = \\sum \\frac{x^n}{n!}$ for every $x$.',
-            'Stop when the next term is smaller than the accuracy you need.',
-          ],
-          why: 'Two more things: negative $x$, and a full exam answer.',
-        },
       ],
     },
     {
@@ -105,19 +96,6 @@ export default {
             { text: 'Each term equals the previous term times $\\frac{x}{n}$.', correct: true, why: '**Ratio of terms**: $\\frac{x^n/n!}{x^{n-1}/(n-1)!} = \\frac{x}{n}$.' },
             { text: 'The series for $e^{-x}$ has all positive terms.', why: '**Odd powers are negative**: the signs alternate.' },
           ],
-        },
-        {
-          type: 'order',
-          eyebrow: 'Rebuild the method',
-          prompt: 'Put the steps for evaluating $e^x$ to a given accuracy in order.',
-          items: [
-            'Write $e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\cdots$ and substitute $x$.',
-            'Compute each term from the last one by multiplying by $\\frac{x}{n}$.',
-            'Keep a running total.',
-            'Stop when the next term is smaller than the accuracy asked for.',
-            'Round the total to the required decimal places.',
-          ],
-          explain: 'Set the work out as a table of $n$, term and running sum, like the $e^{0.5}$ example.',
         },
         {
           type: 'story',

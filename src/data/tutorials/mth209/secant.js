@@ -12,7 +12,7 @@ export default {
   id: 'secant',
   title: 'The secant method',
   covers: 'Newton-Raphson with f′ replaced by a backward difference; x³ − 5x − 40 from x₀ = 3, x₁ = 4; comparing methods',
-  minutes: 16,
+  minutes: 13,
   sections: [
     {
       name: 'Deriving the formula',
@@ -66,15 +66,6 @@ export default {
           ],
           explain: 'Unlike Regula Falsi, $f(x_0)$ and $f(x_1)$ **don’t** need opposite signs.',
         },
-        {
-          type: 'bridge',
-          title: 'Formula: derived.',
-          recap: [
-            'Replace $f\'(x_n)$ in Newton-Raphson by $\\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$.',
-            '$x_{n+1} = x_n - f(x_n)\\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$, starting from $x_0$, $x_1$.',
-          ],
-          why: 'Now a worked example.',
-        },
       ],
     },
     {
@@ -85,17 +76,6 @@ export default {
           eyebrow: 'Worked example',
           title: 'Root of $x^3 - 5x - 40 = 0$ near $x = 4$, to 3 s.f.',
           body: 'Use $x_0 = 3$, $x_1 = 4$. Let $f(x) = x^3 - 5x - 40$:\n$$f(x_0) = f(3) = 27 - 15 - 40 = -28,$$\n$$f(x_1) = f(4) = 64 - 20 - 40 = 4.$$\n\n**When $n = 1$:**\n$$x_2 = 4 - 4\\cdot\\frac{4 - 3}{4 - (-28)} = 4 - \\frac{4}{32} = 4 - \\frac18 = \\frac{31}{8} = 3.875.$$\n\nThen $f(x_2) = f(3.875) = -1.189453$.',
-        },
-        {
-          type: 'choice',
-          eyebrow: 'n = 2',
-          prompt: 'Which two points does the secant method use next?',
-          options: [
-            { text: '$x_1 = 4$ and $x_2 = 3.875$, the two most recent', correct: true, why: 'The secant method always drops the oldest point.' },
-            { text: '$x_0 = 3$ and $x_2 = 3.875$, to keep a sign change', why: 'That is what Regula Falsi would do.' },
-            { text: '$x_0 = 3$ and $x_1 = 4$ again', why: 'Then nothing would improve.' },
-            { text: 'Only $x_2$', why: 'A slope needs two points.' },
-          ],
         },
         {
           type: 'custom',
@@ -110,21 +90,6 @@ export default {
               { ask: '$x_3 = $ (6 d.p.)', answer: 3.903651, tol: 3e-06, hint: 'Use the two newest points, $x_1 = 4$ and $x_2 = 3.875$.' },
             ],
           },
-        },
-        {
-          type: 'story',
-          eyebrow: 'n = 2, 3',
-          title: 'The table',
-          body: '$$x_3 = 3.875 - (-1.189453)\\frac{3.875 - 4}{-1.189453 - 4} = 3.903651$$\n\n$$\\begin{array}{c|c|c} n & x_n & f(x_n) \\\\ \\hline 0 & 3 & -28 \\\\ 1 & 4 & 4 \\\\ 2 & 3.875 & -1.189453 \\\\ 3 & 3.903651 & -0.032515 \\\\ 4 & 3.904456 & 0.000277 \\\\ 5 & 3.904449 & 0.000000 \\end{array}$$\n\n$x_4$ and $x_5$ agree to 3 s.f. (and to 5): **root $= 3.90$** (3 s.f.), matching Newton-Raphson.',
-        },
-        {
-          type: 'bridge',
-          title: 'Example: solved.',
-          recap: [
-            '$x_2 = 3.875$, $x_3 = 3.9037$, $x_4 = 3.90446$: root $3.90$ (3 s.f.).',
-            'Always use the two most recent points.',
-          ],
-          why: 'Last part: put all five methods side by side.',
         },
       ],
     },

@@ -5,7 +5,7 @@ export default {
   id: 'lagrange',
   title: 'Higher degree interpolation (Lagrange)',
   covers: 'Quadratic interpolation by solving for a₀, a₁, a₂, and Lagrange’s formula with basis functions Lₖ(x)',
-  minutes: 16,
+  minutes: 15,
   sections: [
     {
       name: 'Solving for the coefficients',
@@ -47,15 +47,6 @@ export default {
             { text: '$P_2(x) = 24 + 28x + 8x^2$', why: 'Then $P_2(1) = 60$, not 4.' },
             { text: '$P_2(x) = 8 - 28x + 24x^2$', why: 'The constant and the $x^2$ coefficient are swapped.' },
           ],
-        },
-        {
-          type: 'bridge',
-          title: 'Method 1: done.',
-          recap: [
-            'Substitute each point into $a_0 + a_1x + a_2x^2$ and solve the $3 \\times 3$ system.',
-            'Through $(1, 4)$, $(2, 0)$, $(3, 12)$: $P_2(x) = 24 - 28x + 8x^2$.',
-          ],
-          why: 'Solving a system every time is slow. Lagrange’s formula writes the answer down directly.',
         },
       ],
     },
@@ -104,12 +95,6 @@ export default {
               { ask: '$P_2(1.5) = 4L_0 + 0L_1 + 12L_2 = $', answer: 0, tol: 0.0005, hint: '$1.5 - 1.5$. Check with $8x^2 - 28x + 24$.' },
             ],
           },
-        },
-        {
-          type: 'story',
-          eyebrow: 'Use it',
-          title: 'Estimate $P_2(2.5)$ for $(1, 4)$, $(2, 0)$, $(3, 12)$',
-          body: 'At $x = 2.5$:\n$$L_0 = \\frac{(0.5)(-0.5)}{(-1)(-2)} = -0.125,\\quad L_1 = \\frac{(1.5)(-0.5)}{(1)(-1)} = 0.75,\\quad L_2 = \\frac{(1.5)(0.5)}{(2)(1)} = 0.375.$$\n\n$$P_2(2.5) = 4(-0.125) + 0(0.75) + 12(0.375) = -0.5 + 4.5 = 4.$$\n\nSame as $24 - 28(2.5) + 8(2.5)^2 = 4$ ✓. Notice $L_0 + L_1 + L_2 = 1$.',
         },
         {
           type: 'multi',

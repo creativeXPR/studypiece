@@ -5,7 +5,7 @@ export default {
   id: 'binomial-expansion',
   title: 'Binomial expansion',
   covers: 'The binomial theorem, the binomial series for any power, approximating √1.02 and 0.98⁵',
-  minutes: 14,
+  minutes: 13,
   sections: [
     {
       name: 'The binomial theorem',
@@ -67,15 +67,6 @@ export default {
             { text: '$1 - x$', why: 'For a negative power the series doesn’t stop: there is an $x^2$ term and more.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Expansions: set.',
-          recap: [
-            'Positive integer $n$: a finite expansion with $\\binom{n}{r}$ coefficients.',
-            'Any other $n$: an infinite series, valid only for $|x| < 1$.',
-          ],
-          why: 'Now use it to approximate numbers by hand.',
-        },
       ],
     },
     {
@@ -115,18 +106,6 @@ export default {
               { ask: 'Is the series valid here?', options: ['Yes: $|0.04| < 1$', 'No'], answer: 0, hint: 'Is $|x| < 1$?' },
             ],
           },
-        },
-        {
-          type: 'reveal',
-          eyebrow: 'The recipe',
-          title: 'Approximating a power by hand',
-          cards: [
-            { title: '1 · Get the form $(1 + x)^n$', text: 'Write the number as $(1 + x)^n$ with $x$ small, factoring out $a^n$ if needed: $\\sqrt{4.08} = 2(1 + 0.02)^{1/2}$.' },
-            { title: '2 · Check validity', text: 'For a non-integer or negative $n$ you need $|x| < 1$.' },
-            { title: '3 · Expand', text: 'Write $1 + nx + \\frac{n(n-1)}{2!}x^2 + \\cdots$ and substitute.' },
-            { title: '4 · Stop when terms are tiny', text: 'Keep going until the next term is smaller than the accuracy asked for.' },
-          ],
-          note: 'The smaller $|x|$ is, the faster the terms shrink and the fewer you need.',
         },
         {
           type: 'multi',

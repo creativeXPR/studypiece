@@ -5,7 +5,7 @@ export default {
   id: 'linear-iteration',
   title: 'Linear iteration: x = g(x)',
   covers: 'Rearranging f(x) = 0 as x = g(x), iterating x₍ₙ₊₁₎ = g(xₙ), and when it converges',
-  minutes: 14,
+  minutes: 13,
   sections: [
     {
       name: 'The idea',
@@ -59,12 +59,6 @@ export default {
               { ask: '$g\'(x) = \\frac{2x}{3}$. At the root $0.382$, $|g\'| \\approx$ (2 d.p.)', answer: 0.25, tol: 0.006, hint: '$\\frac{2(0.382)}{3}$: less than $1$, so it converges.' },
             ],
           },
-        },
-        {
-          type: 'story',
-          eyebrow: 'Step 2 · Iterate',
-          title: 'From $x_0 = 0$',
-          body: '$$\\begin{aligned} x_1 &= \\tfrac13(1 + 0^2) = 0.3333 \\\\ x_2 &= \\tfrac13(1 + 0.3333^2) = 0.3704 \\\\ x_3 &= \\tfrac13(1 + 0.3704^2) = 0.3791 \\\\ x_4 &= 0.3812 \\\\ x_5 &= 0.3818 \\\\ x_6 &= 0.3819 \\end{aligned}$$\n\nThe change from $x_5$ to $x_6$ is very small, so the root is **0.382** (3 d.p.). Exact value: $\\frac{3 - \\sqrt5}{2} = 0.38197$ ✓',
         },
         {
           type: 'bridge',

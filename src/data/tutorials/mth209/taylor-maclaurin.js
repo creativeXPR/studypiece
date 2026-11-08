@@ -62,15 +62,6 @@ export default {
             { text: '$\\dfrac{x^3}{3!}$', why: 'You still need to multiply by $f\'\'\'(0) = 2$.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Series: built.',
-          recap: [
-            'Taylor: expand $f(a + h)$ in powers of $h$ using derivatives at $a$.',
-            'Maclaurin: the special case $a = 0$.',
-          ],
-          why: 'Now use them to approximate values, and measure the error.',
-        },
       ],
     },
     {

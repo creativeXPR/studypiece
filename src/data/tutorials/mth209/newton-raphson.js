@@ -5,7 +5,7 @@ export default {
   id: 'newton-raphson',
   title: 'The Newton-Raphson method',
   covers: 'Deriving xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ) from the tangent, x³ − 5x − 40 = 0, the cube root of 7',
-  minutes: 16,
+  minutes: 13,
   sections: [
     {
       name: 'Deriving the formula',
@@ -49,15 +49,6 @@ export default {
             { text: '$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$', why: 'That’s an averaging step, not Newton-Raphson.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Formula: derived.',
-          recap: [
-            '$QB = \\frac{f(x_0)}{f\'(x_0)}$ from the tangent’s slope.',
-            '$x_{n+1} = x_n - \\frac{f(x_n)}{f\'(x_n)}$.',
-          ],
-          why: 'Now a worked example: $x^3 - 5x - 40 = 0$.',
-        },
       ],
     },
     {
@@ -81,17 +72,6 @@ export default {
           ],
         },
         {
-          type: 'choice',
-          eyebrow: 'Iteration 1',
-          prompt: '$f(4) = 4$ and $f\'(4) = 3(16) - 5 = 43$. Find $x_1$ (3 d.p.).',
-          options: [
-            { text: '$3.907$', correct: true, why: '$x_1 = 4 - \\frac{4}{43} = 4 - 0.0930 = 3.907$.' },
-            { text: '$4.093$', why: 'Subtract, don’t add.' },
-            { text: '$3.875$', why: 'That’s the secant/Regula Falsi first step from $3$ and $4$.' },
-            { text: '$3.000$', why: 'That would be $4 - 43/43$; the numerator is $f(4) = 4$.' },
-          ],
-        },
-        {
           type: 'custom',
           widget: 'calc',
           eyebrow: 'Your turn',
@@ -108,24 +88,9 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Iteration 2 and 3',
-          title: 'Converging fast',
-          body: '$$\\begin{aligned} x_2 &= 3.907 - \\frac{(3.907)^3 - 5(3.907) - 40}{3(3.907)^2 - 5} = 3.907 - \\frac{0.104}{40.794} = 3.90445 \\\\ x_3 &= 3.90445 - \\frac{0.000075}{40.734} = 3.90445 \\end{aligned}$$\n\nThe change between $x_2$ and $x_3$ is tiny, so to 3 s.f. the **root is 3.90**.\n\nThe number of correct digits roughly **doubles** each step. That is ==quadratic convergence==.',
-        },
-        {
-          type: 'story',
           eyebrow: 'Second example',
           title: 'The cube root of 7',
           body: '$\\sqrt[3]{7}$ is the root of $f(x) = x^3 - 7$, with $f\'(x) = 3x^2$:\n$$x_{n+1} = x_n - \\frac{x_n^3 - 7}{3x_n^2} = \\frac{2x_n^3 + 7}{3x_n^2}.$$\n\nFrom $x_0 = 2$:\n$$x_1 = \\frac{16 + 7}{12} = 1.9167,\\quad x_2 = 1.9129,\\quad x_3 = 1.9129.$$\n\nSo $\\sqrt[3]{7} = 1.913$ (3 d.p.).',
-        },
-        {
-          type: 'bridge',
-          title: 'Examples: solved.',
-          recap: [
-            '$x^3 - 5x - 40 = 0$: from $x_0 = 4$, $3.907 \\to 3.90445$, root $3.90$ (3 s.f.).',
-            '$\\sqrt[3]{7}$: $x_{n+1} = \\frac{2x_n^3 + 7}{3x_n^2}$ gives $1.913$.',
-          ],
-          why: 'Newton-Raphson is fast, but it has weak spots.',
         },
       ],
     },

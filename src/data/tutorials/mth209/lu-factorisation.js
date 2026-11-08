@@ -4,7 +4,7 @@ export default {
   id: 'lu-factorisation',
   title: 'LU factorisation',
   covers: 'A = LU (Doolittle, lᵢᵢ = 1), equating entries, LY = B forward, UX = Y back, a worked example',
-  minutes: 18,
+  minutes: 17,
   sections: [
     {
       name: 'The idea',
@@ -49,15 +49,6 @@ export default {
             { text: 'It is required for back substitution', why: 'Back substitution works on $U$, whatever $L$’s diagonal is.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'The idea: set.',
-          recap: [
-            '$A = LU$; solve $LY = B$ forwards, then $UX = Y$ backwards.',
-            'Doolittle: $l_{ii} = 1$ makes the factorisation unique.',
-          ],
-          why: 'How do we actually find $L$ and $U$? Multiply out and match entries.',
-        },
       ],
     },
     {
@@ -97,15 +88,6 @@ export default {
           eyebrow: 'Worked example · Last entry',
           title: '$u_{33}$, and the full factorisation',
           body: '$$3 = l_{31}u_{13} + l_{32}u_{23} + u_{33} = 4 - \\tfrac87 + u_{33} \\implies u_{33} = \\tfrac17.$$\n\n$$L = \\begin{pmatrix} 1 & 0 & 0 \\\\ \\frac12 & 1 & 0 \\\\ 1 & \\frac87 & 1 \\end{pmatrix},\\quad U = \\begin{pmatrix} 2 & 3 & 4 \\\\ 0 & -\\frac72 & -1 \\\\ 0 & 0 & \\frac17 \\end{pmatrix}.$$\n\nCheck: $\\det A = u_{11}u_{22}u_{33} = 2 \\cdot \\left(-\\frac72\\right) \\cdot \\frac17 = -1$ ✓ (as in the matrix inverse lesson).',
-        },
-        {
-          type: 'bridge',
-          title: 'L and U: found.',
-          recap: [
-            'Row 1 of $U$ = row 1 of $A$; column 1 of $L$ = column 1 of $A$ ÷ $a_{11}$.',
-            'Then alternate: next row of $U$, next column of $L$.',
-          ],
-          why: 'Now the two substitutions.',
         },
       ],
     },

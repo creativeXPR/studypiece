@@ -5,7 +5,7 @@ export default {
   id: 'error-propagation',
   title: 'Error propagation',
   covers: 'How errors combine in sums, differences, products and quotients, with worked examples',
-  minutes: 18,
+  minutes: 17,
   sections: [
     {
       name: 'Sums and differences',
@@ -59,14 +59,6 @@ export default {
             { text: '$0.15$', why: 'The errors are halves of the last place: $0.005$, $0.05$, $0.0005$.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: '+ and −: done.',
-          recap: [
-            'Sum or difference: max absolute error $= |\\varepsilon_1| + |\\varepsilon_2|$.',
-          ],
-          why: 'Products and quotients work with **relative** errors instead.',
-        },
       ],
     },
     {
@@ -88,17 +80,6 @@ export default {
           eyebrow: 'Division',
           title: 'Same rule for quotients',
           body: '$$\\frac{x_1}{x_2} - \\frac{X_1}{X_2} = \\frac{X_2(X_1 + \\varepsilon_1) - X_1(X_2 + \\varepsilon_2)}{X_2(X_2 + \\varepsilon_2)} = \\frac{X_2\\varepsilon_1 - X_1\\varepsilon_2}{X_2^2\\left(1 + \\frac{\\varepsilon_2}{X_2}\\right)}.$$\n\nIgnoring $\\frac{\\varepsilon_2}{X_2}$ next to 1 and dividing by $\\frac{X_1}{X_2}$:\n$$\\text{relative error} \\approx \\frac{\\varepsilon_1}{X_1} - \\frac{\\varepsilon_2}{X_2},\\quad\\text{so}\\quad \\left|\\text{rel. error}\\right| \\le \\frac{|\\varepsilon_1|}{X_1} + \\frac{|\\varepsilon_2|}{X_2}.$$',
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Worked example 1',
-          prompt: 'Find $\\frac{24.5}{12.37}$ and its maximum error. (Errors: $\\varepsilon_1 = 0.05$, $\\varepsilon_2 = 0.005$.)',
-          options: [
-            { text: '$1.981 \\pm 0.005$', correct: true, why: '$\\frac{24.5}{12.37} = 1.9806$. Max error $= \\left(\\frac{0.05}{24.5} + \\frac{0.005}{12.37}\\right) \\times 1.9806 = (0.00204 + 0.00040)(1.9806) = 0.0048 \\approx 0.005$.' },
-            { text: '$2.053 \\pm 0.005$', why: 'Check the division: $24.5 \\div 12.37 = 1.9806$.' },
-            { text: '$1.981 \\pm 0.055$', why: 'For a quotient, add **relative** errors, then multiply by the result.' },
-            { text: '$1.981 \\pm 0$', why: 'Both inputs carry rounding error.' },
-          ],
         },
         {
           type: 'custom',

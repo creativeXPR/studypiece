@@ -64,15 +64,6 @@ export default {
           ],
           note: 'Before approximating any of them, we must check the problem actually has a unique solution. That needs the Lipschitz condition.',
         },
-        {
-          type: 'bridge',
-          title: 'IVPs: defined.',
-          recap: [
-            'An IVP = a DE + conditions at the initial point.',
-            'Number of initial conditions = order of the DE.',
-          ],
-          why: 'Next: the two ideas used to prove a unique solution exists.',
-        },
       ],
     },
     {

@@ -53,15 +53,6 @@ export default {
             { text: '$x_2 = \\frac{1}{10}(13 + 2x_1 + x_3)$', why: 'The other terms change sign when moved across.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Set-up: done.',
-          recap: [
-            '$x_i = \\frac{1}{a_{ii}}(b_i - \\sum_{j \\neq i} a_{ij}x_j)$, i.e. $X = CX + F$.',
-            'SIM: compute all of $x^{(k+1)}$ from $x^{(k)}$.',
-          ],
-          why: 'Before iterating, always check that it will converge.',
-        },
       ],
     },
     {

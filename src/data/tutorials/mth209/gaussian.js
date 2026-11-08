@@ -55,15 +55,6 @@ export default {
           ],
           explain: 'Best choice: swap in the equation with the **largest** entry in that column (partial pivoting), to keep rounding errors small.',
         },
-        {
-          type: 'bridge',
-          title: 'Algorithm: set.',
-          recap: [
-            '$b_{1j} = \\frac{a_{1j}}{a_{11}}$, $a^{(1)}_{ij} = a_{ij} - a_{i1}b_{1j}$; repeat on the smaller system.',
-            'Zero pivot: interchange rows. Then back-substitute.',
-          ],
-          why: 'Now a full 4 × 4 worked example.',
-        },
       ],
     },
     {

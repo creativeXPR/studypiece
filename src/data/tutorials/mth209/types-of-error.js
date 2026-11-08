@@ -5,7 +5,7 @@ export default {
   id: 'types-of-error',
   title: 'Types of error',
   covers: 'Gross, truncation and round-off errors; chopping vs symmetric rounding; absolute and relative error',
-  minutes: 14,
+  minutes: 12,
   sections: [
     {
       name: 'Where errors come from',
@@ -66,15 +66,6 @@ export default {
           title: '$e^{0.2}$ from the first 3 terms',
           body: '$$e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\cdots$$\n\nKeeping 3 terms: $e^{0.2} \\approx 1 + 0.2 + \\frac{0.04}{2} = 1.22$.\n\nThe truncation error is the sum of the dropped terms:\n$$\\frac{(0.2)^3}{6} + \\frac{(0.2)^4}{24} + \\cdots = 0.00133 + 0.00007 + \\cdots \\approx 0.0014.$$\n\nIndeed $e^{0.2} = 1.2214$. The truncation error is less than $10^{-2}$.',
         },
-        {
-          type: 'bridge',
-          title: 'Sources: identified.',
-          recap: [
-            '**Gross**: mistakes. **Truncation**: infinite process cut short. **Round-off**: limited digits.',
-            '$e^{0.2} \\approx 1.22$ with truncation error $\\approx 0.0014$.',
-          ],
-          why: 'Round-off can be done two ways. The next part compares them.',
-        },
       ],
     },
     {
@@ -103,14 +94,6 @@ export default {
           ],
           explain: 'Symmetric rounding is never more than half a unit out in the last place, so its error bound is half that of chopping.',
         },
-        {
-          type: 'bridge',
-          title: 'Rounding: compared.',
-          recap: [
-            'Chopping error $< 10^{E - d}$; symmetric rounding error $\\le \\frac12 \\times 10^{E - d}$.',
-          ],
-          why: 'Last part: how we measure the size of an error.',
-        },
       ],
     },
     {
@@ -126,17 +109,6 @@ export default {
           eyebrow: 'Definitions',
           title: 'Absolute and relative error',
           body: 'Let $x_t$ be the true value and $X$ an approximation. The error is $\\varepsilon = x_t - X$ and\n$$\\text{absolute error} = |\\varepsilon| = |x_t - X|,\\qquad \\text{relative error} = \\frac{|x_t - X|}{|x_t|}.$$\n\nAn error of 1 cm is tiny when measuring a road but huge when measuring a screw. Relative error captures that.',
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Apply it',
-          prompt: '$\\pi$ is approximated by $3.14$. What is the relative error?',
-          options: [
-            { text: '$0.00159$', why: 'That’s the absolute error. Divide by $\\pi$.' },
-            { text: '$0.000507$, about $0.051\\%$', correct: true, why: '$\\frac{|3.14159 - 3.14|}{3.14159} = \\frac{0.00159}{3.14159} = 0.000507$.' },
-            { text: '$0.0507$', why: 'That’s $5\\%$; check the division.' },
-            { text: '$3.14$', why: 'That’s the approximation itself.' },
-          ],
         },
         {
           type: 'custom',

@@ -55,15 +55,6 @@ export default {
             { text: 'No $L$ exists, because $y$ is unbounded', why: 'Only $\\frac{\\partial f}{\\partial y} = 2x$ needs to be bounded, and it is.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Uniqueness: proved.',
-          recap: [
-            'Continuous $f$ + Lipschitz in $y$ on the strip ⟹ a unique solution.',
-            'Show Lipschitz by bounding $\\left|\\frac{\\partial f}{\\partial y}\\right|$.',
-          ],
-          why: 'One more requirement: the problem must be well posed.',
-        },
       ],
     },
     {

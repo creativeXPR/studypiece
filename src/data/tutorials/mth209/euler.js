@@ -56,15 +56,6 @@ export default {
           title: 'Cut Taylor’s series after the first derivative',
           body: 'Expand $y$ about $x_i$ by Taylor’s series:\n$$y(x_i + h) = y(x_i) + h\\,y\'(x_i) + \\frac{h^2}{2!}y\'\'(x_i) + \\frac{h^3}{3!}y\'\'\'(x_i) + \\cdots$$\nFor small $h$ the $h^2$ and higher terms are tiny. Dropping them (this is the ==truncation error==) and using $y\'(x_i) = f(x_i, y(x_i))$:\n$$y(x_{i+1}) \\approx y(x_i) + h\\,f(x_i, y(x_i)).$$\nWriting $y_i$ for the approximation gives ==Euler’s method==:\n$$y_0 = \\alpha,\\qquad y_{i+1} = y_i + h\\,f(x_i, y_i),\\quad i = 0, 1, \\ldots, n - 1.$$',
         },
-        {
-          type: 'bridge',
-          title: 'Method: derived.',
-          recap: [
-            'Mesh: $x_i = a + ih$, $h = \\frac{b - a}{n}$.',
-            'Step: $y_{i+1} = y_i + h\\,f(x_i, y_i)$, from Taylor’s series cut after $h\\,y\'$.',
-          ],
-          why: 'Now a full worked example.',
-        },
       ],
     },
     {

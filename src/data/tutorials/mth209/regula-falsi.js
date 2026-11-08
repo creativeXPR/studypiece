@@ -5,7 +5,7 @@ export default {
   id: 'regula-falsi',
   title: 'Regula Falsi (false position)',
   covers: 'The secant line through (a, f(a)) and (b, f(b)), deriving c = (af(b) − bf(a))/(f(b) − f(a))',
-  minutes: 15,
+  minutes: 13,
   sections: [
     {
       name: 'Deriving the formula',
@@ -63,15 +63,6 @@ export default {
           title: 'Then update just like bisection',
           body: 'From the sign of $f(c)$, decide whether the root lies in $[a, c]$ or $[c, b]$, update the bracket, and repeat until successive values of $c$ agree to the required accuracy.\n\nBecause a sign change is always kept, Regula Falsi **cannot lose the root**.',
         },
-        {
-          type: 'bridge',
-          title: 'Formula: derived.',
-          recap: [
-            'Secant line through $(a, f(a))$, $(b, f(b))$; set $y = 0$ at $x = c$.',
-            '$c = \\frac{a f(b) - b f(a)}{f(b) - f(a)}$, then keep the half with the sign change.',
-          ],
-          why: 'Now a worked example.',
-        },
       ],
     },
     {
@@ -95,17 +86,6 @@ export default {
           ],
         },
         {
-          type: 'choice',
-          eyebrow: 'Iteration 2',
-          prompt: 'With $a = 0$, $b = 0.25$: $f(a) = 1$, $f(b) = -0.2344$. Find $c_2$ (4 d.p.).',
-          options: [
-            { text: '$0.1250$', why: 'That’s the bisection midpoint.' },
-            { text: '$0.2025$', correct: true, why: '$c_2 = \\frac{0(-0.2344) - 0.25(1)}{-0.2344 - 1} = \\frac{-0.25}{-1.2344} = 0.2025$.' },
-            { text: '$0.2344$', why: 'That’s $|f(b)|$, not a new $x$.' },
-            { text: '$0.2500$', why: 'That’s the old end point.' },
-          ],
-        },
-        {
           type: 'custom',
           widget: 'calc',
           eyebrow: 'Your turn',
@@ -119,13 +99,6 @@ export default {
               { ask: '$c_3 = $ (6 d.p.)', answer: 0.201654, tol: 3e-06, hint: 'Same formula with $b = 0.202532$, $f(b) = -0.004351$.' },
             ],
           },
-        },
-        {
-          type: 'story',
-          eyebrow: 'The table',
-          title: 'Until two estimates agree to 3 s.f.',
-          body: '$$\\begin{array}{c|c|c|c} a & b & c & f(c) \\\\ \\hline 0 & 1 & 0.25 & -0.2344 \\\\ 0 & 0.25 & 0.202532 & -0.004351 \\\\ 0 & 0.202532 & 0.201654 & -0.000072 \\\\ 0 & 0.201654 & 0.201640 & -0.000001 \\end{array}$$\n\n$c_3 = 0.201654$ and $c_4 = 0.201640$ are both $0.202$ to 3 s.f., so we stop.\n\n**Root $\\approx 0.202$** (3 s.f.). Bisection on the same interval needs about 10 steps for this accuracy.',
-          note: '$c_2 = 0.2025$ rounds to $0.203$ (3 s.f.), so $c_2$ and $c_3$ do not yet agree. Always compare enough digits.',
         },
         {
           type: 'multi',

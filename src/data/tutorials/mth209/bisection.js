@@ -5,7 +5,7 @@ export default {
   id: 'bisection',
   title: 'The bisection method',
   covers: 'Bracketing a root, the intermediate value theorem, halving until two values agree',
-  minutes: 14,
+  minutes: 12,
   sections: [
     {
       name: 'The idea',
@@ -73,17 +73,6 @@ export default {
           body: 'Start with $a = 1$, $b = 2$ (we found $f(1) < 0 < f(2)$).\n\n**Row 1:** $c = \\frac{1 + 2}{2} = 1.5$, and\n$$f(1.5) = 5(2.25) + 16.5 - 17 = 10.75 > 0.$$\n$f(1.5)$ has the same sign as $f(b)$, so the root is in $[1, 1.5]$: replace $b$ by $1.5$.',
         },
         {
-          type: 'choice',
-          eyebrow: 'Row 2',
-          prompt: 'Now $a = 1$, $b = 1.5$. The midpoint is $c = 1.25$ with $f(1.25) = 4.5625$. What is the next bracket?',
-          options: [
-            { text: '$[1.25, 1.5]$', why: '$f(1.25)$ and $f(1.5)$ are both positive: no sign change there.' },
-            { text: '$[1, 1.25]$', correct: true, why: '$f(1) < 0 < f(1.25)$, so the sign change is in $[1, 1.25]$.' },
-            { text: '$[1, 1.5]$', why: 'Each step must halve the bracket.' },
-            { text: '$[1.125, 1.375]$', why: 'The new bracket always has the midpoint as one end.' },
-          ],
-        },
-        {
           type: 'custom',
           widget: 'calc',
           eyebrow: 'Your turn',
@@ -106,28 +95,6 @@ export default {
           eyebrow: 'The full table',
           title: 'Keep going until two values agree',
           body: '$$\\begin{array}{c|c|c|c} a & b & c & f(c) \\\\ \\hline 1 & 2 & 1.5 & 10.75 \\\\ 1 & 1.5 & 1.25 & 4.5625 \\\\ 1 & 1.25 & 1.125 & 1.7031 \\\\ 1 & 1.125 & 1.0625 & 0.3320 \\\\ 1 & 1.0625 & 1.03125 & -0.3389 \\\\ 1.03125 & 1.0625 & 1.046875 & -0.0046 \\\\ 1.046875 & 1.0625 & 1.0546875 & 0.1634 \\end{array}$$\n\nThe last two midpoints, $1.046875$ and $1.0546875$, are **both $1.05$ to 3 s.f.**, so we stop.\n\n**Root $\\approx 1.05$** (3 s.f.). The quadratic formula gives $1.04709\\ldots$ ✓',
-        },
-        {
-          type: 'order',
-          eyebrow: 'Rebuild the method',
-          prompt: 'Put the steps of a bisection solution in order.',
-          items: [
-            'Find $a$, $b$ with $f(a)f(b) < 0$.',
-            'Compute $c = \\frac{a + b}{2}$ and $f(c)$.',
-            'Replace whichever of $a$, $b$ has the same sign as $f(c)$ by $c$.',
-            'Repeat with the new, halved interval.',
-            'Stop when two successive values of $c$ agree to the required accuracy.',
-          ],
-          explain: 'Present your working as a table with columns $a$, $b$, $c$, $f(c)$: it is quick to mark and quick to check.',
-        },
-        {
-          type: 'bridge',
-          title: 'Example: solved.',
-          recap: [
-            'Root of $5x^2 + 11x - 17 = 0$ in $[1, 2]$ is $1.05$ (3 s.f.).',
-            'A table of $a, b, c, f(c)$ is the cleanest way to show the work.',
-          ],
-          why: 'Bisection always works, but it’s slow. How slow, exactly?',
         },
       ],
     },

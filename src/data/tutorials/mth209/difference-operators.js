@@ -7,7 +7,7 @@ export default {
   id: 'difference-operators',
   title: 'Forward, backward and central differences',
   covers: 'Δ, ∇ and δ; higher differences in terms of ordinates; difference tables; derivative estimates',
-  minutes: 18,
+  minutes: 16,
   sections: [
     {
       name: 'The three operators',
@@ -65,26 +65,6 @@ export default {
             { text: '$0.84$', why: 'Subtract, don’t add.' },
           ],
         },
-        {
-          type: 'choice',
-          eyebrow: 'Apply it',
-          prompt: 'Same table. Find $\\Delta^3 y_2 = y_5 - 3y_4 + 3y_3 - y_2$.',
-          options: [
-            { text: '$-0.01$', correct: true, why: '$0.67 - 3(0.49) + 3(0.35) - 0.26 = 0.67 - 1.47 + 1.05 - 0.26 = -0.01$.' },
-            { text: '$0.01$', why: 'Check the signs: $+y_5 - 3y_4 + 3y_3 - y_2$.' },
-            { text: '$0.13$', why: 'Use the coefficients $1, -3, 3, -1$.' },
-            { text: '$0.41$', why: 'That’s $y_5 - y_2$, which isn’t a third difference.' },
-          ],
-        },
-        {
-          type: 'bridge',
-          title: 'Operators: defined.',
-          recap: [
-            '$\\Delta f_k = f_{k+1} - f_k$, $\\nabla f_k = f_k - f_{k-1}$, $\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$.',
-            '$\\Delta^n$ uses binomial coefficients with alternating signs.',
-          ],
-          why: 'In practice we put all the differences into one table.',
-        },
       ],
     },
     {
@@ -138,15 +118,6 @@ export default {
               { ask: '$\\Delta^5 y_0 = $', answer: 0.6, tol: 0.001, hint: '$\\Delta^4y_1 - \\Delta^4y_0 = 0.3 - (-0.3)$.' },
             ],
           },
-        },
-        {
-          type: 'bridge',
-          title: 'Tables: built.',
-          recap: [
-            'Each column is differences of the column before; one fewer entry each time.',
-            'Degree-$n$ polynomial: $n$-th differences constant, higher ones zero.',
-          ],
-          why: 'Last: using differences to estimate a derivative.',
         },
       ],
     },

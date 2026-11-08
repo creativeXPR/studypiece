@@ -56,15 +56,6 @@ export default {
             { text: '$x_0$', why: 'The weights are pure numbers between 0 and 1 (inside the interval).' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'P₁(x): derived.',
-          recap: [
-            '$P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$.',
-            'Equivalent slope form: $P_1(x) = y_0 + \\frac{y_1 - y_0}{x_1 - x_0}(x - x_0)$.',
-          ],
-          why: 'Now three worked examples.',
-        },
       ],
     },
     {

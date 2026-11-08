@@ -5,7 +5,7 @@ export default {
   id: 'newton-difference-formulas',
   title: 'Operators and Newton’s difference formulas',
   covers: 'E, Δ = E − 1, ∇ = 1 − E⁻¹, δ = E^½ − E^−½, δ² = Δ∇; Newton forward and backward interpolation',
-  minutes: 18,
+  minutes: 16,
   sections: [
     {
       name: 'Symbolic operators',
@@ -62,15 +62,6 @@ export default {
           title: '$\\delta^2 = \\Delta\\nabla$',
           body: '$$\\begin{aligned} \\delta^2 &= (E^{\\frac12} - E^{-\\frac12})^2 = E - 2 + E^{-1} \\\\ &= (E - 1) - (1 - E^{-1}) \\\\ &= E(1 - E^{-1}) - 1(1 - E^{-1}) \\\\ &= (E - 1)(1 - E^{-1}) = \\Delta\\nabla. \\end{aligned}$$\n\nThe operators also **commute**: $\\Delta\\nabla = \\nabla\\Delta$, and $DE = ED$ for the derivative $D$.',
         },
-        {
-          type: 'bridge',
-          title: 'Operators: related.',
-          recap: [
-            '$\\Delta = E - 1$, $\\nabla = 1 - E^{-1}$, $\\delta = E^{\\frac12} - E^{-\\frac12}$.',
-            '$\\delta^2 = E - 2 + E^{-1} = \\Delta\\nabla$.',
-          ],
-          why: 'Now the payoff: Newton’s interpolation formulas drop straight out of $E = 1 + \\Delta$.',
-        },
       ],
     },
     {
@@ -100,17 +91,6 @@ export default {
           body: '$$\\begin{array}{c|c|c|c|c|c} \\text{Year} & y & \\Delta y & \\Delta^2 y & \\Delta^3 y & \\Delta^4 y \\\\ \\hline 1891 & 46 & 20 & -5 & 2 & -3 \\\\ 1901 & 66 & 15 & -3 & -1 & \\\\ 1911 & 81 & 12 & -4 & & \\\\ 1921 & 93 & 8 & & & \\\\ 1931 & 101 & & & & \\end{array}$$\n\nEstimate the population in **1895** and in **1925**. Here $h = 10$.',
         },
         {
-          type: 'choice',
-          eyebrow: '1895 · find r',
-          prompt: '1895 is near the start, so use the forward formula from $x_0 = 1891$. What is $r$?',
-          options: [
-            { text: '$0.4$', correct: true, why: '$1895 = 1891 + 10r \\implies r = 0.4$.' },
-            { text: '$4$', why: 'Divide by $h = 10$.' },
-            { text: '$-0.6$', why: 'That’s for 1925 measured from 1931.' },
-            { text: '$0.5$', why: '1895 is 4 years after 1891, not 5.' },
-          ],
-        },
-        {
           type: 'custom',
           widget: 'calc',
           eyebrow: 'Your turn',
@@ -125,12 +105,6 @@ export default {
               { ask: 'Population in 1895 (thousand, 2 d.p.)', answer: 54.85, tol: 0.006, hint: '$46 + 8 + 0.6 + 0.128 + 0.1248$.' },
             ],
           },
-        },
-        {
-          type: 'story',
-          eyebrow: '1895 · substitute',
-          title: 'Use the top diagonal: $46, 20, -5, 2, -3$',
-          body: '$$\\begin{aligned} f_{1895} &= 46 + 0.4(20) + \\frac{0.4(-0.6)}{2}(-5) + \\frac{0.4(-0.6)(-1.6)}{6}(2) \\\\ &\\quad + \\frac{0.4(-0.6)(-1.6)(-2.6)}{24}(-3) \\\\ &= 46 + 8 + 0.6 + 0.128 + 0.1248 = 54.85. \\end{aligned}$$\n\nPopulation in 1895 $\\approx$ **54.85** (thousand).',
         },
         {
           type: 'choice',

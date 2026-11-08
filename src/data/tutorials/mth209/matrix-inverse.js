@@ -5,7 +5,7 @@ export default {
   id: 'matrix-inverse',
   title: 'The matrix inverse method',
   covers: 'General form, consistency, AX = B, X = A⁻¹B with A⁻¹ = adj A / det A, a worked example',
-  minutes: 18,
+  minutes: 15,
   sections: [
     {
       name: 'Setting up',
@@ -58,15 +58,6 @@ export default {
           eyebrow: 'Exam notice',
           title: 'Use the method you are told to use',
           body: 'If a question says “solve by the Gaussian method” and you use the matrix inverse method, you **lose the method marks** even with the right answer.\n\nA system is ==consistent== when it has **at least one solution**, and inconsistent when it has none. Fewer equations than unknowns does not make a system inconsistent: $2x + 4y + 3z = 2$, $4x + y + 6z = 3$ has 3 unknowns and only 2 equations, yet $z = 0$, $x = \\frac57$, $y = \\frac17$ solves it (it has infinitely many solutions).',
-        },
-        {
-          type: 'bridge',
-          title: 'Set-up: done.',
-          recap: [
-            'Direct: matrix inverse, LU, Gaussian. Iterative: SIM, Gauss-Seidel.',
-            'Always use the named method.',
-          ],
-          why: 'First method: write the system as $AX = B$ and invert $A$.',
         },
       ],
     },
@@ -123,15 +114,6 @@ export default {
             { text: '$x_1 = 1,\\ x_2 = 2,\\ x_3 = -1$', why: 'That’s the answer to a different system.' },
           ],
         },
-        {
-          type: 'bridge',
-          title: 'Example: solved.',
-          recap: [
-            '$\\det A = -1$, $A^{-1} = -\\operatorname{adj}A$.',
-            '$X = (28, 4, -17)^T$, checked in an original equation.',
-          ],
-          why: 'Two more examples, including a 2 × 2 shortcut.',
-        },
       ],
     },
     {
@@ -140,17 +122,6 @@ export default {
         ['2 × 2 inverse', '$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}^{-1} = \\dfrac{1}{ad - bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$'],
       ],
       screens: [
-        {
-          type: 'choice',
-          eyebrow: 'The 2 × 2 system',
-          prompt: 'Solve $2x + 4y = 0$, $2x + 3y = 4$ by the matrix inverse method.',
-          options: [
-            { text: '$x = 8$, $y = -4$', correct: true, why: '$\\det A = 6 - 8 = -2$. $A^{-1} = \\frac{1}{-2}\\begin{pmatrix} 3 & -4 \\\\ -2 & 2 \\end{pmatrix}$, so $X = \\frac{1}{-2}\\begin{pmatrix} -16 \\\\ 8 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ -4 \\end{pmatrix}$.' },
-            { text: '$x = -8$, $y = 4$', why: 'Check the sign of $\\frac{1}{\\det A} = -\\frac12$.' },
-            { text: '$x = 4$, $y = -2$', why: 'Then $2x + 3y = 2$, not 4.' },
-            { text: 'No solution', why: '$\\det A = -2 \\neq 0$, so there is a unique solution.' },
-          ],
-        },
         {
           type: 'custom',
           widget: 'calc',
@@ -166,12 +137,6 @@ export default {
               { ask: '$x_3 = $', answer: -1, tol: 0, hint: 'Row 3 of $\\operatorname{adj}A$ is $(-5, 4, 1)$: $-10 - 8 + 17$.' },
             ],
           },
-        },
-        {
-          type: 'story',
-          eyebrow: 'Application',
-          title: 'Mixing concrete',
-          body: 'Three batches contain cement, granite and sand in the proportions $\\left(\\frac15, \\frac35, \\frac15\\right)$, $\\left(\\frac1{10}, \\frac5{10}, \\frac4{10}\\right)$, $\\left(\\frac25, \\frac35, 0\\right)$. How much of each batch makes 10 m³ with 2.6 m³ cement, 5.8 m³ granite and 1.6 m³ sand?\n\nOne equation per ingredient, multiplied by 10:\n$$\\begin{pmatrix} 2 & 1 & 4 \\\\ 6 & 5 & 6 \\\\ 2 & 4 & 0 \\end{pmatrix}X = \\begin{pmatrix} 26 \\\\ 58 \\\\ 16 \\end{pmatrix},\\quad \\det A = 20.$$\n$$X = \\frac{1}{20}\\begin{pmatrix} -24 & 16 & -14 \\\\ 12 & -8 & 12 \\\\ 14 & -6 & 4 \\end{pmatrix}\\begin{pmatrix} 26 \\\\ 58 \\\\ 16 \\end{pmatrix} = \\frac{1}{20}\\begin{pmatrix} 80 \\\\ 40 \\\\ 80 \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ 2 \\\\ 4 \\end{pmatrix}.$$\n\nUse 4, 2 and 4 m³. Check: $4 + 2 + 4 = 10$ ✓',
         },
         {
           type: 'multi',
