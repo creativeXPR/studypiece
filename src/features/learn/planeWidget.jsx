@@ -176,7 +176,8 @@ export function Plane({ api, config: g }) {
 
   useEffect(() => {
     const back = step > 0 ? { label: 'Back', fn: () => { setStep((n) => n - 1); setHere(Infinity); } } : undefined;
-    if (here < need) api.setAction(`Tap “${s.action.label}”`, false, undefined, back);
+    // The big button can do the step's action too (all its presses at once), so it never blocks.
+    if (here < need) api.setAction(s.action.label, true, () => { setPresses((p) => p + need - here); setHere(need); }, back);
     else if (last) api.setAction(g.cta ?? 'Continue', true, api.next, back);
     else api.setAction('Next', true, () => { setStep((n) => n + 1); setHere(0); }, back);
   }, [step, here, need, last, api, g.cta, s.action]);

@@ -2,10 +2,19 @@ import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'rea
 import { Link, useNavigate } from 'react-router-dom';
 import { BookIcon, BulbIcon, CheckIcon, ChevronLeft, XIcon } from '../../lib/icons';
 import { buzz } from './fx';
-import { clearRun, getRun, saveProgress, saveRun } from './progress';
+import { clearRun, getProgress, getRun, saveProgress, saveRun } from './progress';
 import { Rich, Terms } from './Rich';
 import { JAVA_SCREENS } from './java/lazyScreens';
 import { SCREENS } from './screens';
+
+// Widgets that check an answer stay required (they offer "Show me" instead). Scenes never block.
+const REQUIRED_WIDGETS = new Set(['calc', 'code', 'mockClock', 'scene', 'plane']);
+
+// Hands-on pictures and flip cards can be skipped; on a replay of a finished lesson, anything can.
+function canSkip(s, replay) {
+  if (s.type === 'finish') return false;
+  return replay || s.type === 'reveal' || (s.type === 'custom' && !REQUIRED_WIDGETS.has(s.widget));
+}
 
 /**
  * Runs one lesson: a list of sections, each a run of screens.
@@ -34,13 +43,19 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
   const [idx, setIdx] = useState(saved?.idx ?? 0);
   const [dir, setDir] = useState(1);
   const [run, setRun] = useState(0);
-  const [action, setActionState] = useState({ label: 'Continue', enabled: false, secondary: null });
+  const [action, setActionState] = useState({ label: 'Continue', enabled: false, secondary: null, finished: false });
+  // A finished lesson opens for review: its first-try answers and score are kept, every screen
+  // can be skipped, and nothing is saved as "in progress". Only "Redo lesson" starts it afresh.
+  const [record] = useState(() => getProgress(courseSlug, lesson.id));
+  const [replay, setReplay] = useState(() => !!record?.done);
+  const [review, setReview] = useState(() => !!record?.done && !saved);
+  const reviewing = useRef(review);
   const [sheet, setSheet] = useState(null);
   const [notesOpen, setNotesOpen] = useState(false);
   const actionFn = useRef(null);
   const secondaryFn = useRef(null);
-  const results = useRef(saved?.results ?? {});
-  const mem = useRef(saved?.mem ?? {});
+  const results = useRef(saved?.results ?? (review ? { ...record.results } : {}));
+  const mem = useRef(saved?.mem ?? (review ? { ...record.mem } : {}));
   const stageRef = useRef(null);
 
   // Saves the current spot. The finish screen clears the run instead (it calls
@@ -49,7 +64,7 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
   const idxRef = useRef(idx);
   const persist = useCallback(() => {
     const at = idxRef.current;
-    if (screens[at]?.type === 'finish') return;
+    if (reviewing.current || screens[at]?.type === 'finish') return;
     if (at === 0 && !Object.keys(results.current).length) {
       clearRun(uid, courseSlug, lesson.id);
       return;
@@ -77,7 +92,11 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
         if (fn) actionFn.current = fn;
         secondaryFn.current = secondary?.fn ?? null;
         const sec = secondary?.label ?? null;
-        setActionState((s) => (s.label === label && s.enabled === enabled && s.secondary === sec ? s : { label, enabled, secondary: sec }));
+        // Finished = the big button simply moves on, so there is nothing left to skip.
+        const finished = enabled && actionFn.current === a.next;
+        setActionState((s) =>
+          s.label === label && s.enabled === enabled && s.secondary === sec && s.finished === finished ? s : { label, enabled, secondary: sec, finished },
+        );
       },
       done(label) {
         a.setAction(label || 'Continue', true, a.next);
@@ -101,7 +120,7 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
       },
       complete() {
         const { right, graded } = a.score();
-        saveProgress(courseSlug, lesson.id, right, graded);
+        saveProgress(courseSlug, lesson.id, right, graded, { results: results.current, mem: mem.current });
         clearRun(uid, courseSlug, lesson.id);
       },
       exit() {
@@ -111,6 +130,9 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
         if (nextLesson) navigate(nextLesson.href);
       },
       restart() {
+        reviewing.current = false;
+        setReview(false);
+        setReplay(false);
         clearRun(uid, courseSlug, lesson.id);
         results.current = {};
         mem.current = {};
@@ -201,6 +223,17 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
         </div>
       </header>
 
+      {review && (
+        <div className="tut-review" role="note">
+          <span>
+            Reviewing: your answers{record.of ? ` and score (${record.best}/${record.of})` : ''} are kept.
+          </span>
+          <button type="button" onClick={api.restart}>
+            Redo lesson
+          </button>
+        </div>
+      )}
+
       <main className="tut-stage" ref={stageRef}>
         <section className={`tut-screen ${dir < 0 ? 'from-left' : 'from-right'}`} key={`${run}-${idx}`}>
           <Suspense fallback={<p className="tut-hint">Loading…</p>}>
@@ -236,10 +269,17 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
             >
               {action.label}
             </button>
-            {action.secondary && (
+            {action.secondary ? (
               <button type="button" className="tut-btn ghost" onClick={() => secondaryFn.current?.()}>
                 {action.secondary}
               </button>
+            ) : (
+              !action.finished &&
+              canSkip(s, replay) && (
+                <button type="button" className="tut-btn ghost" onClick={api.next}>
+                  Skip
+                </button>
+              )
             )}
           </div>
         </footer>

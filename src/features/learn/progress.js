@@ -7,7 +7,9 @@ export function getProgress(courseSlug, lessonId) {
   return sync.get('lessons', itemKey(courseSlug, lessonId));
 }
 
-export function saveProgress(courseSlug, lessonId, score, of) {
+// `results` (first-try right/wrong per screen) and `mem` (poll picks) are kept so reopening a
+// finished lesson shows it as it was left, until the student chooses to redo it.
+export function saveProgress(courseSlug, lessonId, score, of, { results = {}, mem = {} } = {}) {
   const prev = getProgress(courseSlug, lessonId) ?? {};
   sync.set(
     'lessons',
@@ -17,6 +19,8 @@ export function saveProgress(courseSlug, lessonId, score, of) {
       score,
       of,
       best: Math.max(prev.best ?? 0, score),
+      results,
+      mem,
       at: Date.now(),
     },
     { fast: true },

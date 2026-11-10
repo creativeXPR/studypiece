@@ -605,7 +605,7 @@ function Finish({ s, api }) {
     if (api.nextLesson) {
       api.setAction(`Next: ${api.nextLesson.title}`, true, api.goNextLesson, { label: 'Back to tutorial', fn: api.exit });
     } else {
-      api.setAction('Back to tutorial', true, api.exit, { label: 'Replay lesson', fn: api.restart });
+      api.setAction('Back to tutorial', true, api.exit, { label: 'Redo lesson', fn: api.restart });
     }
   }, [api]);
   useEffect(() => {
