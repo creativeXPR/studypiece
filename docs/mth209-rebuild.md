@@ -1,6 +1,66 @@
 # MTH 209 rebuild: handoff
 
-Status (2026-11-10): **plan approved, nothing rebuilt yet.** Next step: build Lesson 0 (the map) and Part A, let the owner try them, then Parts B, C and D. Deploy and push after each part (flow at the bottom).
+Status (2026-11-10): **plan approved. Lesson 0 is drafted but not registered; Part A is designed but not written.**
+
+Next steps:
+1. Register `course-map.js` and write Part A, using the design and checked numbers below.
+2. Regroup `index.js` into the four parts (see "Index regroup").
+3. Let the owner try it, then rebuild Parts B, C and D.
+4. Deploy and push after each part (flow at the bottom).
+
+## Exam notices from the lecturer (must appear)
+
+The lecturer marked these in the notes as exam points.
+- **Use the method the question names.** If a question says "use Gauss-Seidel" or "by Newton-Raphson", only that method earns the marks. This applies to the whole course: it is already an Exam tip in `course-map.js`; repeat it in every exam lesson.
+- **Define a consistent system:** one that has at least one solution (Part B, linear systems).
+- **Newton's stopping test for systems:** stop when ‖x⁽ᵏ⁾ − x⁽ᵏ⁻¹⁾‖ ≤ ε, checking every component (Part B, non-linear systems).
+- **Define an IVP:** a differential equation together with its initial conditions (Part D).
+
+Show them as `asides: [{ label: 'Exam tip', text }]`. Each one also needs practice questions in the bank (set QS009 "Exam focus" already covers them).
+
+## Lesson 0 (drafted)
+
+`src/data/tutorials/mth209/course-map.js` is written but **not yet in `index.js`**. It covers why we approximate, engine 1 (the √2 iteration 1 → 1.5 → 1.416667 → 1.414216) and engine 2 (sin 0.5 ≈ 0.479167 against 0.479426). It also has the four-parts story, a sort into the four jobs, the lesson pattern with the exam tip, a check question and a finish screen. Review it, then register it as the first chapter.
+
+## Part A design (numbers checked in Python)
+
+**`errors.js`, "How wrong is an answer?"** Replaces `types-of-error.js` and `error-propagation.js`.
+1. Bridge: every later method gives approximate answers, so first we learn to measure how wrong one is.
+2. Absolute, relative and percentage error. Example: 2/3 ≈ 0.667 has absolute error 0.000333 and relative error 0.0005 (0.05%).
+3. Step check: π ≈ 3.14 has absolute error 0.00159 and relative error 0.000507.
+4. `roundingScene`.
+5. Sources of error: blunder, round-off, truncation. Example: e^0.2 to 3 terms is 1.22 against 1.2214.
+6. Sort these into the three sources: writing 0.5791 for 0.5971; keeping 2/3 as 0.667; stopping a series; stopping bisection after 10 steps.
+7. Correct to d decimal places and significant figures: |x − X| ≤ ½×10⁻ᵈ.
+8. Propagation. Sums: absolute errors add. Products and quotients: relative errors add. Functions: Δf ≈ |f′(X)|Δx, which bridges to the series lesson.
+9. `productErrorScene`.
+10. Step check: X₁ = 2.35 and X₂ = 1.26, each ±0.005. The sum's maximum error is 0.01. The product is 2.961, with relative error 0.006096 and absolute error 0.01805.
+11. Choice: subtracting nearly equal numbers loses significance.
+12. Finish.
+
+**`series.js`, "Approximating with polynomials"** Replaces `binomial-expansion.js`, `taylor-maclaurin.js` and `exponential-series.js`.
+1. Bridge: we can measure error; now the engine that makes approximation work and predicts its error.
+2. `taylorScene`.
+3. Taylor about a, Maclaurin (a = 0), and the remainder Rₙ = f⁽ⁿ⁺¹⁾(ξ)(x−a)ⁿ⁺¹/(n+1)!.
+4. Step check: e^0.5 from 4 terms is 1.645833. The true value is 1.648721, so the error is 0.002888, and the remainder bound is 1.65·0.5⁴/24 = 0.004297.
+5. The standard series: eˣ, sin x, cos x, ln(1+x) and (1+x)ⁿ, each with its range (|x| < 1 for the last two).
+6. `binomialScene`.
+7. Step check: √1.1 = (1+0.1)^½ ≈ 1 + 0.05 − 0.00125 + 0.0000625 = 1.0488125, against the true 1.0488088.
+8. `expTermsScene`.
+9. Choice: e^0.5 needs 6 terms for error below 10⁻⁴ (the partial sum is 1.648698).
+10. Choice: why the (1+x)^½ series fails at x = 3.
+11. Preview: Taylor drives Newton (Part B), finite differences (Part C) and Euler (Part D).
+12. Finish.
+
+Extra checked value: ln 1.2 = 0.182322; three terms give 0.182667.
+
+**A exam lesson:** merge `exam-errors.js` and `exam-series.js` into `exam-foundations.js`, and add the "use the named method" tip.
+
+## Index regroup
+
+Turn the 8 chapters into: the map, A, B, C, D and the mock exam.
+- **Until a part is rebuilt, keep its old lessons under the new part heading.** For example, B holds the equation, linear-system and non-linear lessons with their exam lessons.
+- Delete old lesson files only once their replacements are registered. Git keeps their history.
 
 ## Why
 
