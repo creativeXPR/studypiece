@@ -27,9 +27,9 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Part B · Lesson 3',
+          eyebrow: 'Part B · Lesson 2',
           title: 'Feed the answer back in',
-          body: 'Type any number into a calculator and press **cos** again and again (in radians). The display settles on $0.7391\\ldots$, the solution of $x = \\cos x$.\n\nThat is ==linear iteration==: write the equation as $x = g(x)$, then keep feeding each answer back into $g$:\n$$x_1 = g(x_0),\\quad x_2 = g(x_1),\\quad \\ldots,\\quad x_{n+1} = g(x_n).$$',
+          body: '**Where we are:** bracketing needs a sign change and is slow. Now drop the bracket and use the second engine in its purest form: **iteration**.\n\nType any number into a calculator and press **cos** again and again (in radians). The display settles on $0.7391\\ldots$, the solution of $x = \\cos x$.\n\nThat is ==linear iteration==: write the equation as $x = g(x)$, then keep feeding each answer back into $g$:\n$$x_1 = g(x_0),\\quad x_2 = g(x_1),\\quad \\ldots,\\quad x_{n+1} = g(x_n).$$',
           cta: 'Try one',
         },
         cobwebGoodScene,
@@ -81,8 +81,8 @@ export default {
         {
           type: 'story',
           eyebrow: 'The test',
-          title: 'Look at $|g\'(x)|$ near the root',
-          body: 'Near the root $\\alpha$, the error is multiplied by roughly $g\'(\\alpha)$ at every step:\n$$x_{n+1} - \\alpha = g(x_n) - g(\\alpha) \\approx g\'(\\alpha)(x_n - \\alpha).$$\n\nSo:\n**$|g\'(\\alpha)| < 1$**: errors shrink, the iteration **converges**.\n**$|g\'(\\alpha)| > 1$**: errors grow, it **diverges**.\n\nThe smaller $|g\'|$ is, the faster it converges.',
+          title: 'Why $|g\'| < 1$ is the test',
+          body: 'The root satisfies $\\alpha = g(\\alpha)$. Subtract it from $x_{n+1} = g(x_n)$ and use the **mean value theorem**:\n$$x_{n+1} - \\alpha = g(x_n) - g(\\alpha) = g\'(\\xi)(x_n - \\alpha)$$\nfor some $\\xi$ between $x_n$ and $\\alpha$. So every step **multiplies the error by $g\'(\\xi)$**.\n\nSo:\n**$|g\'(\\alpha)| < 1$**: errors shrink, the iteration **converges**.\n**$|g\'(\\alpha)| > 1$**: errors grow, it **diverges**.\n\nThe smaller $|g\'|$ is, the faster it converges.',
         },
         {
           type: 'sort',
@@ -101,9 +101,9 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Second example',
+          eyebrow: 'Worked example (notes)',
           title: '$x^3 - 5x + 1 = 0$, root between $0$ and $1$',
-          body: 'Rearrange: $5x = 1 + x^3$, so $x_{n+1} = \\frac15(1 + x_n^3)$. Here $g\'(x) = \\frac35x^2 \\approx 0.02$ near $0.2$: very small, so very fast.\n\nFrom $x_0 = 0$:\n$$x_1 = 0.2,\\quad x_2 = \\tfrac15(1 + 0.008) = 0.2016,\\quad x_3 = 0.20164.$$\n\nRoot $\\approx$ **0.202** (3 s.f.), the same root Regula Falsi found.',
+          body: '**Rearrange:** $5x = 1 + x^3$, so $x_{n+1} = \\frac15(1 + x_n^3)$. **Check the test first:** $g\'(x) = \\frac35x^2 \\approx 0.02$ near $0.2$, far below 1, so it converges, and fast.\n\nFrom $x_0 = 0$:\n$$x_1 = 0.2,\\quad x_2 = \\tfrac15(1 + 0.008) = 0.2016,\\quad x_3 = 0.20164.$$\n\n**Stop:** $x_2$ and $x_3$ agree to 3 s.f., so the root $\\approx$ **0.202**, the same root regula falsi found.',
         },
         {
           type: 'choice',
@@ -125,7 +125,7 @@ export default {
         {
           type: 'finish',
           title: 'You can iterate.',
-          body: 'Next: Newton-Raphson, the fastest method in the course.',
+          body: 'Next: Newton-Raphson, which picks the best possible $g$ using Taylor.',
         },
       ],
     },

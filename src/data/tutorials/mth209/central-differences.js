@@ -20,7 +20,7 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Part C · Lesson 3',
+          eyebrow: 'Part C · Lesson 4',
           title: 'The middle of the table',
           body: "Newton's forward formula reads the differences going **down** from the top of the table; the backward formula reads them going **up** from the bottom. For a value in the **middle**, both reach for differences far from $x$, and the terms shrink slowly.\n\nEverett's formula uses only the two rows that **bracket** $x$, with their **even** central differences $\\delta^2, \\delta^4, \\ldots$ It is linear interpolation plus corrections.",
           cta: 'Show me',

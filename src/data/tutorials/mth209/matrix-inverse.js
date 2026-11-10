@@ -28,9 +28,9 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Part B · Lesson 6',
+          eyebrow: 'Part B · Lesson 4',
           title: 'From one equation to many',
-          body: '$2x + 4 = 0$ is solved in one step. But a system like\n$$2x + 4y = 0,\\qquad 2x + 3y = 4$$\nneeds more work, and real problems (structures, circuits, mixtures) give systems with dozens of unknowns.\n\nIn general:\n$$\\begin{aligned} a_{11}x_1 + a_{12}x_2 + \\cdots + a_{1n}x_n &= b_1 \\\\ &\\ \\ \\vdots \\\\ a_{n1}x_1 + a_{n2}x_2 + \\cdots + a_{nn}x_n &= b_n \\end{aligned}$$',
+          body: '**Where we are:** still solving, now **many equations at once**. Each linear equation is a line (or plane); the solution is where they all **cross**. Real problems (structures, circuits, mixtures) give dozens of unknowns. In general:\n$$\\begin{aligned} a_{11}x_1 + a_{12}x_2 + \\cdots + a_{1n}x_n &= b_1 \\\\ &\\ \\ \\vdots \\\\ a_{n1}x_1 + a_{n2}x_2 + \\cdots + a_{nn}x_n &= b_n \\end{aligned}$$',
           cta: 'Name the parts',
         },
         eliminationScene,
@@ -53,11 +53,11 @@ export default {
         {
           type: 'story',
           asides: [
-            { label: 'Exam tip', text: 'Be ready to say what a consistent system is: one with at least one solution. An inconsistent system has none.' },
+            { label: 'Exam tip', text: 'Be ready to define a consistent system: one with at least one solution.' },
           ],
-          eyebrow: 'Exam notice',
-          title: 'Use the method you are told to use',
-          body: 'If a question says “solve by the Gaussian method” and you use the matrix inverse method, you **lose the method marks** even with the right answer.\n\nA system is ==consistent== when it has **at least one solution**, and inconsistent when it has none. Fewer equations than unknowns does not make a system inconsistent: $2x + 4y + 3z = 2$, $4x + y + 6z = 3$ has 3 unknowns and only 2 equations, yet $z = 0$, $x = \\frac57$, $y = \\frac17$ solves it (it has infinitely many solutions).',
+          eyebrow: 'What can a system do?',
+          title: 'One crossing, none, or infinitely many',
+          body: 'Two lines in a plane can **cross once** (one solution), be **parallel** (none) or **coincide** (infinitely many); planes too.\n\nA system is ==consistent== when it has **at least one solution**, inconsistent when it has none. Fewer equations than unknowns does not make it inconsistent: $2x + 4y + 3z = 2$, $4x + y + 6z = 3$ has infinitely many solutions.\n\n**Why $\\det A$ matters:** $\\det A \\neq 0$ exactly when there is **one** crossing. $\\det A = 0$ means parallel or coinciding: no unique answer, and no $A^{-1}$.',
         },
       ],
     },
@@ -73,7 +73,7 @@ export default {
           type: 'story',
           eyebrow: 'The theorem',
           title: '$X = A^{-1}B$',
-          body: 'Write the system as $AX = B$: $A$ is the coefficient matrix, $X$ the column of unknowns, $B$ the column of constants.\n\n**Theorem.** If there is a matrix $C$ with $CA = I$, then $C = A^{-1}$ and $X = A^{-1}B$.\n\n**Proof.** Premultiply $AX = B$ by $A^{-1}$:\n$$A^{-1}AX = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B.\\ \\blacksquare$$',
+          body: 'Write the system as $AX = B$: $A$ is the coefficient matrix, $X$ the column of unknowns, $B$ the column of constants. **The idea:** undo $A$, just as $2x = 4$ is solved by multiplying by $\\frac12$.\n\n**Theorem.** If there is a matrix $C$ with $CA = I$, then $C = A^{-1}$ and $X = A^{-1}B$.\n\n**Proof.** Premultiply $AX = B$ by $A^{-1}$:\n$$A^{-1}AX = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B.\\ \\blacksquare$$',
         },
         {
           type: 'order',
@@ -152,7 +152,7 @@ export default {
         {
           type: 'finish',
           title: 'You can invert and solve.',
-          body: 'Next: LU factorisation, which splits $A$ into two triangular matrices.',
+          body: 'The inverse needs many cofactors: fine for 3 × 3, heavy beyond. Next: Gaussian elimination and LU, which do far less work.',
         },
       ],
     },

@@ -7,26 +7,22 @@ import errorSpread from './error-spread';
 import taylor from './taylor';
 import standardSeries from './standard-series';
 import examFoundations from './exam-foundations';
-import bisection from './bisection';
-import regulaFalsi from './regula-falsi';
+import bracketing from './bracketing';
 import linearIteration from './linear-iteration';
-import newtonRaphson from './newton-raphson';
-import secant from './secant';
+import newtonSecant from './newton-secant';
 import examEquations from './exam-equations';
 import matrixInverse from './matrix-inverse';
-import luFactorisation from './lu-factorisation';
-import gaussian from './gaussian';
-import simpleIteration from './simple-iteration';
-import gaussSeidel from './gauss-seidel';
+import eliminationLu from './elimination-lu';
+import linearIterative from './linear-iterative';
 import examLinearSystems from './exam-linear-systems';
 import nonlinearSystems from './nonlinear-systems';
 import newtonSystems from './newton-systems';
 import examNonlinear from './exam-nonlinear';
 import differenceOperators from './difference-operators';
+import operators from './operators';
 import newtonDifferenceFormulas from './newton-difference-formulas';
 import centralDifferences from './central-differences';
 import examDifferences from './exam-differences';
-import linearInterpolation from './linear-interpolation';
 import lagrange from './lagrange';
 import examInterpolation from './exam-interpolation';
 import ivpIntro from './ivp-intro';
@@ -57,17 +53,13 @@ export default {
       title: 'Solving',
       by: 'Equations, linear systems and non-linear systems',
       lessons: [
-        bisection,
-        regulaFalsi,
+        bracketing,
         linearIteration,
-        newtonRaphson,
-        secant,
+        newtonSecant,
         examEquations,
         matrixInverse,
-        luFactorisation,
-        gaussian,
-        simpleIteration,
-        gaussSeidel,
+        eliminationLu,
+        linearIterative,
         examLinearSystems,
         nonlinearSystems,
         newtonSystems,
@@ -78,7 +70,7 @@ export default {
       n: 'C',
       title: 'Data',
       by: 'Finite differences, Newton and Everett formulas, interpolation and its error',
-      lessons: [differenceOperators, newtonDifferenceFormulas, centralDifferences, examDifferences, linearInterpolation, lagrange, examInterpolation],
+      lessons: [differenceOperators, operators, newtonDifferenceFormulas, centralDifferences, examDifferences, lagrange, examInterpolation],
     },
     {
       n: 'D',

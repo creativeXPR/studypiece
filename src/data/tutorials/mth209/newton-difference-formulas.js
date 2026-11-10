@@ -1,69 +1,13 @@
-// MTH 209 · Finite differences · Lesson 2: the shift operator E and Newton's forward/backward formulas.
+// MTH 209 · Part C · Lesson 3: Newton's forward and backward formulas from E^r = (1 + Δ)^r. The operator
+// algebra itself is now operators.js.
 import { newtonFormulaScene } from './difference-scenes';
 
 export default {
   id: 'newton-difference-formulas',
-  title: 'Operators and Newton’s difference formulas',
-  covers: 'E, Δ = E − 1, ∇ = 1 − E⁻¹, δ = E^½ − E^−½, δ² = Δ∇; Newton forward and backward interpolation',
+  title: 'Newton’s forward and backward formulas',
+  covers: 'Newton’s forward and backward difference formulas from E^r = (1 + Δ)^r and the binomial series, why they interpolate, when to use each, and the population example',
   minutes: 16,
   sections: [
-    {
-      name: 'Symbolic operators',
-      terms: [
-        ['Shift (step-up) operator E', '$Ef_k = f_{k+1}$, $E^{-1}f_k = f_{k-1}$, $E^jf_k = f_{k+j}$.'],
-        ['Operator relations', '$\\Delta = E - 1$, $\\nabla = 1 - E^{-1}$, $\\delta = E^{\\frac12} - E^{-\\frac12}$, $\\delta^2 = \\Delta\\nabla$.'],
-        ['Averaging operator μ', '$\\mu f_k = \\frac12\\left(f_{k+\\frac12} + f_{k-\\frac12}\\right)$'],
-      ],
-      screens: [
-        {
-          type: 'choice',
-          eyebrow: 'Quick recall',
-          prompt: 'For a cubic polynomial tabulated at equal steps, the third differences are',
-          options: [
-            { text: 'constant', correct: true, why: 'And all higher differences are $0$.' },
-            { text: 'zero', why: 'The **fourth** differences are zero.' },
-            { text: 'growing', why: 'Only up to the second differences.' },
-            { text: 'equal to the values', why: 'Differences shrink the polynomial’s degree by one each time.' },
-          ],
-        },
-        {
-          type: 'story',
-          eyebrow: 'Part C · Lesson 2',
-          title: 'Treat the operators like algebra',
-          body: 'The ==shift operator== $E$ moves one step forward along the table:\n$$Ef_k = f_{k+1},\\qquad E^{-1}f_k = f_{k-1},\\qquad E^jf_k = f_{k+j}.$$\n\nEvery difference operator can be written in terms of $E$. Then formulas can be found by ordinary algebra, such as the binomial theorem.',
-          cta: 'Show me',
-        },
-        {
-          type: 'story',
-          eyebrow: 'Δ in terms of E',
-          title: '$\\Delta = E - 1$',
-          body: '$$\\Delta f_k = f_{k+1} - f_k = Ef_k - E^0f_k = (E - 1)f_k.$$\n\nSo $\\Delta = E - 1$, i.e. $E = 1 + \\Delta$. Then\n$$\\Delta^2 f_k = f_{k+2} - 2f_{k+1} + f_k = (E^2 - 2E + 1)f_k = (E - 1)^2f_k,$$\nand in general $\\Delta^n = (E - 1)^n$, $E^n = (1 + \\Delta)^n$.',
-        },
-        {
-          type: 'sort',
-          eyebrow: 'Match them',
-          prompt: 'Match each operator to its expression in $E$.',
-          buckets: [
-            { id: 'f', label: 'Δ (forward)' },
-            { id: 'b', label: '∇ (backward)' },
-            { id: 'c', label: 'δ (central)' },
-          ],
-          items: [
-            { text: '$E - 1$', bucket: 'f', why: '**$\\Delta f_k = Ef_k - f_k$**.' },
-            { text: '$1 - E^{-1}$', bucket: 'b', why: '**$\\nabla f_k = f_k - E^{-1}f_k$**.' },
-            { text: '$E^{\\frac12} - E^{-\\frac12}$', bucket: 'c', why: '**$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$**.' },
-            { text: '$E^{-\\frac12}\\Delta$', bucket: 'c', why: '**$E^{-\\frac12}(E - 1) = E^{\\frac12} - E^{-\\frac12} = \\delta$**: central in terms of forward.' },
-            { text: '$E^{\\frac12}\\nabla$', bucket: 'c', why: '**$E^{\\frac12}(1 - E^{-1}) = E^{\\frac12} - E^{-\\frac12} = \\delta$**: central in terms of backward.' },
-          ],
-        },
-        {
-          type: 'story',
-          eyebrow: 'Proof',
-          title: '$\\delta^2 = \\Delta\\nabla$',
-          body: '$$\\begin{aligned} \\delta^2 &= (E^{\\frac12} - E^{-\\frac12})^2 = E - 2 + E^{-1} \\\\ &= (E - 1) - (1 - E^{-1}) \\\\ &= E(1 - E^{-1}) - 1(1 - E^{-1}) \\\\ &= (E - 1)(1 - E^{-1}) = \\Delta\\nabla. \\end{aligned}$$\n\nThe operators also **commute**: $\\Delta\\nabla = \\nabla\\Delta$, and $DE = ED$ for the derivative $D$.',
-        },
-      ],
-    },
     {
       name: 'Newton’s formulas',
       terms: [
@@ -71,6 +15,24 @@ export default {
         ['Newton backward difference formula', '$f_r = f_n + r\\nabla f_n + \\frac{r(r+1)}{2!}\\nabla^2f_n + \\frac{r(r+1)(r+2)}{3!}\\nabla^3f_n + \\cdots$, where $x = x_n + rh$.'],
       ],
       screens: [
+        {
+          type: 'choice',
+          eyebrow: 'Quick recall',
+          prompt: 'In operator form, $E = $',
+          options: [
+            { text: '$1 + \\Delta$', correct: true, why: 'From $\\Delta = E - 1$.' },
+            { text: '$1 - \\nabla$', why: 'That is $E^{-1}$.' },
+            { text: '$\\Delta - 1$', why: 'Rearrange $\\Delta = E - 1$.' },
+            { text: '$\\delta^2$', why: '$\\delta^2 = \\Delta\\nabla$.' },
+          ],
+        },
+        {
+          type: 'story',
+          eyebrow: 'Part C · Lesson 3',
+          title: 'One curve through the whole table',
+          body: '**Where we are:** with $E = 1 + \\Delta$, a table step is algebra. **The problem:** estimate $f$ **between** table points, at $x = x_0 + rh$ with $r$ a fraction.\n\n**The idea:** $f(x_0 + rh) = E^rf_0 = (1 + \\Delta)^rf_0$. Expand with the **binomial series** (Part A):\n$$f_r = f_0 + r\\Delta f_0 + \\frac{r(r - 1)}{2!}\\Delta^2f_0 + \\cdots$$\n**Why it interpolates:** stop after $\\Delta^n$ and you have a polynomial in $r$ of degree $n$. At $r = 0, 1, \\ldots, n$ the binomial series is finite and exact, so the polynomial passes through every table point used. Between them it is the natural smooth guess.',
+          cta: 'Show me',
+        },
         {
           type: 'story',
           eyebrow: 'Forward formula',

@@ -1,52 +1,66 @@
-// MTH 209 · Interpolation · Lesson 2: higher degree interpolation and Lagrange's formula.
-import { lagrangeScene } from './interpolation-scenes';
+// MTH 209 · Part C · Lesson 5: interpolation with any spacing. Linear interpolation derived from two
+// points, the ln 2 example and why it is poor, the interpolation error term, a quadratic by solving
+// for the coefficients, and Lagrange's formula with its basis "switches". Merges the old
+// linear-interpolation lesson into this one (id kept). Numbers recomputed in Python.
+import { lagrangeScene, linearInterpScene } from './interpolation-scenes';
 
 export default {
   id: 'lagrange',
-  title: 'Higher degree interpolation (Lagrange)',
-  covers: 'Quadratic interpolation by solving for a₀, a₁, a₂, and Lagrange’s formula with basis functions Lₖ(x)',
-  minutes: 15,
+  title: 'Linear and Lagrange interpolation, and the error',
+  covers: 'Linear interpolation P₁ derived from two points and written with weights, the ln 2 example and its error, the interpolation error term, a quadratic through three points by solving for a₀, a₁, a₂, and Lagrange’s formula with basis functions Lₖ(x)',
+  minutes: 18,
   sections: [
     {
-      name: 'Solving for the coefficients',
+      name: 'Linear interpolation and its error',
       terms: [
-        ['Interpolating polynomial', 'For $n + 1$ points with distinct $x$-values there is a unique polynomial $P_n(x)$ of degree $\\le n$ with $P_n(x_i) = y_i$.'],
+        ['Linear interpolation', '$P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$: two weights that add to 1.'],
+        ['Interpolation error', '$f(x) - P_n(x) = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}\\prod_{i=0}^{n}(x - x_i)$ for some $\\xi$ in the span of the nodes.'],
       ],
       screens: [
         {
-          type: 'choice',
-          eyebrow: 'Quick recall',
-          prompt: 'In $P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$, the two weights',
-          options: [
-            { text: 'add up to $1$, and each is $1$ at its own point and $0$ at the other', correct: true, why: 'So $P_1$ passes through both points.' },
-            { text: 'are always equal', why: 'They are equal only at the midpoint.' },
-            { text: 'add up to $0$', why: 'They add to $1$.' },
-            { text: 'are the $y$-values', why: 'They multiply the $y$-values.' },
-          ],
-        },
-        {
           type: 'story',
           eyebrow: 'Part C · Lesson 5',
-          title: 'Three points, one parabola',
-          body: 'A straight line fits 2 points. Through **3** points we can fit a quadratic, through 4 a cubic, and so on: $n + 1$ points determine a polynomial of degree at most $n$.\n\nA curved interpolant follows a curved function much better than a straight line.',
-          cta: 'Fit a quadratic',
+          title: 'When the points are not evenly spaced',
+          body: '**Where we are:** Newton\'s and Everett\'s formulas need **equally spaced** tables. Real data often are not.\n\n**The problem:** find a polynomial that passes **exactly** through given points, wherever they are, and use it between them.\n\n**The idea:** start with two points and a straight line; then build a "switch" for each point so any number of points works.',
+          cta: 'Show me',
         },
+        linearInterpScene,
         {
           type: 'story',
-          eyebrow: 'Method 1 · Solve for the coefficients',
-          title: '$P_2(x) = a_0 + a_1x + a_2x^2$ through $(1, 4)$, $(2, 0)$, $(3, 12)$',
-          body: 'Substitute each point:\n$$\\begin{aligned} P_2(1) &= a_0 + a_1 + a_2 = 4 \\\\ P_2(2) &= a_0 + 2a_1 + 4a_2 = 0 \\\\ P_2(3) &= a_0 + 3a_1 + 9a_2 = 12 \\end{aligned}$$\n\nSubtract consecutive equations: $a_1 + 3a_2 = -4$ and $a_1 + 5a_2 = 12$. Subtract again: $2a_2 = 16$, so $a_2 = 8$.',
+          eyebrow: 'The method',
+          title: 'A line through two points, as weights',
+          body: 'Look for $P_1(x) = a_0 + a_1x$ with $P_1(x_0) = y_0$, $P_1(x_1) = y_1$. Subtracting the two conditions gives $a_1 = \\frac{y_1 - y_0}{x_1 - x_0}$, so\n$$P_1(x) = y_0 + \\frac{y_1 - y_0}{x_1 - x_0}(x - x_0) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1.$$\nEach $y$ gets a **weight**; the weights add to 1, and the nearer point gets the larger one.\n\n**Example (notes):** through $(2, 3)$ and $(5, 7)$: $P_1(x) = \\frac{4x + 1}{3}$. Check $P_1(2) = 3$, $P_1(5) = 7$ ✓.',
         },
         {
           type: 'choice',
-          eyebrow: 'Finish it',
-          prompt: 'With $a_2 = 8$ and $a_1 + 3a_2 = -4$, $a_0 + a_1 + a_2 = 4$, what is $P_2(x)$?',
+          eyebrow: 'Apply it',
+          prompt: 'Given $(0.82, 2.270500)$ and $(0.83, 2.293319)$, find $P_1(0.826)$.',
           options: [
-            { text: '$P_2(x) = 24 - 28x + 8x^2$', correct: true, why: '$a_1 = -4 - 24 = -28$; $a_0 = 4 + 28 - 8 = 24$. Check: $P_2(2) = 24 - 56 + 32 = 0$ ✓.' },
-            { text: '$P_2(x) = 20 - 28x + 8x^2$', why: 'Check $a_0$: $a_0 = 4 - a_1 - a_2 = 4 + 28 - 8 = 24$.' },
-            { text: '$P_2(x) = 24 + 28x + 8x^2$', why: 'Then $P_2(1) = 60$, not 4.' },
-            { text: '$P_2(x) = 8 - 28x + 24x^2$', why: 'The constant and the $x^2$ coefficient are swapped.' },
+            { text: '$2.2842$', correct: true, why: 'Weights $\\frac{0.83 - 0.826}{0.01} = 0.4$ and $\\frac{0.826 - 0.82}{0.01} = 0.6$: $0.4(2.270500) + 0.6(2.293319) = 2.2842$.' },
+            { text: '$2.2819$', why: 'The weights are the wrong way round: $0.826$ is nearer $0.83$.' },
+            { text: '$2.2933$', why: 'That is just $y_1$.' },
+            { text: '$4.5638$', why: 'That is $y_0 + y_1$; the weights must add to 1.' },
           ],
+        },
+        {
+          type: 'story',
+          eyebrow: 'Worked example (notes)',
+          title: 'Estimate $\\ln 2$ from $\\ln 1 = 0$ and $\\ln 6 = 1.7918$',
+          body: '$$P_1(2) = \\frac{6 - 2}{5}(0) + \\frac{2 - 1}{5}(1.7918) = 0.3584.$$\nTrue $\\ln 2 = 0.6931$: error $0.3347$, about $48\\%$.\n\n**Why so poor? The error term says:**\n$$f(x) - P_1(x) = \\frac{f\'\'(\\xi)}{2!}(x - x_0)(x - x_1).$$\nWith $f\'\' = -\\frac{1}{x^2}$: $\\frac{-1/\\xi^2}{2}(2 - 1)(2 - 6) = \\frac{2}{\\xi^2}$, between $0.056$ and $2$. The actual $0.3347$ is inside. A big gap $(x - x_0)(x - x_1)$ and a strongly curved $f$ make a big error: use closer points, or more of them.',
+        },
+        {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Your turn',
+          title: 'Estimate $\\ln 2$ by linear interpolation from $\\ln 1 = 0$ and $\\ln 3 = 1.0986$.',
+          graph: {
+            steps: [
+              { ask: 'Weight on $y_1$ at $x = 2$: $\\frac{2 - 1}{3 - 1} = $', answer: 0.5, tol: 0.0001, hint: '$\\frac12$.' },
+              { ask: '$P_1(2) = $ (4 d.p.)', answer: 0.5493, tol: 0.0001, hint: '$0.5 \\times 0 + 0.5 \\times 1.0986$.' },
+              { ask: 'Error $= 0.6931 - P_1(2) = $ (4 d.p.)', answer: 0.1438, tol: 0.0002, hint: 'True minus estimate.' },
+              { ask: 'Relative error (%, 1 d.p.)', answer: 20.7, tol: 0.15, hint: '$\\frac{0.1438}{0.6931} \\times 100$.', done: 'Closer points: the error falls from 48% to 21%, as the error term predicts.' },
+            ],
+          },
         },
       ],
     },
@@ -55,74 +69,45 @@ export default {
       terms: [
         ['Lagrange’s formula', '$P_n(x) = y_0L_0(x) + y_1L_1(x) + \\cdots + y_nL_n(x)$'],
         ['Lagrange basis function', '$L_k(x) = \\displaystyle\\prod_{j \\neq k}\\frac{x - x_j}{x_k - x_j}$: equal to 1 at $x_k$ and 0 at every other node.'],
-        ['Interpolation error', '$f(x) - P_n(x) = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}\\prod_{i=0}^{n}(x - x_i)$ for some $\\xi$ in the span of the nodes.'],
       ],
       screens: [
+        {
+          type: 'story',
+          eyebrow: 'More points',
+          title: 'Three points, one parabola',
+          body: '$n + 1$ points fix a polynomial of degree at most $n$, and a curve follows a curved $f$ far better than a line.\n\n**Direct way:** $P_2(x) = a_0 + a_1x + a_2x^2$ through $(1, 4)$, $(2, 0)$, $(3, 12)$:\n$$a_0 + a_1 + a_2 = 4,\\quad a_0 + 2a_1 + 4a_2 = 0,\\quad a_0 + 3a_1 + 9a_2 = 12.$$\nSubtracting: $a_1 + 3a_2 = -4$, $a_1 + 5a_2 = 12$, so $a_2 = 8$, $a_1 = -28$, $a_0 = 24$:\n$$P_2(x) = 8x^2 - 28x + 24.$$\nIt works, but needs a fresh system for every data set.',
+        },
         lagrangeScene,
         {
           type: 'story',
-          eyebrow: 'The trick',
-          title: 'Build a “switch” for each point',
-          body: 'For each node $x_k$, build a polynomial $L_k(x)$ that is **1 at $x_k$** and **0 at every other node**. Then\n$$P_n(x) = y_0L_0(x) + y_1L_1(x) + \\cdots + y_nL_n(x)$$\nautomatically gives $P_n(x_k) = y_k$: every other term is switched off.\n\nTo be 0 at the other nodes, $L_k$ has a factor $(x - x_j)$ for each $j \\neq k$. Dividing by the same product at $x = x_k$ makes it 1 there:\n$$L_k(x) = \\frac{(x - x_0)\\cdots(x - x_{k-1})(x - x_{k+1})\\cdots(x - x_n)}{(x_k - x_0)\\cdots(x_k - x_{k-1})(x_k - x_{k+1})\\cdots(x_k - x_n)}.$$',
-        },
-        {
-          type: 'story',
-          eyebrow: 'Quadratic case',
-          title: 'Three basis functions',
-          body: '$$L_0(x) = \\frac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)},$$\n$$L_1(x) = \\frac{(x - x_0)(x - x_2)}{(x_1 - x_0)(x_1 - x_2)},$$\n$$L_2(x) = \\frac{(x - x_0)(x - x_1)}{(x_2 - x_0)(x_2 - x_1)}.$$\n\nThe numerator of $L_k$ **skips** $x_k$; the denominator is the numerator evaluated at $x = x_k$.',
-        },
-        {
-          type: 'choice',
-          eyebrow: 'Apply it',
-          prompt: 'For nodes $1, 2, 3$, what is $L_1(x)$?',
-          options: [
-            { text: '$-(x - 1)(x - 3)$', correct: true, why: '$\\frac{(x - 1)(x - 3)}{(2 - 1)(2 - 3)} = \\frac{(x - 1)(x - 3)}{-1}$.' },
-            { text: '$(x - 1)(x - 3)$', why: 'Check the denominator: $(2 - 1)(2 - 3) = -1$.' },
-            { text: '$\\frac{(x - 2)(x - 3)}{2}$', why: 'That’s $L_0$: it skips $x_0 = 1$.' },
-            { text: '$\\frac{(x - 1)(x - 2)}{2}$', why: 'That’s $L_2$.' },
-          ],
+          eyebrow: 'The idea, then the formula',
+          title: 'One switch per point',
+          body: 'For each node $x_k$ build $L_k(x)$: **1 at $x_k$**, **0 at every other node**. Then\n$$P_n(x) = y_0L_0(x) + y_1L_1(x) + \\cdots + y_nL_n(x)$$\ngives $P_n(x_k) = y_k$ automatically: every other term is switched off.\n\nTo vanish at the other nodes, $L_k$ has a factor $(x - x_j)$ for each $j \\neq k$; dividing by the same product at $x_k$ makes it 1 there. For three nodes:\n$$L_0 = \\frac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)},\\ \\ L_1 = \\frac{(x - x_0)(x - x_2)}{(x_1 - x_0)(x_1 - x_2)},\\ \\ L_2 = \\frac{(x - x_0)(x - x_1)}{(x_2 - x_0)(x_2 - x_1)}.$$',
         },
         {
           type: 'custom',
           widget: 'calc',
           eyebrow: 'Your turn',
-          title: 'For the same data $(1, 4)$, $(2, 0)$, $(3, 12)$, find $P_2(1.5)$ by Lagrange’s formula.',
+          title: 'For the same data $(1, 4)$, $(2, 0)$, $(3, 12)$, find $P_2(1.5)$ by Lagrange\'s formula.',
           body: '$L_0 = \\frac{(x - 2)(x - 3)}{(1 - 2)(1 - 3)}$, $L_1 = \\frac{(x - 1)(x - 3)}{(2 - 1)(2 - 3)}$, $L_2 = \\frac{(x - 1)(x - 2)}{(3 - 1)(3 - 2)}$.',
           graph: {
             steps: [
               { ask: '$L_0(1.5) = $', answer: 0.375, tol: 0.0005, hint: '$\\frac{(-0.5)(-1.5)}{(-1)(-2)}$.' },
               { ask: '$L_1(1.5) = $', answer: 0.75, tol: 0.0005, hint: '$\\frac{(0.5)(-1.5)}{(1)(-1)}$.' },
               { ask: '$L_2(1.5) = $', answer: -0.125, tol: 0.0005, hint: '$\\frac{(0.5)(-0.5)}{(2)(1)}$.' },
-              { ask: '$P_2(1.5) = 4L_0 + 0L_1 + 12L_2 = $', answer: 0, tol: 0.0005, hint: '$1.5 - 1.5$. Check with $8x^2 - 28x + 24$.' },
+              { ask: '$P_2(1.5) = 4L_0 + 0L_1 + 12L_2 = $', answer: 0, tol: 0.0005, hint: '$1.5 - 1.5$.', done: 'Matches $8(1.5)^2 - 28(1.5) + 24 = 0$ ✓' },
             ],
           },
         },
         {
-          type: 'multi',
-          eyebrow: 'Check yourself',
-          prompt: 'Which statements about Lagrange interpolation are true?',
-          options: [
-            { text: '$L_k(x_k) = 1$ and $L_k(x_j) = 0$ for $j \\neq k$.', correct: true, why: '**That’s the defining property** of the basis functions.' },
-            { text: 'For 4 points, each $L_k$ has degree 3.', correct: true, why: '**Three factors** $(x - x_j)$ in each numerator.' },
-            { text: 'The $L_k$ depend on the $y$-values.', why: '**Only the nodes $x_j$** appear in $L_k$. The $y_k$ just multiply them.' },
-            { text: 'Data from a quadratic are reproduced exactly by quadratic interpolation.', correct: true, why: '**The interpolant is unique**, so it must be that quadratic.' },
-          ],
-        },
-        {
-          type: 'story',
-          eyebrow: 'How wrong is it?',
-          title: 'The interpolation error',
-          body: 'If $P_n$ interpolates $f$ at $n + 1$ points $x_0, \\ldots, x_n$, then for each $x$ there is a $\\xi$ in the span of the points with\n$$f(x) - P_n(x) = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}\\prod_{i=0}^{n}(x - x_i).$$\nIt is Taylor’s remainder again (Part A), and it is $0$ at every node.\n\nExample: $\\ln 2$ by the line through $x = 1$ and $6$. $f\'\' = -\\frac{1}{x^2}$, so the error is $\\frac{-1/\\xi^2}{2}(2 - 1)(2 - 6) = \\frac{2}{\\xi^2}$, between $0.056$ and $2$ for $1 < \\xi < 6$. The actual error, $0.3347$, is inside. Closer nodes or more of them shrink the product.',
-        },
-        {
           type: 'story',
           eyebrow: 'Exam answer',
-          title: 'State Lagrange’s interpolation formula',
-          body: 'Given $n + 1$ data points $(x_0, y_0), \\ldots, (x_n, y_n)$ with distinct $x_i$, the polynomial $P_n(x)$ of degree $\\le n$ with $P_n(x_i) = y_i$ is\n$$P_n(x) = y_0L_0(x) + y_1L_1(x) + \\cdots + y_nL_n(x),$$\nwhere\n$$L_k(x) = \\frac{(x - x_0)\\cdots(x - x_{k-1})(x - x_{k+1})\\cdots(x - x_n)}{(x_k - x_0)\\cdots(x_k - x_{k-1})(x_k - x_{k+1})\\cdots(x_k - x_n)},\\quad k = 0, 1, \\ldots, n.$$',
+          title: 'Derive linear interpolation; state Lagrange\'s formula and its error',
+          body: '**Linear:** $P_1(x) = a_0 + a_1x$ with $P_1(x_i) = y_i$ gives $a_1 = \\frac{y_1 - y_0}{x_1 - x_0}$, $a_0 = y_0 - x_0a_1$, so $P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$.\n\n**Lagrange:** for $n + 1$ points with distinct $x_i$, $P_n(x) = \\sum_{k=0}^{n} y_kL_k(x)$ with $L_k(x) = \\prod_{j \\neq k}\\frac{x - x_j}{x_k - x_j}$.\n\n**Error:** $f(x) - P_n(x) = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}\\prod_{i=0}^{n}(x - x_i)$ for some $\\xi$ between the smallest and largest of $x, x_0, \\ldots, x_n$.',
         },
         {
           type: 'finish',
-          title: 'Interpolation: done.',
+          title: 'You can interpolate any table.',
           body: 'Part C is complete apart from its exam practice. Next, Part D: following a rate step by step. Key terms, ready for revision:',
         },
       ],

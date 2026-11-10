@@ -77,7 +77,7 @@ export default {
           type: 'story',
           eyebrow: 'Convex sets',
           title: 'Every connecting line stays inside',
-          body: 'A set $D \\subset \\mathbb{R}^2$ is ==convex== if, whenever $(x_1, y_1)$ and $(x_2, y_2)$ are in $D$, so is\n$$\\big((1 - \\lambda)x_1 + \\lambda x_2,\\ (1 - \\lambda)y_1 + \\lambda y_2\\big)\\quad \\text{for every } \\lambda \\in [0, 1].$$\n\nIn pictures: the straight line joining **any** two points of $D$ lies **entirely** in $D$. A disc or a rectangle is convex. A crescent or a kidney shape is not: some connecting lines leave the shape.',
+          body: 'A set $D \\subset \\mathbb{R}^2$ is ==convex== if, whenever $(x_1, y_1)$ and $(x_2, y_2)$ are in $D$, so is\n$$\\big((1 - \\lambda)x_1 + \\lambda x_2,\\ (1 - \\lambda)y_1 + \\lambda y_2\\big)\\quad \\text{for every } \\lambda \\in [0, 1].$$\n\nIn pictures: the straight line joining **any** two points of $D$ lies **entirely** in $D$. A disc or a rectangle is convex. A crescent or a kidney shape is not: some connecting lines leave the shape.\n\n**Why we need it:** it lets the mean value theorem work between any two points of $D$, which gives a quick test for the Lipschitz condition below.',
         },
         {
           type: 'choice',

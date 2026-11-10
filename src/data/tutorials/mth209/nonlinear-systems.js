@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Part B · Lesson 11',
+          eyebrow: 'Part B · Lesson 7',
           title: 'When the equations bend',
           body: 'Part B, last stop: systems that are **not** linear. The two engines return: iteration (fixed points) and Taylor (Newton).\n\nReal problems are rarely linear. The pressure needed to sink a circular plate into soil, the balance of a chemical reaction, the forces in a structure: each leads to several equations with squares, sines or exponentials of the unknowns, all to be solved **together**.\n\nThe matrix methods of the last chapter can’t do this. We need new tools: ==fixed-point iteration== and ==Newton’s method==.',
           cta: 'Set it up',
@@ -110,6 +110,7 @@ export default {
             { text: '$K = 0.281 / 3 = 0.094$', why: 'Multiply by $n$, don’t divide: $\\frac{K}{3} = 0.281$.' },
             { text: '$K = 0.843 > 1$, so it may diverge', why: '$0.843$ is less than $1$.' },
           ],
+          explain: 'Why these conditions: $G(D) \\subseteq D$ traps the iterates, like a bracket. The derivative bound is $|g\'| < 1$ for $n$ variables: each $g_i$ changes by at most $n \\times \\frac{K}{n} = K$ times the largest change in $x$, so errors shrink like $K^k$.',
         },
         {
           type: 'story',

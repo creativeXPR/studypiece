@@ -153,6 +153,20 @@ export default {
           ],
         },
         {
+          type: 'custom',
+          widget: 'calc',
+          eyebrow: 'Question 6',
+          title: 'A root of $x^3 - 5x + 1 = 0$ lies in $[0, 1]$. How many bisections guarantee it to within $10^{-4}$? Then do the first two.',
+          graph: {
+            steps: [
+              { ask: '$n > \\frac{\\ln(1/10^{-4})}{\\ln 2} = $ (2 d.p.)', answer: 13.29, tol: 0.01, hint: '$\\frac{\\ln 10000}{\\ln 2} = \\frac{9.2103}{0.6931}$.' },
+              { ask: 'Smallest whole $n$', answer: 14, tol: 0.001, hint: 'Round up.' },
+              { ask: '$f(0.5) = $ (3 d.p.)', answer: -1.375, tol: 0.0005, hint: '$0.125 - 2.5 + 1$. Negative, like $f(1) = -3$, so keep $[0, 0.5]$.' },
+              { ask: '$c_2 = 0.25$, $f(0.25) = $ (6 d.p.)', answer: -0.234375, tol: 0.000002, hint: '$0.015625 - 1.25 + 1$. Keep $[0, 0.25]$.', done: 'The root is $0.2016$: inside $[0, 0.25]$ ✓' },
+            ],
+          },
+        },
+        {
           type: 'multi',
           eyebrow: 'Exam style',
           prompt: 'Which observations are correct?',
