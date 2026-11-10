@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Systems of linear equations · Lesson 5',
+          eyebrow: 'Part B · Lesson 10',
           title: 'Use the newest values',
           body: 'In simple iteration, by the time you compute $x^{(1)}_2$ you already **know** $x^{(1)}_1$, a better value than $x^{(0)}_1$. Yet SIM ignores it.\n\nThe ==Gauss-Seidel method== uses each new value **as soon as it is computed**. For a $3 \\times 3$ system:\n$$\\begin{aligned} x^{(k+1)}_1 &= f_1 + c_{12}x^{(k)}_2 + c_{13}x^{(k)}_3 \\\\ x^{(k+1)}_2 &= f_2 + c_{21}x^{(k+1)}_1 + c_{23}x^{(k)}_3 \\\\ x^{(k+1)}_3 &= f_3 + c_{31}x^{(k+1)}_1 + c_{32}x^{(k+1)}_2 \\end{aligned}$$',
           cta: 'Try it',
@@ -101,7 +101,7 @@ export default {
         {
           type: 'finish',
           title: 'Linear systems: done.',
-          body: 'You’ve now covered every linear-systems method in MTH 209. Key terms, ready for revision:',
+          body: 'You’ve now covered every linear-systems method in MTH 209. Next: exam practice, then non-linear systems. Key terms, ready for revision:',
         },
       ],
     },

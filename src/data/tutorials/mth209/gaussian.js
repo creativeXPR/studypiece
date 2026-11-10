@@ -26,7 +26,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Systems of linear equations · Lesson 3',
+          eyebrow: 'Part B · Lesson 8',
           title: 'Eliminate, then back-substitute',
           body: 'The ==Gaussian method== eliminates the unknowns one at a time: use equation 1 to remove $x_1$ from every equation below it, then equation 2 to remove $x_2$, and so on. What remains is **upper triangular**, solved by back substitution.\n\nWrite the right-hand side as an extra column: for a $4 \\times 4$ system, $b_i$ becomes $a_{i5}$.',
           cta: 'Stage 1',

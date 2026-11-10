@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Solutions of equations · Lesson 2',
+          eyebrow: 'Part B · Lesson 2',
           title: 'Bisection ignores useful information',
           body: 'Suppose $f(a) = -0.01$ and $f(b) = 50$. The root is surely much nearer $a$ than $b$, yet bisection still guesses the midpoint.\n\nThe ==Regula Falsi== method (method of false position) uses the **sizes** of $f(a)$ and $f(b)$, not just their signs. It combines the **guaranteed convergence** of bisection with the **speed** of linear interpolation.',
           cta: 'How?',

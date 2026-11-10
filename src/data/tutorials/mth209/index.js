@@ -1,5 +1,5 @@
 // MTH 209 interactive tutorial: Numerical Analysis, rebuilt as a map and four parts
-// (see docs/mth209-rebuild.md). Parts B–D still hold the earlier lessons until each is rebuilt.
+// (see docs/mth209-rebuild.md).
 // (A lesson entry without `sections` shows as "Coming soon".)
 import courseMap from './course-map';
 import errors from './errors';
@@ -24,6 +24,7 @@ import newtonSystems from './newton-systems';
 import examNonlinear from './exam-nonlinear';
 import differenceOperators from './difference-operators';
 import newtonDifferenceFormulas from './newton-difference-formulas';
+import centralDifferences from './central-differences';
 import examDifferences from './exam-differences';
 import linearInterpolation from './linear-interpolation';
 import lagrange from './lagrange';
@@ -31,6 +32,7 @@ import examInterpolation from './exam-interpolation';
 import ivpIntro from './ivp-intro';
 import ivpUnique from './ivp-unique';
 import euler from './euler';
+import taylorMethod from './taylor-method';
 import examIvp from './exam-ivp';
 import mockExam from './mock-exam';
 
@@ -75,14 +77,14 @@ export default {
     {
       n: 'C',
       title: 'Data',
-      by: 'Finite differences and interpolation',
-      lessons: [differenceOperators, newtonDifferenceFormulas, examDifferences, linearInterpolation, lagrange, examInterpolation],
+      by: 'Finite differences, Newton and Everett formulas, interpolation and its error',
+      lessons: [differenceOperators, newtonDifferenceFormulas, centralDifferences, examDifferences, linearInterpolation, lagrange, examInterpolation],
     },
     {
       n: 'D',
       title: 'Change',
-      by: 'Initial value problems and Euler’s method',
-      lessons: [ivpIntro, ivpUnique, euler, examIvp],
+      by: 'Initial value problems, Euler and the Taylor series method',
+      lessons: [ivpIntro, ivpUnique, euler, taylorMethod, examIvp],
     },
     {
       n: 'E',

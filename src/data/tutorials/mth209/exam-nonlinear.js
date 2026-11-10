@@ -16,6 +16,16 @@ export default {
       ],
       screens: [
         {
+          type: 'story',
+          eyebrow: 'Exam practice',
+          title: 'Non-linear systems, as set',
+          body: 'Expect to write a system as $F(\\mathbf{x}) = 0$, rearrange it as $\\mathbf{x} = G(\\mathbf{x})$ and check the fixed-point theorem, build the Jacobian, take Newton steps, and say when to stop.',
+          asides: [
+            { label: 'Exam tip', text: 'Use the method the question names. For Newton, stop when $\\|\\mathbf{x}^{(k)} - \\mathbf{x}^{(k-1)}\\| \\le \\varepsilon$, checking every component.' },
+          ],
+          cta: 'Start',
+        },
+        {
           type: 'choice',
           eyebrow: 'Question 1',
           prompt: 'Which system is non-linear?',

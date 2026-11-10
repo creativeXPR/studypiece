@@ -31,9 +31,9 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Finite differences · Lesson 1',
+          eyebrow: 'Part C · Lesson 1',
           title: 'Differences reveal a table’s secrets',
-          body: 'Look at $1, 4, 9, 16, 25$. Their differences are $3, 5, 7, 9$, and the differences of **those** are $2, 2, 2$: constant. That tells you the data come from a quadratic.\n\n==Finite differences== are used when we have a table of values $f(x)$ at **equal intervals** $h$ in $x$. We write\n$$x_k = x_0 + kh,\\qquad f_k = f(x_k),\\qquad k = 0, 1, 2, \\ldots$$',
+          body: '**Part C: Data.** Part B solved equations when $f$ was a formula. Often $f$ is only a **table** of measurements, and we must rebuild it.\n\nLook at $1, 4, 9, 16, 25$. Their differences are $3, 5, 7, 9$, and the differences of **those** are $2, 2, 2$: constant. That tells you the data come from a quadratic.\n\n==Finite differences== are used when we have a table of values $f(x)$ at **equal intervals** $h$ in $x$. We write\n$$x_k = x_0 + kh,\\qquad f_k = f(x_k),\\qquad k = 0, 1, 2, \\ldots$$',
           cta: 'Meet the operators',
         },
         differenceTableScene,

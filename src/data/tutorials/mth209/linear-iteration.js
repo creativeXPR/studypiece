@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Solutions of equations · Lesson 3',
+          eyebrow: 'Part B · Lesson 3',
           title: 'Feed the answer back in',
           body: 'Type any number into a calculator and press **cos** again and again (in radians). The display settles on $0.7391\\ldots$, the solution of $x = \\cos x$.\n\nThat is ==linear iteration==: write the equation as $x = g(x)$, then keep feeding each answer back into $g$:\n$$x_1 = g(x_0),\\quad x_2 = g(x_1),\\quad \\ldots,\\quad x_{n+1} = g(x_n).$$',
           cta: 'Try one',

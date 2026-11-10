@@ -21,6 +21,7 @@ export default {
           title: 'IVP questions, as set',
           body: 'Expect: **step** an IVP with Euler’s method (or the Taylor method) to a given number of decimal places, **verify** a Lipschitz condition and conclude that the solution is unique, and **define** the terms.\n\nThe pictures: Euler walks along tangents and drifts; the Taylor method copies the solution near the start using its derivatives there; Lipschitz means nearby starts stay nearby.',
           cta: 'Start',
+          asides: [{ label: 'Exam tip', text: 'If a question names a method, use that method: a correct answer by another method can lose the method marks.' }],
         },
         {
           type: 'custom',

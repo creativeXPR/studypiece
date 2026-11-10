@@ -28,7 +28,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Finite differences · Lesson 2',
+          eyebrow: 'Part C · Lesson 2',
           title: 'Treat the operators like algebra',
           body: 'The ==shift operator== $E$ moves one step forward along the table:\n$$Ef_k = f_{k+1},\\qquad E^{-1}f_k = f_{k-1},\\qquad E^jf_k = f_{k+j}.$$\n\nEvery difference operator can be written in terms of $E$. Then formulas can be found by ordinary algebra, such as the binomial theorem.',
           cta: 'Show me',
@@ -130,8 +130,8 @@ export default {
         },
         {
           type: 'finish',
-          title: 'Finite differences: done.',
-          body: 'Key terms, ready for revision:',
+          title: 'Newton’s formulas: done.',
+          body: 'Next: Everett’s formula for the middle of a table, and catching a wrong entry. Key terms, ready for revision:',
         },
       ],
     },

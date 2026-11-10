@@ -1,6 +1,6 @@
 # MTH 209 rebuild: handoff
 
-Status (2026-11-10): **Lesson 0 and Part A are written and registered: errors, error-spread, taylor, standard-series, exam-foundations. Part A grew from 2 to 4 teaching lessons after a coverage audit against MAT 251-1.pdf (quotient proof, normalised chopping/rounding, 1/7 rounding, worked quotient and mixed examples, Taylor about a ≠ 0 (sin 51°), integrating a series, binomial theorem, (1+3x)^{3/2} validity, e and sinh/cosh, ln(1+5x+4x²), (e⁶−1)/e³ proof). Index regrouped; old Part A files deleted. Next: Part B — audit each part against the notes the same way before writing.**
+Status (2026-11-10): **Rebuild done and deployed: map, Parts A–D, mock exam. Part A rewritten (5 lessons). Parts B–D keep their lesson ids (students' progress kept): openers now place each lesson in its part, quick recalls follow the new order, exam tips in every exam lesson, and the audit gaps were filled: bisection step count, Newton from Taylor, new `central-differences` (Everett + errors in a table), interpolation error in `lagrange`, new `taylor-method` (Part D). The planned merges of B–D lessons were dropped: the old lessons were already complete, and merging would have cut content. Numerical integration (trapezium/Simpson): not examined, owner says later.**
 
 Next steps:
 1. Register `course-map.js` and write Part A, using the design and checked numbers below.

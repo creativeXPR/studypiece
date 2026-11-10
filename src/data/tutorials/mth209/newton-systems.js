@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Systems of non-linear equations · Lesson 2',
+          eyebrow: 'Part B · Lesson 12',
           title: 'Newton-Raphson, upgraded',
           body: 'For one equation you know the Newton-Raphson step\n$$x_{n+1} = x_n - \\frac{f(x_n)}{f\'(x_n)}.$$\n\nFor a system $F(x) = 0$, two things change. First, $f(x_n)$ becomes the **vector** $F(x^{(k)})$. Second, the derivative $f\'$ becomes a **matrix** of partial derivatives, the ==Jacobian== $J(x)$, and dividing by it becomes multiplying by $J^{-1}$.',
           cta: 'Meet the Jacobian',
@@ -145,7 +145,7 @@ export default {
         {
           type: 'finish',
           title: 'Non-linear systems: done.',
-          body: 'Key terms, ready for revision:',
+          body: 'Part B is complete apart from its exam practice. Key terms, ready for revision:',
         },
       ],
     },

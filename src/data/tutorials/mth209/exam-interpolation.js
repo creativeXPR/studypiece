@@ -22,6 +22,7 @@ export default {
           title: 'Interpolation questions, as set',
           body: 'Typical questions give a short table (often $\\sin x$ or $\\ln x$) and ask you to interpolate, then find the **error** and **relative error**, and comment on accuracy.\n\nKeep the picture: a polynomial standing in for a curve. Nearer points and higher degree follow the bends better, so the error shrinks.',
           cta: 'Start',
+          asides: [{ label: 'Exam tip', text: 'If a question names a method, use that method: a correct answer by another method can lose the method marks.' }],
         },
         {
           type: 'custom',

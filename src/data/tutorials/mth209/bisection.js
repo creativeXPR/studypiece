@@ -17,9 +17,9 @@ export default {
       screens: [
         {
           type: 'story',
-          eyebrow: 'Solutions of equations · Lesson 1',
+          eyebrow: 'Part B · Lesson 1',
           title: 'Some equations have no formula',
-          body: 'You can solve $5x^2 + 11x - 17 = 0$ with the quadratic formula. But what about $x^3 - 5x - 40 = 0$, or $x = \\cos x$?\n\nFor most equations there is no neat formula. ==Numerical methods== find the root **approximately**, to any accuracy we ask for, by repeating a simple step.\n\nThe simplest of them all is ==bisection==: trap the root in an interval, then keep cutting the interval in half.',
+          body: '**Part B: Solving.** You can now measure error and copy curves with series. The first job on the map: find where things balance, $f(x) = 0$.\n\nYou can solve $5x^2 + 11x - 17 = 0$ with the quadratic formula. But what about $x^3 - 5x - 40 = 0$, or $x = \\cos x$?\n\nFor most equations there is no neat formula. ==Numerical methods== find the root **approximately**, to any accuracy, by repeating a simple step. The simplest of them all is ==bisection==: trap the root in an interval, then keep cutting the interval in half.',
           cta: 'Show me',
         },
         bisectScene,
@@ -102,6 +102,7 @@ export default {
       name: 'Strengths and limits',
       terms: [
         ['Error after n bisections', 'The bracket has width $\\frac{b - a}{2^n}$, so the midpoint is within $\\frac{b - a}{2^{n+1}}$ of the root.'],
+        ['Steps for accuracy ε', 'Width $\\frac{b - a}{2^n} < \\varepsilon$ needs $n > \\dfrac{\\ln\\frac{b - a}{\\varepsilon}}{\\ln 2}$.'],
       ],
       screens: [
         {
@@ -114,7 +115,7 @@ export default {
             { text: '$100$', why: 'Far more than needed: halving shrinks the width quickly at first.' },
             { text: '$1000$', why: 'That confuses $2^n$ with $n$.' },
           ],
-          explain: 'Each step gains about one binary digit, i.e. roughly 3.3 steps per decimal place. Reliable but slow.',
+          explain: 'In general, width $\\frac{b - a}{2^n} < \\varepsilon$ needs $n > \\frac{\\ln((b - a)/\\varepsilon)}{\\ln 2}$: here $\\frac{\\ln 1000}{\\ln 2} = 9.97$, so $n = 10$. About 3.3 steps per decimal place: reliable but slow.',
         },
         {
           type: 'multi',

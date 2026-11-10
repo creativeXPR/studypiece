@@ -17,7 +17,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Quick recall',
-          prompt: 'Newton’s method for a system takes the step',
+          prompt: 'Back in Part B, Newton’s method for a system took the step',
           options: [
             { text: '$\\mathbf{x}^{(k+1)} = \\mathbf{x}^{(k)} - J^{-1}F(\\mathbf{x}^{(k)})$', correct: true, why: 'Replace each surface by its tangent plane and solve.' },
             { text: '$\\mathbf{x}^{(k+1)} = G(\\mathbf{x}^{(k)})$', why: 'That is fixed-point iteration.' },
@@ -27,9 +27,9 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Initial value problems · Lesson 1',
+          eyebrow: 'Part D · Lesson 1',
           title: 'A pendulum needs a starting point',
-          body: 'A swinging pendulum of length $L$ obeys\n$$\\frac{d^2\\theta}{dt^2} + \\frac{g}{L}\\sin\\theta = 0,$$\nwhere $\\theta$ is the angle with the vertical and $g$ is the acceleration due to gravity.\n\nThis equation alone allows infinitely many motions. To know **which** one happens, you must say where the pendulum starts, $\\theta(t_0) = \\theta_0$, and how fast, $\\theta\'(t_0) = \\theta\'_0$. A differential equation plus such conditions is an ==initial value problem==.',
+          body: '**Part D: Change.** We know a rate, not the quantity: step along it.\n\nA swinging pendulum of length $L$ obeys\n$$\\frac{d^2\\theta}{dt^2} + \\frac{g}{L}\\sin\\theta = 0,$$\nwhere $\\theta$ is the angle with the vertical and $g$ is the acceleration due to gravity.\n\nThis equation alone allows infinitely many motions. To know **which** one happens, you must say where the pendulum starts, $\\theta(t_0) = \\theta_0$, and how fast, $\\theta\'(t_0) = \\theta\'_0$. A differential equation plus such conditions is an ==initial value problem==.',
           cta: 'Define it',
         },
         slopeFieldScene,

@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Systems of linear equations · Lesson 2',
+          eyebrow: 'Part B · Lesson 7',
           title: 'Triangular systems are easy',
           body: 'A system like\n$$2x_1 + 3x_2 + 4x_3 = 0,\\quad -\\tfrac72x_2 - x_3 = 3,\\quad \\tfrac17x_3 = -\\tfrac{17}{7}$$\nsolves itself from the bottom up: $x_3$, then $x_2$, then $x_1$.\n\n==LU factorisation== writes a square matrix $A$ as $A = LU$, a **lower** times an **upper** triangular matrix, so a hard system becomes two easy ones.',
           cta: 'How?',

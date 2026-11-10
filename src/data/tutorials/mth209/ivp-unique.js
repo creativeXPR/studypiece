@@ -26,7 +26,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Initial value problems · Lesson 2',
+          eyebrow: 'Part D · Lesson 2',
           title: 'Check before you compute',
           body: 'A numerical method will happily produce numbers for **any** IVP, even one with no solution or with several. Those numbers would be meaningless.\n\nSo in numerical analysis, before solving a DE we always **verify that it has a unique solution**. The Lipschitz condition is the tool.',
           cta: 'The theorem',

@@ -34,7 +34,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Solutions of equations · Lesson 5',
+          eyebrow: 'Part B · Lesson 5',
           title: 'Newton-Raphson, without the derivative',
           body: 'Newton-Raphson is fast, but every step needs $f\'(x_n)$, and for some functions the derivative is messy or unknown.\n\nThe ==secant method== is a simplification of Newton-Raphson: replace the tangent by the **secant line through the last two points**.',
           cta: 'Derive it',
@@ -141,7 +141,7 @@ export default {
         {
           type: 'finish',
           title: 'Equations: solved five ways.',
-          body: 'You now know every root-finding method in MTH 209. Key terms, ready for revision:',
+          body: 'You now know every root-finding method in MTH 209. Next: exam practice on equations, then systems. Key terms, ready for revision:',
         },
       ],
     },

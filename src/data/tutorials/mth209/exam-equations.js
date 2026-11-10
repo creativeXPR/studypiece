@@ -23,6 +23,7 @@ export default {
           title: 'How these questions are set',
           body: 'Equation questions usually come in a chain: **(i)** tabulate $f$ to find where the roots are, **(ii)** construct iteration formulas and run them, **(iii)** use Newton-Raphson, and each time **"state your observations"**.\n\nThe observations carry real marks. Keep the pictures in mind: a cobweb pulls in when $g$ is flatter than $y = x$ and throws you out when it is steeper; a tangent that is nearly flat throws Newton far away.',
           cta: 'Start',
+          asides: [{ label: 'Exam tip', text: 'If a question names a method, use that method: a correct answer by another method can lose the method marks.' }],
         },
         {
           type: 'custom',

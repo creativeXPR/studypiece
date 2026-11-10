@@ -17,17 +17,17 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Quick recall',
-          prompt: 'Which root-finding method needs the derivative $f\'(x)$?',
+          prompt: 'To interpolate in the middle of an evenly spaced table, which formula fits best?',
           options: [
-            { text: 'Newton-Raphson', correct: true, why: '$x_{n+1} = x_n - \\frac{f(x_n)}{f\'(x_n)}$ follows the tangent.' },
-            { text: 'Bisection', why: 'Bisection only uses the signs of $f$.' },
-            { text: 'The secant method', why: 'The secant replaces $f\'$ by a chord slope.' },
-            { text: 'Regula Falsi', why: 'It uses values of $f$ at the bracket ends.' },
+            { text: 'Everett’s formula', correct: true, why: 'It uses the two rows around $x$ and their central differences.' },
+            { text: 'Newton’s forward formula', why: 'Best near the start of the table.' },
+            { text: 'Newton’s backward formula', why: 'Best near the end of the table.' },
+            { text: 'None: a table can’t be interpolated', why: 'That is exactly what these formulas do.' },
           ],
         },
         {
           type: 'story',
-          eyebrow: 'Interpolation · Lesson 1',
+          eyebrow: 'Part C · Lesson 4',
           title: 'Reading between the lines of a table',
           body: 'A table gives $\\tan 0.10$ and $\\tan 0.15$, but you need $\\tan 0.12$. A census gives populations for 1891 and 1901, but you need 1895.\n\n==Interpolation== finds a formula, usually a polynomial, that passes **exactly** through the given points, and uses it to estimate values in between.\n\nThe simplest case: two points, one straight line.',
           cta: 'Build the line',

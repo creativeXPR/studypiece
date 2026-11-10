@@ -26,7 +26,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Solutions of equations · Lesson 4',
+          eyebrow: 'Part B · Lesson 4',
           title: 'Slide down the tangent',
           body: 'Near a root, a smooth curve looks almost like a straight line: its **tangent**.\n\nSo from a guess $x_0$, draw the tangent to $y = f(x)$ at $P(x_0, f(x_0))$ and see where it meets the $x$-axis, at $Q$. That point $x_1$ is usually much closer to the root. Repeat from $x_1$.\n\nThis is the ==Newton-Raphson method==.',
           cta: 'Derive it',
@@ -48,6 +48,7 @@ export default {
             { text: '$x_{n+1} = x_n + \\dfrac{f(x_n)}{f\'(x_n)}$', why: 'With a plus sign you’d walk away from the root.' },
             { text: '$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$', why: 'That’s an averaging step, not Newton-Raphson.' },
           ],
+          explain: 'The same formula from Taylor (Part A): $f(x_n + h) \\approx f(x_n) + hf\'(x_n)$. Set it to 0: $h = -\\frac{f(x_n)}{f\'(x_n)}$. Newton keeps two Taylor terms.',
         },
       ],
     },

@@ -18,17 +18,17 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Quick recall',
-          prompt: 'The exponential series $e^x = \\sum \\frac{x^n}{n!}$ converges for',
+          prompt: 'Which root-finding method is usually fastest once it is close to the root?',
           options: [
-            { text: 'every real $x$', correct: true, why: '$n!$ eventually beats $x^n$.' },
-            { text: '$|x| < 1$ only', why: 'That is the binomial series for negative or fractional powers.' },
-            { text: '$x > 0$ only', why: 'It works for negative $x$ too: $e^{-x}$.' },
-            { text: '$x = 0$ only', why: 'It converges everywhere.' },
+            { text: 'Newton-Raphson', correct: true, why: 'Each step roughly doubles the number of correct digits.' },
+            { text: 'Bisection', why: 'The slowest: one binary digit per step. Its strength is that it never fails.' },
+            { text: 'Linear iteration', why: 'Its error shrinks by about $|g\'(\\alpha)|$ per step: steady, not fast.' },
+            { text: 'Regula Falsi', why: 'It often keeps one end fixed and creeps in from one side.' },
           ],
         },
         {
           type: 'story',
-          eyebrow: 'Systems of linear equations · Lesson 1',
+          eyebrow: 'Part B · Lesson 6',
           title: 'From one equation to many',
           body: '$2x + 4 = 0$ is solved in one step. But a system like\n$$2x + 4y = 0,\\qquad 2x + 3y = 4$$\nneeds more work, and real problems (structures, circuits, mixtures) give systems with dozens of unknowns.\n\nIn general:\n$$\\begin{aligned} a_{11}x_1 + a_{12}x_2 + \\cdots + a_{1n}x_n &= b_1 \\\\ &\\ \\ \\vdots \\\\ a_{n1}x_1 + a_{n2}x_2 + \\cdots + a_{nn}x_n &= b_n \\end{aligned}$$',
           cta: 'Name the parts',

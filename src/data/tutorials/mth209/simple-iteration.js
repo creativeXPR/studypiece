@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Systems of linear equations · Lesson 4',
+          eyebrow: 'Part B · Lesson 9',
           title: 'Solve each equation for its own unknown',
           body: 'Direct methods do a fixed amount of work. For large systems where each unknown dominates its own equation, ==iterative methods== are often simpler: guess, improve, repeat.\n\nTake equation $i$ and solve it for $x_i$:\n$$x_i = \\frac{1}{a_{ii}}\\Big(b_i - \\sum_{j \\neq i} a_{ij}x_j\\Big).$$\n\nIn matrix form this is $X = CX + F$, with\n$$c_{ij} = -\\frac{a_{ij}}{a_{ii}}\\ (i \\neq j),\\quad c_{ii} = 0,\\quad f_i = \\frac{b_i}{a_{ii}}.$$',
           cta: 'Iterate it',

@@ -21,6 +21,7 @@ export default {
           title: 'Derive, prove, tabulate',
           body: 'Difference questions come in three flavours: **derive** a higher difference from the definitions, **prove** an operator identity using $E$, and **build a table**.\n\nThe trick for every derivation: write the operator in terms of $E$, expand with the binomial theorem, and read off shifts. $\\Delta^4 = (E - 1)^4 = E^4 - 4E^3 + 6E^2 - 4E + 1$.',
           cta: 'Start',
+          asides: [{ label: 'Exam tip', text: 'If a question names a method, use that method: a correct answer by another method can lose the method marks.' }],
         },
         {
           type: 'choice',

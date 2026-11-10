@@ -26,7 +26,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Interpolation · Lesson 2',
+          eyebrow: 'Part C · Lesson 5',
           title: 'Three points, one parabola',
           body: 'A straight line fits 2 points. Through **3** points we can fit a quadratic, through 4 a cubic, and so on: $n + 1$ points determine a polynomial of degree at most $n$.\n\nA curved interpolant follows a curved function much better than a straight line.',
           cta: 'Fit a quadratic',
@@ -55,6 +55,7 @@ export default {
       terms: [
         ['Lagrange’s formula', '$P_n(x) = y_0L_0(x) + y_1L_1(x) + \\cdots + y_nL_n(x)$'],
         ['Lagrange basis function', '$L_k(x) = \\displaystyle\\prod_{j \\neq k}\\frac{x - x_j}{x_k - x_j}$: equal to 1 at $x_k$ and 0 at every other node.'],
+        ['Interpolation error', '$f(x) - P_n(x) = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}\\prod_{i=0}^{n}(x - x_i)$ for some $\\xi$ in the span of the nodes.'],
       ],
       screens: [
         lagrangeScene,
@@ -109,6 +110,12 @@ export default {
         },
         {
           type: 'story',
+          eyebrow: 'How wrong is it?',
+          title: 'The interpolation error',
+          body: 'If $P_n$ interpolates $f$ at $n + 1$ points $x_0, \\ldots, x_n$, then for each $x$ there is a $\\xi$ in the span of the points with\n$$f(x) - P_n(x) = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}\\prod_{i=0}^{n}(x - x_i).$$\nIt is Taylor’s remainder again (Part A), and it is $0$ at every node.\n\nExample: $\\ln 2$ by the line through $x = 1$ and $6$. $f\'\' = -\\frac{1}{x^2}$, so the error is $\\frac{-1/\\xi^2}{2}(2 - 1)(2 - 6) = \\frac{2}{\\xi^2}$, between $0.056$ and $2$ for $1 < \\xi < 6$. The actual error, $0.3347$, is inside. Closer nodes or more of them shrink the product.',
+        },
+        {
+          type: 'story',
           eyebrow: 'Exam answer',
           title: 'State Lagrange’s interpolation formula',
           body: 'Given $n + 1$ data points $(x_0, y_0), \\ldots, (x_n, y_n)$ with distinct $x_i$, the polynomial $P_n(x)$ of degree $\\le n$ with $P_n(x_i) = y_i$ is\n$$P_n(x) = y_0L_0(x) + y_1L_1(x) + \\cdots + y_nL_n(x),$$\nwhere\n$$L_k(x) = \\frac{(x - x_0)\\cdots(x - x_{k-1})(x - x_{k+1})\\cdots(x - x_n)}{(x_k - x_0)\\cdots(x_k - x_{k-1})(x_k - x_{k+1})\\cdots(x_k - x_n)},\\quad k = 0, 1, \\ldots, n.$$',
@@ -116,7 +123,7 @@ export default {
         {
           type: 'finish',
           title: 'Interpolation: done.',
-          body: 'Key terms, ready for revision:',
+          body: 'Part C is complete apart from its exam practice. Next, Part D: following a rate step by step. Key terms, ready for revision:',
         },
       ],
     },

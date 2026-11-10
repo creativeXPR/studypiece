@@ -27,7 +27,7 @@ export default {
         },
         {
           type: 'story',
-          eyebrow: 'Initial value problems · Lesson 3',
+          eyebrow: 'Part D · Lesson 3',
           title: 'Walk along the tangent',
           body: 'There are many methods for solving a differential equation numerically. ==Euler’s method== is the simplest.\n\nFor the well-posed IVP\n$$y\' = \\frac{dy}{dx} = f(x, y),\\quad a \\le x \\le b,\\quad y(a) = \\alpha,$$\nwe don’t find a formula for $y(x)$. Instead we find **approximate values of $y$ at a set of points** across $[a, b]$, by repeatedly stepping a short distance along the tangent line.',
           cta: 'Set up the points',
@@ -129,8 +129,8 @@ export default {
         },
         {
           type: 'finish',
-          title: 'Initial value problems: done.',
-          body: 'That completes every MTH 209 topic. Key terms, ready for revision:',
+          title: 'You can use Euler’s method.',
+          body: 'Next: the Taylor series method, which keeps more terms of the same series. Key terms, ready for revision:',
         },
       ],
     },
