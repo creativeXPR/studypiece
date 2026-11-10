@@ -3550,3 +3550,15 @@ a.learn-les:active {
   font: inherit; font-weight: 600; color: var(--primary); background: none; border: 0; padding: 2px 4px; cursor: pointer;
   text-decoration: underline; text-underline-offset: 3px;
 }
+
+/* Notes drawer: Terms | Questions tabs, and the questions reached so far with their answers. */
+.tut-drawer-tabs { display: flex; gap: 4px; padding: 0 16px 8px; border-bottom: 1px solid var(--border); }
+.tut-drawer-tabs button { font: inherit; font-size: 0.9rem; font-weight: 600; padding: 6px 12px; border: 0; border-radius: 999px; background: none; color: var(--text-2); cursor: pointer; }
+.tut-drawer-tabs button.on { background: var(--primary-soft); color: var(--primary); }
+.tut-asked { margin: 0; padding: 0 0 0 1.2em; display: flex; flex-direction: column; gap: 14px; }
+.tut-asked li { font-size: 0.92rem; }
+.tut-asked p { margin: 0; }
+.tut-asked-q { font-weight: 600; }
+.tut-asked li.right .tut-asked-q { color: var(--good); }
+.tut-asked li.wrong .tut-asked-q { color: var(--bad); }
+.tut-asked-a { color: var(--text-2); margin-top: 3px !important; }

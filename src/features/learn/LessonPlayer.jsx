@@ -3,12 +3,31 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BookIcon, BulbIcon, CheckIcon, ChevronLeft, XIcon } from '../../lib/icons';
 import { buzz } from './fx';
 import { clearRun, getProgress, getRun, saveProgress, saveRun } from './progress';
-import { Rich, Terms } from './Rich';
+import { Inline, Rich, Terms } from './Rich';
 import { JAVA_SCREENS } from './java/lazyScreens';
 import { SCREENS } from './screens';
 
 // Widgets that check an answer stay required (they offer "Show me" instead). Scenes never block.
 const REQUIRED_WIDGETS = new Set(['calc', 'code', 'mockClock', 'scene', 'plane']);
+
+// The questions reached so far (up to and including the current screen), each with its answer and
+// the student's first try, for the Questions tab of the notes drawer.
+function askedSoFar(screens, upto, results) {
+  const out = [];
+  screens.slice(0, upto + 1).forEach((s, i) => {
+    const prompt = s.prompt || s.title || '';
+    let answer = [];
+    if (s.type === 'choice' && !s.poll) {
+      const o = s.options.find((x) => x.correct);
+      if (o) answer = [`**${o.text}**${o.why ? `. ${o.why}` : ''}`];
+    } else if (s.type === 'multi') answer = s.options.filter((x) => x.correct).map((x) => `**${x.text}**`);
+    else if (s.type === 'order') answer = s.items.map((t, k) => `${k + 1}. ${t}`);
+    else if (s.type === 'sort') answer = s.items.map((t) => `${t.text} → **${s.buckets.find((b) => b.id === t.bucket)?.label}**`);
+    else if (s.type === 'custom' && s.widget === 'calc') answer = s.graph.steps.map((st) => `${st.ask} **${st.options ? st.options[st.answer] : st.answer}**`);
+    if (answer.length) out.push({ i, prompt, answer, ok: results[i] });
+  });
+  return out;
+}
 
 // Hands-on pictures and flip cards can be skipped; on a replay of a finished lesson, anything can.
 function canSkip(s, replay) {
@@ -52,6 +71,8 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
   const reviewing = useRef(review);
   const [sheet, setSheet] = useState(null);
   const [notesOpen, setNotesOpen] = useState(false);
+  const [notesTab, setNotesTab] = useState('terms');
+  const [asked, setAsked] = useState([]);
   const actionFn = useRef(null);
   const secondaryFn = useRef(null);
   const results = useRef(saved?.results ?? (review ? { ...record.results } : {}));
@@ -187,6 +208,10 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
   const cur = s.sec;
   const unlocked = lesson.sections.slice(0, cur + 1).filter((x) => x.terms?.length);
   const noteCount = unlocked.reduce((n, x) => n + x.terms.length, 0);
+  const openNotes = () => {
+    setAsked(askedSoFar(screens, idx, results.current));
+    setNotesOpen(true);
+  };
 
   return (
     <div className="tut">
@@ -216,7 +241,7 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
               ))}
             </div>
           </div>
-          <button type="button" className="tut-iconbtn tut-notes-btn" onClick={() => setNotesOpen(true)} aria-label="Open your notes">
+          <button type="button" className="tut-iconbtn tut-notes-btn" onClick={openNotes} aria-label="Open your notes">
             <BookIcon size={20} />
             {noteCount > 0 && <span className="tut-notes-count" key={noteCount}>{noteCount}</span>}
           </button>
@@ -295,8 +320,36 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
                 <XIcon size={20} />
               </button>
             </div>
+            <div className="tut-drawer-tabs" role="tablist" aria-label="Notes">
+              <button type="button" role="tab" aria-selected={notesTab === 'terms'} className={notesTab === 'terms' ? 'on' : ''} onClick={() => setNotesTab('terms')}>
+                Terms
+              </button>
+              <button type="button" role="tab" aria-selected={notesTab === 'questions'} className={notesTab === 'questions' ? 'on' : ''} onClick={() => setNotesTab('questions')}>
+                Questions{asked.length ? ` (${asked.length})` : ''}
+              </button>
+            </div>
             <div className="tut-drawer-body">
-              {unlocked.length ? (
+              {notesTab === 'questions' ? (
+                asked.length ? (
+                  <ol className="tut-asked">
+                    {asked.map((q) => (
+                      <li key={q.i} className={q.ok === true ? 'right' : q.ok === false ? 'wrong' : ''}>
+                        <p className="tut-asked-q">
+                          {q.ok === true ? '✓ ' : q.ok === false ? '✗ ' : ''}
+                          <Inline text={q.prompt} />
+                        </p>
+                        {q.answer.map((a) => (
+                          <p key={a} className="tut-asked-a">
+                            <Inline text={a} />
+                          </p>
+                        ))}
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <Rich text="Questions appear here once you reach them." className="tut-hint" />
+                )
+              ) : unlocked.length ? (
                 unlocked.map((x) => (
                   <section key={x.name}>
                     <h4>{x.name}</h4>
