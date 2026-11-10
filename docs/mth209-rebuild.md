@@ -1,6 +1,6 @@
 # MTH 209 rebuild: handoff
 
-Status (2026-11-10): **plan approved. Lesson 0 is drafted but not registered; Part A is designed but not written.**
+Status (2026-11-10): **Lesson 0 and Part A are written and registered: errors, error-spread, taylor, standard-series, exam-foundations. Part A grew from 2 to 4 teaching lessons after a coverage audit against MAT 251-1.pdf (quotient proof, normalised chopping/rounding, 1/7 rounding, worked quotient and mixed examples, Taylor about a ≠ 0 (sin 51°), integrating a series, binomial theorem, (1+3x)^{3/2} validity, e and sinh/cosh, ln(1+5x+4x²), (e⁶−1)/e³ proof). Index regrouped; old Part A files deleted. Next: Part B — audit each part against the notes the same way before writing.**
 
 Next steps:
 1. Register `course-map.js` and write Part A, using the design and checked numbers below.
@@ -107,6 +107,39 @@ When the exact answer is out of reach, approximate it step by step, and know how
 3. D exam lesson.
 
 **Mock exam:** keep `mock-exam.js`.
+
+## Detailed outline: Parts B–D (2026-11-10, after a coverage audit)
+
+The Part A lesson was that 12 screens cannot hold two old lessons' worth of notes, so these parts are split finer than the outline above. Each lesson: bridge → problem → idea with a scene → method derived → worked notes example → step-checked "your turn" → quick recall. **Bold** = in the notes or past papers but missing from the current build. Recompute every number in Python.
+
+**Part B: Solving** (8 teaching + 2 exam lessons). Bridge from A: an equation we can't solve exactly is an approximation problem; the two engines are iteration and Taylor.
+1. `bracketing`: Bracket and halve (replaces bisection, regula-falsi). Table of signs and the intermediate (mid-value) value theorem; bisection with its three sign cases and the stopping rule (two values agree to the accuracy); notes example 5x² + 11x − 17 = 0 to 3 s.f.; **steps needed: n ≥ ln((b − a)/ε)/ln 2**; regula falsi c = (af(b) − bf(a))/(f(b) − f(a)) and why it's usually faster; your turn.
+2. `fixed-point`: x = g(x) (replaces linear-iteration). Rearranging f(x) = 0; notes examples x² − 3x + 1 = 0 (x₀ = 0 → 0.382) and x³ − 5x + 1 = 0 (0.202); cobweb scene; **convergence needs |g′(x)| < 1 near the root, derived from the mean value theorem**; two rearrangements of one equation, one converging and one not; the observations exams ask for.
+3. `newton-secant`: Newton-Raphson and secant (replaces newton-raphson, secant). Derived both from the tangent picture (notes) and from two Taylor terms (bridge to A3); x³ − 5x − 40 = 0 from x₀ = 4; cube root of 7; secant = Newton with f′ replaced by a difference, same equation from 3, 4; **failure cases (f′ ≈ 0, bad start, cycling), repeated roots, convergence speed: bisection < iteration < secant < Newton**; choosing a method.
+4. `linear-direct`: Linear systems and the inverse (replaces matrix-inverse). General form, **consistent = has at least one solution (Exam tip)**, unique / none / infinitely many, direct vs iterative methods; AX = B, X = A⁻¹B with A⁻¹ = adj A/det A; the class 3 × 3 and the 2 × 2 example; concrete mixture; why the method fails when det A = 0.
+5. `elimination-lu`: Gaussian elimination and LU (replaces gaussian, lu-factorisation). Successive elimination with b₁ⱼ = a₁ⱼ/a₁₁; **row interchange when a pivot is zero**; Doolittle A = LU with lᵢᵢ = 1, LY = B forward, UX = Y back; the class examples (split worked examples across reveal and calc screens; 4 × 4 shown, 3 × 3 practised).
+6. `linear-iterative`: Simple iteration and Gauss-Seidel (replaces simple-iteration, gauss-seidel). X = CX + F with cᵢⱼ = −aᵢⱼ/aᵢᵢ, fᵢ = bᵢ/aᵢᵢ; **convergence test α = max row sum of |cᵢⱼ| < 1 and the error bound α/(1 − α) × (largest change)**; Gauss-Seidel uses each new value at once; class system by both; diagonal dominance; choosing a method.
+7. `nonlinear-fixed`: Non-linear systems and fixed points (replaces nonlinear-systems). F(x) = 0 for F: ℝⁿ → ℝⁿ, definitions, fixed points, **the contraction (fixed-point) theorem with its conditions**, the 3 × 3 fixed-point iteration.
+8. `nonlinear-newton`: Newton for systems (replaces newton-systems). Jacobian matrix, x⁽ᵏ⁺¹⁾ = x⁽ᵏ⁾ − J⁻¹F solved as J·Δ = −F; the 3 × 3 example; **stopping test ‖x⁽ᵏ⁾ − x⁽ᵏ⁻¹⁾‖ ≤ ε checking every component (Exam tip)**; Newton vs fixed point.
+9. `exam-equations`: keep, refresh. Table of signs, constructing iteration formulas with observations, Newton with observations, repeated roots, transcendental equations, **"how many bisection steps", "show the iteration converges"**, named-method tip.
+10. `exam-systems`: merge exam-linear-systems + exam-nonlinear. Consistency definition, inverse fails when singular, concrete mixture, Gaussian, LU, SIM/GSM with convergence conditions and error bound, fixed-point theorem, Jacobian Newton 3 × 3 with stopping test, named-method tip.
+
+**Part C: Data** (4 teaching + 1 exam). Bridge: the solving methods needed f; now f is only a table, so rebuild it. Engine: Taylor rewritten with steps.
+1. `differences`: Finite differences (replaces difference-operators). Δ, ∇, δ; difference tables; higher differences in ordinates; **spotting and correcting an error in a table (the error spreads as binomial coefficients 1, −3, 3, −1)**; polynomial of degree n ⇒ constant nth differences (x³ table); derivative estimates.
+2. `operators`: The operator algebra (from newton-difference-formulas). E, Δ = E − 1, ∇ = 1 − E⁻¹, δ = E^½ − E^−½, δ² = Δ∇, E² = (Δ + 1)², DE = ED; the "prove" questions as order screens.
+3. `newton-everett`: Interpolating from a table (from newton-difference-formulas). Newton forward (start of table) and backward (end of table), r = (x − x₀)/h; notes examples: population table, tan 0.12; **Everett's central formula with f(0.644) from the eˣ table (r = 0.4, s = 0.6), and when to use which formula**.
+4. `lagrange`: Linear and Lagrange interpolation (replaces linear-interpolation, lagrange). P₁ through two points, (2, 3)–(5, 7), ln 2 ≈ 0.3584 with error 0.3347; quadratic by solving for a₀, a₁, a₂; Lagrange basis Lₖ(x); **the interpolation error term f⁽ⁿ⁺¹⁾(ξ)/(n+1)! × Π(x − xᵢ) and why more points usually help**; uneven spacing (Lagrange) vs even (Newton).
+5. `exam-data`: merge exam-differences + exam-interpolation. Definitions, operator proofs, difference table, derivative, linear interpolation with errors, Lagrange degree 2 and 3, quadratic of ln x with its error, **an Everett and an error-in-table question**, named-method tip.
+
+**Part D: Change** (3 teaching + 1 exam). Bridge: a rate is known, the function isn't; step along it. Engine: Taylor in steps.
+1. `ivp-basics`: What an IVP is (replaces ivp-intro). General vs particular solutions, **IVP = a differential equation together with its initial conditions (Exam tip)**, the three kinds, convex sets, Lipschitz condition, |xy| on a rectangle.
+2. `ivp-theory`: Existence, uniqueness, well-posedness (replaces ivp-unique). The theorem with conditions, y′ = 1 + x sin(xy), well-posed problems and perturbations.
+3. `euler-taylor`: Euler and the Taylor series method (replaces euler). Mesh points, yᵢ₊₁ = yᵢ + hf(xᵢ, yᵢ) from Taylor, y′ = y − x² + 1 with h = 0.5, **the Taylor series method of order 2 (in exam-ivp but never taught)**, local vs global error, halving h.
+4. `exam-change`: refresh exam-ivp. Euler to an accuracy, Taylor method, Lipschitz and the theorem, well-posedness, definitions, named-method tip.
+
+**Mock exam:** keep, then re-check that its six questions still match the lesson wording and add one question from any topic the audit added.
+
+**Not on the topic list (owner to confirm):** numerical integration in MAT 251-1.pdf §0.6 (integrating a series is already in A3; trapezium, composite trapezium, rectangular and Simpson's rules are not). If examined, add Part C lesson 6 `integration`.
 
 ## Teaching-lesson template
 
