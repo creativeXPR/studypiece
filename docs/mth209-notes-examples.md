@@ -5,7 +5,8 @@ A reference for the MTH 209 rebuild (see `mth209-rebuild.md`). It records every 
 **Sources (photos, not in the repo):**
 - **Notebook A:** `C:\Users\IAR\Downloads\WhatsApp Unknown 2026-10-09 at 23.37.08\`. 25 pages: the start of phase two, systems of linear equations.
 - **Notebook B:** `C:\Users\IAR\Downloads\WhatsApp Unknown 2026-11-11 at 12.26.34.zip`. 37 photos with many duplicates, some upside down: non-linear systems, Newton's method, IVPs, Euler.
-- **No handwritten notes exist** for equations, interpolation, errors, finite differences or approximations. Use `Downloads\MAT 251-1.pdf` and the past papers (`MTH209_PQ.pdf`, `MTH209_questions.pdf`).
+- **Notebook C:** `C:\Users\IAR\Downloads\WhatsApp Unknown 2026-11-11 at 13.18.03.zip`. 6 photos: regula falsi and the secant method, each derived and worked through an example.
+- **No handwritten notes exist** for bisection, linear iteration, Newton-Raphson, interpolation, errors, finite differences or approximations. Use `Downloads\MAT 251-1.pdf` and the past papers (`MTH209_PQ.pdf`, `MTH209_questions.pdf`).
 
 Lessons must stay general: never say "your notes" in the app, and fix slips silently.
 
@@ -23,6 +24,52 @@ Lessons must stay general: never say "your notes" in the app, and fix slips sile
 | **Euler:** the answer is a set of approximations at the mesh points, not one formula. Number of mesh points: n = (b − a)/h. | B, Euler | Exam tip in Euler. |
 | **Never write 1/3 = 0.33;** write 1/3 ≈ 0.33. | B, Taylor page | Exam tip in errors or series. |
 | **Always check an IVP has a unique solution before solving it numerically** (unlike in a methods course). | B, uniqueness theorem | Note in Part D. |
+
+---
+
+## Equations: regula falsi and secant (Notebook C)
+
+### Regula falsi (false position): derived, solved
+- **Derivation layout:**
+  1. Take the chord through (a, f(a)) and (b, f(b)): y − f(a) = [(f(b) − f(a))/(b − a)](x − a).
+  2. The new estimate c is where the chord crosses the x-axis (y = 0). Rearrange to c = a − f(a)(b − a)/(f(b) − f(a)), which simplifies to **c = (a f(b) − b f(a)) / (f(b) − f(a))**.
+  3. As in bisection, the sign of f(c) decides whether the root is in [a, c] or [c, b]. Update the bracket and repeat until successive values of c agree to the required accuracy.
+- **Question:** "Find the root of f(x) = x³ − 5x + 1 lying between x = 0 and x = 1 using the regula falsi method, correct to 3 dp."
+- **Solution layout:**
+  1. Verify the root lies between 0 and 1: f(0) = 1 > 0 and f(1) = −3 < 0. By the intermediate value theorem, a root lies between them.
+  2. a = 0, b = 1. Compute c and f(c), keep the half with the sign change, and repeat. Each step is written as "c = …, f(c) = …, thus [a, c]".
+- **Checked:**
+  - c₁ = 0.25, f = −0.234375, keep [0, 0.25];
+  - c₂ = 0.2025316, f = −0.0043506, keep [0, 0.2025316];
+  - c₃ = 0.2016543, f = **−0.0000715** (the notes drop the minus sign);
+  - root **0.20164**, so **0.202 to 3 dp**.
+- **Notes' closing remark:** "notice how the last 2 answers are around 0.202". Two agreeing iterates is the stopping rule.
+
+### Secant method: derived, solved
+- **Derivation layout:**
+  1. Start from Newton-Raphson, xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ).
+  2. Replace f′(xₙ) by the backward-difference approximation (f(xₙ) − f(xₙ₋₁))/(xₙ − xₙ₋₁).
+  3. This gives **xₙ₊₁ = xₙ − f(xₙ)(xₙ − xₙ₋₁) / (f(xₙ) − f(xₙ₋₁))**, for n ≥ 1.
+- **Notes' remarks:**
+  - The secant method is a simplification of Newton's method that needs no derivative.
+  - It works like Newton, but it does not need f(x₀) and f(x₁) to have opposite signs. That is the difference from regula falsi.
+  - It needs two starting guesses x₀ and x₁, and it keeps updating the pair by dropping the oldest estimate, whatever its sign.
+- **Question:** "Find the root of x³ − 5x − 40 = 0 near x = 4 using the secant method, correct to 3 sf. Use x₀ = 3, x₁ = 4."
+- **Solution layout:**
+  1. f(x₀) = 27 − 15 − 40 = −28 and f(x₁) = 64 − 20 − 40 = 4.
+  2. Apply the formula for n = 1, 2, 3, writing out each substitution.
+  3. Round each result to 3 sf, and stop when two successive rounded values agree.
+- **Checked:**
+  - x₂ = 4 − 4(1)/32 = **3.875** (the notes write 3.88 at 3 sf but rightly keep 3.875 for the next step), f = −1.189453;
+  - x₃ = **3.903651**, f = −0.032515;
+  - x₄ = **3.904456**;
+  - x₃ and x₄ both round to **3.90**, so the root is 3.90 to 3 sf (exact 3.904449).
+- **Lesson point:** round only the reported value; carry the full value into the next step.
+
+### What this adds to the picture
+- Both examples follow the same layout: verify a sign change (regula falsi only), state the formula, then a table of iterations with the function value at each step, and stop when two successive values agree at the required precision.
+- Precision is stated in the question: 3 dp for regula falsi, 3 sf for secant.
+- **Comparison point the lecturer stresses:** regula falsi keeps a bracket (safe), while secant drops the oldest point regardless of sign (faster, but not guaranteed). Expect "compare the methods" questions.
 
 ---
 
