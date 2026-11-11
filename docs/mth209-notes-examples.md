@@ -68,9 +68,15 @@ Lessons must stay general: never say "your notes" in the app, and fix slips sile
   3. Repeat with a₂₂⁽¹⁾ as the pivot, then a₃₃⁽²⁾.
   4. This gives an upper triangular system x₁ + b₁₂x₂ + … = b₁₅, x₂ + … = b₂₅, x₃ + b₃₄x₄ = b₃₅, a₄₄⁽³⁾x₄ = a₄₅⁽³⁾.
   5. Back-substitute.
-- **Example (marked "Complete this!"):** 2.0x₁ + 1.0x₂ − 0.1x₃ + 1.0x₄ = 2.7; 0.4x₁ + 0.5x₂ + 4.0x₃ + 8.5x₄ = 21.9; 0.3x₁ − 1.0x₂ + 1.0x₃ + 5.2x₄ = −3.9; 1.0x₁ + 0.2x₂ + 2.5x₃ − 1.0x₄ = 9.9 (as read from the photo).
-  - The notes stop after the first elimination step: a₂₂ = 0.3, a₂₃ = 4.02, a₂₄ = 8.3, a₂₅ = 21.36 (these check out).
-  - Solving the system as read gives (−2.626, 8.2517, 4.4066, 0.1409). Those values are unusual for a class example, so **re-read the photo before using it**, or replace it with a fresh example.
+- **Example (marked "Complete this!"):** 2.0x₁ + 1.0x₂ − 0.1x₃ + 1.0x₄ = 2.7; 0.4x₁ + 0.5x₂ + 4.0x₃ **− 8.5**x₄ = 21.9; 0.3x₁ − 1.0x₂ + 1.0x₃ + 5.2x₄ = −3.9; 1.0x₁ + 0.2x₂ + 2.5x₃ − 1.0x₄ = 9.9.
+  - The notes stop after the first elimination step, with two slips:
+    - they lose the sign of −8.5, so a₂₄⁽¹⁾ should be −8.7, not 8.3;
+    - they write a₃₂⁽¹⁾ = 0, but it is −1.0 − (0.3)(0.5) = −1.15.
+  - **Full solution:**
+    - Stage 1: b₁ⱼ = (0.5, −0.05, 0.5, 1.35). Row 2: 0.3, 4.02, −8.7, 21.36. Row 3: −1.15, 1.015, 5.05, −4.305. Row 4: −0.3, 2.55, −1.5, 8.55.
+    - Stage 2: b₂ⱼ = (13.4, −29, 71.2).
+    - Stage 3: b₃₄ = −1.7230, b₃₅ = 4.7230; a₄₄⁽³⁾ = 1.12, a₄₅⁽³⁾ = −1.12.
+    - **x = (1, 2, 3, −1).**
 
 ### Simple iteration method, SIM (fully solved)
 - **Theory layout:**
@@ -205,3 +211,42 @@ Lessons must stay general: never say "your notes" in the app, and fix slips sile
 - **Tolerances and precision are stated:** 2 dp, 10⁻⁵ in the ℓ∞ norm, ε = 10⁻³. The answer is expected with the stopping check shown.
 - **"Show that" proofs:** bound a derivative on D, name the constant (K, L, α or β), then cite the theorem.
 - **Definitions are examinable:** consistent system, fixed point, convex set, Lipschitz condition, IVP, well-posed.
+
+---
+
+# Past questions (lecturer papers)
+
+**Source:** `Downloads\MTH209_PQ.pdf`. These are scanned University of Ibadan papers for **MAT 251 Numerical Methods**, the course's earlier code, set by the same lecturer (signed DAD):
+- 2021/22 first-semester test (7 Dec 2022, 1 hr);
+- 2021/22 examination (31 Jan 2023, 3 hrs: one question from Part A, three from Part B);
+- 2020/21 examination (13 Jul 2021, 2 hrs: three questions);
+- 2015/16 examination (23 Jul 2016, 3 hrs: four questions, at least two per section).
+
+**`Downloads\MTH209_questions.pdf` is not a lecturer paper.** It is a 15-question practice set on linear systems (3 per method, with solutions and quick tips), built from the notes in an earlier session. It is useful for the exam lessons, but don't treat it as evidence of what the lecturer sets.
+
+Answers marked ✓ were checked in Python on 2026-11-11.
+
+## What gets asked, topic by topic
+
+| Topic | Questions (paper) | Style |
+|---|---|---|
+| **Finite differences: operators** | Define Δ, ∇, δ; derive Δ⁴f, ∇⁴f, δ⁴f or δ³f (2021, 2022T, 2023). Define E and prove Δ = E − 1, E² = (Δ+1)², δ = E^½∇ = E^−½Δ, δ² = ∇Δ, DE = ED (2021, 2022T, 2023). | **Asked in every paper.** Pure derivation and proof; memorise the operator algebra. |
+| **Finite differences: tables** | Difference table for f = x³ on 5.0–5.5 with h = 0.1; find Δ³, Δ⁴, Δ⁵ (2022T). Table for f = (x−1)(x+5)/((x+2)(x+1)), h = 0.1, i = 0..8, up to Δ⁵ to 6 dp (2023). Use central differences to approximate f′ for f = t² + 2t at t = −3 (2021). | Build the table neatly; know that a cubic's Δ³ is constant (6h³ = 0.006) and its Δ⁴ = Δ⁵ = 0 ✓. f′(−3) = −4 exactly, since central differences are exact for quadratics ✓. |
+| **Equations: locating roots** | Table of values of 2x³ − 7x + 2 for x ∈ {−2..2} (2022T). Which of [−4,−3], [4,5], [0,1], [2,3] hold roots of x³ − 10x + 4 (2021). | Sign changes. 2022T: f(−2) = 0 exactly, so −2 is a root, with others in (0,1) and (1,2): 0.2929 and 1.7071 ✓. 2021: roots in [−4,−3], [0,1], [2,3] (−3.346, 0.4067, 2.9392) ✓. |
+| **Equations: iteration** | Build iteration formulas for 2x³ − 7x + 2 = 0 from x₀ = 1 and/or 2 to 3 dp, "state observations" (2022T). Write suitable iteration formulas for sin x + x − 1 = 0 (2021). For x³ − 4x² + x − 10 from x₀ = 4, decide which of xₙ₊₁ = 10 − xₙ³ + 4xₙ² and xₙ₊₁ = (4xₙ² − xₙ + 10)/xₙ² works, to 5 sf, and give reasons when not (2016). | **Observations matter:** say which formula converges and why, using \|g′\| < 1. 2022T: x = (2x³+2)/7 → 0.293 and x = ∛((7x−2)/2) → 1.707 ✓. 2021: x = 1 − sin x → 0.5109 ✓. 2016: formula (i) diverges (10, −590, …); (ii) converges to 4.30691 ✓. |
+| **Equations: Newton-Raphson** | Newton for 2x³ − 7x + 2, discuss observations (2022T). Show Newton for xᵏeˣ = 0 gives xₙ₊₁ = ((k−1)xₙ + xₙ²)/(k + xₙ); from x₀ = 1 find x₅ to 6 dp for k = 1 and k = 2; explain why one converges faster (2016). | 2022T: from x₀ = 1 Newton **jumps to −2**, not the root near 1.7; from x₀ = 2 it gives 1.7071 ✓. 2016: k = 1 gives x₅ = 0.000000 (simple root, fast); k = 2 gives x₅ = 0.072003 (double root, only linear) ✓. |
+| **Errors** | Outline the types of approximation error (2021). Error in a sum, difference and product (2021). Define absolute error, relative error and "rounded to d decimal places" (2016). Show the relative-error bounds for a product and a quotient (2016). Evaluate x² − 2 + 1/x² at x = 1.473 with a maximum round-off estimate (0.6306 ✓); evaluate 2.362 × 1.76/(1.46 × 0.785) = 3.6272 ✓ and give limits (2016). | Definitions plus "show that" proofs plus one numerical error-bound question. |
+| **Approximations** | Find a, b with e⁻ˣ ≈ (1 + ax)/(1 + bx) for small x: a = −½, b = ½ (2022T). Expand 2ˣ by writing it as e^(x ln 2) (2022T). Expand (2 + (1 + ½x)⁶)/(2 + 3x) to x³ using binomial series (2016). State the series for tan⁻¹x and ln(1 + x), then evaluate tan⁻¹(0.2) = 0.197 and ln(1.1) = 0.095 to 3 dp ✓ (2016). | Series manipulation and matching coefficients; standard expansions are expected from memory. |
+| **Interpolation** | Quadratic interpolating polynomial for ln x from (2, 0.69315), (2.5, 0.91629), (3, 1.09861); approximate ln 2.7 and give the error to 5 dp (2023): P₂(2.7) = 0.99412, true 0.99325, error −0.00086 ✓. Linear interpolation for sin(1.15) from x₀ = 1.0 with each other table point in turn, giving the error and relative error each time; then Lagrange with n = 2 and 3 (2016; sin 1.15 = 0.9128 ✓). Everett's formula fᵣ = (1−r)f₀ + rf₁ + E₂δ²f₀ + …: find E₂, F₂, E₄, F₄, E₆, F₆, then use it for y(1.60) from a √x table (2016). | Compute and compare; Lagrange is the core. Everett's formula is beyond the MTH 209 list; mention it at most. |
+| **Linear systems** | Express 2a + 3b + c = 9, a + 2b + 3c = 6, 3a + b + 2c = 8 as AX = B, solve for X, then find the eigenvalues and eigenvectors of A "if any" (2021): X = (35/18, 29/18, 5/18) ✓. Eigenvalues 6 (eigenvector (1,1,1)) and ±i√3, which are complex: "if any" means only one is real. | The eigen part is MTH 205 material; keep it as a stretch. |
+| **IVPs** | Euler for y′ = −y²/(1 + x), y(0) = 1: estimate y(0.2) to 5 dp (2023). The step isn't stated: h = 0.1 gives 0.82636, h = 0.2 gives 0.80000; exact 1/(1 + ln 1.2) = 0.84579 ✓. Taylor series solution of y′ = −xy, y(0) = 1, to 4 dp at x = 0.0..0.5 (2021): exact e^(−x²/2) gives 1, 0.9950, 0.9802, 0.9560, 0.9231, 0.8825 ✓. Taylor method for y′ = 3x + y², y(1) = 1.2: find y(1.1) (2016). | Euler and the Taylor-series method. If h isn't given, state your choice and why. |
+| **Beyond the MTH 209 list** | Runge-Kutta orders 2–4 and why higher orders are needed (2021, 2023). Trapezium rule for ∫₀¹x² dx with 8 intervals, its error term, and the n needed for error ≤ 10⁻⁶ (2016). Sketch the polynomial through (2,5), (3,2), (4,5) (2016). | Numerical integration and Runge-Kutta are on the older MAT 251 syllabus, not the official MTH 209 topic list. Cover them in at most one "you may also see" screen; don't build lessons on them. |
+
+## Patterns in the lecturer's papers
+
+- **Finite-difference operators appear in every paper,** often word-for-word the same (derive Δ⁴, ∇⁴, δ⁴; prove the five E identities). This is the most predictable question on the course; drill it until it's automatic.
+- **"State your observations"** follows every iteration or Newton question: whether it converges, how fast, which root it finds, and why (using \|g′\|, simple vs double roots, a poor starting point).
+- **Precision is always specified:** 3 dp, 5 sf, 6 dp or 5 dp. Carry two extra digits and round at the end.
+- **Questions build on each other:** "From 2(a)(iii) above…", "Using the formula in 3(a)…", "Using 4(a)(i)…". The first part is usually a definition or derivation, then you apply it.
+- **Tables are expected:** a table of values to find sign changes, difference tables, and iteration tables.
+- **Lecturer papers cover phase 1 heavily** (differences, equations, errors, series, interpolation). Phase 2 (linear and non-linear systems, IVPs) appears in the papers only as the 2021 linear system and the Euler/Taylor IVP questions. The handwritten notes and their exam notices are the main evidence for phase 2.
