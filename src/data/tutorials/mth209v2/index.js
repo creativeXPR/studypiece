@@ -4,6 +4,10 @@
 // "Coming soon" until they are built.
 import courseMap from './course-map';
 import errorTypes from './error-types';
+import errorPropagation from './error-propagation';
+import binomial from './binomial';
+import taylor from './taylor';
+import specialSeries from './special-series';
 
 const soon = (id, title, covers) => ({ id, title, covers, minutes: 12 });
 
@@ -18,10 +22,10 @@ export default {
       by: 'Errors and series',
       lessons: [
         errorTypes,
-        soon('error-propagation', 'Errors in sums, products and functions', 'Error propagation and round-off limits'),
-        soon('binomial', 'Binomial expansion', 'Expanding (1 + x)ⁿ for any n'),
-        soon('taylor', 'Taylor and Maclaurin series', 'Copying a function with a polynomial'),
-        soon('special-series', 'Exponential and special series', 'eˣ, 2ˣ, ln(1 + x), tan⁻¹x and matching coefficients'),
+        errorPropagation,
+        binomial,
+        taylor,
+        specialSeries,
       ],
     },
     {
