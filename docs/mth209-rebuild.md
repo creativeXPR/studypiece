@@ -8,6 +8,8 @@ Next steps:
 3. Let the owner try it, then rebuild Parts B, C and D.
 4. Deploy and push after each part (flow at the bottom).
 
+**Examples and exam notices from the handwritten notes:** see `docs/mth209-notes-examples.md`. It records every worked example (how the question was set, how the solution was laid out, the checked answers and the slips to fix) and the lecturer's exam notices. Build the exam lessons from it.
+
 ## Exam notices from the lecturer (must appear)
 
 The lecturer marked these in the notes as exam points.
