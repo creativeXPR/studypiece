@@ -1,6 +1,6 @@
 # MTH 209 rebuild: handoff
 
-**Status (2026-11-11): COMPLETE and live.** All 24 lessons (map, Ideas A–D) plus the mock exam are in `src/data/tutorials/mth209/`. The question bank (`src/data/courses/mth209.js`, 225 questions) is grouped by idea, with the set ids kept. Another session keeps the previous tutorial as `mth209classic`. Future work: polish only; if adding lessons, follow the template below.
+**Status (2026-11-11): COMPLETE and live.** All 24 lessons (map, Ideas A–D) plus the mock exam are in `src/data/tutorials/mth209/`. The question bank (`src/data/courses/mth209.js`, 225 questions) is grouped by idea, with the set ids kept. The previous tutorial (mth209classic) was removed on 2026-11-11 at the owner’s request. Future work: polish only; if adding lessons, follow the template below.
 
 **Read first:** `docs/mth209-notes-examples.md`. It holds every worked example from the owner's handwritten notes (question style, solution layout, checked answers, slips to fix), the lecturer's exam notices, and the past-paper analysis with checked answers. Build lessons from it.
 
