@@ -13,6 +13,13 @@ import regulaFalsi from './regula-falsi';
 import linearIteration from './linear-iteration';
 import newtonRaphson from './newton-raphson';
 import secant from './secant';
+import matrixInverse from './matrix-inverse';
+import lu from './lu';
+import gaussian from './gaussian';
+import simpleIteration from './simple-iteration';
+import gaussSeidel from './gauss-seidel';
+import fixedPointSystems from './fixed-point-systems';
+import newtonSystems from './newton-systems';
 
 const soon = (id, title, covers) => ({ id, title, covers, minutes: 12 });
 
@@ -43,13 +50,13 @@ export default {
         linearIteration,
         newtonRaphson,
         secant,
-        soon('matrix-inverse', 'Consistency and the matrix inverse', 'X = A⁻¹B'),
-        soon('lu', 'LU factorisation', 'A = LU, then two easy solves'),
-        soon('gaussian', 'Gaussian elimination', 'Eliminate, then back-substitute'),
-        soon('simple-iteration', 'Simple iteration', 'X = CX + F and the α, β tests'),
-        soon('gauss-seidel', 'Gauss-Seidel', 'Using new values at once'),
-        soon('fixed-point-systems', 'Non-linear systems: fixed points', 'G(x) = x and the convergence condition'),
-        soon('newton-systems', 'Newton’s method for systems', 'The Jacobian and the stopping test'),
+        matrixInverse,
+        lu,
+        gaussian,
+        simpleIteration,
+        gaussSeidel,
+        fixedPointSystems,
+        newtonSystems,
       ],
     },
     {
