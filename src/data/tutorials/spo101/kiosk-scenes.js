@@ -1,7 +1,7 @@
 // SPO 101 · pictures for Ade's cold-drink kiosk, the course's running example: a notebook of
 // (temperature, bottles sold) days turning into a pattern, a line's misses and its loss, the loss
 // valley with a ball rolling down it (gradient descent), and what the step size does.
-import { frame, view } from '../mth209/plot';
+import { frame, view } from '../plot';
 
 // Twelve days at the kiosk: top temperature (°C) and bottles sold.
 export const TEMPS = [26, 27, 28, 29, 30, 30, 31, 32, 33, 34, 35, 36];

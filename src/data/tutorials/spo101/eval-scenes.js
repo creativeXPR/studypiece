@@ -1,6 +1,6 @@
 // SPO 101 · Chapter 5 pictures: locking test days in a drawer and checking the line on them, and a
 // curve that memorises eight noisy days (zero training error) but fails badly on new ones.
-import { frame, view } from '../mth209/plot';
+import { frame, view } from '../plot';
 import { MONTH } from './kiosk-data';
 
 const kiosk = () => view(22.6, 38.5, -20, 140);

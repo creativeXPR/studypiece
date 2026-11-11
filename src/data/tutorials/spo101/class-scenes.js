@@ -1,7 +1,7 @@
 // SPO 101 · Chapter 6 pictures: an S-curve turning temperature into a sell-out probability, a
 // decision tree carving the month into regions with two questions, and k-means finding customer
 // groups by moving three centres back and forth.
-import { frame, view } from '../mth209/plot';
+import { frame, view } from '../plot';
 import { MONTH } from './kiosk-data';
 
 const SOLD = MONTH.bottles.map((b) => (b >= 80 ? 1 : 0));

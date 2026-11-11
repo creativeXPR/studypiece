@@ -1,6 +1,6 @@
 // SPO 101 · Chapter 7 pictures: one neuron as a line with a bend (ReLU), two neurons making a peak,
 // and more and more bends adding up to follow Ade's sales through the day.
-import { frame, view } from '../mth209/plot';
+import { frame, view } from '../plot';
 
 const relu = (z) => Math.max(0, z);
 

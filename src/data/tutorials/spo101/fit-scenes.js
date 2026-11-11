@@ -1,6 +1,6 @@
 // SPO 101 · Chapter 4 pictures: a line with two knobs (slope and starting value) finding Ade's
 // dots, and the loss as a bowl seen from above, with gradient descent rolling down its walls.
-import { frame, view } from '../mth209/plot';
+import { frame, view } from '../plot';
 import { BOTTLES, TEMPS } from './kiosk-scenes';
 
 const X = TEMPS.map((t) => t - 30);

@@ -1,7 +1,7 @@
 // SPO 101 · Chapter 8 pictures: words as points on a map where similar words sit together (with a
 // direction meaning "capital of"), and attention: the word "it" looking back at the other words,
 // with the strongest links changing when one word of the sentence changes.
-import { frame } from '../mth209/plot';
+import { frame } from '../plot';
 
 const WORDS = [
   ['zobo', [-4.2, 2.6], 'c'], ['fanta', [-3.2, 3.4], 'c'], ['coke', [-2.6, 2.5], 'c'], ['water', [-3.8, 1.5], 'c'],

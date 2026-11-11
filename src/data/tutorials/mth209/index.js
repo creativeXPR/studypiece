@@ -1,88 +1,72 @@
-// MTH 209 interactive tutorial: Numerical Analysis, rebuilt as a map and four parts
-// (see docs/mth209-rebuild.md).
-// (A lesson entry without `sections` shows as "Coming soon".)
+// MTH 209 interactive tutorial, rebuilt (2026-11-11): every topic sits under one of four ideas, and
+// every lesson has two parts: understand it on a simple case, then apply it to an exam-sized one.
+// The plan, sources and template are in docs/mth209-rebuild.md. Lessons without `sections` show as
+// "Coming soon" until they are built.
 import courseMap from './course-map';
-import errors from './errors';
-import errorSpread from './error-spread';
+import errorTypes from './error-types';
+import errorPropagation from './error-propagation';
+import binomial from './binomial';
 import taylor from './taylor';
-import standardSeries from './standard-series';
-import examFoundations from './exam-foundations';
-import bracketing from './bracketing';
-import linearIteration from './linear-iteration';
-import newtonSecant from './newton-secant';
-import examEquations from './exam-equations';
-import matrixInverse from './matrix-inverse';
-import eliminationLu from './elimination-lu';
-import linearIterative from './linear-iterative';
-import examLinearSystems from './exam-linear-systems';
-import nonlinearSystems from './nonlinear-systems';
-import newtonSystems from './newton-systems';
-import examNonlinear from './exam-nonlinear';
-import differenceOperators from './difference-operators';
-import operators from './operators';
-import newtonDifferenceFormulas from './newton-difference-formulas';
-import centralDifferences from './central-differences';
-import examDifferences from './exam-differences';
-import lagrange from './lagrange';
-import examInterpolation from './exam-interpolation';
-import ivpIntro from './ivp-intro';
-import ivpUnique from './ivp-unique';
-import euler from './euler';
-import taylorMethod from './taylor-method';
-import examIvp from './exam-ivp';
-import mockExam from './mock-exam';
+import specialSeries from './special-series';
+
+const soon = (id, title, covers) => ({ id, title, covers, minutes: 12 });
 
 export default {
   code: 'MTH 209',
   title: 'Numerical Analysis',
   chapters: [
+    { n: 0, title: 'The Map', by: 'Why we approximate, and how the four ideas connect', lessons: [courseMap] },
     {
-      n: 0,
-      title: 'The Map',
-      by: 'What the course is for, and the four jobs it teaches',
-      lessons: [courseMap],
-    },
-    {
-      n: 'A',
-      title: 'Foundations',
-      by: 'Errors and how they spread; Taylor and the standard series',
-      lessons: [errors, errorSpread, taylor, standardSeries, examFoundations],
-    },
-    {
-      n: 'B',
-      title: 'Solving',
-      by: 'Equations, linear systems and non-linear systems',
+      n: 1,
+      title: 'Idea A: How Wrong, and Why Approximating Works',
+      by: 'Errors and series',
       lessons: [
-        bracketing,
-        linearIteration,
-        newtonSecant,
-        examEquations,
-        matrixInverse,
-        eliminationLu,
-        linearIterative,
-        examLinearSystems,
-        nonlinearSystems,
-        newtonSystems,
-        examNonlinear,
+        errorTypes,
+        errorPropagation,
+        binomial,
+        taylor,
+        specialSeries,
       ],
     },
     {
-      n: 'C',
-      title: 'Data',
-      by: 'Finite differences, Newton and Everett formulas, interpolation and its error',
-      lessons: [differenceOperators, operators, newtonDifferenceFormulas, centralDifferences, examDifferences, lagrange, examInterpolation],
+      n: 2,
+      title: 'Idea B: Finding Where Things Balance',
+      by: 'Roots of equations, linear and non-linear systems',
+      lessons: [
+        soon('bisection', 'Locating roots and bisection', 'Tables of signs and halving the bracket'),
+        soon('regula-falsi', 'Regula falsi', 'Cutting the bracket with a chord'),
+        soon('linear-iteration', 'Linear iteration', 'x = g(x) and when it converges'),
+        soon('newton-raphson', 'Newton-Raphson', 'Following the tangent'),
+        soon('secant', 'Secant, and comparing the methods', 'Newton without a derivative'),
+        soon('matrix-inverse', 'Consistency and the matrix inverse', 'X = A⁻¹B'),
+        soon('lu', 'LU factorisation', 'A = LU, then two easy solves'),
+        soon('gaussian', 'Gaussian elimination', 'Eliminate, then back-substitute'),
+        soon('simple-iteration', 'Simple iteration', 'X = CX + F and the α, β tests'),
+        soon('gauss-seidel', 'Gauss-Seidel', 'Using new values at once'),
+        soon('fixed-point-systems', 'Non-linear systems: fixed points', 'G(x) = x and the convergence condition'),
+        soon('newton-systems', 'Newton’s method for systems', 'The Jacobian and the stopping test'),
+      ],
     },
     {
-      n: 'D',
-      title: 'Change',
-      by: 'Initial value problems, Euler and the Taylor series method',
-      lessons: [ivpIntro, ivpUnique, euler, taylorMethod, examIvp],
+      n: 3,
+      title: 'Idea C: Rebuilding a Function from a Table',
+      by: 'Finite differences and interpolation',
+      lessons: [
+        soon('differences', 'Forward, backward and central differences', 'Difference tables'),
+        soon('operators', 'The operators E, Δ, ∇ and δ', 'Proving the operator identities'),
+        soon('linear-interpolation', 'Linear interpolation', 'A straight line between two points'),
+        soon('lagrange', 'Higher-degree interpolation', 'Lagrange polynomials and their error'),
+      ],
     },
     {
-      n: 'E',
-      title: 'Mock Exam',
-      by: 'Six written questions on a 60-minute clock',
-      lessons: [mockExam],
+      n: 4,
+      title: 'Idea D: Following Change Step by Step',
+      by: 'Initial value problems',
+      lessons: [
+        soon('ivp', 'IVPs and unique solutions', 'Definitions, Lipschitz and well-posedness'),
+        soon('euler', 'Euler’s method', 'Stepping along the slope'),
+      ],
     },
+    { n: 5, title: 'Mock Exam', by: 'A timed paper in the lecturer’s style', lessons: [soon('mock-exam', 'Mock exam', 'Timed, lecturer-style paper')] },
   ],
 };

@@ -1,136 +1,161 @@
-// MTH 209 · Part A · Lesson 3: Taylor's theorem. Copying a curve at a point, Taylor about a and
-// Maclaurin about 0 with the remainder E_n, deriving a series from derivatives, how many terms an
-// accuracy needs, expanding about a ≠ 0 (sin 51° about 45° with its error), and integrating
-// term by term. Every number below was recomputed in Python (see docs/mth209-rebuild.md).
-import { expTermsScene, taylorScene } from './series-scenes';
+// MTH 209 · Idea A, lesson 4: Taylor and Maclaurin series. Part 1 builds the series from matching
+// derivatives on a simple polynomial (x² + x about 1) and eˣ; Part 2 does cos 2x and the Taylor
+// series method for an IVP (y′ = 3x + y², a past-paper question).
 
 export default {
   id: 'taylor',
-  title: 'Taylor series: copying a curve',
-  covers: "Taylor's theorem about a point a and Maclaurin's about 0, the remainder E_n as truncation error, deriving the series of sin x and ln(1 + x), how many terms an accuracy needs, expanding about a ≠ 0 with an error estimate, and evaluating an integral from a Maclaurin series",
-  minutes: 16,
+  title: 'Taylor and Maclaurin series',
+  covers: 'Copying a function near a point with a polynomial, the remainder, and the Taylor method for y′ = f(x, y)',
+  minutes: 13,
   sections: [
     {
-      name: "Taylor's theorem",
+      name: 'Understand',
       terms: [
-        ["Taylor's theorem", "$f(x) = f(a) + (x - a)f'(a) + \\frac{(x - a)^2}{2!}f''(a) + \\cdots + \\frac{(x - a)^n}{n!}f^{(n)}(a) + E_n(x)$, when $f$ has continuous derivatives up to $f^{(n)}$ on $[a, x]$ and $f^{(n+1)}$ exists."],
-        ['Remainder', "$E_n(x) = \\frac{(x - a)^{n+1}}{(n+1)!}f^{(n+1)}(\\xi)$ for some $\\xi$ between $a$ and $x$: the truncation error."],
-        ['Step form', "Put $x = a + h$: $f(a + h) = f(a) + hf'(a) + \\frac{h^2}{2!}f''(a) + \\cdots$"],
-        ["Maclaurin's theorem", "The case $a = 0$: $f(x) = f(0) + xf'(0) + \\frac{x^2}{2!}f''(0) + \\cdots$"],
+        ['Taylor series about $a$', '$f(x) = f(a) + f\'(a)(x - a) + \\dfrac{f\'\'(a)}{2!}(x - a)^2 + \\dfrac{f\'\'\'(a)}{3!}(x - a)^3 + \\cdots$'],
+        ['Maclaurin series', 'The Taylor series about $a = 0$: $f(0) + f\'(0)x + \\dfrac{f\'\'(0)}{2!}x^2 + \\cdots$'],
+        ['Remainder', 'Stopping after the $x^n$ term leaves error $\\dfrac{f^{(n+1)}(\\xi)}{(n+1)!}(x - a)^{n+1}$ for some $\\xi$ between $a$ and $x$.'],
+      ],
+      steps: [
+        'Choose the point $a$: $a = 0$ for Maclaurin, or the given point.',
+        'Differentiate $f$ as many times as you need terms.',
+        'Evaluate each derivative **at $a$**, not at $x$.',
+        'Build $f(a) + f\'(a)(x - a) + \\tfrac{f\'\'(a)}{2!}(x - a)^2 + \\tfrac{f\'\'\'(a)}{3!}(x - a)^3 + \\cdots$, with the factorials.',
+        'To estimate, put in the value of $x$. The first dropped term shows the size of the error.',
+      ],
+      examples: [
+        {
+          title: '$f(x) = x^2 + x$ about $a = 1$',
+          question: 'Write the Taylor series of $x^2 + x$ about $x = 1$.',
+          steps: ['$f(1) = 2$, $f\'(x) = 2x + 1$ so $f\'(1) = 3$, $f\'\'(x) = 2$, and higher derivatives are $0$.', '$f(x) = 2 + 3(x - 1) + \\tfrac22(x - 1)^2$.', 'Check at $x = 2$: $2 + 3 + 1 = 6 = 2^2 + 2$.'],
+          answer: '$2 + 3(x - 1) + (x - 1)^2$, exact because $f$ is a polynomial.',
+        },
+        {
+          title: '$e^{0.5}$ from four terms',
+          question: 'Use the Maclaurin series of $e^x$ to four terms to estimate $e^{0.5}$.',
+          steps: ['Every derivative of $e^x$ is $e^x$, and equals $1$ at $0$.', '$e^x \\approx 1 + x + \\tfrac{x^2}{2} + \\tfrac{x^3}{6}$.', '$x = 0.5$: $1 + 0.5 + 0.125 + 0.0208333 = 1.6458333$.', 'True $1.6487213$: error $0.0029$.'],
+          answer: '$e^{0.5} \\approx 1.64583$.',
+        },
       ],
       screens: [
         {
           type: 'story',
-          eyebrow: 'Part A · Lesson 3',
-          title: 'Hard functions, easy polynomials',
-          body: "A calculator cannot \"know\" $e^{0.5}$ or $\\sin 51^\\circ$. It can only add and multiply. So it swaps the function for a **polynomial** that copies it near a point where everything is known.\n\nYou met the first step last lesson: $f(x + \\varepsilon) \\approx f(x) + \\varepsilon f'(x)$. Keep going and you get Taylor's theorem, with its own error term built in.",
-          cta: 'Build one',
+          eyebrow: 'Idea A · Lesson 4',
+          title: 'Any smooth function, as a polynomial',
+          body: 'The binomial series did this for $(1 + x)^n$. The **Taylor series** does it for any smooth function: $e^x$, $\\cos x$, $\\ln x$, even the unknown solution $y(x)$ of a differential equation.\n\nIt is the second engine of the whole course. Newton’s method, finite differences and Euler’s method are all Taylor series cut short.',
         },
-        taylorScene,
         {
           type: 'story',
-          eyebrow: 'The method',
+          eyebrow: 'The idea',
           title: 'Match the value, the slope, the bend…',
-          body: "Make a polynomial agree with $f$ at $a$: same value, same slope, same second derivative, and so on. That forces\n$$f(x) = f(a) + (x - a)f'(a) + \\frac{(x - a)^2}{2!}f''(a) + \\cdots + \\frac{(x - a)^n}{n!}f^{(n)}(a) + E_n(x).$$\n• **Condition:** $f$ continuous with continuous derivatives up to $f^{(n)}$, and $f^{(n+1)}$ existing.\n• **Remainder:** $E_n(x) = \\frac{(x - a)^{n+1}}{(n+1)!}f^{(n+1)}(\\xi)$, $\\xi$ between $a$ and $x$.\n• With $x = a + h$ it reads $f(a + h) = f(a) + hf'(a) + \\cdots$; with $a = 0$ it is **Maclaurin's** theorem.",
+          body: 'To copy $f$ near a point $a$, build a polynomial that agrees with $f$ at $a$ in **value**, **slope** ($f\'$), **bend** ($f\'\'$), and so on.\n\nA term $c_k(x - a)^k$ has $k$-th derivative $k!\\,c_k$ at $a$. To match $f^{(k)}(a)$ we need $c_k = \\dfrac{f^{(k)}(a)}{k!}$. That is where the factorials come from.',
         },
         {
-          type: 'reveal',
-          eyebrow: 'Worked: derive a series',
-          title: 'The Maclaurin series of sin x',
-          cards: [
-            { title: 'Derivatives', text: "$f = \\sin x$, $f' = \\cos x$, $f'' = -\\sin x$, $f''' = -\\cos x$, then the cycle repeats." },
-            { title: 'Values at 0', text: "$f(0) = 0$, $f'(0) = 1$, $f''(0) = 0$, $f'''(0) = -1$, $f^{(4)}(0) = 0$, $f^{(5)}(0) = 1$, …" },
-            { title: 'Substitute into Maclaurin', text: '$\\sin x = 0 + x + 0 - \\dfrac{x^3}{3!} + 0 + \\dfrac{x^5}{5!} - \\cdots = x - \\dfrac{x^3}{3!} + \\dfrac{x^5}{5!} - \\cdots$, valid for every $x$.' },
-          ],
+          type: 'story',
+          eyebrow: 'The steps',
+          title: 'Building a Taylor series',
+          body: '1. Choose $a$ ($a = 0$ gives the **Maclaurin** series).\n2. Differentiate as many times as you need terms.\n3. Evaluate each derivative **at $a$**.\n4. Write $f(a) + f\'(a)(x - a) + \\tfrac{f\'\'(a)}{2!}(x - a)^2 + \\tfrac{f\'\'\'(a)}{3!}(x - a)^3 + \\cdots$\n5. Substitute $x$ to estimate. The first dropped term is roughly the error.',
         },
         {
-          type: 'choice',
-          eyebrow: 'Your turn',
-          prompt: "For $f(x) = \\ln(1 + x)$: $f'(x) = \\frac{1}{1+x}$, $f''(x) = -\\frac{1}{(1+x)^2}$, $f'''(x) = \\frac{2}{(1+x)^3}$. What is the $x^3$ term of its Maclaurin series?",
-          options: [
-            { text: '$\\frac{x^3}{3}$', correct: true, why: "$\\frac{x^3}{3!}f'''(0) = \\frac{x^3}{6} \\times 2 = \\frac{x^3}{3}$." },
-            { text: '$\\frac{2x^3}{3}$', why: 'Remember to divide by $3! = 6$, not by 3.' },
-            { text: '$\\frac{x^3}{6}$', why: "$f'''(0) = 2$, so the 6 halves to 3." },
-            { text: '$-\\frac{x^3}{3}$', why: "$f'''(0) = +2$: the signs alternate $+, -, +$." },
-          ],
-          explain: '$\\ln(1 + x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\frac{x^4}{4} + \\cdots$, valid for $-1 < x \\le 1$.',
+          type: 'story',
+          eyebrow: 'Worked example',
+          title: '$x^2 + x$ about $a = 1$',
+          body: '**Steps 1–3.** $f(1) = 2$; $f\'(x) = 2x + 1$, so $f\'(1) = 3$; $f\'\'(x) = 2$; every higher derivative is $0$.\n\n**Step 4.** $f(x) = 2 + 3(x - 1) + \\tfrac{2}{2!}(x - 1)^2 = 2 + 3(x - 1) + (x - 1)^2$.\n\n**Step 5.** Check at $x = 2$: $2 + 3 + 1 = 6$, and $2^2 + 2 = 6$. For a polynomial the series is exact; for other functions it goes on forever.',
         },
         {
           type: 'custom',
           widget: 'calc',
-          eyebrow: 'The remainder at work',
-          title: 'Estimate $e^{0.5}$ with 4 terms of $e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\cdots$, then bound the error with $E_3$.',
-          body: 'True value: $e^{0.5} = 1.648721$.',
+          eyebrow: 'Your turn',
+          title: '$e^{0.5}$ from the Maclaurin series',
           graph: {
             steps: [
-              { ask: '$1 + 0.5 + \\frac{0.25}{2} + \\frac{0.125}{6} = $ (6 d.p.)', answer: 1.645833, tol: 0.000002, hint: '$1 + 0.5 + 0.125 + 0.020833$.' },
-              { ask: 'Actual error $1.648721 - 1.645833 = $ (6 d.p.)', answer: 0.002888, tol: 0.000003, hint: 'Subtract.' },
-              { ask: 'Bound: $E_3 = \\frac{0.5^4}{4!}e^{\\xi} \\le \\frac{0.0625}{24} \\times 1.65 = $ (6 d.p.)', answer: 0.004297, tol: 0.000003, hint: '$e^{\\xi} < e^{0.5} < 1.65$.', done: 'The true error $0.0029$ sits inside the bound $0.0043$, as the remainder promises.' },
+              { ask: 'Every derivative of $e^x$ at $x = 0$ equals…?', answer: 1, tol: 0.001, hint: '$e^0$.' },
+              { ask: 'Third term, $\\tfrac{x^2}{2!}$ at $x = 0.5$?', answer: 0.125, tol: 0.0001, hint: '$\\tfrac{0.25}{2}$.' },
+              { ask: '$1 + 0.5 + 0.125 + \\tfrac{0.125}{6}$, to 5 dp?', answer: 1.64583, tol: 0.00001, hint: 'The last term is $0.0208333$.' },
             ],
+            after: 'True $e^{0.5} = 1.64872$. The next term, $\\tfrac{0.5^4}{24} = 0.0026$, is about the size of the error.',
           },
+        },
+        {
+          type: 'story',
+          eyebrow: 'What can be asked',
+          title: 'The kinds of question',
+          body: '• **Expand:** the Maclaurin series of $\\cos 2x$, $e^{-x}$ or $\\ln(1 + x)$ to a given power.\n• **Estimate** a value from the series, and bound the error with the remainder.\n• **Taylor method for an ODE:** given $y\' = f(x, y)$ and $y(a)$, find $y\'(a), y\'\'(a), \\ldots$ and estimate $y$ at a nearby point.\n• **Distinguish** the Taylor series method from other ODE methods, in a sentence.',
         },
       ],
     },
     {
-      name: 'Using the series',
-      terms: [
-        ['How many terms', 'Add terms until the remainder (or, for shrinking alternating terms, the first omitted term) is below the accuracy asked for.'],
-        ['Choosing $a$', 'Expand about a nearby point where $f$ and its derivatives are known, so $x - a$ is small.'],
-        ['Integrating a series', 'Replace the integrand by its Maclaurin series and integrate term by term: $\\int x^n\\,dx = \\frac{x^{n+1}}{n+1}$.'],
+      name: 'Apply',
+      steps: [
+        'For $\\cos(kx)$, $\\sin(kx)$ or $e^{kx}$: either differentiate directly, or substitute $kx$ into the known series of $\\cos x$, $\\sin x$ or $e^x$ (faster).',
+        'Taylor method for $y\' = f(x, y)$, $y(a)$ given: (1) $y\'(a) = f(a, y(a))$; (2) differentiate the equation itself to get $y\'\'$, $y\'\'\'$, using the chain rule on $y$; (3) put in $a$; (4) $y(a + h) \\approx y + hy\' + \\tfrac{h^2}{2}y\'\' + \\tfrac{h^3}{6}y\'\'\'$.',
+        'Mistake: evaluating derivatives at $x$ instead of $a$.',
+        'Mistake: forgetting the factorials $2!, 3!, \\ldots$',
+        'Mistake: in the ODE method, treating $y$ as a constant when differentiating. $\\tfrac{d}{dx}(y^2) = 2yy\'$.',
       ],
-      screens: [
-        expTermsScene,
+      examples: [
         {
-          type: 'choice',
-          eyebrow: 'Apply it',
-          prompt: 'How many terms of $e^x$ are needed for $e^{0.5}$ with error below $0.0001$?',
-          options: [
-            { text: '4 terms', why: '$1.645833$: error $0.0029$, far too big.' },
-            { text: '5 terms', why: '$1.648438$: error $0.00028$, still above $0.0001$.' },
-            { text: '6 terms', correct: true, why: '$1.648698$: error $0.000023$, below $0.0001$.' },
-            { text: '10 terms', why: 'Works, but 6 already do.' },
-          ],
-          explain: 'Each term is the last one times $\\frac{x}{n}$, so they shrink fast: stop once the error is below the target.',
+          title: 'Maclaurin series of $\\cos 2x$',
+          question: 'Find the Maclaurin series of $\\cos 2x$ up to $x^4$, and use it to estimate $\\cos 0.2$.',
+          steps: ['$\\cos u = 1 - \\tfrac{u^2}{2!} + \\tfrac{u^4}{4!} - \\cdots$; put $u = 2x$.', '$\\cos 2x = 1 - 2x^2 + \\tfrac23x^4 - \\cdots$', '$\\cos 0.2$ means $x = 0.1$: $1 - 0.02 + 0.0000667 = 0.9800667$.', 'True $0.9800666$.'],
+          answer: '$1 - 2x^2 + \\tfrac23x^4$; $\\cos 0.2 \\approx 0.98007$.',
         },
         {
+          title: 'Taylor method: $y\' = 3x + y^2$, $y(1) = 1.2$',
+          question: 'Use the Taylor series method to approximate $y$ when $x = 1.1$.',
+          steps: ['$y\'(1) = 3(1) + 1.2^2 = 4.44$.', 'Differentiate: $y\'\' = 3 + 2yy\'$, so $y\'\'(1) = 3 + 2(1.2)(4.44) = 13.656$.', 'Again: $y\'\'\' = 2(y\')^2 + 2yy\'\'$, so $y\'\'\'(1) = 2(4.44)^2 + 2(1.2)(13.656) = 72.2016$.', '$h = 0.1$: $y(1.1) \\approx 1.2 + 0.444 + \\tfrac{0.01}{2}(13.656) + \\tfrac{0.001}{6}(72.2016) = 1.7243$.'],
+          answer: '$y(1.1) \\approx 1.7243$.',
+        },
+      ],
+      screens: [
+        {
           type: 'story',
-          eyebrow: 'Worked: expand about a ≠ 0',
-          title: '$\\sin 51^\\circ$ from $\\sin 45^\\circ$',
-          body: "$51^\\circ$ is far from 0 but close to $45^\\circ$, where $\\sin 45^\\circ = \\cos 45^\\circ = \\frac{\\sqrt2}{2}$. So expand about $a = 45^\\circ$:\n$$\\sin x = \\sin a + (x - a)\\cos a - \\frac{(x - a)^2}{2!}\\sin a - \\frac{(x - a)^3}{3!}\\cos\\xi.$$\nThe last term is the remainder $E_2$, with $\\xi$ between $a$ and $x$.\n\n**Angles must be in radians:** $x - a = 6^\\circ = \\frac{\\pi}{30} = 0.104720$.",
+          eyebrow: 'Exam question',
+          title: 'The Taylor method for an ODE',
+          body: '“If $y\' = 3x + y^2$, use the Taylor series method to approximate $y$ when $x = 1.1$, given that $y = 1.2$ when $x = 1$.”\n\n**What the examiner wants:** $y\'(1)$ from the equation; $y\'\'$ and $y\'\'\'$ found by differentiating the equation (with the chain rule on $y$); each evaluated at $x = 1$; then the series with $h = 0.1$, every term shown.',
+          asides: [{ label: 'Exam tip', text: 'Lay it out as a table: $y$, $y\'$, $y\'\'$, $y\'\'\'$ at $x = 1$, then the sum. It makes every mark easy to award.' }],
         },
         {
           type: 'custom',
           widget: 'calc',
-          eyebrow: 'Your turn',
-          title: 'Evaluate $\\sin 51^\\circ$ from the first 3 terms about 45°, and estimate the error.',
-          body: '$\\frac{\\sqrt2}{2} = 0.707107$, $h = \\frac{\\pi}{30} = 0.104720$.',
+          eyebrow: 'Guided',
+          title: '$y\' = 3x + y^2$, $y(1) = 1.2$',
           graph: {
             steps: [
-              { ask: '$h\\cos 45^\\circ = $ (6 d.p.)', answer: 0.074048, tol: 0.000002, hint: '$0.104720 \\times 0.707107$.' },
-              { ask: '$\\frac{h^2}{2}\\sin 45^\\circ = $ (6 d.p.)', answer: 0.003877, tol: 0.000002, hint: '$\\frac{0.010966}{2} \\times 0.707107$.' },
-              { ask: '$\\sin 51^\\circ \\approx 0.707107 + 0.074048 - 0.003877 = $ (4 d.p.)', answer: 0.7773, tol: 0.00006, hint: 'Add.' },
-              { ask: 'Error $\\le \\frac{h^3}{3!} \\times 1 = $ (6 d.p.)', answer: 0.000191, tol: 0.000002, hint: "$|\\cos\\xi| \\le 1$; $\\frac{0.0011484}{6}$.", done: '$\\sin 51^\\circ = 0.777$ to 3 d.p. (true $0.777146$).' },
+              { ask: '$y\'(1) = 3(1) + 1.2^2 = $?', answer: 4.44, tol: 0.001, hint: '$3 + 1.44$.' },
+              { ask: '$y\'\' = 3 + 2yy\'$. Value at $x = 1$?', answer: 13.656, tol: 0.001, hint: '$3 + 2(1.2)(4.44)$.' },
+              { ask: '$y\'\'\' = 2(y\')^2 + 2yy\'\'$. Value at $x = 1$?', answer: 72.2016, tol: 0.001, hint: '$2(4.44)^2 + 2(1.2)(13.656)$.' },
+              { ask: '$y(1.1) \\approx 1.2 + 0.1(4.44) + \\tfrac{0.01}{2}(13.656) + \\tfrac{0.001}{6}(72.2016)$, to 4 dp?', answer: 1.7243, tol: 0.0001, hint: '$1.2 + 0.444 + 0.06828 + 0.01203$.' },
             ],
+            after: 'Each term is smaller than the last, a sign the series is settling. Keep one more term if the question asks for more accuracy.',
           },
         },
         {
+          type: 'choice',
+          eyebrow: 'Spot the mistake',
+          prompt: 'For $y\' = 3x + y^2$, a student writes $y\'\' = 3 + 2y$. What went wrong?',
+          options: [
+            { text: '$y$ depends on $x$, so $\\tfrac{d}{dx}(y^2) = 2y\\,y\'$, not $2y$', correct: true, why: 'Chain rule: $y$ is a function of $x$.' },
+            { text: 'Nothing; that is right', why: 'It treats $y$ as if it were $x$.' },
+            { text: 'It should be $y\'\' = 3$', why: 'The $y^2$ term does not vanish.' },
+          ],
+        },
+        {
           type: 'custom',
           widget: 'calc',
-          eyebrow: 'Integrating a series',
-          title: 'Evaluate $\\displaystyle\\int_0^1 \\frac{\\sin\\theta}{\\theta}\\,d\\theta$ correct to 3 s.f. using the Maclaurin series.',
-          body: '$\\frac{\\sin\\theta}{\\theta} = 1 - \\frac{\\theta^2}{3!} + \\frac{\\theta^4}{5!} - \\cdots$ has no antiderivative in closed form, but each term does.',
+          eyebrow: 'Final question',
+          title: 'Maclaurin series of $\\cos 2x$',
           graph: {
             steps: [
-              { ask: '$\\int_0^1 \\frac{\\theta^2}{6}\\,d\\theta = \\frac{1}{18} = $ (6 d.p.)', answer: 0.055556, tol: 0.000002, hint: '$\\frac{\\theta^3}{18}$ from 0 to 1.' },
-              { ask: '$\\int_0^1 \\frac{\\theta^4}{120}\\,d\\theta = \\frac{1}{600} = $ (6 d.p.)', answer: 0.001667, tol: 0.000002, hint: '$\\frac{\\theta^5}{600}$ from 0 to 1.' },
-              { ask: '$1 - \\frac{1}{18} + \\frac{1}{600} = $ (3 s.f.)', answer: 0.946, tol: 0.0005, hint: '$0.946111$; the next term $\\frac{1}{35280}$ is too small to change 3 s.f.', done: '$\\int_0^1 \\frac{\\sin\\theta}{\\theta}\\,d\\theta \\approx 0.946$' },
+              { ask: 'Coefficient of $x^2$?', answer: -2, tol: 0.001, hint: '$-\\tfrac{(2x)^2}{2!}$.' },
+              { ask: 'Coefficient of $x^4$ (to 4 dp)?', answer: 0.6667, tol: 0.001, hint: '$\\tfrac{(2x)^4}{4!} = \\tfrac{16x^4}{24}$.' },
+              { ask: 'Estimate $\\cos 0.2$ (put $x = 0.1$), to 5 dp?', answer: 0.98007, tol: 0.00001, hint: '$1 - 0.02 + \\tfrac23(0.0001)$.' },
             ],
           },
         },
         {
           type: 'finish',
-          title: 'You can copy a curve with a polynomial.',
-          body: "Taylor's and Maclaurin's theorems, the remainder, and how many terms to keep. Taylor also drives Newton-Raphson (Part B), finite differences (Part C) and Euler's method (Part D). Next: the standard series and how to combine them.",
+          title: 'You can build a Taylor series.',
+          body: '**Summary:** match value, slope and bend at $a$, so $c_k = \\tfrac{f^{(k)}(a)}{k!}$; Maclaurin is $a = 0$; the first dropped term sizes the error; for $y\' = f(x, y)$, differentiate the equation itself.\n\n**Next:** the **standard series** ($e^x$, $2^x$, $\\ln(1 + x)$, $\\tan^{-1}x$) that exams expect from memory, and the trick of matching coefficients.',
         },
       ],
     },

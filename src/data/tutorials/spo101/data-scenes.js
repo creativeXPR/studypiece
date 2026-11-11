@@ -1,6 +1,6 @@
 // SPO 101 · Chapter 3 pictures: a month of sales as a strip of dots stacking into a histogram,
 // and the temperature–sales scatter where colouring the rainy days reveals a second pattern.
-import { frame, view } from '../mth209/plot';
+import { frame, view } from '../plot';
 import { MONTH } from './kiosk-data';
 
 const B = MONTH.bottles;
