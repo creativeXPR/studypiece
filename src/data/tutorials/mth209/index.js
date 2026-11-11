@@ -20,6 +20,12 @@ import simpleIteration from './simple-iteration';
 import gaussSeidel from './gauss-seidel';
 import fixedPointSystems from './fixed-point-systems';
 import newtonSystems from './newton-systems';
+import differences from './differences';
+import operators from './operators';
+import linearInterpolation from './linear-interpolation';
+import lagrange from './lagrange';
+import ivp from './ivp';
+import euler from './euler';
 
 const soon = (id, title, covers) => ({ id, title, covers, minutes: 12 });
 
@@ -64,10 +70,10 @@ export default {
       title: 'Idea C: Rebuilding a Function from a Table',
       by: 'Finite differences and interpolation',
       lessons: [
-        soon('differences', 'Forward, backward and central differences', 'Difference tables'),
-        soon('operators', 'The operators E, Δ, ∇ and δ', 'Proving the operator identities'),
-        soon('linear-interpolation', 'Linear interpolation', 'A straight line between two points'),
-        soon('lagrange', 'Higher-degree interpolation', 'Lagrange polynomials and their error'),
+        differences,
+        operators,
+        linearInterpolation,
+        lagrange,
       ],
     },
     {
@@ -75,8 +81,8 @@ export default {
       title: 'Idea D: Following Change Step by Step',
       by: 'Initial value problems',
       lessons: [
-        soon('ivp', 'IVPs and unique solutions', 'Definitions, Lipschitz and well-posedness'),
-        soon('euler', 'Euler’s method', 'Stepping along the slope'),
+        ivp,
+        euler,
       ],
     },
     { n: 5, title: 'Mock Exam', by: 'A timed paper in the lecturer’s style', lessons: [soon('mock-exam', 'Mock exam', 'Timed, lecturer-style paper')] },
