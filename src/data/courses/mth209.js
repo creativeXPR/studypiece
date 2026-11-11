@@ -1,577 +1,16 @@
-// MTH 209 question bank.
+// MTH 209 question bank, grouped by the course’s four ideas (A errors and series, B solving,
+// C tables, D change), plus an exam-focus set. Set ids are kept so saved results still match.
 // Each question: options are shown as I–IV, `answer` is the 0-based index of the correct option.
 // Math goes between $...$ (KaTeX).
 
 export default {
   "code": "MTH 209",
-  "updated": "2026-11-08",
+  "updated": "2026-11-11",
   "title": "Numerical Analysis",
   "sets": [
     {
-      "id": "QS001",
-      "title": "Solving equations: bisection to secant",
-      "questions": [
-        {
-          "question": "The bisection method is based on which theorem?",
-          "options": [
-            "Taylor's theorem",
-            "The intermediate (mid) value theorem",
-            "The mean value theorem for integrals",
-            "Rolle's theorem"
-          ],
-          "answer": 1,
-          "explanation": "If $f$ is continuous on $[a, b]$ and $f(a)f(b) < 0$, the intermediate (mid) value theorem guarantees at least one root between $a$ and $b$. Bisection keeps halving that bracket."
-        },
-        {
-          "question": "For $f(x) = 5x^2 + 11x - 17$, $f(1) = -1$ and $f(2) = 25$. What can you conclude?",
-          "options": [
-            "$x = 1$ is a root",
-            "There are exactly two roots in $[1, 2]$",
-            "There is a root between $x = 1$ and $x = 2$",
-            "There is no root in $[1, 2]$"
-          ],
-          "answer": 2,
-          "explanation": "$f$ is continuous and changes sign from negative to positive between 1 and 2, so at least one root lies in $(1, 2)$. (In fact the root is about $1.047$.)"
-        },
-        {
-          "question": "Bisecting $[1, 2]$ for $f(x) = 5x^2 + 11x - 17$ gives $c = 1.5$ with $f(1.5) = 10.75$. What is the next interval?",
-          "options": [
-            "$[1.25, 1.75]$",
-            "$[0, 1.5]$",
-            "$[1.5, 2]$",
-            "$[1, 1.5]$"
-          ],
-          "answer": 3,
-          "explanation": "$f(1) < 0$ and $f(1.5) > 0$, so the sign change (and the root) is in $[1, 1.5]$. Keep the half where the signs still differ."
-        },
-        {
-          "question": "Starting with an interval of length 1, how long is the bracketing interval after 3 bisections?",
-          "options": [
-            "$0.125$",
-            "$0.5$",
-            "$0.0625$",
-            "$0.25$"
-          ],
-          "answer": 0,
-          "explanation": "Each bisection halves the interval: $1 \\to 0.5 \\to 0.25 \\to 0.125 = 2^{-3}$. $0.25$ stops one halving short, and $0.0625$ halves once too often."
-        },
-        {
-          "question": "Starting from an interval of length 1, what is the least number of bisections needed to make the interval shorter than $0.001$?",
-          "options": [
-            "$1000$",
-            "$10$",
-            "$8$",
-            "$9$"
-          ],
-          "answer": 1,
-          "explanation": "We need $2^{-n} < 0.001$, i.e. $2^n > 1000$. Since $2^9 = 512$ and $2^{10} = 1024$, $n = 10$."
-        },
-        {
-          "question": "In the Regula Falsi (false position) method, the new estimate $c$ from the bracket $[a, b]$ is",
-          "options": [
-            "$c = \\dfrac{a f(a) - b f(b)}{f(a) - f(b)}$",
-            "$c = a - \\dfrac{f(a)}{f'(a)}$",
-            "$c = \\dfrac{a f(b) - b f(a)}{f(b) - f(a)}$",
-            "$c = \\dfrac{a + b}{2}$"
-          ],
-          "answer": 2,
-          "explanation": "$c$ is where the secant line through $(a, f(a))$ and $(b, f(b))$ crosses the $x$-axis: $c = \\frac{a f(b) - b f(a)}{f(b) - f(a)}$. The midpoint is bisection; $a - f(a)/f'(a)$ is Newton-Raphson."
-        },
-        {
-          "question": "Use Regula Falsi on $f(x) = x^3 - 5x + 1$ with $a = 0$, $b = 1$. What is the first estimate $c$?",
-          "options": [
-            "$0.75$",
-            "$0.5$",
-            "$0.2$",
-            "$0.25$"
-          ],
-          "answer": 3,
-          "explanation": "$f(0) = 1$, $f(1) = -3$. So $c = \\frac{0(-3) - 1(1)}{-3 - 1} = \\frac{-1}{-4} = 0.25$."
-        },
-        {
-          "question": "Continuing Regula Falsi on $x^3 - 5x + 1 = 0$: $f(0.25) = -0.2344$, so the bracket becomes $[0, 0.25]$. What is the next estimate (4 d.p.)?",
-          "options": [
-            "$0.2025$",
-            "$0.2016$",
-            "$0.2344$",
-            "$0.1250$"
-          ],
-          "answer": 0,
-          "explanation": "$c = \\frac{0 \\cdot f(0.25) - 0.25 \\cdot f(0)}{f(0.25) - f(0)} = \\frac{-0.25}{-0.2344 - 1} = \\frac{-0.25}{-1.2344} = 0.2025$. The root is $0.2016$ (4 d.p.). $0.2016$ is the root itself; one Regula Falsi step only gets close to it."
-        },
-        {
-          "question": "Regula Falsi is described as combining",
-          "options": [
-            "the speed of Newton-Raphson with the simplicity of the secant method",
-            "the guaranteed convergence of bisection with the speed of linear interpolation",
-            "two Newton-Raphson steps per iteration",
-            "Taylor series with bisection"
-          ],
-          "answer": 1,
-          "explanation": "Like bisection it always keeps a bracket $[a, b]$ with a sign change (so it cannot lose the root), but it picks the point by linear interpolation instead of the midpoint, which is usually faster. It uses no derivative, so it doesn’t borrow anything from Newton-Raphson."
-        },
-        {
-          "question": "To solve $f(x) = 0$ by linear (fixed-point) iteration, we first",
-          "options": [
-            "draw the secant through two points",
-            "differentiate $f$",
-            "rearrange the equation as $x = g(x)$ and iterate $x_{n+1} = g(x_n)$",
-            "halve an interval containing the root"
-          ],
-          "answer": 2,
-          "explanation": "Linear iteration rewrites $f(x) = 0$ as $x = g(x)$, picks $x_0$, and repeats $x_{n+1} = g(x_n)$ until successive values agree. Halving an interval is bisection, and drawing a secant is the secant method."
-        },
-        {
-          "question": "For $x^2 - 3x + 1 = 0$, use $x_{n+1} = \\frac{1}{3}(1 + x_n^2)$ with $x_0 = 0$. What are $x_1$ and $x_2$ (4 d.p.)?",
-          "options": [
-            "$x_1 = 0.3333,\\ x_2 = 0.3333$",
-            "$x_1 = 0.3704,\\ x_2 = 0.3791$",
-            "$x_1 = 1,\\ x_2 = 0.6667$",
-            "$x_1 = 0.3333,\\ x_2 = 0.3704$"
-          ],
-          "answer": 3,
-          "explanation": "$x_1 = \\frac13(1 + 0) = 0.3333$; $x_2 = \\frac13(1 + 0.3333^2) = \\frac13(1.1111) = 0.3704$. The iterates go on to $0.382$."
-        },
-        {
-          "question": "The iteration $x_{n+1} = g(x_n)$ converges to a root $\\alpha$ (for $x_0$ close enough) if",
-          "options": [
-            "$|g'(x)| < 1$ near $\\alpha$",
-            "$g(\\alpha) = 0$",
-            "$|g'(x)| > 1$ near $\\alpha$",
-            "$g'(\\alpha) = 1$"
-          ],
-          "answer": 0,
-          "explanation": "Near the root, errors are multiplied by roughly $g'(\\alpha)$ each step, so they shrink when $|g'(x)| < 1$ in a neighbourhood of $\\alpha$. $g(\\alpha) = 0$ is the tempting slip: at a fixed point $g(\\alpha) = \\alpha$, and convergence depends on the slope $g'$."
-        },
-        {
-          "question": "Which rearrangement of $x^2 - 3x + 1 = 0$ converges to the root $0.382$ from $x_0 = 0$?",
-          "options": [
-            "$x = \\sqrt{3x - 1}$",
-            "$x = \\frac{1}{3}(1 + x^2)$",
-            "$x = x^2 - 2x + 1$",
-            "$x = 3 - \\frac{1}{x}$"
-          ],
-          "answer": 1,
-          "explanation": "For $g(x) = \\frac13(1 + x^2)$, $g'(x) = \\frac{2x}{3} \\approx 0.25$ at $0.382$, so $|g'| < 1$. For $3 - \\frac1x$, $|g'| = \\frac{1}{x^2} \\approx 6.9$; for $x^2 - 2x + 1$, $|g'| = |2x - 2| \\approx 1.24$; and $\\sqrt{3x - 1}$ isn't even defined at $x_0 = 0$."
-        },
-        {
-          "question": "The Newton-Raphson iteration for $f(x) = 0$ is",
-          "options": [
-            "$x_{n+1} = x_n + \\dfrac{f(x_n)}{f'(x_n)}$",
-            "$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$",
-            "$x_{n+1} = x_n - \\dfrac{f(x_n)}{f'(x_n)}$",
-            "$x_{n+1} = x_n - \\dfrac{f'(x_n)}{f(x_n)}$"
-          ],
-          "answer": 2,
-          "explanation": "The tangent at $(x_n, f(x_n))$ has slope $f'(x_n)$ and crosses the $x$-axis at $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$. Using a plus sign moves away from the root, because the step goes the wrong way along the tangent."
-        },
-        {
-          "question": "Geometrically, one Newton-Raphson step from $x_n$ moves to the point where",
-          "options": [
-            "the chord through $(a, f(a))$ and $(b, f(b))$ meets the $x$-axis",
-            "the midpoint of the interval lies",
-            "the curve has a turning point",
-            "the tangent to $y = f(x)$ at $x_n$ meets the $x$-axis"
-          ],
-          "answer": 3,
-          "explanation": "Newton-Raphson replaces the curve by its tangent line at $x_n$ and takes the tangent's $x$-intercept as the next approximation. A chord through two points is what Regula Falsi and the secant method use."
-        },
-        {
-          "question": "Apply Newton-Raphson to $f(x) = x^3 - 5x - 40$ with $x_0 = 4$. What is $x_1$ (3 d.p.)?",
-          "options": [
-            "$3.907$",
-            "$3.875$",
-            "$4.093$",
-            "$3.904$"
-          ],
-          "answer": 0,
-          "explanation": "$f(4) = 64 - 20 - 40 = 4$ and $f'(x) = 3x^2 - 5$, so $f'(4) = 43$. Then $x_1 = 4 - \\frac{4}{43} = 3.907$. ($3.875$ is the secant/Regula Falsi first step.)"
-        },
-        {
-          "question": "Use Newton-Raphson on $x^2 - 10 = 0$ with $x_0 = 3$. What is $x_1$ (4 d.p.)?",
-          "options": [
-            "$3.3333$",
-            "$3.1667$",
-            "$3.1623$",
-            "$3.1250$"
-          ],
-          "answer": 1,
-          "explanation": "$x_1 = 3 - \\frac{9 - 10}{2(3)} = 3 + \\frac16 = 3.1667$. One more step gives $3.1623 \\approx \\sqrt{10}$. $3.1623$ is $\\sqrt{10}$ itself, which takes a second step to reach."
-        },
-        {
-          "question": "Newton-Raphson for $\\sqrt[3]{7}$ uses $f(x) = x^3 - 7$. Which iteration does this give?",
-          "options": [
-            "$x_{n+1} = x_n - \\dfrac{3x_n^2}{x_n^3 - 7}$",
-            "$x_{n+1} = \\dfrac{7}{x_n^2}$",
-            "$x_{n+1} = \\dfrac{2x_n^3 + 7}{3x_n^2}$",
-            "$x_{n+1} = \\dfrac{x_n^3 + 7}{3x_n^2}$"
-          ],
-          "answer": 2,
-          "explanation": "$x_{n+1} = x_n - \\frac{x_n^3 - 7}{3x_n^2} = \\frac{3x_n^3 - x_n^3 + 7}{3x_n^2} = \\frac{2x_n^3 + 7}{3x_n^2}$. From $x_0 = 2$ it gives $1.9167, 1.9129, \\dots$ $\\frac{x_n^3 + 7}{3x_n^2}$ comes from forgetting that $x_n = \\frac{3x_n^3}{3x_n^2}$ when combining the fractions."
-        },
-        {
-          "question": "Newton-Raphson runs into trouble when",
-          "options": [
-            "$f(x_n)$ is very small",
-            "$x_n$ is negative",
-            "the root is irrational",
-            "$f'(x_n) = 0$ or is very close to 0"
-          ],
-          "answer": 3,
-          "explanation": "Dividing by $f'(x_n) \\approx 0$ sends $x_{n+1}$ very far away: the tangent is (almost) horizontal and meets the $x$-axis far from the root, or not at all. A small $f(x_n)$ is good news: it means $x_n$ is already near the root."
-        },
-        {
-          "question": "The secant method's iteration is",
-          "options": [
-            "$x_{n+1} = x_n - f(x_n)\\dfrac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$",
-            "$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$",
-            "$x_{n+1} = x_n - \\dfrac{f(x_n)}{f'(x_n)}$",
-            "$x_{n+1} = x_n - f(x_n)\\dfrac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$"
-          ],
-          "answer": 0,
-          "explanation": "Newton-Raphson with $f'(x_n)$ replaced by the slope $\\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$ gives $x_{n+1} = x_n - f(x_n)\\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$. The last option has the slope upside down; the step divides by the slope."
-        },
-        {
-          "question": "The secant method is obtained from Newton-Raphson by",
-          "options": [
-            "using the second derivative",
-            "replacing $f'(x_n)$ with a backward difference approximation using $x_n$ and $x_{n-1}$",
-            "halving the step each time",
-            "always keeping a sign change"
-          ],
-          "answer": 1,
-          "explanation": "$f'(x_n) \\approx \\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$, the slope through the last two points. No derivative is needed."
-        },
-        {
-          "question": "Use the secant method on $x^3 - 5x - 40 = 0$ with $x_0 = 3$, $x_1 = 4$. What is $x_2$?",
-          "options": [
-            "$3.5$",
-            "$3.904$",
-            "$3.875$",
-            "$3.907$"
-          ],
-          "answer": 2,
-          "explanation": "$f(3) = -28$, $f(4) = 4$. $x_2 = 4 - 4\\cdot\\frac{4 - 3}{4 - (-28)} = 4 - \\frac{4}{32} = 3.875$. $3.907$ is the Newton-Raphson step from $x_0 = 4$, which uses $f'(4)$ instead of the chord."
-        },
-        {
-          "question": "What is the main difference between the secant method and Regula Falsi?",
-          "options": [
-            "The secant method uses the midpoint",
-            "Regula Falsi needs $f'(x)$",
-            "There is no difference",
-            "The secant method always uses the two latest points; Regula Falsi keeps two points whose function values have opposite signs"
-          ],
-          "answer": 3,
-          "explanation": "Both use the same chord formula. Regula Falsi keeps a bracket (guaranteed, sometimes slow); the secant method drops the oldest point (faster, but it can lose the root)."
-        },
-        {
-          "question": "Close to a simple root, which method usually converges fastest?",
-          "options": [
-            "Newton-Raphson",
-            "Linear iteration with $|g'| \\approx 0.9$",
-            "Regula Falsi",
-            "Bisection"
-          ],
-          "answer": 0,
-          "explanation": "Newton-Raphson converges quadratically (the number of correct digits roughly doubles each step). Secant is a little slower (order about 1.6); bisection and linear iteration are linear."
-        },
-        {
-          "question": "For $f(x) = x^3 - 5x - 40$, $f(3) = -28$ and $f(4) = 4$. Why is $x_0 = 4$ a sensible Newton-Raphson starting value?",
-          "options": [
-            "Because $4$ is an integer",
-            "Because $|f(4)|$ is much smaller than $|f(3)|$, so the root is probably nearer 4",
-            "Because $f(4) > 0$ is required",
-            "Because $f'(4) = 0$"
-          ],
-          "answer": 1,
-          "explanation": "$|f(4)| = 4$ is much smaller than $|f(3)| = 28$, so the curve is closer to zero at 4. Indeed the root is $3.904$."
-        }
-      ]
-    },
-    {
-      "id": "QS002",
-      "title": "Interpolation",
-      "questions": [
-        {
-          "question": "Interpolation is the process of",
-          "options": [
-            "finding a formula (often a polynomial) whose graph passes through a given set of points",
-            "rounding numbers to fewer digits",
-            "differentiating tabulated data",
-            "finding the roots of a polynomial"
-          ],
-          "answer": 0,
-          "explanation": "Given points $(x_0, y_0), \\dots, (x_n, y_n)$, interpolation finds a function (usually a polynomial) with $P(x_i) = y_i$, then uses it to estimate values in between. Finding roots is a different problem: interpolation estimates values between known points."
-        },
-        {
-          "question": "The linear interpolating polynomial through $(x_0, y_0)$ and $(x_1, y_1)$ is",
-          "options": [
-            "$P_1(x) = \\dfrac{x - x_1}{x_1 - x_0}y_0 + \\dfrac{x - x_0}{x_1 - x_0}y_1$",
-            "$P_1(x) = \\dfrac{y_0 + y_1}{2}$",
-            "$P_1(x) = \\dfrac{x_1 - x}{x_1 - x_0}y_0 + \\dfrac{x - x_0}{x_1 - x_0}y_1$",
-            "$P_1(x) = y_0 + \\dfrac{x_1 - x_0}{y_1 - y_0}(x - x_0)$"
-          ],
-          "answer": 2,
-          "explanation": "$P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$. Check: at $x = x_0$ it gives $y_0$; at $x = x_1$ it gives $y_1$. The first wrong option has $x - x_1$ instead of $x_1 - x$, so it gives $0$ instead of $y_0$ at $x_0$."
-        },
-        {
-          "question": "Find $P_1(3.5)$ for the data points $(2, 3)$ and $(5, 7)$.",
-          "options": [
-            "$5.5$",
-            "$4.5$",
-            "$6$",
-            "$5$"
-          ],
-          "answer": 3,
-          "explanation": "$P_1(3.5) = \\frac{5 - 3.5}{3}(3) + \\frac{3.5 - 2}{3}(7) = 0.5(3) + 0.5(7) = 5$. ($3.5$ is the midpoint, so we get the average of 3 and 7.) $5.5$ is tempting if you take $3.5$ as being nearer to 7 than to 3, but it is exactly halfway."
-        },
-        {
-          "question": "Simplify the linear interpolant through $(2, 3)$ and $(5, 7)$.",
-          "options": [
-            "$P_1(x) = \\dfrac{4x + 1}{3}$",
-            "$P_1(x) = \\dfrac{3x + 4}{4}$",
-            "$P_1(x) = 4x - 5$",
-            "$P_1(x) = \\dfrac{4x - 1}{3}$"
-          ],
-          "answer": 0,
-          "explanation": "Slope $= \\frac{7 - 3}{5 - 2} = \\frac43$, so $P_1(x) = 3 + \\frac43(x - 2) = \\frac{9 + 4x - 8}{3} = \\frac{4x + 1}{3}$. Check: $P_1(5) = 21/3 = 7$."
-        },
-        {
-          "question": "Given $(0.82, 2.270500)$ and $(0.83, 2.293319)$, find $P_1(0.826)$ (4 d.p.).",
-          "options": [
-            "$2.2819$",
-            "$2.2842$",
-            "$2.2933$",
-            "$2.2871$"
-          ],
-          "answer": 1,
-          "explanation": "$P_1(0.826) = \\frac{0.004}{0.01}(2.270500) + \\frac{0.006}{0.01}(2.293319) = 0.4(2.270500) + 0.6(2.293319) = 0.90820 + 1.37599 = 2.2842$. $2.2819$ swaps the weights: $0.826$ is nearer $0.83$, so $y_1$ gets the larger weight."
-        },
-        {
-          "question": "Using linear interpolation between $(1, 0)$ and $(6, 1.7918)$ for $y = \\ln x$, the estimate of $\\ln 2$ is",
-          "options": [
-            "$0.4479$",
-            "$0.2986$",
-            "$0.3584$",
-            "$0.6931$"
-          ],
-          "answer": 2,
-          "explanation": "$P_1(2) = \\frac{6 - 2}{5}(0) + \\frac{2 - 1}{5}(1.7918) = 0.3584$. $0.6931$ is the true $\\ln 2$; the straight line falls well short of it."
-        },
-        {
-          "question": "The true value of $\\ln 2$ is $0.6931$. What is the relative error of the estimate $0.3584$ (to 1 d.p.)?",
-          "options": [
-            "$33.5\\%$",
-            "$93.4\\%$",
-            "$51.7\\%$",
-            "$48.3\\%$"
-          ],
-          "answer": 3,
-          "explanation": "Error $= 0.6931 - 0.3584 = 0.3347$. Relative error $= \\frac{0.3347}{0.6931} \\times 100\\% = 48.3\\%$. Interpolating over the wide interval $[1, 6]$ is very inaccurate for a curved function."
-        },
-        {
-          "question": "How could the linear estimate of $\\ln 2$ be improved most simply?",
-          "options": [
-            "Use points closer to $x = 2$, e.g. $(1, 0)$ and $(4, 1.3863)$",
-            "Use points further apart, e.g. $(1, 0)$ and $(10, 2.3026)$",
-            "Use the midpoint of $[1, 6]$",
-            "Round $\\ln 6$ to 2 d.p."
-          ],
-          "answer": 0,
-          "explanation": "A straight line approximates a curve better over a shorter interval. With $(1, 0)$ and $(4, 1.3863)$ we get $0.4621$, much closer to $0.6931$. A higher-degree polynomial helps too."
-        },
-        {
-          "question": "Through $n + 1$ data points with distinct $x$-values, the interpolating polynomial has degree",
-          "options": [
-            "always 2",
-            "at most $n$",
-            "at least $n + 1$",
-            "exactly $n + 1$"
-          ],
-          "answer": 1,
-          "explanation": "There is a unique polynomial of degree at most $n$ through $n + 1$ points: 2 points give a line, 3 points a quadratic (or less), and so on. “Exactly $n + 1$” is the usual slip: $n + 1$ points fix a polynomial of degree at most $n$."
-        },
-        {
-          "question": "The Lagrange basis polynomials $L_k(x)$ for nodes $x_0, \\dots, x_n$ satisfy",
-          "options": [
-            "$L_k(x_j) = y_k$",
-            "$L_k(x_j) = 0$ for every $j$",
-            "$L_k(x_j) = 1$ if $j = k$ and $0$ if $j \\neq k$",
-            "$L_k(x_j) = x_j$"
-          ],
-          "answer": 2,
-          "explanation": "$L_k$ is built to be 1 at its own node and 0 at every other node. That's why $P_n(x) = \\sum y_k L_k(x)$ passes through every point."
-        },
-        {
-          "question": "For any set of nodes, $L_0(x) + L_1(x) + \\cdots + L_n(x)$ equals",
-          "options": [
-            "$n$",
-            "$0$",
-            "$x$",
-            "$1$"
-          ],
-          "answer": 3,
-          "explanation": "Interpolating the constant data $y_k = 1$ gives $\\sum L_k(x)$; the unique interpolant of a constant is that constant, so the sum is 1 for every $x$. $0$ is tempting because each $L_k$ is $0$ at most nodes, but at every node exactly one of them is $1$."
-        },
-        {
-          "question": "Find the quadratic $P_2(x) = a_0 + a_1 x + a_2 x^2$ through $(1, 4)$, $(2, 0)$ and $(3, 12)$.",
-          "options": [
-            "$P_2(x) = 24 - 28x + 8x^2$",
-            "$P_2(x) = 8 - 4x + x^2$",
-            "$P_2(x) = 4 + 2x - 2x^2$",
-            "$P_2(x) = 12 - 8x + 4x^2$"
-          ],
-          "answer": 0,
-          "explanation": "Solve $a_0 + a_1 + a_2 = 4$, $a_0 + 2a_1 + 4a_2 = 0$, $a_0 + 3a_1 + 9a_2 = 12$ to get $a_0 = 24$, $a_1 = -28$, $a_2 = 8$. Check: $24 - 56 + 32 = 0$ at $x = 2$."
-        },
-        {
-          "question": "Using $P_2(x) = 24 - 28x + 8x^2$ (through $(1, 4)$, $(2, 0)$, $(3, 12)$), estimate the value at $x = 2.5$.",
-          "options": [
-            "$6$",
-            "$4$",
-            "$8$",
-            "$2$"
-          ],
-          "answer": 1,
-          "explanation": "$P_2(2.5) = 24 - 70 + 8(6.25) = 24 - 70 + 50 = 4$. The Lagrange form gives $4$ at $x = 2.5$ too, a quick cross-check."
-        },
-        {
-          "question": "For nodes $x_0 = 1$, $x_1 = 2$, $x_2 = 3$, the Lagrange basis polynomial $L_0(x)$ is",
-          "options": [
-            "$-(x - 1)(x - 3)$",
-            "$\\dfrac{(x - 1)(x - 2)}{2}$",
-            "$\\dfrac{(x - 2)(x - 3)}{2}$",
-            "$(x - 2)(x - 3)$"
-          ],
-          "answer": 2,
-          "explanation": "$L_0(x) = \\frac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} = \\frac{(x - 2)(x - 3)}{(-1)(-2)} = \\frac{(x - 2)(x - 3)}{2}$. $\\frac{(x - 1)(x - 2)}{2}$ is $L_2$, the switch for the last node."
-        },
-        {
-          "question": "For nodes $1, 2, 3$, the Lagrange basis polynomial $L_1(x)$ is",
-          "options": [
-            "$\\dfrac{(x - 1)(x - 2)}{2}$",
-            "$(x - 1)(x - 3)$",
-            "$\\dfrac{(x - 2)(x - 3)}{2}$",
-            "$-(x - 1)(x - 3)$"
-          ],
-          "answer": 3,
-          "explanation": "$L_1(x) = \\frac{(x - 1)(x - 3)}{(2 - 1)(2 - 3)} = \\frac{(x - 1)(x - 3)}{-1} = -(x - 1)(x - 3)$. Without the minus sign, $L_1(2)$ would be $-1$ instead of $1$."
-        },
-        {
-          "question": "The quadratic through $(0, 1)$, $(1, 3)$ and $(2, 7)$ is evaluated at $x = 1.5$. The result is",
-          "options": [
-            "$4.75$",
-            "$4.5$",
-            "$5$",
-            "$5.25$"
-          ],
-          "answer": 0,
-          "explanation": "The data fit $P_2(x) = x^2 + x + 1$ (check: 1, 3, 7). So $P_2(1.5) = 2.25 + 1.5 + 1 = 4.75$."
-        },
-        {
-          "question": "Quadratic interpolation through $(1, 1)$, $(2, 8)$, $(3, 27)$ (from $y = x^3$) gives $P_2(2.5) = 16$. The true value is $2.5^3 = 15.625$. Why is there an error?",
-          "options": [
-            "The points are not equally spaced",
-            "A quadratic cannot exactly reproduce a cubic",
-            "Interpolation is always exact",
-            "Lagrange's formula was misapplied"
-          ],
-          "answer": 1,
-          "explanation": "Three points determine a quadratic, which can match the cubic only at the nodes. Between them there is an interpolation error (here $0.375$)."
-        },
-        {
-          "question": "The points $(0, 0)$, $(1, 1)$, $(3, 9)$ lie on $y = x^2$. Quadratic interpolation through them gives $P_2(2) = $",
-          "options": [
-            "$5$",
-            "$4.5$",
-            "$4$",
-            "$3$"
-          ],
-          "answer": 2,
-          "explanation": "The data come from a quadratic, and the interpolant of degree $\\le 2$ through 3 points is unique, so $P_2(x) = x^2$ exactly and $P_2(2) = 4$. $5$ or $4.5$ would mean the interpolant isn’t $x^2$, but it must be, by uniqueness."
-        },
-        {
-          "question": "Estimate $\\sqrt{5}$ by linear interpolation between $(4, 2)$ and $(9, 3)$.",
-          "options": [
-            "$2.236$",
-            "$2.25$",
-            "$2.5$",
-            "$2.2$"
-          ],
-          "answer": 3,
-          "explanation": "$P_1(5) = \\frac{9 - 5}{5}(2) + \\frac{5 - 4}{5}(3) = 1.6 + 0.6 = 2.2$. The true value is $2.236$. $2.236$ is the true value; a straight line between $(4, 2)$ and $(9, 3)$ can’t follow the square-root curve exactly."
-        },
-        {
-          "question": "Linear interpolation between $(10, 5)$ and $(20, 15)$ gives the value at $x = 12$ as",
-          "options": [
-            "$7$",
-            "$7.5$",
-            "$12$",
-            "$6$"
-          ],
-          "answer": 0,
-          "explanation": "Slope $= \\frac{15 - 5}{10} = 1$, so $P_1(12) = 5 + 1(12 - 10) = 7$. $7.5$ would need a slope of $1.25$; here the slope is exactly $1$."
-        },
-        {
-          "question": "To find $P_2(x) = a_0 + a_1x + a_2x^2$ through $(1, 4)$, $(2, 0)$, $(3, 12)$, which equation comes from the point $(2, 0)$?",
-          "options": [
-            "$a_0 + 2a_1 + 2a_2 = 0$",
-            "$a_0 + 2a_1 + 4a_2 = 0$",
-            "$2a_0 + a_1 + a_2 = 0$",
-            "$a_0 + 4a_1 + 2a_2 = 0$"
-          ],
-          "answer": 1,
-          "explanation": "Substitute $x = 2$, $P_2(2) = 0$: $a_0 + a_1(2) + a_2(2)^2 = a_0 + 2a_1 + 4a_2 = 0$. The power of $x$ goes on $x$, not on $a_2$: $(2)^2 = 4$ multiplies $a_2$."
-        },
-        {
-          "question": "Using an interpolating polynomial to estimate a value outside the range of the given $x$-values is called",
-          "options": [
-            "bisection",
-            "truncation",
-            "extrapolation",
-            "interpolation"
-          ],
-          "answer": 2,
-          "explanation": "Inside the data range it is interpolation; outside it is extrapolation, which is usually much less reliable. Truncation is an error from cutting a series short, not a way of estimating values."
-        },
-        {
-          "question": "For nodes $1, 2, 3$ at $x = 2.5$: $L_0 = -0.125$, $L_1 = 0.75$, $L_2 = 0.375$. With $y$-values $4, 0, 12$, what is $P_2(2.5)$?",
-          "options": [
-            "$12.375$",
-            "$4.5$",
-            "$-0.5$",
-            "$4$"
-          ],
-          "answer": 3,
-          "explanation": "$P_2(2.5) = 4(-0.125) + 0(0.75) + 12(0.375) = -0.5 + 0 + 4.5 = 4$, matching $24 - 28x + 8x^2$ at $2.5$. Note $-0.125 + 0.75 + 0.375 = 1$."
-        },
-        {
-          "question": "How many Lagrange basis polynomials, and of what degree, are used for interpolation through 4 points?",
-          "options": [
-            "4 polynomials, each of degree 3",
-            "1 polynomial of degree 3",
-            "4 polynomials, each of degree 4",
-            "3 polynomials, each of degree 4"
-          ],
-          "answer": 0,
-          "explanation": "One basis polynomial per node, so 4. Each $L_k$ is a product of 3 linear factors $(x - x_j)$, $j \\neq k$, so it has degree 3."
-        },
-        {
-          "question": "Which statement about the linear interpolant $P_1$ through $(x_0, y_0)$ and $(x_1, y_1)$ is always true?",
-          "options": [
-            "$P_1$ is exact for every function",
-            "$P_1(x_0) = y_0$ and $P_1(x_1) = y_1$",
-            "$P_1$ has degree 2",
-            "$P_1(x) = y_0 y_1$"
-          ],
-          "answer": 1,
-          "explanation": "By construction the line passes through both data points. It is exact for linear functions only."
-        }
-      ]
-    },
-    {
       "id": "QS003",
-      "title": "Error analysis",
+      "title": "A · Error analysis",
       "questions": [
         {
           "question": "Writing $0.5791$ when the value you actually obtained was $0.5971$ is an example of",
@@ -851,289 +290,8 @@ export default {
       ]
     },
     {
-      "id": "QS004",
-      "title": "Finite differences",
-      "questions": [
-        {
-          "question": "The forward difference operator $\\Delta$ is defined by",
-          "options": [
-            "$\\Delta f_k = f_{k+1} + f_k$",
-            "$\\Delta f_k = f_k - f_{k-1}$",
-            "$\\Delta f_k = f_{k+1} - f_k$",
-            "$\\Delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$"
-          ],
-          "answer": 2,
-          "explanation": "Forward looks ahead: $\\Delta f_k = f_{k+1} - f_k$. Backward is $\\nabla f_k = f_k - f_{k-1}$; central is $\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$."
-        },
-        {
-          "question": "The backward difference operator $\\nabla$ is defined by",
-          "options": [
-            "$\\nabla f_k = f_{k+1} - 2f_k + f_{k-1}$",
-            "$\\nabla f_k = f_{k-1} - f_k$",
-            "$\\nabla f_k = f_k - f_{k-1}$",
-            "$\\nabla f_k = f_{k+1} - f_k$"
-          ],
-          "answer": 2,
-          "explanation": "Backward looks behind: $\\nabla f_k = f_k - f_{k-1}$. $f_{k+1} - f_k$ is the forward difference, which looks ahead."
-        },
-        {
-          "question": "The central difference operator $\\delta$ is defined by",
-          "options": [
-            "$\\delta f_k = f_{k+1} - f_{k-1}$",
-            "$\\delta f_k = f_k - f_{k-1}$",
-            "$\\delta f_k = \\frac12(f_{k+1} + f_{k-1})$",
-            "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$"
-          ],
-          "answer": 3,
-          "explanation": "The central difference is centred on $x_k$, using the half-step points: $\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$. $f_{k+1} - f_{k-1}$ spans two whole steps, twice the width of $\\delta f_k$."
-        },
-        {
-          "question": "In terms of ordinates, $\\Delta^2 f_k$ equals",
-          "options": [
-            "$f_{k+2} - 2f_{k+1} + f_k$",
-            "$f_{k+2} - f_k$",
-            "$f_{k+2} + 2f_{k+1} + f_k$",
-            "$f_{k+1} - 2f_k + f_{k-1}$"
-          ],
-          "answer": 0,
-          "explanation": "$\\Delta^2 f_k = \\Delta f_{k+1} - \\Delta f_k = (f_{k+2} - f_{k+1}) - (f_{k+1} - f_k) = f_{k+2} - 2f_{k+1} + f_k$. $f_{k+1} - 2f_k + f_{k-1}$ is the central second difference $\\delta^2 f_k$, centred one step earlier."
-        },
-        {
-          "question": "In terms of ordinates, $\\Delta^3 f_k$ equals",
-          "options": [
-            "$f_{k+3} + 3f_{k+2} + 3f_{k+1} + f_k$",
-            "$f_{k+3} - 3f_{k+2} + 3f_{k+1} - f_k$",
-            "$f_{k+3} - 2f_{k+2} + f_{k+1}$",
-            "$f_{k+3} - f_k$"
-          ],
-          "answer": 1,
-          "explanation": "The coefficients are the binomial coefficients $1, 3, 3, 1$ with alternating signs: $f_{k+3} - 3f_{k+2} + 3f_{k+1} - f_k$. All plus signs would give a sum, but differences alternate in sign."
-        },
-        {
-          "question": "For the table $x$: $0, 0.1, 0.2, 0.3, 0.4, 0.5$ and $y$: $0.05, 0.11, 0.26, 0.35, 0.49, 0.67$ (so $y_0 = 0.05, \\dots, y_5 = 0.67$), find $\\Delta y_3$.",
-          "options": [
-            "$0.35$",
-            "$0.09$",
-            "$0.14$",
-            "$0.18$"
-          ],
-          "answer": 2,
-          "explanation": "$\\Delta y_3 = y_4 - y_3 = 0.49 - 0.35 = 0.14$. $0.35$ is $y_3$ itself, not a difference."
-        },
-        {
-          "question": "For the table $x$: $0, 0.1, 0.2, 0.3, 0.4, 0.5$ and $y$: $0.05, 0.11, 0.26, 0.35, 0.49, 0.67$ (so $y_0 = 0.05, \\dots, y_5 = 0.67$), find $\\Delta^3 y_2$.",
-          "options": [
-            "$-0.13$",
-            "$0.13$",
-            "$0.01$",
-            "$-0.01$"
-          ],
-          "answer": 3,
-          "explanation": "$\\Delta^3 y_2 = y_5 - 3y_4 + 3y_3 - y_2 = 0.67 - 1.47 + 1.05 - 0.26 = -0.01$. $-0.13$ comes from using $2$ instead of $3$ in the middle coefficients."
-        },
-        {
-          "question": "The relation between the forward difference operator $\\Delta$ and the shift operator $E$ is",
-          "options": [
-            "$\\Delta = E - 1$",
-            "$\\Delta = E + 1$",
-            "$\\Delta = E^{\\frac12} - E^{-\\frac12}$",
-            "$\\Delta = 1 - E^{-1}$"
-          ],
-          "answer": 0,
-          "explanation": "$\\Delta f_k = f_{k+1} - f_k = Ef_k - f_k = (E - 1)f_k$, so $\\Delta = E - 1$. $1 - E^{-1}$ is the backward operator $\\nabla$."
-        },
-        {
-          "question": "The relation between the backward difference operator $\\nabla$ and $E$ is",
-          "options": [
-            "$\\nabla = E - 1$",
-            "$\\nabla = 1 - E^{-1}$",
-            "$\\nabla = 1 + E$",
-            "$\\nabla = E^{-1} - 1$"
-          ],
-          "answer": 1,
-          "explanation": "$\\nabla f_k = f_k - f_{k-1} = f_k - E^{-1}f_k = (1 - E^{-1})f_k$. $E - 1$ is $\\Delta$, which looks forward."
-        },
-        {
-          "question": "In terms of $E$, the central difference operator is",
-          "options": [
-            "$\\delta = E - E^{-1}$",
-            "$\\delta = \\frac12(E + E^{-1})$",
-            "$\\delta = E^{\\frac12} - E^{-\\frac12}$",
-            "$\\delta = E^2 - 1$"
-          ],
-          "answer": 2,
-          "explanation": "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12} = E^{\\frac12}f_k - E^{-\\frac12}f_k$. $E - E^{-1}$ spans two steps instead of one."
-        },
-        {
-          "question": "Which identity is true?",
-          "options": [
-            "$\\Delta = \\nabla$",
-            "$\\delta = \\Delta\\nabla$",
-            "$\\delta^2 = \\Delta + \\nabla$",
-            "$\\delta^2 = \\Delta\\nabla$"
-          ],
-          "answer": 3,
-          "explanation": "$\\delta^2 = (E^{\\frac12} - E^{-\\frac12})^2 = E - 2 + E^{-1} = (E - 1)(1 - E^{-1}) = \\Delta\\nabla$. $\\delta^2 = \\Delta + \\nabla$ fails: $\\Delta + \\nabla = E - E^{-1}$, which is not $E - 2 + E^{-1}$."
-        },
-        {
-          "question": "The values of $y = x^3$ at $x = 1, 2, 3, 4, 5$ are $1, 8, 27, 64, 125$. The third differences are",
-          "options": [
-            "all equal to $6$",
-            "$12, 18, 24$",
-            "all equal to $0$",
-            "$7, 19, 37$"
-          ],
-          "answer": 0,
-          "explanation": "First differences: $7, 19, 37, 61$. Second: $12, 18, 24$. Third: $6, 6$. For a polynomial of degree $n$ (with $h = 1$), the $n$-th differences are constant ($n! \\times$ leading coefficient $= 3! = 6$)."
-        },
-        {
-          "question": "For $f(x) = x^2$ with step $h = 1$, $\\Delta^2 f(x)$ equals",
-          "options": [
-            "$2x$",
-            "$2$",
-            "$1$",
-            "$0$"
-          ],
-          "answer": 1,
-          "explanation": "$\\Delta^2 x^2 = (x + 2)^2 - 2(x + 1)^2 + x^2 = 2$. The second differences of a quadratic are constant. $2x$ is the derivative of $x^2$, not its second difference."
-        },
-        {
-          "question": "For $f(x) = x^2 + 2x$ with $h = 1$, the forward difference $\\Delta f(3) = f(4) - f(3)$ equals",
-          "options": [
-            "$7$",
-            "$24$",
-            "$9$",
-            "$8$"
-          ],
-          "answer": 2,
-          "explanation": "$\\Delta f(x) = f(x + 1) - f(x) = 2x + 3$, so $\\Delta f(3) = 9$. (Check: $f(4) - f(3) = 24 - 15 = 9$.)"
-        },
-        {
-          "question": "For $f(x) = x^2 + 2x$ with $h = 1$, the backward difference $\\nabla f(3)$ equals",
-          "options": [
-            "$9$",
-            "$8$",
-            "$15$",
-            "$7$"
-          ],
-          "answer": 3,
-          "explanation": "$\\nabla f(x) = f(x) - f(x - 1) = 2x + 1$, so $\\nabla f(3) = 7$. (Check: $15 - 8 = 7$.)"
-        },
-        {
-          "question": "For $f(x) = x^2 + 2x$, the true derivative at $x = 3$ is $8$. With $h = 1$, which difference gives exactly $8$?",
-          "options": [
-            "Central difference",
-            "Forward difference",
-            "Backward difference",
-            "None of the three"
-          ],
-          "answer": 0,
-          "explanation": "$\\delta f(3) = f(3.5) - f(2.5) = 19.25 - 11.25 = 8$. Forward gives 9 and backward 7; the central difference is exact for quadratics. Forward and backward differences err in opposite directions here (9 and 7), and the central one sits exactly between."
-        },
-        {
-          "question": "Which relation between forward and backward differences is correct?",
-          "options": [
-            "$\\Delta^3 y_1 = \\nabla^3 y_2$",
-            "$\\Delta^3 y_1 = \\nabla^3 y_4$",
-            "$\\Delta^3 y_1 = \\nabla^3 y_1$",
-            "$\\Delta y_1 = \\nabla y_0$"
-          ],
-          "answer": 1,
-          "explanation": "In general $\\Delta^n y_k = \\nabla^n y_{k+n}$: both use exactly the ordinates $y_k, \\dots, y_{k+n}$. So $\\Delta^3 y_1 = \\nabla^3 y_4$."
-        },
-        {
-          "question": "In Newton's forward difference formula $f_r = f_0 + r\\Delta f_0 + \\cdots$, the term in $\\Delta^2 f_0$ is",
-          "options": [
-            "$\\dfrac{r(r + 1)}{2!}\\Delta^2 f_0$",
-            "$r^2\\Delta^2 f_0$",
-            "$\\dfrac{r(r - 1)}{2!}\\Delta^2 f_0$",
-            "$\\dfrac{r^2}{2}\\Delta^2 f_0$"
-          ],
-          "answer": 2,
-          "explanation": "From $E^r = (1 + \\Delta)^r = 1 + r\\Delta + \\frac{r(r - 1)}{2!}\\Delta^2 + \\cdots$, the second-difference term is $\\frac{r(r - 1)}{2!}\\Delta^2 f_0$. With $r(r + 1)$ instead you get the backward formula’s coefficient."
-        },
-        {
-          "question": "In Newton's backward difference formula $f_r = f_n + r\\nabla f_n + \\cdots$, the term in $\\nabla^2 f_n$ is",
-          "options": [
-            "$\\dfrac{r(r - 1)}{2!}\\nabla^2 f_n$",
-            "$r^2\\nabla^2 f_n$",
-            "$-\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$",
-            "$\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$"
-          ],
-          "answer": 3,
-          "explanation": "$E^r = (1 - \\nabla)^{-r} = 1 + r\\nabla + \\frac{r(r + 1)}{2!}\\nabla^2 + \\cdots$, so the term is $\\frac{r(r + 1)}{2!}\\nabla^2 f_n$. Using $r(r - 1)$ here borrows the forward formula’s coefficient."
-        },
-        {
-          "question": "Populations (thousands) are given for 1891, 1901, 1911, 1921, 1931. To estimate 1895 by Newton's forward formula from $x_0 = 1891$, what is $r$?",
-          "options": [
-            "$0.4$",
-            "$0.6$",
-            "$-0.6$",
-            "$4$"
-          ],
-          "answer": 0,
-          "explanation": "$x = x_0 + rh$ with $h = 10$: $1895 = 1891 + 10r$, so $r = 0.4$. $0.6$ measures from the next entry, 1901, but $r$ counts steps from $x_0 = 1891$."
-        },
-        {
-          "question": "Populations: 1891: 46, 1901: 66, 1911: 81, 1921: 93, 1931: 101. The forward differences from 1891 are $\\Delta = 20$, $\\Delta^2 = -5$, $\\Delta^3 = 2$, $\\Delta^4 = -3$. Newton's forward formula with $r = 0.4$ estimates the 1895 population as about",
-          "options": [
-            "$56.4$",
-            "$54.9$",
-            "$52.8$",
-            "$58.0$"
-          ],
-          "answer": 1,
-          "explanation": "$46 + 0.4(20) + \\frac{0.4(-0.6)}{2}(-5) + \\frac{0.4(-0.6)(-1.6)}{6}(2) + \\frac{0.4(-0.6)(-1.6)(-2.6)}{24}(-3) = 46 + 8 + 0.6 + 0.128 + 0.1248 = 54.85$. $54$ (stopping after two terms) is close, but each extra difference refines the estimate."
-        },
-        {
-          "question": "For the same population table, which formula is better for estimating the 1925 population, and why?",
-          "options": [
-            "Newton forward from 1891, because it uses the most data",
-            "Neither; extrapolation is required",
-            "Newton backward from 1931, because 1925 is near the end of the table",
-            "Newton forward from 1931"
-          ],
-          "answer": 2,
-          "explanation": "Use the backward formula near the end of a table (here $r = \\frac{1925 - 1931}{10} = -0.6$) and the forward formula near the start. The estimate is $96.84$."
-        },
-        {
-          "question": "The shift operator $E$ acts as",
-          "options": [
-            "$Ef_k = f_{k-1}$",
-            "$Ef_k = kf_k$",
-            "$Ef_k = f_k + 1$",
-            "$Ef_k = f_{k+1}$ and $E^j f_k = f_{k+j}$"
-          ],
-          "answer": 3,
-          "explanation": "$E$ shifts one step forward: $Ef_k = f_{k+1}$, $E^{-1}f_k = f_{k-1}$, $E^j f_k = f_{k+j}$. $Ef_k = f_k + 1$ adds 1 to the value; $E$ shifts the position instead."
-        },
-        {
-          "question": "For a polynomial of degree $n$ tabulated at equal steps, which differences are zero?",
-          "options": [
-            "The $(n + 1)$-th and all higher differences",
-            "The $n$-th differences",
-            "No differences are ever zero",
-            "The first differences"
-          ],
-          "answer": 0,
-          "explanation": "The $n$-th differences are constant, so the $(n + 1)$-th and higher differences are zero. That is why Newton's formulas reproduce polynomials exactly."
-        },
-        {
-          "question": "For $x$: $9, 10, 11, 12, 13, 14$ and $y$: $5.0, 5.4, 6.0, 6.8, 7.5, 8.1$, what is $\\Delta^2 y_0$?",
-          "options": [
-            "$1.0$",
-            "$0.2$",
-            "$0.4$",
-            "$0.6$"
-          ],
-          "answer": 1,
-          "explanation": "$\\Delta y_0 = 0.4$, $\\Delta y_1 = 0.6$, so $\\Delta^2 y_0 = 0.6 - 0.4 = 0.2$. (Equivalently $y_2 - 2y_1 + y_0 = 6.0 - 10.8 + 5.0 = 0.2$.)"
-        }
-      ]
-    },
-    {
       "id": "QS006",
-      "title": "Approximations: series",
+      "title": "A · Series approximations",
       "questions": [
         {
           "question": "How many terms does the binomial expansion of $(a + x)^n$ have when $n$ is a positive integer?",
@@ -1413,8 +571,289 @@ export default {
       ]
     },
     {
+      "id": "QS001",
+      "title": "B · Roots of equations: bisection to secant",
+      "questions": [
+        {
+          "question": "The bisection method is based on which theorem?",
+          "options": [
+            "Taylor's theorem",
+            "The intermediate (mid) value theorem",
+            "The mean value theorem for integrals",
+            "Rolle's theorem"
+          ],
+          "answer": 1,
+          "explanation": "If $f$ is continuous on $[a, b]$ and $f(a)f(b) < 0$, the intermediate (mid) value theorem guarantees at least one root between $a$ and $b$. Bisection keeps halving that bracket."
+        },
+        {
+          "question": "For $f(x) = 5x^2 + 11x - 17$, $f(1) = -1$ and $f(2) = 25$. What can you conclude?",
+          "options": [
+            "$x = 1$ is a root",
+            "There are exactly two roots in $[1, 2]$",
+            "There is a root between $x = 1$ and $x = 2$",
+            "There is no root in $[1, 2]$"
+          ],
+          "answer": 2,
+          "explanation": "$f$ is continuous and changes sign from negative to positive between 1 and 2, so at least one root lies in $(1, 2)$. (In fact the root is about $1.047$.)"
+        },
+        {
+          "question": "Bisecting $[1, 2]$ for $f(x) = 5x^2 + 11x - 17$ gives $c = 1.5$ with $f(1.5) = 10.75$. What is the next interval?",
+          "options": [
+            "$[1.25, 1.75]$",
+            "$[0, 1.5]$",
+            "$[1.5, 2]$",
+            "$[1, 1.5]$"
+          ],
+          "answer": 3,
+          "explanation": "$f(1) < 0$ and $f(1.5) > 0$, so the sign change (and the root) is in $[1, 1.5]$. Keep the half where the signs still differ."
+        },
+        {
+          "question": "Starting with an interval of length 1, how long is the bracketing interval after 3 bisections?",
+          "options": [
+            "$0.125$",
+            "$0.5$",
+            "$0.0625$",
+            "$0.25$"
+          ],
+          "answer": 0,
+          "explanation": "Each bisection halves the interval: $1 \\to 0.5 \\to 0.25 \\to 0.125 = 2^{-3}$. $0.25$ stops one halving short, and $0.0625$ halves once too often."
+        },
+        {
+          "question": "Starting from an interval of length 1, what is the least number of bisections needed to make the interval shorter than $0.001$?",
+          "options": [
+            "$1000$",
+            "$10$",
+            "$8$",
+            "$9$"
+          ],
+          "answer": 1,
+          "explanation": "We need $2^{-n} < 0.001$, i.e. $2^n > 1000$. Since $2^9 = 512$ and $2^{10} = 1024$, $n = 10$."
+        },
+        {
+          "question": "In the Regula Falsi (false position) method, the new estimate $c$ from the bracket $[a, b]$ is",
+          "options": [
+            "$c = \\dfrac{a f(a) - b f(b)}{f(a) - f(b)}$",
+            "$c = a - \\dfrac{f(a)}{f'(a)}$",
+            "$c = \\dfrac{a f(b) - b f(a)}{f(b) - f(a)}$",
+            "$c = \\dfrac{a + b}{2}$"
+          ],
+          "answer": 2,
+          "explanation": "$c$ is where the secant line through $(a, f(a))$ and $(b, f(b))$ crosses the $x$-axis: $c = \\frac{a f(b) - b f(a)}{f(b) - f(a)}$. The midpoint is bisection; $a - f(a)/f'(a)$ is Newton-Raphson."
+        },
+        {
+          "question": "Use Regula Falsi on $f(x) = x^3 - 5x + 1$ with $a = 0$, $b = 1$. What is the first estimate $c$?",
+          "options": [
+            "$0.75$",
+            "$0.5$",
+            "$0.2$",
+            "$0.25$"
+          ],
+          "answer": 3,
+          "explanation": "$f(0) = 1$, $f(1) = -3$. So $c = \\frac{0(-3) - 1(1)}{-3 - 1} = \\frac{-1}{-4} = 0.25$."
+        },
+        {
+          "question": "Continuing Regula Falsi on $x^3 - 5x + 1 = 0$: $f(0.25) = -0.2344$, so the bracket becomes $[0, 0.25]$. What is the next estimate (4 d.p.)?",
+          "options": [
+            "$0.2025$",
+            "$0.2016$",
+            "$0.2344$",
+            "$0.1250$"
+          ],
+          "answer": 0,
+          "explanation": "$c = \\frac{0 \\cdot f(0.25) - 0.25 \\cdot f(0)}{f(0.25) - f(0)} = \\frac{-0.25}{-0.2344 - 1} = \\frac{-0.25}{-1.2344} = 0.2025$. The root is $0.2016$ (4 d.p.). $0.2016$ is the root itself; one Regula Falsi step only gets close to it."
+        },
+        {
+          "question": "Regula Falsi is described as combining",
+          "options": [
+            "the speed of Newton-Raphson with the simplicity of the secant method",
+            "the guaranteed convergence of bisection with the speed of linear interpolation",
+            "two Newton-Raphson steps per iteration",
+            "Taylor series with bisection"
+          ],
+          "answer": 1,
+          "explanation": "Like bisection it always keeps a bracket $[a, b]$ with a sign change (so it cannot lose the root), but it picks the point by linear interpolation instead of the midpoint, which is usually faster. It uses no derivative, so it doesn’t borrow anything from Newton-Raphson."
+        },
+        {
+          "question": "To solve $f(x) = 0$ by linear (fixed-point) iteration, we first",
+          "options": [
+            "draw the secant through two points",
+            "differentiate $f$",
+            "rearrange the equation as $x = g(x)$ and iterate $x_{n+1} = g(x_n)$",
+            "halve an interval containing the root"
+          ],
+          "answer": 2,
+          "explanation": "Linear iteration rewrites $f(x) = 0$ as $x = g(x)$, picks $x_0$, and repeats $x_{n+1} = g(x_n)$ until successive values agree. Halving an interval is bisection, and drawing a secant is the secant method."
+        },
+        {
+          "question": "For $x^2 - 3x + 1 = 0$, use $x_{n+1} = \\frac{1}{3}(1 + x_n^2)$ with $x_0 = 0$. What are $x_1$ and $x_2$ (4 d.p.)?",
+          "options": [
+            "$x_1 = 0.3333,\\ x_2 = 0.3333$",
+            "$x_1 = 0.3704,\\ x_2 = 0.3791$",
+            "$x_1 = 1,\\ x_2 = 0.6667$",
+            "$x_1 = 0.3333,\\ x_2 = 0.3704$"
+          ],
+          "answer": 3,
+          "explanation": "$x_1 = \\frac13(1 + 0) = 0.3333$; $x_2 = \\frac13(1 + 0.3333^2) = \\frac13(1.1111) = 0.3704$. The iterates go on to $0.382$."
+        },
+        {
+          "question": "The iteration $x_{n+1} = g(x_n)$ converges to a root $\\alpha$ (for $x_0$ close enough) if",
+          "options": [
+            "$|g'(x)| < 1$ near $\\alpha$",
+            "$g(\\alpha) = 0$",
+            "$|g'(x)| > 1$ near $\\alpha$",
+            "$g'(\\alpha) = 1$"
+          ],
+          "answer": 0,
+          "explanation": "Near the root, errors are multiplied by roughly $g'(\\alpha)$ each step, so they shrink when $|g'(x)| < 1$ in a neighbourhood of $\\alpha$. $g(\\alpha) = 0$ is the tempting slip: at a fixed point $g(\\alpha) = \\alpha$, and convergence depends on the slope $g'$."
+        },
+        {
+          "question": "Which rearrangement of $x^2 - 3x + 1 = 0$ converges to the root $0.382$ from $x_0 = 0$?",
+          "options": [
+            "$x = \\sqrt{3x - 1}$",
+            "$x = \\frac{1}{3}(1 + x^2)$",
+            "$x = x^2 - 2x + 1$",
+            "$x = 3 - \\frac{1}{x}$"
+          ],
+          "answer": 1,
+          "explanation": "For $g(x) = \\frac13(1 + x^2)$, $g'(x) = \\frac{2x}{3} \\approx 0.25$ at $0.382$, so $|g'| < 1$. For $3 - \\frac1x$, $|g'| = \\frac{1}{x^2} \\approx 6.9$; for $x^2 - 2x + 1$, $|g'| = |2x - 2| \\approx 1.24$; and $\\sqrt{3x - 1}$ isn't even defined at $x_0 = 0$."
+        },
+        {
+          "question": "The Newton-Raphson iteration for $f(x) = 0$ is",
+          "options": [
+            "$x_{n+1} = x_n + \\dfrac{f(x_n)}{f'(x_n)}$",
+            "$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$",
+            "$x_{n+1} = x_n - \\dfrac{f(x_n)}{f'(x_n)}$",
+            "$x_{n+1} = x_n - \\dfrac{f'(x_n)}{f(x_n)}$"
+          ],
+          "answer": 2,
+          "explanation": "The tangent at $(x_n, f(x_n))$ has slope $f'(x_n)$ and crosses the $x$-axis at $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$. Using a plus sign moves away from the root, because the step goes the wrong way along the tangent."
+        },
+        {
+          "question": "Geometrically, one Newton-Raphson step from $x_n$ moves to the point where",
+          "options": [
+            "the chord through $(a, f(a))$ and $(b, f(b))$ meets the $x$-axis",
+            "the midpoint of the interval lies",
+            "the curve has a turning point",
+            "the tangent to $y = f(x)$ at $x_n$ meets the $x$-axis"
+          ],
+          "answer": 3,
+          "explanation": "Newton-Raphson replaces the curve by its tangent line at $x_n$ and takes the tangent's $x$-intercept as the next approximation. A chord through two points is what Regula Falsi and the secant method use."
+        },
+        {
+          "question": "Apply Newton-Raphson to $f(x) = x^3 - 5x - 40$ with $x_0 = 4$. What is $x_1$ (3 d.p.)?",
+          "options": [
+            "$3.907$",
+            "$3.875$",
+            "$4.093$",
+            "$3.904$"
+          ],
+          "answer": 0,
+          "explanation": "$f(4) = 64 - 20 - 40 = 4$ and $f'(x) = 3x^2 - 5$, so $f'(4) = 43$. Then $x_1 = 4 - \\frac{4}{43} = 3.907$. ($3.875$ is the secant/Regula Falsi first step.)"
+        },
+        {
+          "question": "Use Newton-Raphson on $x^2 - 10 = 0$ with $x_0 = 3$. What is $x_1$ (4 d.p.)?",
+          "options": [
+            "$3.3333$",
+            "$3.1667$",
+            "$3.1623$",
+            "$3.1250$"
+          ],
+          "answer": 1,
+          "explanation": "$x_1 = 3 - \\frac{9 - 10}{2(3)} = 3 + \\frac16 = 3.1667$. One more step gives $3.1623 \\approx \\sqrt{10}$. $3.1623$ is $\\sqrt{10}$ itself, which takes a second step to reach."
+        },
+        {
+          "question": "Newton-Raphson for $\\sqrt[3]{7}$ uses $f(x) = x^3 - 7$. Which iteration does this give?",
+          "options": [
+            "$x_{n+1} = x_n - \\dfrac{3x_n^2}{x_n^3 - 7}$",
+            "$x_{n+1} = \\dfrac{7}{x_n^2}$",
+            "$x_{n+1} = \\dfrac{2x_n^3 + 7}{3x_n^2}$",
+            "$x_{n+1} = \\dfrac{x_n^3 + 7}{3x_n^2}$"
+          ],
+          "answer": 2,
+          "explanation": "$x_{n+1} = x_n - \\frac{x_n^3 - 7}{3x_n^2} = \\frac{3x_n^3 - x_n^3 + 7}{3x_n^2} = \\frac{2x_n^3 + 7}{3x_n^2}$. From $x_0 = 2$ it gives $1.9167, 1.9129, \\dots$ $\\frac{x_n^3 + 7}{3x_n^2}$ comes from forgetting that $x_n = \\frac{3x_n^3}{3x_n^2}$ when combining the fractions."
+        },
+        {
+          "question": "Newton-Raphson runs into trouble when",
+          "options": [
+            "$f(x_n)$ is very small",
+            "$x_n$ is negative",
+            "the root is irrational",
+            "$f'(x_n) = 0$ or is very close to 0"
+          ],
+          "answer": 3,
+          "explanation": "Dividing by $f'(x_n) \\approx 0$ sends $x_{n+1}$ very far away: the tangent is (almost) horizontal and meets the $x$-axis far from the root, or not at all. A small $f(x_n)$ is good news: it means $x_n$ is already near the root."
+        },
+        {
+          "question": "The secant method's iteration is",
+          "options": [
+            "$x_{n+1} = x_n - f(x_n)\\dfrac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$",
+            "$x_{n+1} = \\dfrac{x_n + x_{n-1}}{2}$",
+            "$x_{n+1} = x_n - \\dfrac{f(x_n)}{f'(x_n)}$",
+            "$x_{n+1} = x_n - f(x_n)\\dfrac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$"
+          ],
+          "answer": 0,
+          "explanation": "Newton-Raphson with $f'(x_n)$ replaced by the slope $\\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$ gives $x_{n+1} = x_n - f(x_n)\\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}$. The last option has the slope upside down; the step divides by the slope."
+        },
+        {
+          "question": "The secant method is obtained from Newton-Raphson by",
+          "options": [
+            "using the second derivative",
+            "replacing $f'(x_n)$ with a backward difference approximation using $x_n$ and $x_{n-1}$",
+            "halving the step each time",
+            "always keeping a sign change"
+          ],
+          "answer": 1,
+          "explanation": "$f'(x_n) \\approx \\frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}$, the slope through the last two points. No derivative is needed."
+        },
+        {
+          "question": "Use the secant method on $x^3 - 5x - 40 = 0$ with $x_0 = 3$, $x_1 = 4$. What is $x_2$?",
+          "options": [
+            "$3.5$",
+            "$3.904$",
+            "$3.875$",
+            "$3.907$"
+          ],
+          "answer": 2,
+          "explanation": "$f(3) = -28$, $f(4) = 4$. $x_2 = 4 - 4\\cdot\\frac{4 - 3}{4 - (-28)} = 4 - \\frac{4}{32} = 3.875$. $3.907$ is the Newton-Raphson step from $x_0 = 4$, which uses $f'(4)$ instead of the chord."
+        },
+        {
+          "question": "What is the main difference between the secant method and Regula Falsi?",
+          "options": [
+            "The secant method uses the midpoint",
+            "Regula Falsi needs $f'(x)$",
+            "There is no difference",
+            "The secant method always uses the two latest points; Regula Falsi keeps two points whose function values have opposite signs"
+          ],
+          "answer": 3,
+          "explanation": "Both use the same chord formula. Regula Falsi keeps a bracket (guaranteed, sometimes slow); the secant method drops the oldest point (faster, but it can lose the root)."
+        },
+        {
+          "question": "Close to a simple root, which method usually converges fastest?",
+          "options": [
+            "Newton-Raphson",
+            "Linear iteration with $|g'| \\approx 0.9$",
+            "Regula Falsi",
+            "Bisection"
+          ],
+          "answer": 0,
+          "explanation": "Newton-Raphson converges quadratically (the number of correct digits roughly doubles each step). Secant is a little slower (order about 1.6); bisection and linear iteration are linear."
+        },
+        {
+          "question": "For $f(x) = x^3 - 5x - 40$, $f(3) = -28$ and $f(4) = 4$. Why is $x_0 = 4$ a sensible Newton-Raphson starting value?",
+          "options": [
+            "Because $4$ is an integer",
+            "Because $|f(4)|$ is much smaller than $|f(3)|$, so the root is probably nearer 4",
+            "Because $f(4) > 0$ is required",
+            "Because $f'(4) = 0$"
+          ],
+          "answer": 1,
+          "explanation": "$|f(4)| = 4$ is much smaller than $|f(3)| = 28$, so the curve is closer to zero at 4. Indeed the root is $3.904$."
+        }
+      ]
+    },
+    {
       "id": "QS005",
-      "title": "Systems of linear equations",
+      "title": "B · Systems of linear equations",
       "questions": [
         {
           "question": "Which of these methods for solving $AX = B$ is iterative rather than direct?",
@@ -1695,7 +1134,7 @@ export default {
     },
     {
       "id": "QS007",
-      "title": "Systems of non-linear equations",
+      "title": "B · Systems of non-linear equations",
       "questions": [
         {
           "question": "A system of $n$ non-linear equations in $n$ unknowns is written compactly as",
@@ -1975,8 +1414,570 @@ export default {
       ]
     },
     {
+      "id": "QS004",
+      "title": "C · Finite differences and operators",
+      "questions": [
+        {
+          "question": "The forward difference operator $\\Delta$ is defined by",
+          "options": [
+            "$\\Delta f_k = f_{k+1} + f_k$",
+            "$\\Delta f_k = f_k - f_{k-1}$",
+            "$\\Delta f_k = f_{k+1} - f_k$",
+            "$\\Delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$"
+          ],
+          "answer": 2,
+          "explanation": "Forward looks ahead: $\\Delta f_k = f_{k+1} - f_k$. Backward is $\\nabla f_k = f_k - f_{k-1}$; central is $\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$."
+        },
+        {
+          "question": "The backward difference operator $\\nabla$ is defined by",
+          "options": [
+            "$\\nabla f_k = f_{k+1} - 2f_k + f_{k-1}$",
+            "$\\nabla f_k = f_{k-1} - f_k$",
+            "$\\nabla f_k = f_k - f_{k-1}$",
+            "$\\nabla f_k = f_{k+1} - f_k$"
+          ],
+          "answer": 2,
+          "explanation": "Backward looks behind: $\\nabla f_k = f_k - f_{k-1}$. $f_{k+1} - f_k$ is the forward difference, which looks ahead."
+        },
+        {
+          "question": "The central difference operator $\\delta$ is defined by",
+          "options": [
+            "$\\delta f_k = f_{k+1} - f_{k-1}$",
+            "$\\delta f_k = f_k - f_{k-1}$",
+            "$\\delta f_k = \\frac12(f_{k+1} + f_{k-1})$",
+            "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$"
+          ],
+          "answer": 3,
+          "explanation": "The central difference is centred on $x_k$, using the half-step points: $\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12}$. $f_{k+1} - f_{k-1}$ spans two whole steps, twice the width of $\\delta f_k$."
+        },
+        {
+          "question": "In terms of ordinates, $\\Delta^2 f_k$ equals",
+          "options": [
+            "$f_{k+2} - 2f_{k+1} + f_k$",
+            "$f_{k+2} - f_k$",
+            "$f_{k+2} + 2f_{k+1} + f_k$",
+            "$f_{k+1} - 2f_k + f_{k-1}$"
+          ],
+          "answer": 0,
+          "explanation": "$\\Delta^2 f_k = \\Delta f_{k+1} - \\Delta f_k = (f_{k+2} - f_{k+1}) - (f_{k+1} - f_k) = f_{k+2} - 2f_{k+1} + f_k$. $f_{k+1} - 2f_k + f_{k-1}$ is the central second difference $\\delta^2 f_k$, centred one step earlier."
+        },
+        {
+          "question": "In terms of ordinates, $\\Delta^3 f_k$ equals",
+          "options": [
+            "$f_{k+3} + 3f_{k+2} + 3f_{k+1} + f_k$",
+            "$f_{k+3} - 3f_{k+2} + 3f_{k+1} - f_k$",
+            "$f_{k+3} - 2f_{k+2} + f_{k+1}$",
+            "$f_{k+3} - f_k$"
+          ],
+          "answer": 1,
+          "explanation": "The coefficients are the binomial coefficients $1, 3, 3, 1$ with alternating signs: $f_{k+3} - 3f_{k+2} + 3f_{k+1} - f_k$. All plus signs would give a sum, but differences alternate in sign."
+        },
+        {
+          "question": "For the table $x$: $0, 0.1, 0.2, 0.3, 0.4, 0.5$ and $y$: $0.05, 0.11, 0.26, 0.35, 0.49, 0.67$ (so $y_0 = 0.05, \\dots, y_5 = 0.67$), find $\\Delta y_3$.",
+          "options": [
+            "$0.35$",
+            "$0.09$",
+            "$0.14$",
+            "$0.18$"
+          ],
+          "answer": 2,
+          "explanation": "$\\Delta y_3 = y_4 - y_3 = 0.49 - 0.35 = 0.14$. $0.35$ is $y_3$ itself, not a difference."
+        },
+        {
+          "question": "For the table $x$: $0, 0.1, 0.2, 0.3, 0.4, 0.5$ and $y$: $0.05, 0.11, 0.26, 0.35, 0.49, 0.67$ (so $y_0 = 0.05, \\dots, y_5 = 0.67$), find $\\Delta^3 y_2$.",
+          "options": [
+            "$-0.13$",
+            "$0.13$",
+            "$0.01$",
+            "$-0.01$"
+          ],
+          "answer": 3,
+          "explanation": "$\\Delta^3 y_2 = y_5 - 3y_4 + 3y_3 - y_2 = 0.67 - 1.47 + 1.05 - 0.26 = -0.01$. $-0.13$ comes from using $2$ instead of $3$ in the middle coefficients."
+        },
+        {
+          "question": "The relation between the forward difference operator $\\Delta$ and the shift operator $E$ is",
+          "options": [
+            "$\\Delta = E - 1$",
+            "$\\Delta = E + 1$",
+            "$\\Delta = E^{\\frac12} - E^{-\\frac12}$",
+            "$\\Delta = 1 - E^{-1}$"
+          ],
+          "answer": 0,
+          "explanation": "$\\Delta f_k = f_{k+1} - f_k = Ef_k - f_k = (E - 1)f_k$, so $\\Delta = E - 1$. $1 - E^{-1}$ is the backward operator $\\nabla$."
+        },
+        {
+          "question": "The relation between the backward difference operator $\\nabla$ and $E$ is",
+          "options": [
+            "$\\nabla = E - 1$",
+            "$\\nabla = 1 - E^{-1}$",
+            "$\\nabla = 1 + E$",
+            "$\\nabla = E^{-1} - 1$"
+          ],
+          "answer": 1,
+          "explanation": "$\\nabla f_k = f_k - f_{k-1} = f_k - E^{-1}f_k = (1 - E^{-1})f_k$. $E - 1$ is $\\Delta$, which looks forward."
+        },
+        {
+          "question": "In terms of $E$, the central difference operator is",
+          "options": [
+            "$\\delta = E - E^{-1}$",
+            "$\\delta = \\frac12(E + E^{-1})$",
+            "$\\delta = E^{\\frac12} - E^{-\\frac12}$",
+            "$\\delta = E^2 - 1$"
+          ],
+          "answer": 2,
+          "explanation": "$\\delta f_k = f_{k+\\frac12} - f_{k-\\frac12} = E^{\\frac12}f_k - E^{-\\frac12}f_k$. $E - E^{-1}$ spans two steps instead of one."
+        },
+        {
+          "question": "Which identity is true?",
+          "options": [
+            "$\\Delta = \\nabla$",
+            "$\\delta = \\Delta\\nabla$",
+            "$\\delta^2 = \\Delta + \\nabla$",
+            "$\\delta^2 = \\Delta\\nabla$"
+          ],
+          "answer": 3,
+          "explanation": "$\\delta^2 = (E^{\\frac12} - E^{-\\frac12})^2 = E - 2 + E^{-1} = (E - 1)(1 - E^{-1}) = \\Delta\\nabla$. $\\delta^2 = \\Delta + \\nabla$ fails: $\\Delta + \\nabla = E - E^{-1}$, which is not $E - 2 + E^{-1}$."
+        },
+        {
+          "question": "The values of $y = x^3$ at $x = 1, 2, 3, 4, 5$ are $1, 8, 27, 64, 125$. The third differences are",
+          "options": [
+            "all equal to $6$",
+            "$12, 18, 24$",
+            "all equal to $0$",
+            "$7, 19, 37$"
+          ],
+          "answer": 0,
+          "explanation": "First differences: $7, 19, 37, 61$. Second: $12, 18, 24$. Third: $6, 6$. For a polynomial of degree $n$ (with $h = 1$), the $n$-th differences are constant ($n! \\times$ leading coefficient $= 3! = 6$)."
+        },
+        {
+          "question": "For $f(x) = x^2$ with step $h = 1$, $\\Delta^2 f(x)$ equals",
+          "options": [
+            "$2x$",
+            "$2$",
+            "$1$",
+            "$0$"
+          ],
+          "answer": 1,
+          "explanation": "$\\Delta^2 x^2 = (x + 2)^2 - 2(x + 1)^2 + x^2 = 2$. The second differences of a quadratic are constant. $2x$ is the derivative of $x^2$, not its second difference."
+        },
+        {
+          "question": "For $f(x) = x^2 + 2x$ with $h = 1$, the forward difference $\\Delta f(3) = f(4) - f(3)$ equals",
+          "options": [
+            "$7$",
+            "$24$",
+            "$9$",
+            "$8$"
+          ],
+          "answer": 2,
+          "explanation": "$\\Delta f(x) = f(x + 1) - f(x) = 2x + 3$, so $\\Delta f(3) = 9$. (Check: $f(4) - f(3) = 24 - 15 = 9$.)"
+        },
+        {
+          "question": "For $f(x) = x^2 + 2x$ with $h = 1$, the backward difference $\\nabla f(3)$ equals",
+          "options": [
+            "$9$",
+            "$8$",
+            "$15$",
+            "$7$"
+          ],
+          "answer": 3,
+          "explanation": "$\\nabla f(x) = f(x) - f(x - 1) = 2x + 1$, so $\\nabla f(3) = 7$. (Check: $15 - 8 = 7$.)"
+        },
+        {
+          "question": "For $f(x) = x^2 + 2x$, the true derivative at $x = 3$ is $8$. With $h = 1$, which difference gives exactly $8$?",
+          "options": [
+            "Central difference",
+            "Forward difference",
+            "Backward difference",
+            "None of the three"
+          ],
+          "answer": 0,
+          "explanation": "$\\delta f(3) = f(3.5) - f(2.5) = 19.25 - 11.25 = 8$. Forward gives 9 and backward 7; the central difference is exact for quadratics. Forward and backward differences err in opposite directions here (9 and 7), and the central one sits exactly between."
+        },
+        {
+          "question": "Which relation between forward and backward differences is correct?",
+          "options": [
+            "$\\Delta^3 y_1 = \\nabla^3 y_2$",
+            "$\\Delta^3 y_1 = \\nabla^3 y_4$",
+            "$\\Delta^3 y_1 = \\nabla^3 y_1$",
+            "$\\Delta y_1 = \\nabla y_0$"
+          ],
+          "answer": 1,
+          "explanation": "In general $\\Delta^n y_k = \\nabla^n y_{k+n}$: both use exactly the ordinates $y_k, \\dots, y_{k+n}$. So $\\Delta^3 y_1 = \\nabla^3 y_4$."
+        },
+        {
+          "question": "In Newton's forward difference formula $f_r = f_0 + r\\Delta f_0 + \\cdots$, the term in $\\Delta^2 f_0$ is",
+          "options": [
+            "$\\dfrac{r(r + 1)}{2!}\\Delta^2 f_0$",
+            "$r^2\\Delta^2 f_0$",
+            "$\\dfrac{r(r - 1)}{2!}\\Delta^2 f_0$",
+            "$\\dfrac{r^2}{2}\\Delta^2 f_0$"
+          ],
+          "answer": 2,
+          "explanation": "From $E^r = (1 + \\Delta)^r = 1 + r\\Delta + \\frac{r(r - 1)}{2!}\\Delta^2 + \\cdots$, the second-difference term is $\\frac{r(r - 1)}{2!}\\Delta^2 f_0$. With $r(r + 1)$ instead you get the backward formula’s coefficient."
+        },
+        {
+          "question": "In Newton's backward difference formula $f_r = f_n + r\\nabla f_n + \\cdots$, the term in $\\nabla^2 f_n$ is",
+          "options": [
+            "$\\dfrac{r(r - 1)}{2!}\\nabla^2 f_n$",
+            "$r^2\\nabla^2 f_n$",
+            "$-\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$",
+            "$\\dfrac{r(r + 1)}{2!}\\nabla^2 f_n$"
+          ],
+          "answer": 3,
+          "explanation": "$E^r = (1 - \\nabla)^{-r} = 1 + r\\nabla + \\frac{r(r + 1)}{2!}\\nabla^2 + \\cdots$, so the term is $\\frac{r(r + 1)}{2!}\\nabla^2 f_n$. Using $r(r - 1)$ here borrows the forward formula’s coefficient."
+        },
+        {
+          "question": "Populations (thousands) are given for 1891, 1901, 1911, 1921, 1931. To estimate 1895 by Newton's forward formula from $x_0 = 1891$, what is $r$?",
+          "options": [
+            "$0.4$",
+            "$0.6$",
+            "$-0.6$",
+            "$4$"
+          ],
+          "answer": 0,
+          "explanation": "$x = x_0 + rh$ with $h = 10$: $1895 = 1891 + 10r$, so $r = 0.4$. $0.6$ measures from the next entry, 1901, but $r$ counts steps from $x_0 = 1891$."
+        },
+        {
+          "question": "Populations: 1891: 46, 1901: 66, 1911: 81, 1921: 93, 1931: 101. The forward differences from 1891 are $\\Delta = 20$, $\\Delta^2 = -5$, $\\Delta^3 = 2$, $\\Delta^4 = -3$. Newton's forward formula with $r = 0.4$ estimates the 1895 population as about",
+          "options": [
+            "$56.4$",
+            "$54.9$",
+            "$52.8$",
+            "$58.0$"
+          ],
+          "answer": 1,
+          "explanation": "$46 + 0.4(20) + \\frac{0.4(-0.6)}{2}(-5) + \\frac{0.4(-0.6)(-1.6)}{6}(2) + \\frac{0.4(-0.6)(-1.6)(-2.6)}{24}(-3) = 46 + 8 + 0.6 + 0.128 + 0.1248 = 54.85$. $54$ (stopping after two terms) is close, but each extra difference refines the estimate."
+        },
+        {
+          "question": "For the same population table, which formula is better for estimating the 1925 population, and why?",
+          "options": [
+            "Newton forward from 1891, because it uses the most data",
+            "Neither; extrapolation is required",
+            "Newton backward from 1931, because 1925 is near the end of the table",
+            "Newton forward from 1931"
+          ],
+          "answer": 2,
+          "explanation": "Use the backward formula near the end of a table (here $r = \\frac{1925 - 1931}{10} = -0.6$) and the forward formula near the start. The estimate is $96.84$."
+        },
+        {
+          "question": "The shift operator $E$ acts as",
+          "options": [
+            "$Ef_k = f_{k-1}$",
+            "$Ef_k = kf_k$",
+            "$Ef_k = f_k + 1$",
+            "$Ef_k = f_{k+1}$ and $E^j f_k = f_{k+j}$"
+          ],
+          "answer": 3,
+          "explanation": "$E$ shifts one step forward: $Ef_k = f_{k+1}$, $E^{-1}f_k = f_{k-1}$, $E^j f_k = f_{k+j}$. $Ef_k = f_k + 1$ adds 1 to the value; $E$ shifts the position instead."
+        },
+        {
+          "question": "For a polynomial of degree $n$ tabulated at equal steps, which differences are zero?",
+          "options": [
+            "The $(n + 1)$-th and all higher differences",
+            "The $n$-th differences",
+            "No differences are ever zero",
+            "The first differences"
+          ],
+          "answer": 0,
+          "explanation": "The $n$-th differences are constant, so the $(n + 1)$-th and higher differences are zero. That is why Newton's formulas reproduce polynomials exactly."
+        },
+        {
+          "question": "For $x$: $9, 10, 11, 12, 13, 14$ and $y$: $5.0, 5.4, 6.0, 6.8, 7.5, 8.1$, what is $\\Delta^2 y_0$?",
+          "options": [
+            "$1.0$",
+            "$0.2$",
+            "$0.4$",
+            "$0.6$"
+          ],
+          "answer": 1,
+          "explanation": "$\\Delta y_0 = 0.4$, $\\Delta y_1 = 0.6$, so $\\Delta^2 y_0 = 0.6 - 0.4 = 0.2$. (Equivalently $y_2 - 2y_1 + y_0 = 6.0 - 10.8 + 5.0 = 0.2$.)"
+        }
+      ]
+    },
+    {
+      "id": "QS002",
+      "title": "C · Interpolation",
+      "questions": [
+        {
+          "question": "Interpolation is the process of",
+          "options": [
+            "finding a formula (often a polynomial) whose graph passes through a given set of points",
+            "rounding numbers to fewer digits",
+            "differentiating tabulated data",
+            "finding the roots of a polynomial"
+          ],
+          "answer": 0,
+          "explanation": "Given points $(x_0, y_0), \\dots, (x_n, y_n)$, interpolation finds a function (usually a polynomial) with $P(x_i) = y_i$, then uses it to estimate values in between. Finding roots is a different problem: interpolation estimates values between known points."
+        },
+        {
+          "question": "The linear interpolating polynomial through $(x_0, y_0)$ and $(x_1, y_1)$ is",
+          "options": [
+            "$P_1(x) = \\dfrac{x - x_1}{x_1 - x_0}y_0 + \\dfrac{x - x_0}{x_1 - x_0}y_1$",
+            "$P_1(x) = \\dfrac{y_0 + y_1}{2}$",
+            "$P_1(x) = \\dfrac{x_1 - x}{x_1 - x_0}y_0 + \\dfrac{x - x_0}{x_1 - x_0}y_1$",
+            "$P_1(x) = y_0 + \\dfrac{x_1 - x_0}{y_1 - y_0}(x - x_0)$"
+          ],
+          "answer": 2,
+          "explanation": "$P_1(x) = \\frac{x_1 - x}{x_1 - x_0}y_0 + \\frac{x - x_0}{x_1 - x_0}y_1$. Check: at $x = x_0$ it gives $y_0$; at $x = x_1$ it gives $y_1$. The first wrong option has $x - x_1$ instead of $x_1 - x$, so it gives $0$ instead of $y_0$ at $x_0$."
+        },
+        {
+          "question": "Find $P_1(3.5)$ for the data points $(2, 3)$ and $(5, 7)$.",
+          "options": [
+            "$5.5$",
+            "$4.5$",
+            "$6$",
+            "$5$"
+          ],
+          "answer": 3,
+          "explanation": "$P_1(3.5) = \\frac{5 - 3.5}{3}(3) + \\frac{3.5 - 2}{3}(7) = 0.5(3) + 0.5(7) = 5$. ($3.5$ is the midpoint, so we get the average of 3 and 7.) $5.5$ is tempting if you take $3.5$ as being nearer to 7 than to 3, but it is exactly halfway."
+        },
+        {
+          "question": "Simplify the linear interpolant through $(2, 3)$ and $(5, 7)$.",
+          "options": [
+            "$P_1(x) = \\dfrac{4x + 1}{3}$",
+            "$P_1(x) = \\dfrac{3x + 4}{4}$",
+            "$P_1(x) = 4x - 5$",
+            "$P_1(x) = \\dfrac{4x - 1}{3}$"
+          ],
+          "answer": 0,
+          "explanation": "Slope $= \\frac{7 - 3}{5 - 2} = \\frac43$, so $P_1(x) = 3 + \\frac43(x - 2) = \\frac{9 + 4x - 8}{3} = \\frac{4x + 1}{3}$. Check: $P_1(5) = 21/3 = 7$."
+        },
+        {
+          "question": "Given $(0.82, 2.270500)$ and $(0.83, 2.293319)$, find $P_1(0.826)$ (4 d.p.).",
+          "options": [
+            "$2.2819$",
+            "$2.2842$",
+            "$2.2933$",
+            "$2.2871$"
+          ],
+          "answer": 1,
+          "explanation": "$P_1(0.826) = \\frac{0.004}{0.01}(2.270500) + \\frac{0.006}{0.01}(2.293319) = 0.4(2.270500) + 0.6(2.293319) = 0.90820 + 1.37599 = 2.2842$. $2.2819$ swaps the weights: $0.826$ is nearer $0.83$, so $y_1$ gets the larger weight."
+        },
+        {
+          "question": "Using linear interpolation between $(1, 0)$ and $(6, 1.7918)$ for $y = \\ln x$, the estimate of $\\ln 2$ is",
+          "options": [
+            "$0.4479$",
+            "$0.2986$",
+            "$0.3584$",
+            "$0.6931$"
+          ],
+          "answer": 2,
+          "explanation": "$P_1(2) = \\frac{6 - 2}{5}(0) + \\frac{2 - 1}{5}(1.7918) = 0.3584$. $0.6931$ is the true $\\ln 2$; the straight line falls well short of it."
+        },
+        {
+          "question": "The true value of $\\ln 2$ is $0.6931$. What is the relative error of the estimate $0.3584$ (to 1 d.p.)?",
+          "options": [
+            "$33.5\\%$",
+            "$93.4\\%$",
+            "$51.7\\%$",
+            "$48.3\\%$"
+          ],
+          "answer": 3,
+          "explanation": "Error $= 0.6931 - 0.3584 = 0.3347$. Relative error $= \\frac{0.3347}{0.6931} \\times 100\\% = 48.3\\%$. Interpolating over the wide interval $[1, 6]$ is very inaccurate for a curved function."
+        },
+        {
+          "question": "How could the linear estimate of $\\ln 2$ be improved most simply?",
+          "options": [
+            "Use points closer to $x = 2$, e.g. $(1, 0)$ and $(4, 1.3863)$",
+            "Use points further apart, e.g. $(1, 0)$ and $(10, 2.3026)$",
+            "Use the midpoint of $[1, 6]$",
+            "Round $\\ln 6$ to 2 d.p."
+          ],
+          "answer": 0,
+          "explanation": "A straight line approximates a curve better over a shorter interval. With $(1, 0)$ and $(4, 1.3863)$ we get $0.4621$, much closer to $0.6931$. A higher-degree polynomial helps too."
+        },
+        {
+          "question": "Through $n + 1$ data points with distinct $x$-values, the interpolating polynomial has degree",
+          "options": [
+            "always 2",
+            "at most $n$",
+            "at least $n + 1$",
+            "exactly $n + 1$"
+          ],
+          "answer": 1,
+          "explanation": "There is a unique polynomial of degree at most $n$ through $n + 1$ points: 2 points give a line, 3 points a quadratic (or less), and so on. “Exactly $n + 1$” is the usual slip: $n + 1$ points fix a polynomial of degree at most $n$."
+        },
+        {
+          "question": "The Lagrange basis polynomials $L_k(x)$ for nodes $x_0, \\dots, x_n$ satisfy",
+          "options": [
+            "$L_k(x_j) = y_k$",
+            "$L_k(x_j) = 0$ for every $j$",
+            "$L_k(x_j) = 1$ if $j = k$ and $0$ if $j \\neq k$",
+            "$L_k(x_j) = x_j$"
+          ],
+          "answer": 2,
+          "explanation": "$L_k$ is built to be 1 at its own node and 0 at every other node. That's why $P_n(x) = \\sum y_k L_k(x)$ passes through every point."
+        },
+        {
+          "question": "For any set of nodes, $L_0(x) + L_1(x) + \\cdots + L_n(x)$ equals",
+          "options": [
+            "$n$",
+            "$0$",
+            "$x$",
+            "$1$"
+          ],
+          "answer": 3,
+          "explanation": "Interpolating the constant data $y_k = 1$ gives $\\sum L_k(x)$; the unique interpolant of a constant is that constant, so the sum is 1 for every $x$. $0$ is tempting because each $L_k$ is $0$ at most nodes, but at every node exactly one of them is $1$."
+        },
+        {
+          "question": "Find the quadratic $P_2(x) = a_0 + a_1 x + a_2 x^2$ through $(1, 4)$, $(2, 0)$ and $(3, 12)$.",
+          "options": [
+            "$P_2(x) = 24 - 28x + 8x^2$",
+            "$P_2(x) = 8 - 4x + x^2$",
+            "$P_2(x) = 4 + 2x - 2x^2$",
+            "$P_2(x) = 12 - 8x + 4x^2$"
+          ],
+          "answer": 0,
+          "explanation": "Solve $a_0 + a_1 + a_2 = 4$, $a_0 + 2a_1 + 4a_2 = 0$, $a_0 + 3a_1 + 9a_2 = 12$ to get $a_0 = 24$, $a_1 = -28$, $a_2 = 8$. Check: $24 - 56 + 32 = 0$ at $x = 2$."
+        },
+        {
+          "question": "Using $P_2(x) = 24 - 28x + 8x^2$ (through $(1, 4)$, $(2, 0)$, $(3, 12)$), estimate the value at $x = 2.5$.",
+          "options": [
+            "$6$",
+            "$4$",
+            "$8$",
+            "$2$"
+          ],
+          "answer": 1,
+          "explanation": "$P_2(2.5) = 24 - 70 + 8(6.25) = 24 - 70 + 50 = 4$. The Lagrange form gives $4$ at $x = 2.5$ too, a quick cross-check."
+        },
+        {
+          "question": "For nodes $x_0 = 1$, $x_1 = 2$, $x_2 = 3$, the Lagrange basis polynomial $L_0(x)$ is",
+          "options": [
+            "$-(x - 1)(x - 3)$",
+            "$\\dfrac{(x - 1)(x - 2)}{2}$",
+            "$\\dfrac{(x - 2)(x - 3)}{2}$",
+            "$(x - 2)(x - 3)$"
+          ],
+          "answer": 2,
+          "explanation": "$L_0(x) = \\frac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} = \\frac{(x - 2)(x - 3)}{(-1)(-2)} = \\frac{(x - 2)(x - 3)}{2}$. $\\frac{(x - 1)(x - 2)}{2}$ is $L_2$, the switch for the last node."
+        },
+        {
+          "question": "For nodes $1, 2, 3$, the Lagrange basis polynomial $L_1(x)$ is",
+          "options": [
+            "$\\dfrac{(x - 1)(x - 2)}{2}$",
+            "$(x - 1)(x - 3)$",
+            "$\\dfrac{(x - 2)(x - 3)}{2}$",
+            "$-(x - 1)(x - 3)$"
+          ],
+          "answer": 3,
+          "explanation": "$L_1(x) = \\frac{(x - 1)(x - 3)}{(2 - 1)(2 - 3)} = \\frac{(x - 1)(x - 3)}{-1} = -(x - 1)(x - 3)$. Without the minus sign, $L_1(2)$ would be $-1$ instead of $1$."
+        },
+        {
+          "question": "The quadratic through $(0, 1)$, $(1, 3)$ and $(2, 7)$ is evaluated at $x = 1.5$. The result is",
+          "options": [
+            "$4.75$",
+            "$4.5$",
+            "$5$",
+            "$5.25$"
+          ],
+          "answer": 0,
+          "explanation": "The data fit $P_2(x) = x^2 + x + 1$ (check: 1, 3, 7). So $P_2(1.5) = 2.25 + 1.5 + 1 = 4.75$."
+        },
+        {
+          "question": "Quadratic interpolation through $(1, 1)$, $(2, 8)$, $(3, 27)$ (from $y = x^3$) gives $P_2(2.5) = 16$. The true value is $2.5^3 = 15.625$. Why is there an error?",
+          "options": [
+            "The points are not equally spaced",
+            "A quadratic cannot exactly reproduce a cubic",
+            "Interpolation is always exact",
+            "Lagrange's formula was misapplied"
+          ],
+          "answer": 1,
+          "explanation": "Three points determine a quadratic, which can match the cubic only at the nodes. Between them there is an interpolation error (here $0.375$)."
+        },
+        {
+          "question": "The points $(0, 0)$, $(1, 1)$, $(3, 9)$ lie on $y = x^2$. Quadratic interpolation through them gives $P_2(2) = $",
+          "options": [
+            "$5$",
+            "$4.5$",
+            "$4$",
+            "$3$"
+          ],
+          "answer": 2,
+          "explanation": "The data come from a quadratic, and the interpolant of degree $\\le 2$ through 3 points is unique, so $P_2(x) = x^2$ exactly and $P_2(2) = 4$. $5$ or $4.5$ would mean the interpolant isn’t $x^2$, but it must be, by uniqueness."
+        },
+        {
+          "question": "Estimate $\\sqrt{5}$ by linear interpolation between $(4, 2)$ and $(9, 3)$.",
+          "options": [
+            "$2.236$",
+            "$2.25$",
+            "$2.5$",
+            "$2.2$"
+          ],
+          "answer": 3,
+          "explanation": "$P_1(5) = \\frac{9 - 5}{5}(2) + \\frac{5 - 4}{5}(3) = 1.6 + 0.6 = 2.2$. The true value is $2.236$. $2.236$ is the true value; a straight line between $(4, 2)$ and $(9, 3)$ can’t follow the square-root curve exactly."
+        },
+        {
+          "question": "Linear interpolation between $(10, 5)$ and $(20, 15)$ gives the value at $x = 12$ as",
+          "options": [
+            "$7$",
+            "$7.5$",
+            "$12$",
+            "$6$"
+          ],
+          "answer": 0,
+          "explanation": "Slope $= \\frac{15 - 5}{10} = 1$, so $P_1(12) = 5 + 1(12 - 10) = 7$. $7.5$ would need a slope of $1.25$; here the slope is exactly $1$."
+        },
+        {
+          "question": "To find $P_2(x) = a_0 + a_1x + a_2x^2$ through $(1, 4)$, $(2, 0)$, $(3, 12)$, which equation comes from the point $(2, 0)$?",
+          "options": [
+            "$a_0 + 2a_1 + 2a_2 = 0$",
+            "$a_0 + 2a_1 + 4a_2 = 0$",
+            "$2a_0 + a_1 + a_2 = 0$",
+            "$a_0 + 4a_1 + 2a_2 = 0$"
+          ],
+          "answer": 1,
+          "explanation": "Substitute $x = 2$, $P_2(2) = 0$: $a_0 + a_1(2) + a_2(2)^2 = a_0 + 2a_1 + 4a_2 = 0$. The power of $x$ goes on $x$, not on $a_2$: $(2)^2 = 4$ multiplies $a_2$."
+        },
+        {
+          "question": "Using an interpolating polynomial to estimate a value outside the range of the given $x$-values is called",
+          "options": [
+            "bisection",
+            "truncation",
+            "extrapolation",
+            "interpolation"
+          ],
+          "answer": 2,
+          "explanation": "Inside the data range it is interpolation; outside it is extrapolation, which is usually much less reliable. Truncation is an error from cutting a series short, not a way of estimating values."
+        },
+        {
+          "question": "For nodes $1, 2, 3$ at $x = 2.5$: $L_0 = -0.125$, $L_1 = 0.75$, $L_2 = 0.375$. With $y$-values $4, 0, 12$, what is $P_2(2.5)$?",
+          "options": [
+            "$12.375$",
+            "$4.5$",
+            "$-0.5$",
+            "$4$"
+          ],
+          "answer": 3,
+          "explanation": "$P_2(2.5) = 4(-0.125) + 0(0.75) + 12(0.375) = -0.5 + 0 + 4.5 = 4$, matching $24 - 28x + 8x^2$ at $2.5$. Note $-0.125 + 0.75 + 0.375 = 1$."
+        },
+        {
+          "question": "How many Lagrange basis polynomials, and of what degree, are used for interpolation through 4 points?",
+          "options": [
+            "4 polynomials, each of degree 3",
+            "1 polynomial of degree 3",
+            "4 polynomials, each of degree 4",
+            "3 polynomials, each of degree 4"
+          ],
+          "answer": 0,
+          "explanation": "One basis polynomial per node, so 4. Each $L_k$ is a product of 3 linear factors $(x - x_j)$, $j \\neq k$, so it has degree 3."
+        },
+        {
+          "question": "Which statement about the linear interpolant $P_1$ through $(x_0, y_0)$ and $(x_1, y_1)$ is always true?",
+          "options": [
+            "$P_1$ is exact for every function",
+            "$P_1(x_0) = y_0$ and $P_1(x_1) = y_1$",
+            "$P_1$ has degree 2",
+            "$P_1(x) = y_0 y_1$"
+          ],
+          "answer": 1,
+          "explanation": "By construction the line passes through both data points. It is exact for linear functions only."
+        }
+      ]
+    },
+    {
       "id": "QS008",
-      "title": "Initial value problems and Euler",
+      "title": "D · Initial value problems and Euler",
       "questions": [
         {
           "question": "An initial value problem is",
@@ -2257,7 +2258,7 @@ export default {
     },
     {
       "id": "QS009",
-      "title": "Exam focus",
+      "title": "Exam focus: definitions and exam notices",
       "questions": [
         {
           "question": "What is a consistent system of linear equations?",

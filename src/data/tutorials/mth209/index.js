@@ -1,7 +1,6 @@
 // MTH 209 interactive tutorial, rebuilt (2026-11-11): every topic sits under one of four ideas, and
 // every lesson has two parts: understand it on a simple case, then apply it to an exam-sized one.
-// The plan, sources and template are in docs/mth209-rebuild.md. Lessons without `sections` show as
-// "Coming soon" until they are built.
+// The plan, sources and template are in docs/mth209-rebuild.md.
 import courseMap from './course-map';
 import errorTypes from './error-types';
 import errorPropagation from './error-propagation';
@@ -26,8 +25,7 @@ import linearInterpolation from './linear-interpolation';
 import lagrange from './lagrange';
 import ivp from './ivp';
 import euler from './euler';
-
-const soon = (id, title, covers) => ({ id, title, covers, minutes: 12 });
+import mockExam from './mock-exam';
 
 export default {
   code: 'MTH 209',
@@ -85,6 +83,6 @@ export default {
         euler,
       ],
     },
-    { n: 5, title: 'Mock Exam', by: 'A timed paper in the lecturer’s style', lessons: [soon('mock-exam', 'Mock exam', 'Timed, lecturer-style paper')] },
+    { n: 5, title: 'Mock Exam', by: 'A timed paper in the lecturer’s style', lessons: [mockExam] },
   ],
 };

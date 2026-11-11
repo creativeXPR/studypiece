@@ -1,9 +1,6 @@
 # MTH 209 rebuild: handoff
 
-**Status (2026-11-11):**
-- The owner approved this outline and lesson template; it **replaces every earlier MTH 209 plan**. Build fresh lessons, not a re-trim of the old ones.
-- The notes drawer now has Steps and Examples tabs.
-- New lessons live in `src/data/tutorials/mth209v2/` until Idea A is ready. Then point the MTH 209 tutorial registry at it and delete the old `mth209/` lesson files.
+**Status (2026-11-11): COMPLETE and live.** All 24 lessons (map, Ideas A–D) plus the mock exam are in `src/data/tutorials/mth209/`. The question bank (`src/data/courses/mth209.js`, 225 questions) is grouped by idea, with the set ids kept. Another session keeps the previous tutorial as `mth209classic`. Future work: polish only; if adding lessons, follow the template below.
 
 **Read first:** `docs/mth209-notes-examples.md`. It holds every worked example from the owner's handwritten notes (question style, solution layout, checked answers, slips to fix), the lecturer's exam notices, and the past-paper analysis with checked answers. Build lessons from it.
 
