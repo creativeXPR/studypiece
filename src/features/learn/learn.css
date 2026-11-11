@@ -2106,6 +2106,18 @@ a.learn-les:active {
   transition: transform var(--dur) var(--ease-spring);
 }
 
+.course-tutorial-link.classic {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+}
+
+.course-tutorial-link.classic > span:first-child:not(.course-tutorial-icon) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .course-tutorial-link:active {
   transform: scale(0.985);
 }

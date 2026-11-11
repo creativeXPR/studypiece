@@ -6,17 +6,26 @@ import cos202 from './cos202';
 import ges103 from './ges103';
 import mat222 from './mat222';
 import mth209 from './mth209';
+import mth209classic from './mth209classic';
 import mth205 from './mth205';
 import mth210 from './mth210';
 import spo101 from './spo101';
 import sta221 from './sta221';
 
-const list = [acp111, cos202, ges103, mat222, mth205, mth209, mth210, spo101, sta221].map((t) => ({ ...t, slug: courseSlug(t.code) }));
+const list = [acp111, cos202, ges103, mat222, mth205, mth209, mth209classic, mth210, spo101, sta221].map((t) => ({
+  ...t,
+  slug: t.slug ?? courseSlug(t.code),
+}));
 
 export const tutorials = Object.fromEntries(list.map((t) => [t.slug, t]));
 
 export function getTutorial(slug) {
   return tutorials[slug?.toLowerCase()] ?? null;
+}
+
+// The previous, complete version of a tutorial that is being rebuilt (it sets `classicOf`).
+export function classicFor(slug) {
+  return list.find((t) => t.classicOf === slug?.toLowerCase()) ?? null;
 }
 
 export const tutorialPath = (slug) => `/learn/${slug}`;

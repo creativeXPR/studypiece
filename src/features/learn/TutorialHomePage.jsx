@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../app/AuthProvider';
 import { coursePath, getCourseBySlug } from '../../data/courses';
-import { getTutorial, lessonPath } from '../../data/tutorials';
+import { classicFor, getTutorial, lessonPath, tutorialPath } from '../../data/tutorials';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import ConfirmDialog from '../../lib/ConfirmDialog';
@@ -15,7 +15,10 @@ import './learn.css';
 export default function TutorialHomePage() {
   const { courseId } = useParams();
   const tutorial = getTutorial(courseId);
-  const course = getCourseBySlug(courseId);
+  // A previous version (classicOf) belongs to the same course as the tutorial it stands in for.
+  const course = getCourseBySlug(tutorial?.classicOf ?? courseId);
+  const classic = classicFor(courseId);
+  const current = tutorial?.classicOf ? getTutorial(tutorial.classicOf) : null;
   const { user } = useAuth();
   const uid = user?.uid;
   const navigate = useNavigate();
@@ -47,9 +50,28 @@ export default function TutorialHomePage() {
 
         <CourseBanner code={tutorial.code} />
 
+        {classic && (
+          <Link to={tutorialPath(classic.slug)} className="course-tutorial-link classic">
+            <span>
+              <strong>This tutorial is still being built</strong>
+              <span className="muted small">The previous version covers every topic. Open it to study anything marked Soon.</span>
+            </span>
+            <ChevronRight className="muted" />
+          </Link>
+        )}
+        {current && (
+          <Link to={tutorialPath(current.slug)} className="course-tutorial-link classic">
+            <span>
+              <strong>You’re in the previous version</strong>
+              <span className="muted small">A new {current.code} tutorial is being built. Open it to see what’s ready.</span>
+            </span>
+            <ChevronRight className="muted" />
+          </Link>
+        )}
+
         <section className="learn-hero">
           <div className="learn-hero-text">
-            <p className="tut-eyebrow">Interactive tutorial</p>
+            <p className="tut-eyebrow">{current ? 'Interactive tutorial · previous version' : 'Interactive tutorial'}</p>
             <h1>{tutorial.code}</h1>
             <p className="muted">{tutorial.title}. Short, story-driven lessons that build up one idea at a time, with questions along the way.</p>
           </div>

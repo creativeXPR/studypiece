@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { coursePath, getCourseBySlug, setPath } from '../../data/courses';
-import { getTutorial, tutorialPath } from '../../data/tutorials';
+import { classicFor, getTutorial, tutorialPath } from '../../data/tutorials';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import ShareButtons from '../../lib/ShareButtons';
@@ -23,6 +23,7 @@ export default function CoursePage() {
 
   const count = Math.min(mixCount, course.questionCount);
   const tutorial = getTutorial(course.slug);
+  const classic = classicFor(course.slug);
 
   return (
     <>
@@ -52,6 +53,17 @@ export default function CoursePage() {
             <span>
               <strong>Learn it first with the interactive tutorial</strong>
               <span className="muted small">Short story-driven lessons with questions along the way.</span>
+            </span>
+            <ChevronRight className="muted" />
+          </Link>
+        )}
+
+        {classic && (
+          <Link to={tutorialPath(classic.slug)} className="course-tutorial-link classic">
+            <span className="course-tutorial-icon"><BulbIcon size={20} /></span>
+            <span>
+              <strong>Open the previous tutorial</strong>
+              <span className="muted small">The new tutorial is still being built. The previous version covers every topic.</span>
             </span>
             <ChevronRight className="muted" />
           </Link>
