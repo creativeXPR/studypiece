@@ -65,7 +65,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'The environmental system',
-          prompt: 'Energy drives the environmental system. Which of these are processes your notes say energy drives?',
+          prompt: 'Energy drives the environmental system. Which of these are processes the course says energy drives?',
           options: [
             { text: 'Photosynthesis, moving energy from abiotic to biotic parts', correct: true, why: '**Photosynthesis** moves energy from non-living to living components.' },
             { text: 'Wind', correct: true, why: '**Wind** is an abiotic process driven by energy.' },
@@ -137,15 +137,15 @@ export default {
             { text: 'Because the stratosphere absorbs all the heat.', why: 'In the stratosphere, temperature actually rises with height.' },
             { text: 'Because there’s no air there.', why: 'There’s plenty of air in the troposphere: most of the atmosphere lies within 16 km.' },
           ],
-          note: 'Your notes give the environmental lapse rate as about **4–6°C per km**. The commonly quoted average is about **6.5°C per km**. Use the notes’ figure in this course’s exam.',
+          note: 'The course gives the environmental lapse rate as about **4–6°C per km**. The commonly quoted average is about **6.5°C per km**. Use the course’s figure in the exam.',
         },
         {
           type: 'multi',
           eyebrow: 'Think deeper',
-          prompt: 'Which statements about the atmosphere’s structure are true, according to your notes?',
+          prompt: 'Which statements about the atmosphere’s structure are true?',
           options: [
             { text: 'The homosphere, with uniform composition, reaches up to about 80 km.', correct: true, why: '**Homosphere to 80 km**, heterosphere above (Ajayi 2013).' },
-            { text: 'Air pressure and density decrease with altitude.', correct: true, why: '**Thinner air higher up** is stated in the notes.' },
+            { text: 'Air pressure and density decrease with altitude.', correct: true, why: '**Thinner air higher up** is correct.' },
             { text: 'The Kármán line, about 100 km up, marks the boundary with outer space.', correct: true, why: '**The Kármán line** is about 100 km (62 miles).' },
             { text: 'Temperature falls with height in the stratosphere.', why: '**In the stratosphere, temperature rises with height.**' },
           ],
@@ -209,7 +209,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Your notes call the lithosphere “the main source of pollutants and a permanent accumulator”. Why?',
+          prompt: 'The course calls the lithosphere “the main source of pollutants and a permanent accumulator”. Why?',
           options: [
             { text: 'Because it is made of plastic.', why: 'The asthenosphere is “plastic” in the sense of flowing slowly. That has nothing to do with pollution.' },
             { text: 'Raw materials are extracted from it, and pollutants build up in it, through natural sources like volcanoes and human ones like burning fossil fuels.', correct: true, why: 'It is both where pollution starts (extraction) and where it accumulates.' },
@@ -252,7 +252,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Case file · 1 of 4',
-          prompt: 'At about 11 km up, which layer is the plane most likely in, given your notes?',
+          prompt: 'At about 11 km up, which layer is the plane most likely in?',
           options: [
             { text: 'Troposphere', correct: true, why: 'The troposphere is 7–20 km thick, so 11 km is very likely still inside it.' },
             { text: 'Mesosphere', why: 'That’s the third layer up, far above any airliner.' },
@@ -263,7 +263,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Case file · 2 of 4',
-          prompt: 'It’s 30°C on the ground in Lagos. Using your notes’ lapse rate, roughly how cold would the air outside be 5 km up?',
+          prompt: 'It’s 30°C on the ground in Lagos. Using the course’s lapse rate, roughly how cold would the air outside be 5 km up?',
           options: [
             { text: 'About 25–28°C', why: 'That would be a lapse rate of under 1°C per km.' },
             { text: 'About 0–10°C', correct: true, why: '5 km × 4–6°C per km = 20–30°C colder: roughly 0–10°C.' },
@@ -274,12 +274,12 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Case file · 3 of 4',
-          prompt: 'The student asks why the air outside is too thin to breathe at cruising height. What do your notes say?',
+          prompt: 'The student asks why the air outside is too thin to breathe at cruising height. What does the course say?',
           options: [
             { text: 'Air pressure and density decrease with altitude.', correct: true, why: 'Higher up there is less air pressing down, so it’s thinner.' },
             { text: 'Oxygen turns into nitrogen at height.', why: 'The gases are mixed, not chemically changing.' },
             { text: 'The plane is in the heterosphere.', why: 'The homosphere reaches about 80 km. The plane is far below that.' },
-            { text: 'The stratosphere has no oxygen at all.', why: 'That’s not what the notes say, and the plane is in the troposphere anyway.' },
+            { text: 'The stratosphere has no oxygen at all.', why: 'No, and the plane is in the troposphere anyway.' },
           ],
         },
         {

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTest } from '../../app/TestProvider';
 import { coursePath, getCourse } from '../../data/courses';
 import AppHeader from '../../lib/AppHeader';
+import useStartTest from '../course/useStartTest';
 import { formatDuration, scoreSession } from '../../lib/scoring';
 
 function verdict(percent) {
@@ -12,15 +13,15 @@ function verdict(percent) {
 }
 
 export default function ResultsPage() {
-  const { session, startTest, clearTest } = useTest();
+  const { session, clearTest } = useTest();
+  const { begin, dialog: loading } = useStartTest();
   const navigate = useNavigate();
   const result = useMemo(() => scoreSession(session), [session]);
   const timeUsed = (session.submittedAt - session.startedAt) / 1000;
   const tone = result.percent >= 70 ? 'good' : result.percent >= 50 ? 'ok' : 'low';
 
   function retake() {
-    startTest(session.config);
-    navigate('/test', { replace: true });
+    begin(session.config, { replace: true });
   }
 
   const course = getCourse(session.config.items[0].course);
@@ -86,6 +87,7 @@ export default function ResultsPage() {
           </button>
         </div>
       </main>
+      {loading}
     </>
   );
 }

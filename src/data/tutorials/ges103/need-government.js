@@ -74,7 +74,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Herman Finer (1956) called government “man’s unending adventure”. Why, according to your notes, is government indispensable?',
+          prompt: 'Herman Finer (1956) called government “man’s unending adventure”. Why, is government indispensable?',
           options: [
             { text: 'Because politicians need jobs.', why: 'Finer’s argument is about human weakness, not careers.' },
             { text: 'Because man is deficient in wisdom, virtue, strength and resources compared with his growing wants.', correct: true, why: 'Government is his heaviest burden and also his supreme hope of liberation from individual feebleness.' },
@@ -122,7 +122,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Apply it',
-          prompt: 'Which of these are part of the collective-action problem, according to your notes?',
+          prompt: 'Which of these are part of the collective-action problem?',
           options: [
             { text: 'Almost all private actions have public consequences.', correct: true, why: '**Private actions with public consequences** are the starting point of the problem.' },
             { text: 'Costs and benefits spread indiscriminately: excluding one person excludes everyone.', correct: true, why: '**You can’t switch off the light for one free-rider** without switching it off for all.' },
@@ -156,7 +156,7 @@ export default {
           options: [
             { text: 'Because the poor don’t want help.', why: 'The resistance comes from the other side.' },
             { text: 'Because the rich resist, arguing that inequality drives efficiency, so voluntary giving won’t be enough.', correct: true, why: 'Without coercion that people accept as legitimate, redistribution wouldn’t happen at the scale needed.' },
-            { text: 'Because charities are illegal.', why: 'Nothing in the notes says that.' },
+            { text: 'Because charities are illegal.', why: 'No; that isn’t a reason.' },
             { text: 'Because only courts can move money.', why: 'Redistribution is done by government through policy and taxes, not only courts.' },
           ],
         },
@@ -184,7 +184,7 @@ export default {
           art: 'assembly',
           eyebrow: 'The democratic method',
           title: 'Democracy: government by the whole population, usually through elected representatives.',
-          body: 'Your notes list **13 democratic principles**: citizen participation, political equality, political tolerance, accountability and transparency, political competition, free and fair elections, separation of powers, respect for human rights, rule of law, periodic elections, neutrality of state institutions, popular sovereignty and secret balloting.\n\nThe process of getting there has ==eight steps==.',
+          body: 'The course lists **13 democratic principles**: citizen participation, political equality, political tolerance, accountability and transparency, political competition, free and fair elections, separation of powers, respect for human rights, rule of law, periodic elections, neutrality of state institutions, popular sovereignty and secret balloting.\n\nThe process of getting there has ==eight steps==.',
         },
         {
           type: 'order',
@@ -215,7 +215,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Check yourself',
-          prompt: 'Which of these are causes of military coups listed in your notes?',
+          prompt: 'Which of these are causes of military coups?',
           options: [
             { text: 'Poor leadership', correct: true, why: '**Poor leadership** is listed.' },
             { text: 'Corruption', correct: true, why: '**Corruption** is listed.' },
@@ -223,16 +223,16 @@ export default {
             { text: 'Military ambition', correct: true, why: '**Military ambition** is listed.' },
             { text: 'Free and fair elections', why: '**Free and fair elections** are a democratic principle, not a cause of coups.' },
           ],
-          note: 'Your notes list Nigeria 1998–99 among coup examples. In fact, General Abdulsalami Abubakar took over in 1998 after Sani Abacha died in office, not through a coup. The other examples (Thailand 2014, Burkina Faso 2015, Mali 2012 and so on) are standard.',
+          note: 'The course lists Nigeria 1998–99 among coup examples. In fact, General Abdulsalami Abubakar took over in 1998 after Sani Abacha died in office, not through a coup. The other examples (Thailand 2014, Burkina Faso 2015, Mali 2012 and so on) are standard.',
         },
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Why do your notes say a military coup is always illegal, even if the government it removes was corrupt?',
+          prompt: 'Why does the course say a military coup is always illegal, even if the government it removes was corrupt?',
           options: [
             { text: 'Because soldiers are not allowed to vote.', why: 'Voting rights aren’t the issue.' },
             { text: 'Because it suspends the very constitution that created the army.', correct: true, why: 'The army exists under the constitution. Overthrowing that constitution destroys the legal basis of its own authority.' },
-            { text: 'Because coups are always slow.', why: 'The notes say the opposite: a coup is the fastest route to power.' },
+            { text: 'Because coups are always slow.', why: 'The opposite: a coup is the fastest route to power.' },
             { text: 'Because the UN must approve every government.', why: 'That’s not the reason given.' },
           ],
           explain: 'Link to Chapter 1: power taken this way lacks legitimacy, so it must lean on force.',
@@ -285,7 +285,7 @@ export default {
           prompt: 'In one region, officials secretly change the result sheets so the ruling party wins. Which mode is this, and which Nigerian example matches it?',
           options: [
             { text: 'A military coup, like 1966', why: 'No soldiers took power. The vote itself was falsified.' },
-            { text: 'Election rigging, like the 1965 Western Region election', correct: true, why: 'Falsifying leadership selection is rigging. The 1965 Western Region (NNDP) and 1983 (NPN) elections are the notes’ examples.' },
+            { text: 'Election rigging, like the 1965 Western Region election', correct: true, why: 'Falsifying leadership selection is rigging. The 1965 Western Region (NNDP) and 1983 (NPN) elections are the course’s examples.' },
             { text: 'The imperialistic mode, like pre-independence Nigeria', why: 'No foreign power appointed anyone.' },
             { text: 'Collective action, like a road project', why: 'Collective action is one of Laver’s roles, not a way of taking power.' },
           ],
@@ -307,7 +307,7 @@ export default {
           prompt: 'Kanto’s army chief says: “If the new government fails, we’ll step in and fix things.” Which replies use this lesson correctly?',
           options: [
             { text: 'A coup would be illegal, because it suspends the constitution that created the army.', correct: true, why: '**Coups are always illegal** for exactly this reason.' },
-            { text: 'A coup is the fastest route to power, but also the most dangerous.', correct: true, why: '**Fastest and most dangerous** is how the notes describe it.' },
+            { text: 'A coup is the fastest route to power, but also the most dangerous.', correct: true, why: '**Fastest and most dangerous** is how the course describes it.' },
             { text: 'Government by force would still be democratic if it fixed things.', why: '**Democracy is government by the people** through elected representatives. Force is a non-democratic mode.' },
             { text: 'Power taken by force tends to lack legitimacy, so it has to lean on coercion.', correct: true, why: '**This links back to Chapter 1**: power without legitimacy needs force to survive.' },
           ],
@@ -315,7 +315,7 @@ export default {
         {
           type: 'finish',
           title: 'You know why government exists.',
-          body: 'Here are the key ideas. They’re also in your notes drawer during every lesson.',
+          body: 'Here are the key ideas. They’re also in the Notes panel during every lesson.',
         },
       ],
     },

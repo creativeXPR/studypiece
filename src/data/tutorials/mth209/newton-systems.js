@@ -82,7 +82,7 @@ export default {
         'For a $3 \\times 3$ $J$, use the matrix inverse method (cofactors ÷ det); keep fractions such as $\\tfrac{1}{40}$.',
         'Show the subtraction $x^{(k)} - J^{-1}F$ component by component.',
         'Apply the stopping test to **every** component: if even one change is above $\\varepsilon$, do another step.',
-        'Mistake: stopping on the answer the notes give (or the first one that “looks close”) without showing the test.',
+        'Mistake: stopping on an answer you expect (or the first one that “looks close”) without showing the test.',
       ],
       examples: [
         {

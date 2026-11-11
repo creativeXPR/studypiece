@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../app/AuthProvider';
 import { coursePath, getCourseBySlug } from '../../data/courses';
-import { classicFor, getTutorial, lessonPath, tutorialPath } from '../../data/tutorials';
+import { classicFor, getTutorial, lessonPath, loadTutorial, tutorialPath } from '../../data/tutorials';
 import AppHeader from '../../lib/AppHeader';
 import CourseBanner from '../../lib/CourseBanner';
 import ConfirmDialog from '../../lib/ConfirmDialog';
@@ -24,6 +24,10 @@ export default function TutorialHomePage() {
   const navigate = useNavigate();
   useSyncRevision();
   const [startOver, setStartOver] = useState(null); // lesson to restart, pending confirmation
+  // Download the lessons in the background, so the one the student picks opens at once.
+  useEffect(() => {
+    if (tutorial) loadTutorial(tutorial.slug).catch(() => {}); // the lesson page retries
+  }, [tutorial]);
   if (!tutorial) return <NotFound />;
 
   const { done, total } = lessonsDone(tutorial);
@@ -31,13 +35,13 @@ export default function TutorialHomePage() {
   // A lesson left part-way through comes first, like a test in progress.
   const resume = listRuns(uid)
     .filter((r) => r.courseSlug === tutorial.slug)
-    .map((run) => ({ run, lesson: allLessons.find((l) => l.id === run.lessonId && l.sections) }))
+    .map((run) => ({ run, lesson: allLessons.find((l) => l.id === run.lessonId && l.ready) }))
     .find((x) => x.lesson);
   // An optional chapter only joins the path once the student has started it.
   const started = (ch) => ch.lessons.some((l) => getProgress(tutorial.slug, l.id)?.done || getRun(uid, tutorial.slug, l.id));
   const finished = (ch) => ch.lessons.every((l) => getProgress(tutorial.slug, l.id)?.done);
   const path = tutorial.chapters.filter((c) => !c.optional || started(c)).flatMap((c) => c.lessons);
-  const upNext = resume?.lesson ?? path.find((l) => l.sections && !getProgress(tutorial.slug, l.id)?.done);
+  const upNext = resume?.lesson ?? path.find((l) => l.ready && !getProgress(tutorial.slug, l.id)?.done);
   const pct = total ? Math.round((done / total) * 100) : 0;
 
   return (
@@ -113,13 +117,13 @@ export default function TutorialHomePage() {
 
         <div className="learn-chapters">
           {tutorial.chapters.map((ch) => {
-            const ready = ch.lessons.filter((l) => l.sections).length;
+            const ready = ch.lessons.filter((l) => l.ready).length;
             const list = (
                 <ol className="learn-lessons">
                   {ch.lessons.map((l, i) => {
-                    const rec = l.sections ? getProgress(tutorial.slug, l.id) : null;
-                    const run = l.sections ? getRun(uid, tutorial.slug, l.id) : null;
-                    const state = !l.sections
+                    const rec = l.ready ? getProgress(tutorial.slug, l.id) : null;
+                    const run = l.ready ? getRun(uid, tutorial.slug, l.id) : null;
+                    const state = !l.ready
                       ? 'soon'
                       : run
                         ? 'progress'
@@ -146,7 +150,7 @@ export default function TutorialHomePage() {
                     );
                     return (
                       <li key={l.id}>
-                        {l.sections ? (
+                        {l.ready ? (
                           <Link to={lessonPath(tutorial.slug, l.id)} className={`learn-les ${state}`}>{inner}</Link>
                         ) : (
                           <div className="learn-les soon" aria-disabled="true">{inner}</div>

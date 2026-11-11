@@ -73,12 +73,12 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'A Chair in Political Science existed in the 17th century, yet the notes say political science had no separate identity until the 19th. How do both fit?',
+          prompt: 'A Chair in Political Science existed in the 17th century, yet the course says political science had no separate identity until the 19th. How do both fit?',
           options: [
-            { text: 'One of the dates in the notes must be wrong.', why: 'Both are correct. Ask what “separate identity” means.' },
+            { text: 'One of the two dates must be wrong.', why: 'Both are correct. Ask what “separate identity” means.' },
             { text: 'Having one Chair is not the same as being an independent discipline. Until the 19th century, the field was still dominated by philosophers, theologians and journalists.', correct: true, why: 'A single professorship existed early, but the subject only became a distinct academic discipline, with its own departments, in the late 19th century.' },
-            { text: 'The Chair was in philosophy, not political science.', why: 'The notes say it was a Chair in Political Science. The point is about the field as a whole.' },
-            { text: 'Sweden wasn’t a real university system at the time.', why: 'That’s not in your notes and isn’t the point.' },
+            { text: 'The Chair was in philosophy, not political science.', why: 'It was a Chair in Political Science. The point is about the field as a whole.' },
+            { text: 'Sweden wasn’t a real university system at the time.', why: 'That isn’t the point.' },
           ],
         },
         {
@@ -280,12 +280,12 @@ export default {
           type: 'story',
           eyebrow: 'Why study politics?',
           title: '“Man is a political animal.”',
-          body: 'Aristotle drew two conclusions from this:\n\n**1.** Politics is the essence of social existence. No one can avoid it unless they live in isolation.\n\n**2.** Every person is a “politician”, a political actor: when you vote, argue about politics, or sit in a PTA meeting.\n\nAnd a warning from your notes: ==if you don’t participate, someone else will decide for you.== The ignorant are usually manipulated.',
+          body: 'Aristotle drew two conclusions from this:\n\n**1.** Politics is the essence of social existence. No one can avoid it unless they live in isolation.\n\n**2.** Every person is a “politician”, a political actor: when you vote, argue about politics, or sit in a PTA meeting.\n\nAnd a warning: ==if you don’t participate, someone else will decide for you.== The ignorant are usually manipulated.',
         },
         {
           type: 'choice',
           eyebrow: 'Check yourself',
-          prompt: 'Your notes use a virologist to explain why we study politics even if we dislike it. What’s the point of the analogy?',
+          prompt: 'The course uses a virologist to explain why we study politics even if we dislike it. What’s the point of the analogy?',
           options: [
             { text: 'Politics spreads like a virus.', why: 'The analogy isn’t about how politics spreads.' },
             { text: 'We don’t need to like what we study. A virologist studies a virus they dislike in order to prevent it.', correct: true, why: 'Studying something you dislike is often the best way to deal with it.' },
@@ -325,7 +325,7 @@ export default {
             { text: 'Lagos State government enforces a new tax law across the state', bucket: 's', why: '**A state government enforcing law** is politics at the state level, which has territory and compulsory jurisdiction.' },
             { text: 'A local government council passes its budget', bucket: 's', why: '**Federal, state and local government activity** all count as the state level in Nigeria.' },
             { text: 'Rival factions battle for control inside a professional association', bucket: 'i', why: '**Politics inside an association** is intra-state, limited by the state’s rules.' },
-            { text: 'Tension between the governed and the governors', bucket: 'i', why: '**Governed versus governors** is one of the notes’ examples of intra-state politics.' },
+            { text: 'Tension between the governed and the governors', bucket: 'i', why: '**Governed versus governors** is one of the course’s examples of intra-state politics.' },
             { text: 'Nigeria and Ghana negotiate a trade deal at ECOWAS', bucket: 'x', why: '**Negotiation between countries** is inter-state politics.' },
             { text: 'The UN can’t force a member state to obey its resolution', bucket: 'x', why: '**The UN’s inability to compel members** shows inter-state politics has no monopoly of force.' },
           ],
@@ -334,10 +334,10 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'A university staff union campaigns publicly against a federal government policy. According to your notes, what is the best name for this?',
+          prompt: 'A university staff union campaigns publicly against a federal government policy. What is the best name for this?',
           options: [
-            { text: 'Intra-state politics, because a union is an association inside the state', why: 'Tempting, but your notes make a specific exception for exactly this case.' },
-            { text: 'State politics', correct: true, why: 'Your notes say that when a church or university campaigns against a government policy, it is better called state politics, because it is about the state’s own decisions.' },
+            { text: 'Intra-state politics, because a union is an association inside the state', why: 'Tempting, but there is a specific exception for exactly this case.' },
+            { text: 'State politics', correct: true, why: 'When a church or university campaigns against a government policy, it is better called state politics, because it is about the state’s own decisions.' },
             { text: 'Inter-state politics', why: 'Nothing here crosses national borders.' },
             { text: 'Not politics, because unions are not part of government', why: 'Pressure groups acting on government are very much political.' },
           ],
@@ -352,7 +352,7 @@ export default {
             { text: 'It is only about war.', why: 'Inter-state politics covers trade, diplomacy and cooperation too.' },
             { text: 'It has stronger institutions than any state.', why: 'It’s the opposite: no international body has a monopoly of force.' },
           ],
-          explain: 'Scholars of international politics named in your notes: **Nicholas Spykman, Frederick Dunn, Joshua Goldstein, Hans Morgenthau**.',
+          explain: 'Scholars of international politics include **Nicholas Spykman, Frederick Dunn, Joshua Goldstein, Hans Morgenthau**.',
         },
         {
           type: 'bridge',
@@ -435,15 +435,15 @@ export default {
           prompt: 'Your classmate shrugs: “I’m not interested in politics, so the fee hike has nothing to do with me.” What’s the best reply, using this lesson?',
           options: [
             { text: 'You’re right. Only politicians need to care.', why: 'Aristotle would strongly disagree. Every person is a political actor.' },
-            { text: 'Man is a political animal. You can’t escape politics unless you live in isolation, and if you don’t take part, someone else decides how much you pay.', correct: true, why: 'This combines both of Aristotle’s implications with the notes’ warning that non-participants get decided for, and are often manipulated.' },
+            { text: 'Man is a political animal. You can’t escape politics unless you live in isolation, and if you don’t take part, someone else decides how much you pay.', correct: true, why: 'This combines both of Aristotle’s implications with the course’s warning that non-participants get decided for, and are often manipulated.' },
             { text: 'Politics only matters at the state level, and this is a university issue.', why: 'Politics happens at every level, and it’s everywhere, from the classroom to the market.' },
-            { text: 'Study it anyway because it might be in the exam.', why: 'True, but your notes give a much stronger reason.' },
+            { text: 'Study it anyway because it might be in the exam.', why: 'True, but there is a much stronger reason.' },
           ],
         },
         {
           type: 'finish',
           title: 'You can explain what politics is.',
-          body: 'Here are the key ideas from this lesson. You can review them any time in your notes.',
+          body: 'Here are the key ideas from this lesson. You can review them any time in the Notes panel.',
         },
       ],
     },

@@ -1,6 +1,7 @@
 // `npm run check` — validates every course file before it reaches students.
 // Errors (exit 1) would break the app or the answer key; warnings are worth a look.
 import { loadCourses } from './loadCourses.js';
+import { checkText } from './textChecks.js';
 
 const LABEL_PREFIX = /^\s*(I|II|III|IV|[A-Da-d])[.)]\s/;
 const POSITIONAL_OPTION = /\b(both|all|none|neither)\b.*\b(above|below|I|II|III|IV)\b|\b(I|II|III|IV)\s+(and|&|or)\s+(I|II|III|IV)\b/i;
@@ -64,6 +65,7 @@ for (const { file, course } of files) {
       if (q.options.some((o) => LABEL_PREFIX.test(o))) warnings.push(at(w, 'options start with a label like "A." or "II." — the app adds labels itself'));
       if (q.options.some((o) => POSITIONAL_OPTION.test(o))) warnings.push(at(w, 'option refers to other options ("Both II and III", "All of the above"); its options won\'t be shuffled'));
       if (LABEL_IN_EXPLANATION.test(q.explanation ?? '')) warnings.push(at(w, 'explanation names an option by label; its options won\'t be shuffled'));
+      for (const text of [q.question, ...q.options, q.explanation ?? '']) checkText(text, (msg) => warnings.push(at(w, msg)));
       for (const text of [q.question, ...q.options, q.explanation ?? '']) {
         if ((String(text).replace(/\\\$/g, '').match(/\$/g) || []).length % 2) {
           warnings.push(at(w, 'odd number of "$" — a math expression is not closed'));

@@ -122,7 +122,7 @@ export default {
           widget: 'venn',
           eyebrow: 'Influence',
           title: 'Influence is a relationship without sanctions, coercion or force.',
-          body: 'Your notes put it this way: ==power implies influence, but influence does not imply force.== Here’s how the two fit together.',
+          body: 'The course puts it this way: ==power implies influence, but influence does not imply force.== Here’s how the two fit together.',
         },
         {
           type: 'reveal',
@@ -130,7 +130,7 @@ export default {
           title: 'Influence comes in two types',
           cards: [
             { icon: 'manifest', title: 'Manifest (explicit)', text: 'A’s action directly changes B’s behaviour. Your course rep says “Wear white on Friday,” and the class shows up in white.' },
-            { icon: 'potential', title: 'Potential (implicit)', text: 'Indirect or unspoken influence. Example from your notes: the National Assembly weighing a group’s interests before passing a law.' },
+            { icon: 'potential', title: 'Potential (implicit)', text: 'Indirect or unspoken influence. Example: the National Assembly weighing a group’s interests before passing a law.' },
           ],
         },
         {
@@ -180,7 +180,7 @@ export default {
           type: 'story',
           eyebrow: 'Authority',
           title: 'Authority is a superior form of power.',
-          body: 'With authority, people act because they **believe you have the right** to direct them, not because they fear you.\n\nYour notes describe it as a chain: ==Authority → respect → legitimacy → power==.\n\nThe sociologist **Max Weber** said people grant authority for three different reasons.',
+          body: 'With authority, people act because they **believe you have the right** to direct them, not because they fear you.\n\nThe course describes it as a chain: ==Authority → respect → legitimacy → power==.\n\nThe sociologist **Max Weber** said people grant authority for three different reasons.',
         },
         {
           type: 'reveal',
@@ -248,7 +248,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Apply it',
-          prompt: 'A government seen as dishonest loses legitimacy. According to your notes, what do governments do to keep it?',
+          prompt: 'A government seen as dishonest loses legitimacy. What do governments do to keep it?',
           options: [
             { text: 'Follow public opinion', correct: true, why: 'Governments track and follow public opinion because legitimacy lives in what people believe.' },
             { text: 'Use more force', why: 'Force can get obedience, but that’s power without legitimacy. It doesn’t make people believe you have the right to rule.' },

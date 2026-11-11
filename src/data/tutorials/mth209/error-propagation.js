@@ -105,7 +105,7 @@ export default {
           type: 'story',
           eyebrow: 'Exam question',
           title: 'A quotient from rounded data',
-          body: '“Evaluate $\\dfrac{2.362 \\times 1.76}{1.46 \\times 0.785}$. Then, assuming maximum round-off error in your data, estimate the limits between which your value lies.”\n\n**What the examiner wants:** the value; the round-off of each number (half a unit of its last digit); the relative errors added, because it is all products and quotients; the absolute error; and the two limits. Everything is in **Examples** in your notes.',
+          body: '“Evaluate $\\dfrac{2.362 \\times 1.76}{1.46 \\times 0.785}$. Then, assuming maximum round-off error in your data, estimate the limits between which your value lies.”\n\n**What the examiner wants:** the value; the round-off of each number (half a unit of its last digit); the relative errors added, because it is all products and quotients; the absolute error; and the two limits. The full solution is under **Examples** in the side panel.',
           asides: [{ label: 'Exam tip', text: 'State the round-off of each number before using it ($1.76 \\pm 0.005$, not $\\pm 0.0005$). It depends on that number’s own last digit.' }],
         },
         {

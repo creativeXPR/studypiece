@@ -11,7 +11,7 @@ export const COURSES_DIR = path.resolve(import.meta.dirname, '../src/data/course
 export async function loadCourses(dir = COURSES_DIR) {
   const files = fs
     .readdirSync(dir)
-    .filter((f) => (f.endsWith('.js') || f.endsWith('.json')) && f !== 'index.js')
+    .filter((f) => (f.endsWith('.js') || f.endsWith('.json')) && f !== 'index.js' && f !== 'all.js')
     .sort((a, b) => stem(a).localeCompare(stem(b)));
   return Promise.all(
     files.map(async (file) => {

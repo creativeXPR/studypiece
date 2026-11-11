@@ -1,32 +1,16 @@
 // Every other .js or .json file in this folder is a course and is registered automatically.
 // Format: { code, title, updated: 'YYYY-MM-DD', sets: [{ id, title?, questions }] }. See docs/adding-questions.md.
+//
+// The app starts with the catalogue only: every course and set without its questions, so
+// `courses`, `getCourse` and `getSet` are instant and a set has `count` instead of questions.
+// `loadCourse(code)` downloads one course's questions (its own small file) when a test needs them.
+import { courseCatalog } from 'virtual:studypiece-catalog';
 import { mergeCourses } from '../mergeCourses';
-import { courseSlug, setSlug } from '../slugs';
+import { shapeCourse } from '../courseShape';
 
-const modules = import.meta.glob(['./*.js', './*.json', '!./index.js'], { eager: true, import: 'default' });
+const files = import.meta.glob(['./*.js', './*.json', '!./index.js', '!./all.js'], { import: 'default' });
 
-function levelOf(code) {
-  const digit = code.match(/\d/)?.[0];
-  return digit ? Number(digit) * 100 : null;
-}
-
-// Sort by name without extension so "ges201.js" comes before "ges201-extra.json".
-const stem = (file) => file.replace(/\.(js|json)$/, '');
-const files = Object.keys(modules)
-  .sort((a, b) => stem(a).localeCompare(stem(b)))
-  .map((file) => modules[file]);
-
-export const courses = mergeCourses(files)
-  .map((course) => ({
-    ...course,
-    slug: courseSlug(course.code),
-    prefix: course.code.split(' ')[0],
-    level: course.level ?? levelOf(course.code),
-    questionCount: course.sets.reduce((n, s) => n + s.questions.length, 0),
-    sets: course.sets.map((set, i) => ({ ...set, slug: setSlug(set.id), title: set.title || `Set ${i + 1}` })),
-  }))
-  // Newest first: most recently updated courses on top, then by code.
-  .sort((a, b) => (b.updated ?? '').localeCompare(a.updated ?? '') || a.code.localeCompare(b.code));
+export const courses = courseCatalog;
 
 export function getCourse(code) {
   return courses.find((c) => c.code === code);
@@ -42,3 +26,27 @@ export function getSet(course, slug) {
 
 export const coursePath = (course) => `/course/${course.slug}`;
 export const setPath = (course, set) => `/course/${course.slug}/${set.slug}`;
+
+// Downloaded courses with their questions, by code. A failed download isn't kept, so it can be retried.
+const loaded = new Map();
+const pending = new Map();
+
+// The full course if it has been downloaded already, otherwise undefined.
+export const getLoadedCourse = (code) => loaded.get(code);
+
+export function loadCourse(code) {
+  if (loaded.has(code)) return Promise.resolve(loaded.get(code));
+  if (!pending.has(code)) {
+    const entry = getCourse(code);
+    if (!entry) return Promise.reject(new Error(`No course ${code}`));
+    const job = Promise.all(entry.files.map((file) => files[file]()))
+      .then((parts) => {
+        const course = shapeCourse(mergeCourses(parts)[0]);
+        loaded.set(code, course);
+        return course;
+      })
+      .finally(() => pending.delete(code));
+    pending.set(code, job);
+  }
+  return pending.get(code);
+}

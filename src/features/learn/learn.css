@@ -299,6 +299,11 @@
   text-transform: uppercase;
 }
 
+.tut-eyebrow .katex {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .tut-title {
   font-size: clamp(1.4rem, 4.2vw, 1.85rem);
   line-height: 1.22;

@@ -107,7 +107,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Think deeper',
-          prompt: 'Which of these are legitimate data manipulations listed in your notes?',
+          prompt: 'Which of these are legitimate data manipulations?',
           options: [
             { text: 'Reversing negatively worded items before adding up a total score', correct: true, why: '**Reverse negative items first**, otherwise they cancel out the positive ones.' },
             { text: 'Collapsing age into young, middle and old', correct: true, why: '**Collapsing a continuous variable** into groups is listed.' },
@@ -216,7 +216,7 @@ export default {
           eyebrow: 'Case file · 1 of 5',
           prompt: '“Do students in UI and Lead City University differ in average weekly food spending?”',
           options: [
-            { text: 'Independent-samples t-test', correct: true, why: 'Two different groups compared on a mean. It’s even the notes’ own example (UI vs Lead City staff).' },
+            { text: 'Independent-samples t-test', correct: true, why: 'Two different groups compared on a mean. It’s even the course’s own example (UI vs Lead City staff).' },
             { text: 'Paired-samples t-test', why: 'Paired is for the same people measured twice.' },
             { text: 'Chi-square', why: 'Spending is continuous, not a category count.' },
             { text: 'Factor analysis', why: 'Factor analysis condenses items. It doesn’t compare groups.' },
@@ -262,7 +262,7 @@ export default {
           options: [
             { text: 'Two independent variables (age group and sex) on one outcome call for a two-way ANOVA.', correct: true, why: '**Two IVs, one DV** is two-way ANOVA.' },
             { text: 'A two-way ANOVA shows main effects and an interaction effect.', correct: true, why: '**Main effects plus interaction** is what two-way ANOVA gives you.' },
-            { text: '“Rising with age, but only for women” would be an interaction effect.', correct: true, why: '**One variable’s effect depending on the other** is an interaction. It’s the notes’ own example.' },
+            { text: '“Rising with age, but only for women” would be an interaction effect.', correct: true, why: '**One variable’s effect depending on the other** is an interaction. It’s the course’s own example.' },
             { text: 'Chi-square is the best test here.', why: '**Turnover intention is a continuous score**, and there are two predictors.' },
           ],
         },

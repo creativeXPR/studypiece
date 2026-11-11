@@ -118,7 +118,7 @@ export default function linkPreviews() {
       const template = fs.readFileSync(path.join(outDir, 'index.html'), 'utf8');
       const courses = mergeCourses((await loadCourses(path.join(root, 'src/data/courses'))).map((c) => c.course));
       // Tutorial files use extensionless imports like the rest of the app, so load them through Vite.
-      const { module: tutorialModule } = await runnerImport(path.join(root, 'src/data/tutorials/index.js'), { configFile: false, logLevel: 'error' });
+      const { module: tutorialModule } = await runnerImport(path.join(root, 'src/data/tutorials/all.js'), { configFile: false, logLevel: 'error' });
       const { tutorials } = tutorialModule;
       let pages = 0;
 

@@ -15,7 +15,7 @@ import useStartTest from './useStartTest';
 export default function CoursePage() {
   const { courseId } = useParams();
   const course = getCourseBySlug(courseId);
-  const { start, dialog } = useStartTest();
+  const { start, dialog } = useStartTest(course?.code);
   const [mixCount, setMixCount] = useState(25);
   const [prefs, setPrefs] = useShufflePrefs();
 
@@ -77,7 +77,7 @@ export default function CoursePage() {
                 <div>
                   <h2 className="set-title">{set.title}</h2>
                   <p className="muted small">
-                    {set.questions.length} questions · {set.questions.length} min
+                    {set.count} questions · {set.count} min
                   </p>
                 </div>
                 <ChevronRight className="muted set-chevron" />
@@ -85,7 +85,7 @@ export default function CoursePage() {
               <ShareButtons
                 compact
                 path={setPath(course, set)}
-                text={`${course.code} · ${set.title}: ${set.questions.length}-question practice test`}
+                text={`${course.code} · ${set.title}: ${set.count}-question practice test`}
               />
             </div>
           ))}

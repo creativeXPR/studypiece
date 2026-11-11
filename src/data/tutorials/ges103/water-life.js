@@ -112,7 +112,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Your notes call the hydrosphere an “accumulator of pollutants and vector of diffusion”. What does “vector” mean here?',
+          prompt: 'The course calls the hydrosphere an “accumulator of pollutants and vector of diffusion”. What does “vector” mean here?',
           options: [
             { text: 'Water makes pollution disappear.', why: 'It does the opposite: it carries pollution.' },
             { text: 'Water carries pollutants and spreads them from place to place.', correct: true, why: 'A vector is a carrier. Rivers and currents spread pollution far from its source.' },
@@ -175,7 +175,7 @@ export default {
           items: [
             { text: 'A rainforest, dominated by flowering plants', bucket: 't', why: '**Land ecosystems** dominated by flowering plants are terrestrial.' },
             { text: 'A lagoon full of phytoplankton', bucket: 'q', why: '**Water ecosystems** with small plants like phytoplankton are aquatic.' },
-            { text: 'A city', bucket: 'm', why: '**The city** is your notes’ example of a man-made ecosystem.' },
+            { text: 'A city', bucket: 'm', why: '**The city** is the course’s example of a man-made ecosystem.' },
           ],
         },
         {
@@ -184,7 +184,7 @@ export default {
           prompt: 'Why does most sea life live within about 200 m of the surface?',
           options: [
             { text: 'The water is warmer in the deep sea.', why: 'The deep sea is cold, and that isn’t the main reason.' },
-            { text: 'Photosynthesis needs light, and light fades with depth, so food production happens near the surface.', correct: true, why: 'Your notes: photosynthesis in water happens mainly at the ocean surface, where there’s light.' },
+            { text: 'Photosynthesis needs light, and light fades with depth, so food production happens near the surface.', correct: true, why: 'Photosynthesis in water happens mainly at the ocean surface, where there’s light.' },
             { text: 'Fish are afraid of the dark.', why: 'It’s about energy, not fear.' },
             { text: 'There is no water below 200 m.', why: 'Oceans are kilometres deep.' },
           ],

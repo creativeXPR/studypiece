@@ -267,7 +267,7 @@ export default {
           eyebrow: 'Case file · 3 of 5',
           prompt: 'Speaker 3: “In our culture, staying reachable on WhatsApp is a social duty. Ignoring messages is rude.” Which approach, and what’s special about it?',
           options: [
-            { text: 'Sociocultural, the newest approach', correct: true, why: 'The influence of cultural norms on behaviour is sociocultural, which your notes call the newest approach.' },
+            { text: 'Sociocultural, the newest approach', correct: true, why: 'The influence of cultural norms on behaviour is sociocultural, the newest approach.' },
             { text: 'Structuralism, the oldest school', why: 'Structuralism breaks experience into elements.' },
             { text: 'Psychoanalysis, based on free association', why: 'Nothing unconscious is being discussed.' },
             { text: 'Biological, based on hormones', why: 'This is about culture, not hormones.' },

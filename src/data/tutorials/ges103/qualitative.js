@@ -84,7 +84,7 @@ export default {
           type: 'reveal',
           eyebrow: 'Lofland and Lofland (1995)',
           title: 'Six ways to find patterns',
-          body: 'Your notes use quarrels between workplace friends as the example.',
+          body: 'The course uses quarrels between workplace friends as the example.',
           cards: [
             { title: 'Frequency', text: 'How **often** do quarrels happen?' },
             { title: 'Magnitude', text: 'How **serious** are they?' },
@@ -155,7 +155,7 @@ export default {
           type: 'story',
           eyebrow: 'Coding',
           title: 'One sentence, three rounds of coding.',
-          body: 'Your notes’ example. A worker says:\n\n==“My employer will consider a pay increase after a year.”==\n\nCoding classifies each unit of data. **The concept is the organising principle.** Watch the codes get more analytical each round.',
+          body: 'The course’s example. A worker says:\n\n==“My employer will consider a pay increase after a year.”==\n\nCoding classifies each unit of data. **The concept is the organising principle.** Watch the codes get more analytical each round.',
         },
         {
           type: 'order',
@@ -184,7 +184,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Check yourself',
-          prompt: 'Which of these are software packages for qualitative analysis named in your notes?',
+          prompt: 'Which of these are software packages for qualitative analysis?',
           options: [
             { text: 'NVivo', correct: true, why: '**NVivo** is one of the two most popular.' },
             { text: 'ATLAS.ti', correct: true, why: '**ATLAS.ti** is one of the two most popular.' },

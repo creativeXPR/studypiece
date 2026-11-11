@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { getCourse } from '../data/courses';
+import { getLoadedCourse } from '../data/courses';
 import { sync } from '../lib/sync';
 import { useAuth } from './AuthProvider';
 
@@ -57,8 +57,10 @@ function shuffleOptions(q) {
 // A section is one tab in the test: a whole question set, or a random mix drawn
 // from every set of a course. Questions are copied in so a reload (or a later
 // edit to the question bank) can't change a test that's already underway.
+// The course's questions must be downloaded first (useStartTest does it, see loadCourse).
 function buildSection(item, { shuffle, shuffleOptions: mixOptions }) {
-  const course = getCourse(item.course);
+  const course = getLoadedCourse(item.course);
+  if (!course) throw new Error(`${item.course} questions aren't downloaded yet`);
   const prepare = (list) => (mixOptions ? list.map(shuffleOptions) : list);
   if (item.kind === 'mix') {
     const pool = course.sets.flatMap((set) =>

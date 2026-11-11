@@ -104,7 +104,7 @@ export default {
           type: 'story',
           eyebrow: 'Exam question',
           title: 'Two expansions, one answer',
-          body: '“Use the expansions for $(1 + \\tfrac12x)^6$ and $(2 + 3x)^{-1}$ to express $\\dfrac{2 + (1 + \\frac12x)^6}{2 + 3x}$ in ascending powers of $x$ as far as the $x^3$ term.”\n\n**What the examiner wants:** each expansion shown; the $2$ factored out of $(2 + 3x)^{-1}$; a tidy collection of each power; and the range $|x| < \\tfrac23$. The full solution is in **Examples** in your notes.',
+          body: '“Use the expansions for $(1 + \\tfrac12x)^6$ and $(2 + 3x)^{-1}$ to express $\\dfrac{2 + (1 + \\frac12x)^6}{2 + 3x}$ in ascending powers of $x$ as far as the $x^3$ term.”\n\n**What the examiner wants:** each expansion shown; the $2$ factored out of $(2 + 3x)^{-1}$; a tidy collection of each power; and the range $|x| < \\tfrac23$. The full solution is under **Examples** in the side panel.',
         },
         {
           type: 'custom',

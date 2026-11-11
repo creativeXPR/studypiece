@@ -49,7 +49,7 @@ export default {
           type: 'story',
           eyebrow: 'The steps',
           title: 'Measuring any error',
-          body: '1. Name the true value $X$ and the approximation $x$.\n2. **Absolute error** $= |X - x|$.\n3. **Relative error** $= \\dfrac{|X - x|}{|X|}$, and **percentage error** $=$ relative $\\times 100$.\n4. **Classify the source:** a blunder (a human slip), round-off (only some digits kept), or truncation (an endless process cut short).\n\nThese steps are saved under **Steps** in your notes.',
+          body: '1. Name the true value $X$ and the approximation $x$.\n2. **Absolute error** $= |X - x|$.\n3. **Relative error** $= \\dfrac{|X - x|}{|X|}$, and **percentage error** $=$ relative $\\times 100$.\n4. **Classify the source:** a blunder (a human slip), round-off (only some digits kept), or truncation (an endless process cut short).\n\nThese steps are saved under **Steps** in the side panel.',
         },
         {
           type: 'story',

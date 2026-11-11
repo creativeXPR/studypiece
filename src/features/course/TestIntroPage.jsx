@@ -16,8 +16,8 @@ export default function TestIntroPage() {
   const set = getSet(course, setId);
   const { session } = useTest();
   const navigate = useNavigate();
-  const { start, dialog } = useStartTest();
-  const [duration, setDuration] = useState(set?.questions.length ?? 25);
+  const { start, dialog } = useStartTest(course?.code);
+  const [duration, setDuration] = useState(set?.count ?? 25);
   const [prefs, setPrefs] = useShufflePrefs();
 
   if (!set) return <NotFound />;
@@ -51,7 +51,7 @@ export default function TestIntroPage() {
 
           <div className="intro-stats">
             <div>
-              <strong>{set.questions.length}</strong>
+              <strong>{set.count}</strong>
               <span className="muted small">questions</span>
             </div>
             <label className="intro-duration">
@@ -91,7 +91,7 @@ export default function TestIntroPage() {
             <span className="muted small">Share this test</span>
             <ShareButtons
               path={setPath(course, set)}
-              text={`${course.code} · ${set.title}: ${set.questions.length}-question practice test`}
+              text={`${course.code} · ${set.title}: ${set.count}-question practice test`}
             />
           </div>
         </section>

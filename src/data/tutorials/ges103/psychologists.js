@@ -35,7 +35,7 @@ export default {
           prompt: 'Can a psychologist read your mind?',
           options: HOOK.map(([text]) => ({ text })),
           pollTitle: 'Let’s test that.',
-          pollBody: 'Your notes have a strong opinion about this exact myth. We’ll come back to your answer.',
+          pollBody: 'The course has a strong opinion about this exact myth. We’ll come back to your answer.',
         },
         {
           type: 'story',
@@ -119,7 +119,7 @@ export default {
             '**Psyche** (mind/soul) + **logos** (study). Modern: the scientific study of **behaviour and mental processes**.',
             'Four goals: **describe, explain, predict, control**.',
           ],
-          why: 'Your notes say psychology “has a long past but a short history.” Let’s see what that means.',
+          why: 'Psychology “has a long past but a short history.” Let’s see what that means.',
         },
       ],
     },
@@ -210,10 +210,10 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Case file · 1 of 4',
-          prompt: 'What does your notes’ advice say about him?',
+          prompt: 'What does the course’s advice say about him?',
           options: [
             { text: 'Trust him if he sounds confident.', why: 'Confidence isn’t evidence.' },
-            { text: 'Be sceptical of anyone claiming to read personality from small samples of behaviour.', correct: true, why: 'Ten seconds of watching is exactly the kind of small sample your notes warn about.' },
+            { text: 'Be sceptical of anyone claiming to read personality from small samples of behaviour.', correct: true, why: 'Ten seconds of watching is exactly the kind of small sample the course warns about.' },
             { text: 'He must be a clinical psychologist.', why: 'Clinical psychologists diagnose and treat disorders. They don’t do ten-second readings.' },
             { text: 'He’s using Wundt’s method.', why: 'Wundt used careful observation and measurement, not guesses.' },
           ],
@@ -225,7 +225,7 @@ export default {
           options: [
             { text: 'Overt', why: 'Overt behaviour can be observed directly.' },
             { text: 'Covert', correct: true, why: 'Thinking is hidden and internal, which is exactly why it can’t be read by looking at someone.' },
-            { text: 'Not behaviour at all', why: 'Your notes count covert events like thinking as behaviour.' },
+            { text: 'Not behaviour at all', why: 'The course counts covert events like thinking as behaviour.' },
             { text: 'A stimulus', why: 'A stimulus is physical energy that triggers a sensory response.' },
           ],
         },

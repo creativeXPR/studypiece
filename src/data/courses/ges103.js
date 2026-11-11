@@ -24,7 +24,7 @@ export default {
           "explanation": "Aristotle, in his book Politics, described political science as the “Queen of sciences” because almost everything happens in a political context. Plato and Lasswell are associated with other ideas, and Dudley wrote about the components of politics, not this title."
         },
         {
-          "question": "According to the notes, when did political science become a distinct academic discipline?",
+          "question": "When did political science become a distinct academic discipline?",
           "options": [
             "In the 17th century",
             "In the last quarter of the 19th century",
@@ -32,7 +32,7 @@ export default {
             "At the beginning of the 21st century"
           ],
           "answer": 1,
-          "explanation": "The notes state that political science became a distinct academic discipline only in the last quarter of the 19th century. The 17th century is mentioned only in connection with the first Chair in Political Science in Sweden, and the other options are not supported."
+          "explanation": "Political science became a distinct academic discipline only in the last quarter of the 19th century. The 17th century is mentioned only in connection with the first Chair in Political Science in Sweden, and the other options are not supported."
         },
         {
           "question": "Harold Lasswell defined politics as:",
@@ -54,7 +54,7 @@ export default {
             "It is based only on military coups"
           ],
           "answer": 1,
-          "explanation": "The notes say Aristotle’s definition is criticised as too broad because it makes everyone a politician. The other criticisms do not match the notes; Lasswell’s definition, for example, is the one criticised for stressing power."
+          "explanation": "Aristotle’s definition is criticised as too broad because it makes everyone a politician. The other criticisms are incorrect; Lasswell’s definition, for example, is the one criticised for stressing power."
         },
         {
           "question": "Billy Dudley’s five components of politics were presented in which inaugural lecture?",
@@ -98,7 +98,7 @@ export default {
             "1990s"
           ],
           "answer": 1,
-          "explanation": "The notes state that the behaviouralism revolution began in the 1950s, shifting focus from formal structures to political behaviour. The other dates do not match the historical development given in the notes."
+          "explanation": "The behaviouralism revolution began in the 1950s, shifting focus from formal structures to political behaviour. The other dates do not match the historical development given."
         },
         {
           "question": "Before 1950, political science was dominated by all of the following EXCEPT:",
@@ -120,7 +120,7 @@ export default {
             "Only diplomatic relations"
           ],
           "answer": 1,
-          "explanation": "The notes say the SBA widened political analysis to include social, economic and psychological behaviour and became the basis of the multidisciplinary approach. The other options describe the pre-1950 focus or narrow areas."
+          "explanation": "The SBA widened political analysis to include social, economic and psychological behaviour and became the basis of the multidisciplinary approach. The other options describe the pre-1950 focus or narrow areas."
         },
         {
           "question": "The statement “man is a political animal” is attributed to:",
@@ -131,10 +131,10 @@ export default {
             "Machiavelli"
           ],
           "answer": 0,
-          "explanation": "Aristotle said man is a political animal, meaning politics is the essence of social existence and every man is a political actor. The other philosophers are mentioned in the notes but not for this statement."
+          "explanation": "Aristotle said man is a political animal, meaning politics is the essence of social existence and every man is a political actor. The other philosophers are mentioned but not for this statement."
         },
         {
-          "question": "The virologist analogy in the notes is used to show that:",
+          "question": "The virologist analogy is used to show that:",
           "options": [
             "We must like what we study",
             "We need not like what we study",
@@ -175,10 +175,10 @@ export default {
             "A single world government"
           ],
           "answer": 1,
-          "explanation": "The notes state that inter-state politics has no defined territory and no institution with a monopoly of force; it is based on voluntary association and cooperation. The other options describe the state level."
+          "explanation": "Inter-state politics has no defined territory and no institution with a monopoly of force; it is based on voluntary association and cooperation. The other options describe the state level."
         },
         {
-          "question": "Which scholar is NOT listed in the notes as a scholar of inter-state politics?",
+          "question": "Which scholar is NOT listed as a scholar of inter-state politics?",
           "options": [
             "Nicholas Spykman",
             "Frederick Dunn",
@@ -189,7 +189,7 @@ export default {
           "explanation": "Spykman, Dunn, Goldstein and Hans Morgenthau are listed as scholars of inter-state politics. Billy Dudley is associated with the components of politics, not with this list of inter-state scholars."
         },
         {
-          "question": "Power, according to the notes, means:",
+          "question": "Power, means:",
           "options": [
             "A relationship without sanctions or coercion",
             "A’s ability to get B to do something B would not otherwise do",
@@ -252,10 +252,10 @@ export default {
             "Bureaucrats"
           ],
           "answer": 1,
-          "explanation": "The notes state that followers under charismatic authority are called disciples. Citizens, subjects and bureaucrats are not used in the notes for this type of authority."
+          "explanation": "Followers under charismatic authority are called disciples. Citizens, subjects and bureaucrats are not used for this type of authority."
         },
         {
-          "question": "Which of the following is NOT listed as an example of a charismatic leader in the notes?",
+          "question": "Which of the following is NOT listed as an example of a charismatic leader?",
           "options": [
             "Obafemi Awolowo",
             "Indira Gandhi",
@@ -263,7 +263,7 @@ export default {
             "Max Weber"
           ],
           "answer": 3,
-          "explanation": "The notes list Awolowo, Gandhi, Hitler, Kwame Nkrumah, Julius Nyerere and Nelson Mandela as examples of charismatic leaders. Max Weber is the scholar associated with the types of authority, not an example of a charismatic leader."
+          "explanation": "The course lists Awolowo, Gandhi, Hitler, Kwame Nkrumah, Julius Nyerere and Nelson Mandela as examples of charismatic leaders. Max Weber is the scholar associated with the types of authority, not an example of a charismatic leader."
         },
         {
           "question": "Legitimacy is best defined as:",
@@ -277,7 +277,7 @@ export default {
           "explanation": "Legitimacy is the belief that a person or government has the right to rule and make binding decisions; through it, power becomes authority. The other options define power, sovereignty and influence."
         },
         {
-          "question": "Which of the following is one of the five meanings of “government” given in the notes?",
+          "question": "Which of the following is one of the five meanings of “government”?",
           "options": [
             "A process or art of governing",
             "A type of political party",
@@ -302,7 +302,7 @@ export default {
             "Government is more inclusive than the state"
           ],
           "answer": 1,
-          "explanation": "The notes state that you can have government without a state, as in primitive societies or a Students’ Union Government, but no state can function without government. The state is more inclusive and permanent, while government is temporary."
+          "explanation": "You can have government without a state, as in primitive societies or a Students’ Union Government, but no state can function without government. The state is more inclusive and permanent, while government is temporary."
         },
         {
           "question": "Which of the following is an element of the state but NOT of government?",
@@ -324,7 +324,7 @@ export default {
             "It cannot use force"
           ],
           "answer": 2,
-          "explanation": "The notes state that membership of the state is compulsory, the state is permanent, its rules bind everyone, and only the state can use force. Other associations are voluntary and their rules bind members only."
+          "explanation": "Membership of the state is compulsory, the state is permanent, its rules bind everyone, and only the state can use force. Other associations are voluntary and their rules bind members only."
         },
         {
           "question": "Which theory of the origin of the state is described as the oldest?",
@@ -357,7 +357,7 @@ export default {
             "People signed a social contract"
           ],
           "answer": 2,
-          "explanation": "The force theory says the state arose from conquest, with “might is right,” and has no moral justification. Divine origin and natural/organic theories offer different explanations, and social contract is not one of the theories listed in the notes."
+          "explanation": "The force theory says the state arose from conquest, with “might is right,” and has no moral justification. Divine origin and natural/organic theories offer different explanations, and social contract is not one of the theories listed."
         },
         {
           "question": "Which of the following is a physical element of the modern state?",
@@ -379,10 +379,10 @@ export default {
             "Sovereignty"
           ],
           "answer": 2,
-          "explanation": "The notes describe functional government as “the soul of the state.” Population and territory are physical elements, and sovereignty is the state’s highest power, but neither is called the soul of the state."
+          "explanation": "The course describes functional government as “the soul of the state.” Population and territory are physical elements, and sovereignty is the state’s highest power, but neither is called the soul of the state."
         },
         {
-          "question": "The maritime jurisdiction given in the notes is:",
+          "question": "The maritime jurisdiction is:",
           "options": [
             "3 nautical miles",
             "12 nautical miles",
@@ -390,7 +390,7 @@ export default {
             "50 nautical miles"
           ],
           "answer": 0,
-          "explanation": "The notes state that maritime jurisdiction is given as 3 nautical miles in the text. The other figures are common in international law but are not the figure provided in these notes."
+          "explanation": "Maritime jurisdiction is given as 3 nautical miles in the text. The other figures are common in international law but are not the figure provided."
         },
         {
           "question": "Sovereignty, in the traditional sense, means:",
@@ -401,10 +401,10 @@ export default {
             "The people’s right to vote"
           ],
           "answer": 1,
-          "explanation": "Sovereignty is the state’s highest power and independence from foreign control. The notes also mention a modern redefinition after genocides, but the traditional meaning remains the state’s highest power."
+          "explanation": "Sovereignty is the state’s highest power and independence from foreign control. There is also a modern redefinition after genocides, but the traditional meaning remains the state’s highest power."
         },
         {
-          "question": "The modern redefinition of sovereignty in the notes suggests that:",
+          "question": "The modern redefinition of sovereignty suggests that:",
           "options": [
             "Sovereignty is absolute in all cases",
             "Sovereignty no longer shields gross human rights abuses",
@@ -412,7 +412,7 @@ export default {
             "Sovereignty means the same as legitimacy"
           ],
           "answer": 1,
-          "explanation": "After genocides in Rwanda, former Yugoslavia, Syria and Myanmar, the international community no longer treats sovereignty as a shield for gross human rights abuses. The other options contradict the notes."
+          "explanation": "After genocides in Rwanda, former Yugoslavia, Syria and Myanmar, the international community no longer treats sovereignty as a shield for gross human rights abuses. The other options are incorrect."
         },
         {
           "question": "Which of the following is NOT one of the four elements of the modern state?",
@@ -434,7 +434,7 @@ export default {
             "Government has no role in society"
           ],
           "answer": 1,
-          "explanation": "The notes use the saying to show that modern government is big and technical, served by large bureaucracies. The other options contradict the idea of growth."
+          "explanation": "The course uses the saying to show that modern government is big and technical, served by large bureaucracies. The other options contradict the idea of growth."
         },
         {
           "question": "Which of the following best describes a government-in-exile?",
@@ -445,10 +445,10 @@ export default {
             "A government that has no legitimacy"
           ],
           "answer": 1,
-          "explanation": "The notes mention governments-in-exile as an example showing that a state can continue to exist even without a recognised government in control. A Students’ Union Government is an example of government without a state, which is different."
+          "explanation": "The course mentions governments-in-exile as an example showing that a state can continue to exist even without a recognised government in control. A Students’ Union Government is an example of government without a state, which is different."
         },
         {
-          "question": "Somalia is mentioned in the notes to illustrate that:",
+          "question": "Somalia is mentioned to illustrate that:",
           "options": [
             "A state cannot exist without government",
             "A state can keep its statehood even without a recognised government",
@@ -456,7 +456,7 @@ export default {
             "Sovereignty is the same as government"
           ],
           "answer": 1,
-          "explanation": "The notes say Somalia kept its statehood even without a recognised government, showing that government and state are not identical. The other options contradict this point."
+          "explanation": "Somalia kept its statehood even without a recognised government, showing that government and state are not identical. The other options contradict this point."
         },
         {
           "question": "Which of the following is an organ of government?",
@@ -500,7 +500,7 @@ export default {
             "The first to go in a coup"
           ],
           "answer": 1,
-          "explanation": "The notes describe the judiciary as the least harmful organ and “the last hope of the common man.” The legislature is described as the organ most vulnerable to political instability, not the judiciary."
+          "explanation": "The course describes the judiciary as the least harmful organ and “the last hope of the common man.” The legislature is described as the organ most vulnerable to political instability, not the judiciary."
         },
         {
           "question": "Judicial review means:",
@@ -522,10 +522,10 @@ export default {
             "Judges being members of political parties"
           ],
           "answer": 0,
-          "explanation": "The notes list guaranteed tenure, appointment of competent judges, respect for the rule of law, and paying judges’ salaries from the Consolidated Fund as safeguards. The other options would weaken judicial independence."
+          "explanation": "The course lists guaranteed tenure, appointment of competent judges, respect for the rule of law, and paying judges’ salaries from the Consolidated Fund as safeguards. The other options would weaken judicial independence."
         },
         {
-          "question": "Which of the following is NOT a function of the legislature according to the notes?",
+          "question": "Which of the following is NOT a function of the legislature?",
           "options": [
             "Legitimising policies",
             "Representing the people",
@@ -544,7 +544,7 @@ export default {
             "The Cabinet"
           ],
           "answer": 1,
-          "explanation": "The notes state that in Nigeria and the USA, the Upper House (Senate) alone screens and confirms appointments such as ambassadors and ministers. The Lower House and other bodies do not perform this specific role."
+          "explanation": "In Nigeria and the USA, the Upper House (Senate) alone screens and confirms appointments such as ambassadors and ministers. The Lower House and other bodies do not perform this specific role."
         },
         {
           "question": "Which of the following is an advantage of a bicameral legislature?",
@@ -558,7 +558,7 @@ export default {
           "explanation": "Bicameral legislatures provide checks and balances, thoroughness and informed input. They are more expensive and slower, and unicameral legislatures are described as cheaper and quicker but more prone to hasty laws and manipulation."
         },
         {
-          "question": "Which of the following countries has a unicameral legislature according to the notes?",
+          "question": "Which of the following countries has a unicameral legislature?",
           "options": [
             "Nigeria",
             "Britain",
@@ -583,7 +583,7 @@ export default {
             "Government is always democratic"
           ],
           "answer": 3,
-          "explanation": "The three basic components are decision-making, ultimate coercion and legitimacy. The notes do not say government is always democratic; many non-democratic forms are discussed."
+          "explanation": "The three basic components are decision-making, ultimate coercion and legitimacy. Government is not always democratic; many non-democratic forms are discussed."
         },
         {
           "question": "Herman Finer (1956) described government as:",
@@ -594,7 +594,7 @@ export default {
             "The last hope of the common man"
           ],
           "answer": 0,
-          "explanation": "Finer described government as “man’s unending adventure” because it is his heaviest collective and individual burden and his supreme hope of liberation. The other phrases are associated with different ideas in the notes."
+          "explanation": "Finer described government as “man’s unending adventure” because it is his heaviest collective and individual burden and his supreme hope of liberation. The other phrases are associated with different ideas."
         },
         {
           "question": "According to Michael Laver, which role of government deals with the problem that a project benefits everyone but no one wants to pay for it?",
@@ -616,7 +616,7 @@ export default {
             "Contracts are never enforced"
           ],
           "answer": 0,
-          "explanation": "The notes explain that almost all private actions have public consequences, creating social costs or benefits that are spread indiscriminately. Trust, government refusal and contract enforcement are separate matters."
+          "explanation": "The course explains that almost all private actions have public consequences, creating social costs or benefits that are spread indiscriminately. Trust, government refusal and contract enforcement are separate matters."
         },
         {
           "question": "Redistribution from rich to poor is an example of which role of government?",
@@ -649,7 +649,7 @@ export default {
             "Party primaries"
           ],
           "answer": 1,
-          "explanation": "The notes list three non-democratic methods: imperialistic mode, military coup and election rigging. Democratic elections, referendums and party primaries are not listed as non-democratic methods in this section."
+          "explanation": "The course lists three non-democratic methods: imperialistic mode, military coup and election rigging. Democratic elections, referendums and party primaries are not listed as non-democratic methods in this section."
         },
         {
           "question": "A military coup is described as illegal because:",
@@ -660,10 +660,10 @@ export default {
             "It is too slow"
           ],
           "answer": 1,
-          "explanation": "The notes state that a coup is always illegal because it suspends the constitution that created the army. Violence and foreign support are not the reason given, and a coup is described as the fastest route to power, not slow."
+          "explanation": "A coup is always illegal because it suspends the constitution that created the army. Violence and foreign support are not the reason given, and a coup is described as the fastest route to power, not slow."
         },
         {
-          "question": "Which of the following is NOT listed as a cause of military coups in the notes?",
+          "question": "Which of the following is NOT listed as a cause of military coups?",
           "options": [
             "Poor leadership",
             "Corruption",
@@ -685,7 +685,7 @@ export default {
           "explanation": "Election rigging is falsifying leadership selection so a favoured party takes power, and it is listed as a non-democratic method. It is not democratic, judicial review or collective action."
         },
         {
-          "question": "Which Nigerian elections are given as examples of election rigging in the notes?",
+          "question": "Which Nigerian elections are given as examples of election rigging?",
           "options": [
             "1965 Western Region election and 1983 national election",
             "1979 and 1999 elections",
@@ -693,7 +693,7 @@ export default {
             "1960 and 1963 elections"
           ],
           "answer": 0,
-          "explanation": "The notes cite the 1965 Western Region election (NNDP) and the 1983 national election (NPN) as Nigerian examples of election rigging. The other elections are not given for this purpose."
+          "explanation": "The course cites the 1965 Western Region election (NNDP) and the 1983 national election (NPN) as Nigerian examples of election rigging. The other elections are not given for this purpose."
         },
         {
           "question": "The temporary (political) executive consists of:",
@@ -737,7 +737,7 @@ export default {
             "Collective responsibility"
           ],
           "answer": 0,
-          "explanation": "The notes list the power to pardon as the prerogative of mercy, a function of the executive. Judicial review, legislative veto and collective responsibility are different concepts."
+          "explanation": "The course lists the power to pardon as the prerogative of mercy, a function of the executive. Judicial review, legislative veto and collective responsibility are different concepts."
         },
         {
           "question": "Which of the following is NOT a name for a legislature?",
@@ -748,7 +748,7 @@ export default {
             "Cabinet"
           ],
           "answer": 3,
-          "explanation": "The notes give Parliament (Britain), Congress (USA), Diet (Japan) and National Assembly (Nigeria) as names for legislatures. The cabinet is part of the executive, not a name for the legislature."
+          "explanation": "The course gives Parliament (Britain), Congress (USA), Diet (Japan) and National Assembly (Nigeria) as names for legislatures. The cabinet is part of the executive, not a name for the legislature."
         },
         {
           "question": "According to Garner, the legislature:",
@@ -770,7 +770,7 @@ export default {
             "The civil service"
           ],
           "answer": 2,
-          "explanation": "The notes state that the legislature is the organ most vulnerable to political instability and is the first to go in a coup. The other organs are not described this way."
+          "explanation": "The legislature is the organ most vulnerable to political instability and is the first to go in a coup. The other organs are not described this way."
         },
         {
           "question": "Which of the following is an advantage of a unicameral legislature?",
@@ -806,7 +806,7 @@ export default {
           "explanation": "Guaranteed tenure, competent appointments, respect for the rule of law and payment from the Consolidated Fund are safeguards. Judges taking instructions from the President would destroy independence."
         },
         {
-          "question": "Which of the following is a criterion for classifying governments according to the notes?",
+          "question": "Which of the following is a criterion for classifying governments?",
           "options": [
             "Size of ruling class and public involvement",
             "Number of political parties only",
@@ -825,7 +825,7 @@ export default {
             "Religion and language"
           ],
           "answer": 1,
-          "explanation": "Aristotle used who rules (one, few, many) and in whose interest (all vs self). The other options are not the criteria he used in the notes."
+          "explanation": "Aristotle used who rules (one, few, many) and in whose interest (all vs self). The other options are not the criteria he used."
         },
         {
           "question": "In Aristotle’s classification, rule by one person in the interest of all is called:",
@@ -839,7 +839,7 @@ export default {
           "explanation": "Monarchy is rule by one person in the interest of all, while tyranny is rule by one in self-interest. Aristocracy and polity refer to rule by a few and by many, respectively."
         },
         {
-          "question": "Which of the following is an example of tyranny according to the notes?",
+          "question": "Which of the following is an example of tyranny?",
           "options": [
             "Idi Amin of Uganda",
             "Queen Elizabeth of England",
@@ -847,7 +847,7 @@ export default {
             "Kwame Nkrumah of Ghana"
           ],
           "answer": 0,
-          "explanation": "The notes list Idi Amin, Sani Abacha, Mobutu Sese Seko and Muammar Gaddafi as examples of tyrants. The other leaders are not given as examples of tyranny."
+          "explanation": "The course lists Idi Amin, Sani Abacha, Mobutu Sese Seko and Muammar Gaddafi as examples of tyrants. The other leaders are not given as examples of tyranny."
         }
       ]
     },
@@ -900,7 +900,7 @@ export default {
           "explanation": "In a unitary system, one central government holds power and units are deconcentrated, with no legal existence or taxing power. Divided power describes federalism, and weak centre describes confederation."
         },
         {
-          "question": "Which of the following is an example of a unitary state according to the notes?",
+          "question": "Which of the following is an example of a unitary state?",
           "options": [
             "Nigeria",
             "USA",
@@ -952,7 +952,7 @@ export default {
             "A confederation is more stable than a federation"
           ],
           "answer": 1,
-          "explanation": "The notes state that a confederation is a league of sovereign states, while a federation creates a new state and units give up sovereignty. The other options reverse the characteristics."
+          "explanation": "A confederation is a league of sovereign states, while a federation creates a new state and units give up sovereignty. The other options reverse the characteristics."
         },
         {
           "question": "In a presidential system of government:",
@@ -988,7 +988,7 @@ export default {
           "explanation": "France is the main example of the dual executive or mixed system, which combines the US presidential and British models. Britain is parliamentary, while the USA and Ghana are presidential."
         },
         {
-          "question": "In the French dual executive system described in the notes, the President can:",
+          "question": "In the French dual executive system, the President can:",
           "options": [
             "Dissolve the Assembly once a year",
             "Serve as Prime Minister simultaneously",
@@ -996,7 +996,7 @@ export default {
             "Have no role in foreign affairs"
           ],
           "answer": 0,
-          "explanation": "The notes state that the French President can dissolve the Assembly once a year, among other powers. The President does not serve as Prime Minister, is elected by an electoral college, and negotiates treaties."
+          "explanation": "The French President can dissolve the Assembly once a year, among other powers. The President does not serve as Prime Minister, is elected by an electoral college, and negotiates treaties."
         },
         {
           "question": "Capitalism is characterised by:",
@@ -1010,7 +1010,7 @@ export default {
           "explanation": "Capitalism involves private ownership of the means of production, distribution and exchange, with prices and markets. Public ownership and state control are features of socialism and communism."
         },
         {
-          "question": "Which of the following is an example of a capitalist state according to the notes?",
+          "question": "Which of the following is an example of a capitalist state?",
           "options": [
             "Cuba",
             "USA",
@@ -1029,10 +1029,10 @@ export default {
             "21st century"
           ],
           "answer": 0,
-          "explanation": "The notes state that the modern reformist, parliamentary socialist movement began in the late 19th century. The other periods are not given for this development."
+          "explanation": "The modern reformist, parliamentary socialist movement began in the late 19th century. The other periods are not given for this development."
         },
         {
-          "question": "Which of the following is NOT listed as a socialist state in the notes?",
+          "question": "Which of the following is NOT listed as a socialist state?",
           "options": [
             "USSR 1917",
             "China 1949",
@@ -1051,7 +1051,7 @@ export default {
             "A type of federalism"
           ],
           "answer": 0,
-          "explanation": "The notes describe communism as an advanced stage of socialism, based on the doctrine of Karl Marx and Friedrich Engels. It is not capitalism, monarchy or federalism."
+          "explanation": "The course describes communism as an advanced stage of socialism, based on the doctrine of Karl Marx and Friedrich Engels. It is not capitalism, monarchy or federalism."
         },
         {
           "question": "Arend Lijphart’s classification of democracies is based on:",
@@ -1087,7 +1087,7 @@ export default {
           "explanation": "Fascism involves dictatorship, central control of private enterprise, repression, terror and extreme nationalism. Land tenure describes feudalism, and religious rule describes theocracy."
         },
         {
-          "question": "Which of the following is an example of fascism according to the notes?",
+          "question": "Which of the following is an example of fascism?",
           "options": [
             "Mussolini’s Italy",
             "Ayatollah Khomeini’s Iran",
@@ -1189,7 +1189,7 @@ export default {
             "Sociology has no practical relevance"
           ],
           "answer": 1,
-          "explanation": "The notes state that sociology was birthed from social crises to solve social crises, using natural-science methods to understand and solve problems like child labour, crime and poverty. The other options contradict this."
+          "explanation": "Sociology was birthed from social crises to solve social crises, using natural-science methods to understand and solve problems like child labour, crime and poverty. The other options contradict this."
         },
         {
           "question": "Which of the following is a definition of society according to Stockard (1997)?",
@@ -1258,7 +1258,7 @@ export default {
           "explanation": "Durkheim defined sociology as the study of social facts, which are patterns of behaviour characteristic of a group. Weber focused on social action, while Comte focused on social statics and dynamics."
         },
         {
-          "question": "Which of the following is NOT a reason the notes give for saying sociology is not the same as newspaper-stand discussion?",
+          "question": "Which of the following is NOT a reason for saying sociology is not the same as newspaper-stand discussion?",
           "options": [
             "People speak from a self-centred, individual perspective",
             "There is no system of methodised knowledge",
@@ -1266,12 +1266,12 @@ export default {
             "It lacks a scientific approach"
           ],
           "answer": 2,
-          "explanation": "The notes say newspaper-stand discussion is not sociology because people speak from a self-centred perspective and there is no methodised knowledge or science. Reliance on scientific methods is a feature of sociology, not a reason against the newspaper-stand discussion."
+          "explanation": "Newspaper-stand discussion is not sociology because people speak from a self-centred perspective and there is no methodised knowledge or science. Reliance on scientific methods is a feature of sociology, not a reason against the newspaper-stand discussion."
         },
         {
           "question": "The sociological imagination was developed by:",
           "options": [
-            "C. Wright Mills",
+            "Charles Wright Mills",
             "Auguste Comte",
             "Émile Durkheim",
             "Max Weber"
@@ -1354,7 +1354,7 @@ export default {
             "Economic production"
           ],
           "answer": 0,
-          "explanation": "The notes state that the focal point of sociology is social interaction, which is behaviour between two or more people that is given meaning. Psychology focuses on the individual, and political power and economic production are not the focal point of sociology."
+          "explanation": "The focal point of sociology is social interaction, which is behaviour between two or more people that is given meaning. Psychology focuses on the individual, and political power and economic production are not the focal point of sociology."
         },
         {
           "question": "Durkheim’s study Suicide (1897) showed that:",
@@ -1379,7 +1379,7 @@ export default {
           "explanation": "Macro-sociology studies large-scale phenomena such as social class, group relations and social structure, often using statistical analysis. Micro-sociology focuses on face-to-face interaction and interpersonal relationships."
         },
         {
-          "question": "Which of the following is a social problem studied by sociologists according to the notes?",
+          "question": "Which of the following is a social problem studied by sociologists?",
           "options": [
             "Delinquency and crime",
             "Photosynthesis",
@@ -1387,7 +1387,7 @@ export default {
             "Chemical bonding"
           ],
           "answer": 0,
-          "explanation": "The notes list delinquency, crime, alcoholism, suicide, addiction, prejudice, ethnic conflict, war, slums and poverty as social problems. The other options are natural-science topics."
+          "explanation": "The course lists delinquency, crime, alcoholism, suicide, addiction, prejudice, ethnic conflict, war, slums and poverty as social problems. The other options are natural-science topics."
         },
         {
           "question": "Peter Berger’s Invitation to Sociology (1966) argues that:",
@@ -1481,7 +1481,7 @@ export default {
             "Always qualitative"
           ],
           "answer": 1,
-          "explanation": "Data is raw input such as facts or statistics, while information is data that has been assembled, processed and interpreted meaningfully. The other options are not the distinction given in the notes."
+          "explanation": "Data is raw input such as facts or statistics, while information is data that has been assembled, processed and interpreted meaningfully. The other options are not the distinction given."
         },
         {
           "question": "Which of the following is an example of primary data?",
@@ -1558,7 +1558,7 @@ export default {
             "They always have high response rates"
           ],
           "answer": 1,
-          "explanation": "The notes state that a common problem of all questionnaire methods is that less privileged people are left out, hurting reliability and validity. The other options are not true for all methods."
+          "explanation": "A common problem of all questionnaire methods is that less privileged people are left out, hurting reliability and validity. The other options are not true for all methods."
         },
         {
           "question": "Which of the following is an advantage of questionnaires?",
@@ -1624,7 +1624,7 @@ export default {
             "20 or more"
           ],
           "answer": 1,
-          "explanation": "The notes state that a focus group discussion should have 7 to 12 participants, with a minimum of 7 and a maximum of 12. The other ranges are not recommended in the notes."
+          "explanation": "A focus group discussion should have 7 to 12 participants, with a minimum of 7 and a maximum of 12. The other ranges are not recommended."
         },
         {
           "question": "Which of the following is an advantage of interviews over questionnaires?",
@@ -1649,7 +1649,7 @@ export default {
           "explanation": "In participant observation, the observer joins the group being studied, as in ethnography. Non-participant observation involves watching without joining."
         },
         {
-          "question": "Bronisław Malinowski is known in the notes for his study of:",
+          "question": "Bronisław Malinowski is known for his study of:",
           "options": [
             "The Trobriand Islands",
             "Suicide rates in Europe",
@@ -1657,7 +1657,7 @@ export default {
             "Industrial workers in Britain"
           ],
           "answer": 0,
-          "explanation": "Malinowski’s study of the Trobriand Islands is given as an example of participant observation. Durkheim studied suicide, and the other topics are not linked to Malinowski in the notes."
+          "explanation": "Malinowski’s study of the Trobriand Islands is given as an example of participant observation. Durkheim studied suicide, and the other topics are not linked to Malinowski."
         },
         {
           "question": "Covert observation conflicts with which ethical principle?",
@@ -1864,7 +1864,7 @@ export default {
           "explanation": "Cronbach’s alpha measures internal consistency, or whether items on a scale “hang together,” ideally above 0.7. The other options are different statistical concepts."
         },
         {
-          "question": "The sample size rule for multiple regression given in the notes is:",
+          "question": "The sample size rule for multiple regression is:",
           "options": [
             "$N > 50 + 8m$",
             "$N > 100 + 10m$",
@@ -1872,7 +1872,7 @@ export default {
             "$N > 150$"
           ],
           "answer": 0,
-          "explanation": "The rule by Tabachnick and Fidell is $N > 50 + 8m$, where $m$ is the number of independent variables. The other rules are not given for multiple regression in the notes."
+          "explanation": "The rule by Tabachnick and Fidell is $N > 50 + 8m$, where $m$ is the number of independent variables. The other rules are not given for multiple regression."
         },
         {
           "question": "Which technique predicts a categorical dependent variable?",
@@ -2079,7 +2079,7 @@ export default {
           "explanation": "Wundt used introspection, or “looking inward,” to probe his own reactions to stimuli. He combined trained introspection with objective measurement in what he called experimental self-observation."
         },
         {
-          "question": "A stimulus is defined in the notes as:",
+          "question": "A stimulus is defined as:",
           "options": [
             "Any physical energy that triggers a sensory response",
             "A mental image",
@@ -2208,7 +2208,7 @@ export default {
             "Functionalism"
           ],
           "answer": 0,
-          "explanation": "Humanistic psychology is a reaction to behaviourism, emphasising freedom, personal growth, inner worth and self-fulfilment. It is not described as a reaction to psychoanalysis in the notes."
+          "explanation": "Humanistic psychology is a reaction to behaviourism, emphasising freedom, personal growth, inner worth and self-fulfilment. It is not described as a reaction to psychoanalysis."
         },
         {
           "question": "Cognitive psychology focuses on:",
@@ -2233,7 +2233,7 @@ export default {
           "explanation": "Biological psychology examines the impact of the brain, nervous system, hormones and genetics on behaviour, and its practitioners are called psychobiologists. The other options describe different approaches."
         },
         {
-          "question": "Which approach is described as the newest in the notes?",
+          "question": "Which approach is described as the newest?",
           "options": [
             "Sociocultural",
             "Psychoanalysis",
@@ -2280,7 +2280,7 @@ export default {
             "To build or create"
           ],
           "answer": 0,
-          "explanation": "Environment comes from the French word meaning “to encircle or surround.” The other meanings do not reflect the origin of the word as given in the notes."
+          "explanation": "Environment comes from the French word meaning “to encircle or surround.” The other meanings do not reflect the origin of the word as given."
         },
         {
           "question": "According to Cunningham and Saigo (1999), the environment includes:",
@@ -2373,13 +2373,13 @@ export default {
         {
           "question": "The environmental lapse rate in the troposphere is about:",
           "options": [
-            "$4–6°C$ per km",
-            "$10–15°C$ per km",
-            "$1–2°C$ per km",
-            "$20°C$ per km"
+            "4–6 °C per km",
+            "10–15 °C per km",
+            "1–2 °C per km",
+            "20 °C per km"
           ],
           "answer": 0,
-          "explanation": "In the troposphere, temperature falls with height at about 4–6°C per km, known as the environmental lapse rate. The other rates are not given in the notes."
+          "explanation": "In the troposphere, temperature falls with height at about 4–6°C per km, known as the environmental lapse rate. The other rates are not given."
         },
         {
           "question": "In the stratosphere, temperature:",
@@ -2478,7 +2478,7 @@ export default {
             "Human activity"
           ],
           "answer": 0,
-          "explanation": "The hydrological cycle moves water between reservoirs and is driven by solar energy (insolation) and gravity. The other factors are not the main drivers given in the notes."
+          "explanation": "The hydrological cycle moves water between reservoirs and is driven by solar energy (insolation) and gravity. The other factors are not the main drivers given."
         },
         {
           "question": "Most evaporation in the hydrological cycle comes from:",
@@ -2489,7 +2489,7 @@ export default {
             "Ice caps"
           ],
           "answer": 0,
-          "explanation": "The notes state that most evaporation comes from the oceans. Lakes, rivers and ice caps contribute less to evaporation."
+          "explanation": "Most evaporation comes from the oceans. Lakes, rivers and ice caps contribute less to evaporation."
         },
         {
           "question": "An ecosystem is defined as:",
@@ -2533,7 +2533,7 @@ export default {
             "The colour of the sky"
           ],
           "answer": 3,
-          "explanation": "The notes list population size, social organisation, values, technology, wealth, education and knowledge as factors affecting society’s impact. The colour of the sky is not a factor."
+          "explanation": "The course lists population size, social organisation, values, technology, wealth, education and knowledge as factors affecting society’s impact. The colour of the sky is not a factor."
         },
         {
           "question": "Which type of economic activity involves extracting Earth’s resources?",
@@ -2781,7 +2781,7 @@ export default {
             "Hunting and introducing new predators"
           ],
           "answer": 0,
-          "explanation": "The notes give the introduction of rubber from Brazil to Malaysia as an example of introducing new plant species, a positive human impact. The other options describe negative impacts."
+          "explanation": "The course gives the introduction of rubber from Brazil to Malaysia as an example of introducing new plant species, a positive human impact. The other options describe negative impacts."
         },
         {
           "question": "Which of the following is a positive human impact related to energy?",
@@ -2817,7 +2817,7 @@ export default {
           "explanation": "Enforcing environmental laws and management programmes is listed as a positive human impact. The other options are not the correct classification."
         },
         {
-          "question": "The notes state that the most significant relevance of sociology is that it:",
+          "question": "The most significant relevance of sociology is that it:",
           "options": [
             "Brought science to the study of society",
             "Replaced political science",
@@ -2825,7 +2825,7 @@ export default {
             "Ignored social problems"
           ],
           "answer": 0,
-          "explanation": "The most significant relevance of sociology, according to the notes, is that it brought science to the study of society. The other options contradict the notes."
+          "explanation": "The most significant relevance of sociology, is that it brought science to the study of society. The other options are incorrect."
         },
         {
           "question": "Giddens’s idea of “social adequacy” refers to:",
@@ -2836,7 +2836,7 @@ export default {
             "Understanding only personal troubles"
           ],
           "answer": 0,
-          "explanation": "Giddens’s “social adequacy” refers to keeping updated on modern situations through sociology. The other options do not match the notes."
+          "explanation": "Giddens’s “social adequacy” refers to keeping updated on modern situations through sociology. The other options are incorrect."
         }
       ]
     },
@@ -2853,7 +2853,7 @@ export default {
             "It is only for politicians"
           ],
           "answer": 1,
-          "explanation": "The notes state that politics is ubiquitous, occurring from the classroom to the market. The other options wrongly limit politics to formal settings or elections."
+          "explanation": "Politics is ubiquitous, occurring from the classroom to the market. The other options wrongly limit politics to formal settings or elections."
         },
         {
           "question": "The statement “if you don’t participate, someone else will and will decide for you” suggests that:",
@@ -2864,7 +2864,7 @@ export default {
             "Politics is irrelevant to daily life"
           ],
           "answer": 1,
-          "explanation": "The notes say the ignorant are usually manipulated and that if you do not participate, someone else will decide for you. The other options contradict this warning."
+          "explanation": "The ignorant are usually manipulated and that if you do not participate, someone else will decide for you. The other options contradict this warning."
         },
         {
           "question": "Which of the following is a branch of political science that deals with foreign affairs and diplomacy?",
@@ -2911,7 +2911,7 @@ export default {
           "explanation": "Intra-state politics occurs within associations and groups inside the state, such as governed versus governors or arms of government. Inter-state politics is between states."
         },
         {
-          "question": "Which of the following scholars is associated with the realist approach to international politics according to the notes?",
+          "question": "Which of the following scholars is associated with the realist approach to international politics?",
           "options": [
             "Hans Morgenthau",
             "Auguste Comte",
@@ -2930,7 +2930,7 @@ export default {
             "The power of the judiciary"
           ],
           "answer": 0,
-          "explanation": "The UN’s difficulties illustrate the weakness of inter-state politics, which lacks a monopoly of force. The other options do not reflect the point made in the notes."
+          "explanation": "The UN’s difficulties illustrate the weakness of inter-state politics, which lacks a monopoly of force. The other options do not reflect the point made."
         },
         {
           "question": "Which type of power involves explicit command or request?",
@@ -3087,7 +3087,7 @@ export default {
           "explanation": "In a confederation, units retain their sovereignty and the centre is weak and prone to secession. A strong centre and concentration of power describe unitary systems."
         },
         {
-          "question": "Which of the following is a democratic principle listed in the notes?",
+          "question": "Which of the following is a democratic principle?",
           "options": [
             "Secret balloting",
             "Military rule",
@@ -3200,7 +3200,7 @@ export default {
             "USA"
           ],
           "answer": 0,
-          "explanation": "Capitalism had European origins, spread from England and peaked in the 19th century. The other countries are not given as the origin of capitalism in the notes."
+          "explanation": "Capitalism had European origins, spread from England and peaked in the 19th century. The other countries are not given as the origin of capitalism."
         },
         {
           "question": "Which of the following is described as midway between capitalism and socialism?",
@@ -3225,7 +3225,7 @@ export default {
           "explanation": "Lenin said workers receive the full product of their labour under socialism. The other options contradict this idea."
         },
         {
-          "question": "Which of the following is a remnant socialist state according to the notes?",
+          "question": "Which of the following is a remnant socialist state?",
           "options": [
             "Cuba",
             "USA",
@@ -3233,10 +3233,10 @@ export default {
             "Japan"
           ],
           "answer": 0,
-          "explanation": "The notes list Cuba, Vietnam and Tanzania as remnants of socialist states. The USA, Germany and Japan are capitalist states."
+          "explanation": "The course lists Cuba, Vietnam and Tanzania as remnants of socialist states. The USA, Germany and Japan are capitalist states."
         },
         {
-          "question": "Communism, according to the notes, is an advanced stage of:",
+          "question": "Communism, is an advanced stage of:",
           "options": [
             "Socialism",
             "Capitalism",
@@ -3255,7 +3255,7 @@ export default {
             "Fascist parties"
           ],
           "answer": 0,
-          "explanation": "The notes state that after the USSR collapsed in 1991, leftover parties became neo-communist parties. The other options do not reflect this outcome."
+          "explanation": "After the USSR collapsed in 1991, leftover parties became neo-communist parties. The other options do not reflect this outcome."
         },
         {
           "question": "A de-politicised democracy, according to Lijphart, is based on:",
@@ -3335,7 +3335,7 @@ export default {
           "explanation": "Ibrahim Badamasi Babangida ruled from 1985 to 27 August 1993. Buhari ruled from 31 December 1983 to 27 August 1985, and Abacha and Abubakar came later."
         },
         {
-          "question": "Which of the following is a form of government now largely antiquated according to the notes?",
+          "question": "Which of the following is a form of government now largely antiquated?",
           "options": [
             "Presidential democracy",
             "Federalism",
@@ -3343,10 +3343,10 @@ export default {
             "Capitalism"
           ],
           "answer": 2,
-          "explanation": "The notes state that many forms, including aristocracy, oligarchy, fascism, polity, mobocracy, feudalism, theocracy and colonialism, are now largely antiquated. Presidential democracy, federalism and capitalism are not listed as antiquated."
+          "explanation": "Many forms, including aristocracy, oligarchy, fascism, polity, mobocracy, feudalism, theocracy and colonialism, are now largely antiquated. Presidential democracy, federalism and capitalism are not listed as antiquated."
         },
         {
-          "question": "Which of the following best describes Nigeria’s government today according to the notes?",
+          "question": "Which of the following best describes Nigeria’s government today?",
           "options": [
             "A federal, capitalist, presidential democracy",
             "A unitary, socialist, parliamentary democracy",
@@ -3354,10 +3354,10 @@ export default {
             "A theocratic, feudal monarchy"
           ],
           "answer": 0,
-          "explanation": "The notes state that Nigeria today is a federal, capitalist, presidential democracy. The other options misdescribe Nigeria’s system."
+          "explanation": "Nigeria today is a federal, capitalist, presidential democracy. The other options misdescribe Nigeria’s system."
         },
         {
-          "question": "Which of the following is NOT a democratic principle listed in the notes?",
+          "question": "Which of the following is NOT a democratic principle?",
           "options": [
             "Citizen participation",
             "Political equality",
@@ -3387,7 +3387,7 @@ export default {
             "Language teaching"
           ],
           "answer": 0,
-          "explanation": "The three basic jobs of government are rule making (legislature), rule application (executive) and rule adjudication (judiciary). The other options are not basic jobs of government in the notes."
+          "explanation": "The three basic jobs of government are rule making (legislature), rule application (executive) and rule adjudication (judiciary). The other options are not basic jobs of government."
         },
         {
           "question": "Which of the following is an example of a government without a state?",
@@ -3415,7 +3415,7 @@ export default {
             "Both study only groups"
           ],
           "answer": 0,
-          "explanation": "The notes state that psychology focuses on the individual, while sociology studies individual behaviour only as part of wider patterns. The other options reverse or misstate the distinction."
+          "explanation": "Psychology focuses on the individual, while sociology studies individual behaviour only as part of wider patterns. The other options reverse or misstate the distinction."
         },
         {
           "question": "Which of the following is an example of a social group studied in sociology?",
@@ -3440,7 +3440,7 @@ export default {
           "explanation": "Social control refers to how members of a society influence each other to keep order. The other options describe different concepts."
         },
         {
-          "question": "Which of the following is a cause of social change according to the notes?",
+          "question": "Which of the following is a cause of social change?",
           "options": [
             "Inventions, cultural diffusion, conflict and movements",
             "Only natural disasters",
@@ -3448,7 +3448,7 @@ export default {
             "Only individual decisions"
           ],
           "answer": 0,
-          "explanation": "The notes list inventions, cultural diffusion, conflict and movements as causes of social change. The other options are too narrow or not mentioned as the main causes."
+          "explanation": "The course lists inventions, cultural diffusion, conflict and movements as causes of social change. The other options are too narrow or not mentioned as the main causes."
         },
         {
           "question": "Which of the following is a social problem studied by sociologists?",
@@ -3481,7 +3481,7 @@ export default {
             "Chemical engineering"
           ],
           "answer": 0,
-          "explanation": "The notes list research, social work, personnel/HR, public relations, community planning and teaching as career paths. The other options are natural science careers not mentioned in this context."
+          "explanation": "The course lists research, social work, personnel/HR, public relations, community planning and teaching as career paths. The other options are natural science careers not mentioned in this context."
         },
         {
           "question": "Which of the following is a primary method of data collection in sociology?",
@@ -3795,7 +3795,7 @@ export default {
             "Establishing the first psychology laboratory"
           ],
           "answer": 0,
-          "explanation": "The notes state that Hovland, Lumsdaine and Sheffield (1949) helped train pilots to overcome fear and return to combat. The other options are associated with different people or events."
+          "explanation": "Hovland, Lumsdaine and Sheffield (1949) helped train pilots to overcome fear and return to combat. The other options are associated with different people or events."
         },
         {
           "question": "Psychological testing and assessment were pioneered by:",
@@ -3806,7 +3806,7 @@ export default {
             "Freud and Jung"
           ],
           "answer": 0,
-          "explanation": "The notes credit Kasschau and Lewin with pioneering psychological testing and assessment. The other pairs are associated with different contributions."
+          "explanation": "The course credits Kasschau and Lewin with pioneering psychological testing and assessment. The other pairs are associated with different contributions."
         },
         {
           "question": "Health psychology arose from psychology’s contribution to:",
@@ -3831,7 +3831,7 @@ export default {
           "explanation": "Psychology has contributed to the world of work by helping create more humanised workplaces. The other options are contributions of other fields."
         },
         {
-          "question": "Which of the following is a myth about psychology according to the notes?",
+          "question": "Which of the following is a myth about psychology?",
           "options": [
             "One psychology course will let you analyse people and read their personalities",
             "Psychology is both a science and a profession",
@@ -3839,7 +3839,7 @@ export default {
             "Clinical psychology is one branch of psychology"
           ],
           "answer": 0,
-          "explanation": "The notes say it is a myth that one psychology course will let you analyse people, uncover hidden personality or control them. The other options are true statements about psychology."
+          "explanation": "It is a myth that one psychology course will let you analyse people, uncover hidden personality or control them. The other options are true statements about psychology."
         },
         {
           "question": "Psychology is both a science and a profession because:",
@@ -3960,7 +3960,7 @@ export default {
             "Humanistic and sociocultural"
           ],
           "answer": 0,
-          "explanation": "Gestalt psychology opposed structuralism and behaviourism, studying thinking, learning and perception as whole units. The other pairs are not the schools it opposed according to the notes."
+          "explanation": "Gestalt psychology opposed structuralism and behaviourism, studying thinking, learning and perception as whole units. The other pairs are not the schools it opposed."
         }
       ]
     }

@@ -1,7 +1,7 @@
 // GES 103 · Chapter 5 · Lesson 2: what sociology is not, the sociological imagination, scientific method (notes 5.5–5.7).
 
 const HOOK = [
-  ['Yes. They’re discussing society', 'Not by your notes', 'Two problems: they speak from a self-centred, individual view, and there is no methodised knowledge.'],
+  ['Yes. They’re discussing society', 'Not quite', 'Two problems: they speak from a self-centred, individual view, and there is no methodised knowledge.'],
   ['No. It’s just opinions with no method', 'Exactly', 'Sociology needs a system of methodised knowledge: science.'],
   ['Only if a graduate is speaking', 'Not the test', 'Qualifications don’t matter. Method does.'],
   ['Yes, if they mention statistics', 'Not enough', 'Quoting a number isn’t a scientific method. Sociologists test their ideas systematically.'],
@@ -35,7 +35,7 @@ export default {
           prompt: 'Is this morning debate at the newspaper stand sociology?',
           options: HOOK.map(([text]) => ({ text })),
           pollTitle: 'Keep that answer in mind.',
-          pollBody: 'Your notes use this exact Nigerian scene to explain what sociology is NOT.',
+          pollBody: 'The course uses this exact Nigerian scene to explain what sociology is NOT.',
         },
         {
           type: 'reveal',
@@ -58,7 +58,7 @@ export default {
             { text: 'Surveying 500 households to see how fee increases affect school enrolment', bucket: 's', why: '**A systematic survey** is methodised knowledge.' },
             { text: 'Testing a theory about youth unemployment against national data', bucket: 's', why: '**Testing a theory against data** is getting up from the armchair.' },
             { text: '“Young people are lazy. Everybody knows that.”', bucket: 'n', why: '**“Everybody knows”** is common sense, not tested knowledge.' },
-            { text: 'A heated debate at the junction, based on what each man has seen in his own life', bucket: 'n', why: '**Speaking from personal experience only** is the self-centred perspective your notes warn about.' },
+            { text: 'A heated debate at the junction, based on what each man has seen in his own life', bucket: 'n', why: '**Speaking from personal experience only** is the self-centred perspective the course warns about.' },
             { text: 'Explaining crime from a comfortable chair, without ever collecting data', bucket: 'n', why: '**No data collected** is literally armchair sociology.' },
           ],
         },
@@ -119,7 +119,7 @@ export default {
             { text: 'Divine origin with social contract', why: 'Those are theories of the state from Chapter 1.' },
             { text: 'Capitalism with socialism', why: 'Those are ideologies, not sociological theories.' },
           ],
-          explain: 'Your notes add that the sociological imagination **removes bias, stereotypes and ethnocentrism**.',
+          explain: 'The course adds that the sociological imagination **removes bias, stereotypes and ethnocentrism**.',
         },
         {
           type: 'bridge',
@@ -222,7 +222,7 @@ export default {
           prompt: 'Why is Mr. Adio’s claim not sociology?',
           options: [
             { text: 'Because it’s about young people.', why: 'Young people are a perfectly good topic.' },
-            { text: 'It comes from his individual perspective, with no methodised knowledge behind it.', correct: true, why: 'Those are the two reasons your notes give.' },
+            { text: 'It comes from his individual perspective, with no methodised knowledge behind it.', correct: true, why: 'Those are the two reasons.' },
             { text: 'Because he isn’t a lecturer.', why: 'Who says it doesn’t matter. How it’s known does.' },
             { text: 'Because it might be true.', why: 'Even a true claim isn’t sociology without method.' },
           ],

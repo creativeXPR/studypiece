@@ -4,7 +4,7 @@ const HOOK = [
   ['The soil and climate decide', 'Environmental determinism', 'The view that people are passive products of nature. Dominant in classical times.'],
   ['The farmer decides, within what the land allows', 'Possibilism', 'People choose within environmental limits. More accepted today.'],
   ['Whatever sells for the most money', 'Von Thünen’s insight', 'Land goes to the highest bidder: the use that pays the most rent there.'],
-  ['The government decides', 'Sometimes', 'In some systems (China, in your notes) government controls farming. Policy is one factor among several.'],
+  ['The government decides', 'Sometimes', 'In some systems (China, for example) government controls farming. Policy is one factor among several.'],
 ];
 
 export default {
@@ -130,7 +130,7 @@ export default {
           prompt: 'On a plot near the city, cassava would pay ₦50 rent and yam would pay ₦40. By Von Thünen’s idea, what is grown there?',
           options: [
             { text: 'Yam, because it is more traditional', why: 'Von Thünen’s model is about rent, not tradition.' },
-            { text: 'Cassava, because land goes to the highest bidder', correct: true, why: 'Your notes’ own example: if cassava pays more than yam on a plot, cassava is grown there.' },
+            { text: 'Cassava, because land goes to the highest bidder', correct: true, why: 'The course’s own example: if cassava pays more than yam on a plot, cassava is grown there.' },
             { text: 'Both, split equally', why: 'The model says the higher bidder takes the plot.' },
             { text: 'Nothing, because the city is too close', why: 'Land near the market is the most valuable.' },
           ],
@@ -166,7 +166,7 @@ export default {
     {
       name: 'Markets & views',
       terms: [
-        ['Periodic markets', 'Rural markets in developing countries meeting every 3, 7 or 9 days (per the notes). Reasons: poor storage, poor transport, low population density.'],
+        ['Periodic markets', 'Rural markets in developing countries meeting every 3, 7 or 9 days. Reasons: poor storage, poor transport, low population density.'],
         ['Stine (1962) and Christaller (1925)', 'Stine’s theory of periodic markets is based on Christaller’s Central Place Theory.'],
         ['Determinism vs possibilism', 'Determinism: man is a passive product of the environment. Possibilism: freedom to choose within environmental limits.'],
       ],
@@ -176,7 +176,7 @@ export default {
           art: 'market',
           eyebrow: 'Markets',
           title: 'Why do rural markets only open every few days?',
-          body: 'Urban markets operate daily. Most rural markets in developing countries are ==periodic==, meeting every few days (your notes say every 3, 7 or 9 days).\n\nStine’s theory of periodic markets (1962) builds on **Christaller’s Central Place Theory** (1925), which explains the marketing functions cities provide to their hinterland.',
+          body: 'Urban markets operate daily. Most rural markets in developing countries are ==periodic==, meeting every few days (the course says every 3, 7 or 9 days).\n\nStine’s theory of periodic markets (1962) builds on **Christaller’s Central Place Theory** (1925), which explains the marketing functions cities provide to their hinterland.',
         },
         {
           type: 'multi',
@@ -186,7 +186,7 @@ export default {
             { text: 'Poor storage', correct: true, why: '**Poor storage** is listed.' },
             { text: 'Poor transport', correct: true, why: '**Poor transport** is listed.' },
             { text: 'Low population density', correct: true, why: '**Low population density** is listed.' },
-            { text: 'Traders prefer not to work', why: '**Not a reason in the notes.** Periodicity is about demand and distance.' },
+            { text: 'Traders prefer not to work', why: '**Not a reason.** Periodicity is about demand and distance.' },
           ],
           explain: 'Periodicity **concentrates demand** on specific days and **reduces the distance** buyers must travel.',
         },
@@ -287,7 +287,7 @@ export default {
           options: [
             { text: 'That’s environmental determinism, treating people as passive products of nature.', correct: true, why: '**“Can only ever”** is the determinist view.' },
             { text: 'Possibilism says people can choose within the environment’s limits, e.g. rice farming or drainage.', correct: true, why: '**Choice within limits** is possibilism, the more accepted view today.' },
-            { text: 'The relationship is two-way: people can also change the environment.', correct: true, why: '**Two-way interaction** is how your notes describe the human–environment relationship.' },
+            { text: 'The relationship is two-way: people can also change the environment.', correct: true, why: '**Two-way interaction** is how the course describes the human–environment relationship.' },
             { text: 'Darwin proved the planner right.', why: '**Darwin’s work only seemed to confirm determinism** in classical times. It’s no longer the accepted view.' },
           ],
         },

@@ -3,7 +3,7 @@
 const HOOK = [
   ['Mostly harmful', 'Half the story', 'Pollution, deforestation and extinction are real, but so are afforestation and conservation.'],
   ['Mostly helpful', 'Half the story', 'Conservation and renewables help, but destructive impacts are serious and widespread.'],
-  ['Both, depending on what we choose', 'Your notes’ answer', 'Human activities have both positive and negative effects on the environment.'],
+  ['Both, depending on what we choose', 'The course’s answer', 'Human activities have both positive and negative effects on the environment.'],
   ['People don’t really affect nature', 'Not supported', 'More people means more environmental impact, for better or worse.'],
 ];
 
@@ -66,7 +66,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Why do your notes say migration doesn’t matter for global population?',
+          prompt: 'Why does the course say migration doesn’t matter for global population?',
           options: [
             { text: 'Because nobody migrates any more.', why: 'Millions migrate every year.' },
             { text: 'Because every move stays within the world: one country’s emigrant is another’s immigrant.', correct: true, why: 'At world level, migration cancels out. Only births and deaths change the total.' },
@@ -130,7 +130,7 @@ export default {
             { text: 'Trees are noisy.', why: 'That’s not the issue.' },
             { text: 'It removes oxygen producers and CO₂ absorbers, and often causes erosion and habitat loss as well.', correct: true, why: 'Fewer trees means less CO₂ taken out of the air, plus soil and biodiversity losses.' },
             { text: 'It only affects animals, not climate.', why: 'Losing CO₂ absorbers affects the climate directly.' },
-            { text: 'It increases rainfall everywhere.', why: 'That isn’t in your notes, and it isn’t the main effect.' },
+            { text: 'It increases rainfall everywhere.', why: 'That isn’t the main effect.' },
           ],
         },
         {
@@ -140,7 +140,7 @@ export default {
             '**Pollution, overconsumption, hunting and predators, mining, transport, deforestation.**',
             'Transport and deforestation both feed **global warming**: more CO₂ released, fewer trees to absorb it.',
           ],
-          why: 'It’s not all bad news. Your notes list ten ways people protect and improve the environment.',
+          why: 'It’s not all bad news. The course lists ten ways people protect and improve the environment.',
         },
       ],
     },
@@ -173,7 +173,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Apply it',
-          prompt: 'Which of these are positive human impacts listed in your notes?',
+          prompt: 'Which of these are positive human impacts?',
           options: [
             { text: 'Afforestation: planting trees to improve air quality', correct: true, why: '**Afforestation** is listed.' },
             { text: 'Renewable energy: solar, biofuels, wind', correct: true, why: '**Renewables** are listed.' },
@@ -185,12 +185,12 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Check yourself',
-          prompt: 'Your notes give rubber as an example of introducing a new plant species. Where was it taken from, and where to?',
+          prompt: 'The course gives rubber as an example of introducing a new plant species. Where was it taken from, and where to?',
           options: [
-            { text: 'From Brazil’s Amazon Basin to Malaysia', correct: true, why: 'That’s the notes’ example of a successful introduced species.' },
+            { text: 'From Brazil’s Amazon Basin to Malaysia', correct: true, why: 'That’s the course’s example of a successful introduced species.' },
             { text: 'From Nigeria to Brazil', why: 'Rubber comes from the Amazon.' },
             { text: 'From Malaysia to Brazil', why: 'It went the other way.' },
-            { text: 'From Ghana to India', why: 'Not the example in your notes.' },
+            { text: 'From Ghana to India', why: 'Not the standard example.' },
           ],
           note: 'Your text calls Malaysia “the world’s largest rubber producer”. That was true for decades, but **Thailand** has been the largest producer for many years now. Give the text’s answer in this course’s exam if asked.',
         },
@@ -215,7 +215,7 @@ export default {
           title: 'Is human impact harmful or helpful?',
           body: 'Here’s how each answer from the start holds up.',
           rows: HOOK,
-          after: 'Your notes’ revision point: human activities have **both positive and negative effects**. Which one wins depends on our choices.',
+          after: 'The course’s revision point: human activities have **both positive and negative effects**. Which one wins depends on our choices.',
         },
         {
           type: 'story',
@@ -228,9 +228,9 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Case file · 1 of 5',
-          prompt: 'Proposal 1: plant 5,000 trees across campus. Which positive impact is this, and what does it improve, according to your notes?',
+          prompt: 'Proposal 1: plant 5,000 trees across campus. Which positive impact is this, and what does it improve?',
           options: [
-            { text: 'Afforestation, which improves air quality', correct: true, why: 'Planting trees is afforestation, and your notes say it improves air quality.' },
+            { text: 'Afforestation, which improves air quality', correct: true, why: 'Planting trees is afforestation, and the course says it improves air quality.' },
             { text: 'Domestication, which protects animals', why: 'Domestication protects animals from predators.' },
             { text: 'Selective breeding, which improves yields', why: 'That’s about crops and livestock.' },
             { text: 'Mining, which creates jobs', why: 'Mining is on the destructive list.' },

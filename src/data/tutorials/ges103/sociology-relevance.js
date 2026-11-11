@@ -137,7 +137,7 @@ export default {
             '**Macro** (large-scale, statistics), **micro** (face-to-face, interpretive), **meso** (in between).',
             'Areas: organisation and order, **control**, **change**, processes, groups, **problems**.',
           ],
-          why: 'So what’s the point of all this? Your notes list ten ways sociology is relevant, and one that matters most.',
+          why: 'So what’s the point of all this? The course lists ten ways sociology is relevant, and one that matters most.',
         },
       ],
     },
@@ -174,7 +174,7 @@ export default {
         {
           type: 'sort',
           eyebrow: 'Apply it',
-          prompt: 'Sociology opens careers. Your notes also name two applied branches. Sort them.',
+          prompt: 'Sociology opens careers. The course also names two applied branches. Sort them.',
           buckets: [
             { id: 'c', label: 'Careers' },
             { id: 'a', label: 'Applied branches' },
@@ -190,10 +190,10 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Of all ten, which do your notes call the most significant relevance of sociology?',
+          prompt: 'Of all ten, which does the course call the most significant relevance of sociology?',
           options: [
             { text: 'It provides careers in HR.', why: 'Useful, but not the most significant.' },
-            { text: 'It brought science to the study of society.', correct: true, why: 'That’s the notes’ answer, and it ties back to Comte’s positivism.' },
+            { text: 'It brought science to the study of society.', correct: true, why: 'That’s the course’s answer, and it ties back to Comte’s positivism.' },
             { text: 'It helps with international problems.', why: 'Important, but not named as the most significant.' },
             { text: 'It keeps us updated on modern situations.', why: 'That’s Giddens’s social adequacy, not the top point.' },
           ],

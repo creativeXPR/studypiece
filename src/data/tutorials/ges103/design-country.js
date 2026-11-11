@@ -78,24 +78,24 @@ export default {
         {
           type: 'sort',
           eyebrow: 'Apply it',
-          prompt: 'Which of Aristotle’s forms best fits each example from your notes?',
+          prompt: 'Which of Aristotle’s forms best fits each example?',
           buckets: [
             { id: 'm', label: 'Monarchy' },
             { id: 't', label: 'Tyranny' },
             { id: 'a', label: 'Aristocracy' },
           ],
           items: [
-            { text: 'Jordan and Morocco’s kings', bucket: 'm', why: '**Jordan and Morocco** are the notes’ monarchy examples.' },
+            { text: 'Jordan and Morocco’s kings', bucket: 'm', why: '**Jordan and Morocco** are the course’s monarchy examples.' },
             { text: 'Traditional African kingdoms', bucket: 'm', why: '**Traditional African societies** appear under monarchy.' },
-            { text: 'Idi Amin in Uganda', bucket: 't', why: '**Idi Amin** is a notes example of tyranny: one person ruling for himself.' },
+            { text: 'Idi Amin in Uganda', bucket: 't', why: '**Idi Amin** is a classic example of tyranny: one person ruling for himself.' },
             { text: 'Sani Abacha in Nigeria', bucket: 't', why: '**Abacha** is listed under tyranny.' },
-            { text: 'The rich using their wealth for the common good', bucket: 'a', why: '**Wealth used for the common good** is how the notes describe aristocracy in practice.' },
+            { text: 'The rich using their wealth for the common good', bucket: 'a', why: '**Wealth used for the common good** is how the course describes aristocracy in practice.' },
           ],
         },
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Aristotle called democracy his worst form, yet today it’s the most desired. How do your notes explain this?',
+          prompt: 'Aristotle called democracy his worst form, yet today it’s the most desired. How does the course explain this?',
           options: [
             { text: 'Aristotle was simply wrong about everything.', why: 'His scheme lasted nearly 25 centuries.' },
             { text: 'The meaning of “democracy” has changed. To Aristotle it meant the many ruling for themselves; his good version was “polity”.', correct: true, why: 'Modern democracy, with a constitution and rule for all, is closer to what Aristotle called polity.' },
@@ -143,7 +143,7 @@ export default {
             { text: 'Units have no legal existence or taxing power of their own', bucket: 'u', why: '**Units at the centre’s mercy** describes a unitary state.' },
             { text: 'Adopted by homogeneous peoples in small countries', bucket: 'u', why: '**Homogeneity and small size** are reasons for a unitary system.' },
             { text: 'A constitution divides power between independent, coordinate levels', bucket: 'f', why: '**Wheare’s definition** is federalism.' },
-            { text: 'Nigeria: FG, 36 states, 774 LGAs, FCT', bucket: 'f', why: '**Nigeria** is the notes’ main federal example.' },
+            { text: 'Nigeria: FG, 36 states, 774 LGAs, FCT', bucket: 'f', why: '**Nigeria** is the course’s main federal example.' },
             { text: 'Units keep their sovereignty; the centre is weak', bucket: 'c', why: '**Sovereign units with a weak centre** is a confederation.' },
             { text: 'The least stable form, prone to secession', bucket: 'c', why: '**Instability and secession** are the confederal weakness.' },
           ],
@@ -158,12 +158,12 @@ export default {
             { text: 'Only confederations have constitutions.', why: 'Federations are defined by a constitution dividing power.' },
             { text: 'They are the same thing with different names.', why: 'They differ on where sovereignty sits.' },
           ],
-          note: 'Your notes list **Canada 1867** as a confederation. Canada called its 1867 union “Confederation”, but it actually created a **federation**. Your notes’ other examples (USA 1781–1789, Germany 1815) are true confederations.',
+          note: 'The course lists **Canada 1867** as a confederation. Canada called its 1867 union “Confederation”, but it actually created a **federation**. The course’s other examples (USA 1781–1789, Germany 1815) are true confederations.',
         },
         {
           type: 'multi',
           eyebrow: 'Think deeper',
-          prompt: 'The Coral Isles have many ethnic groups, fear invasion, and share one colonial history. Which of these are reasons your notes give for choosing federalism?',
+          prompt: 'The Coral Isles have many ethnic groups, fear invasion, and share one colonial history. Which of these are reasons for choosing federalism?',
           options: [
             { text: 'Heterogeneous people', correct: true, why: '**A diverse population** favours federalism.' },
             { text: 'Fear of insecurity and need for common defence', correct: true, why: '**Security and common defence** are listed reasons.' },
@@ -240,7 +240,7 @@ export default {
             { text: 'The monarch picks anyone they like.', why: 'The head of state is ceremonial and invites the majority leader.' },
             { text: 'The Supreme Court appoints them.', why: 'Courts play no part in choosing a PM.' },
           ],
-          note: 'Your notes say the French President serves **seven years** and is elected by an **electoral college**. Since 2002 the term has been **five years**, and the President has been **directly elected since 1962**. For this course’s exam, give the textbook answer, but know the current facts.',
+          note: 'The French President serves **seven years** and is elected by an **electoral college**. Since 2002 the term has been **five years**, and the President has been **directly elected since 1962**. For this course’s exam, give the textbook answer, but know the current facts.',
         },
         {
           type: 'bridge',

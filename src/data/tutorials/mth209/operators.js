@@ -110,7 +110,7 @@ export default {
           type: 'story',
           eyebrow: 'Exam question',
           title: 'The question set every year',
-          body: '“By first defining the step-up operator $E$, prove that (i) $\\Delta = E - 1$, (ii) $E^2 = (\\Delta + 1)^2$, (iii) $\\delta = E^{\\frac12}\\nabla = E^{-\\frac12}\\Delta$, (iv) $\\delta^2 = \\nabla\\Delta$, (v) $DE = ED$.”\n\n**What the examiner wants:** the definition $Ef_k = f_{k+1}$ first; each proof starting from definitions; the “for every $f_k$” step; and a clean conclusion. All five are in **Steps** in your notes.',
+          body: '“By first defining the step-up operator $E$, prove that (i) $\\Delta = E - 1$, (ii) $E^2 = (\\Delta + 1)^2$, (iii) $\\delta = E^{\\frac12}\\nabla = E^{-\\frac12}\\Delta$, (iv) $\\delta^2 = \\nabla\\Delta$, (v) $DE = ED$.”\n\n**What the examiner wants:** the definition $Ef_k = f_{k+1}$ first; each proof starting from definitions; the “for every $f_k$” step; and a clean conclusion. All five are under **Steps** in the side panel.',
           asides: [{ label: 'Exam tip', text: 'Write the definition of each operator before using it. “By first defining…” means the definitions carry marks.' }],
         },
         {

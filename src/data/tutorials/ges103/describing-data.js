@@ -2,9 +2,9 @@
 
 const HOOK = [
   ['Add them up and divide by how many', 'The mean', 'Good, but one very old or very young person can drag it a long way.'],
-  ['Line them up and take the middle one', 'The median', 'Resistant to extreme values. Your notes recommend it for interval data.'],
+  ['Line them up and take the middle one', 'The median', 'Resistant to extreme values. The course recommends it for interval data.'],
   ['Pick the age that appears most often', 'The mode', 'Quick, and the only average that works for categories like sex or faculty.'],
-  ['It depends on the data', 'The statistician’s answer', 'Your notes: frequency and mode for categorical data, median for interval data, mean for ratio data.'],
+  ['It depends on the data', 'The statistician’s answer', 'Frequency and mode for categorical data, median for interval data, mean for ratio data.'],
 ];
 
 export default {
@@ -57,7 +57,7 @@ export default {
           prompt: 'In your codebook, Sex is coded Male = 1, Female = 2. While cleaning, you find a respondent coded 22. What most likely happened, and how do you catch errors like this?',
           options: [
             { text: 'A new sex category exists. Add it to the codebook.', why: 'It’s far more likely to be a typing error.' },
-            { text: 'A typing error (22 instead of 2). Running descriptive frequencies on categorical variables catches it.', correct: true, why: 'Your notes use exactly this example. Frequencies show any value outside the codebook straight away.' },
+            { text: 'A typing error (22 instead of 2). Running descriptive frequencies on categorical variables catches it.', correct: true, why: 'The course uses exactly this example. Frequencies show any value outside the codebook straight away.' },
             { text: 'The respondent is 22 years old.', why: 'Age would be a different variable in the codebook.' },
             { text: 'Nothing. Leave it, since it won’t matter.', why: 'Errors like this create outliers that distort results.' },
           ],
@@ -110,7 +110,7 @@ export default {
           widget: 'averages',
           eyebrow: 'Measures of central tendency',
           title: 'Play with the averages.',
-          body: 'These are your notes’ worked example: five ages, 22, 18, 32, 18 and 25. Change them and watch all three averages respond.',
+          body: 'These are the course’s worked example: five ages, 22, 18, 32, 18 and 25. Change them and watch all three averages respond.',
         },
         {
           type: 'choice',
@@ -127,7 +127,7 @@ export default {
         {
           type: 'sort',
           eyebrow: 'Apply it',
-          prompt: 'Your notes’ rule of thumb: which statistic suits which kind of data?',
+          prompt: 'The course’s rule of thumb: which statistic suits which kind of data?',
           buckets: [
             { id: 'c', label: 'Frequency and mode', hint: 'categorical data' },
             { id: 'i', label: 'Median', hint: 'interval data' },
@@ -176,7 +176,7 @@ export default {
           widget: 'bellCurve',
           eyebrow: 'Standard deviation',
           title: 'Stretch the bell curve.',
-          body: 'Your notes’ example: mean age 30, standard deviation 10. Change the spread and check each band.',
+          body: 'The course’s example: mean age 30, standard deviation 10. Change the spread and check each band.',
         },
         {
           type: 'choice',
@@ -184,7 +184,7 @@ export default {
           prompt: 'Mean age 30, S.D. 10. About what percentage of people are aged 20–40?',
           options: [
             { text: '50%', why: '20–40 is ±1 S.D. from the mean.' },
-            { text: '68%', correct: true, why: '±1 S.D. covers about 68% of cases, the notes’ own example.' },
+            { text: '68%', correct: true, why: '±1 S.D. covers about 68% of cases, the course’s own example.' },
             { text: '95%', why: '95% is ±2 S.D.: ages 10–50 here.' },
             { text: '100%', why: 'Even ±3 S.D. doesn’t quite cover everyone.' },
           ],

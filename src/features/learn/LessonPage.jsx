@@ -1,7 +1,9 @@
 import { useEffect, useMemo } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../app/AuthProvider';
-import { findLesson, getTutorial, lessonPath, tutorialPath } from '../../data/tutorials';
+import { findLesson, getLoadedTutorial, getTutorial, lessonPath, loadTutorial, tutorialPath } from '../../data/tutorials';
+import CourseLoading from '../../lib/CourseLoading';
+import useLoaded from '../../lib/useLoaded';
 import LessonPlayer from './LessonPlayer';
 import { preloadPython } from './python';
 import './learn.css';
@@ -19,7 +21,10 @@ export default function LessonPage() {
   const { courseId, lessonId } = useParams();
   const { user } = useAuth();
   const tutorial = getTutorial(courseId);
-  const found = tutorial ? findLesson(tutorial, lessonId) : null;
+  // The catalogue says whether the lesson exists; its screens come with the tutorial's download.
+  const listed = tutorial ? findLesson(tutorial, lessonId) : null;
+  const { data: full, error, retry } = useLoaded(listed ? tutorial.slug : null, getLoadedTutorial, loadTutorial);
+  const found = full ? findLesson(full, lessonId) : null;
   const next = found?.next;
   const nextLesson = useMemo(
     () => (next ? { title: next.title, href: lessonPath(tutorial.slug, next.id) } : null),
@@ -31,18 +36,21 @@ export default function LessonPage() {
   // the course's libraries load in the background, so later lessons open ready too. Moving between
   // lessons keeps what was loaded, and nothing is downloaded twice.
   useEffect(() => {
-    const course = getTutorial(courseId);
-    if (!course) return undefined;
-    const mine = codePackages([findLesson(course, lessonId)?.lesson]);
-    const all = codePackages(course.chapters.flatMap((c) => c.lessons));
+    if (!full) return undefined;
+    const mine = codePackages([findLesson(full, lessonId)?.lesson]);
+    const all = codePackages(full.chapters.flatMap((c) => c.lessons));
     if (mine) preloadPython(mine);
     if (!all) return undefined;
     const timer = setTimeout(() => preloadPython(all), 1500);
     return () => clearTimeout(timer);
-  }, [courseId, lessonId]);
+  }, [full, lessonId]);
 
   if (!tutorial) return <Navigate to="/" replace />;
-  if (!found) return <Navigate to={tutorialPath(tutorial.slug)} replace />;
+  if (!listed) return <Navigate to={tutorialPath(tutorial.slug)} replace />;
+  if (!found) {
+    const ready = tutorial.chapters.flatMap((c) => c.lessons).filter((l) => l.ready).length;
+    return <CourseLoading code={tutorial.code} title={tutorial.title} what="lessons" amount={ready} error={error} onRetry={retry} />;
+  }
 
   return (
     <LessonPlayer

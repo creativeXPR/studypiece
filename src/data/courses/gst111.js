@@ -486,7 +486,7 @@ export default {
             "You have been reading since morning."
           ],
           "answer": 1,
-          "explanation": "Option II, 'He played football', uses the simple past form of the verb 'play'. The other options are in present tense (I & III) or present perfect progressive tense (IV)."
+          "explanation": "'He played football' uses the simple past form of the verb 'play'. 'They read all day' and 'She needs the money' are in the present tense, and 'You have been reading since morning' is present perfect progressive."
         },
         {
           "question": "(Identify the type of pronoun) The man 'who' bought the kettle has travelled.",
@@ -881,7 +881,7 @@ export default {
             "She will have read the news by 10:00 p.m."
           ],
           "answer": 1,
-          "explanation": "Option II, 'You will be reading the news tonight', uses the simple future progressive tense ('will be reading'). The other options are future perfect progressive (I), present perfect (III), and future perfect (IV). The question asks for a future tense, and the simple future progressive is a valid future form."
+          "explanation": "'You will be reading the news tonight' uses the simple future progressive tense ('will be reading'). The others are future perfect progressive ('will have been reading'), present perfect ('has read') and future perfect ('will have read'). The question asks for a future tense, and the simple future progressive is a valid future form."
         },
         {
           "question": "(Identify the type of noun) 'People' no longer travel by air.",
@@ -1161,7 +1161,7 @@ export default {
             "She will be reading the news tonight."
           ],
           "answer": 2,
-          "explanation": "Option III, 'Who reads next?', uses the simple present form of the verb 'read'. The other options are in past perfect (I), past continuous (II), and future continuous (IV)."
+          "explanation": "'Who reads next?' uses the simple present form of the verb 'read'. The others are past perfect ('had read'), past continuous ('was reading') and future continuous ('will be reading')."
         },
         {
           "question": "(Identify the type of noun) 'The Punch' newspaper added five new pages.",

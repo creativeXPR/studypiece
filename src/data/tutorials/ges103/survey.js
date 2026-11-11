@@ -119,7 +119,7 @@ export default {
             { text: 'It’s open-ended.', why: 'It’s actually a yes/no closed question.' },
             { text: 'It uses a Likert scale.', why: 'There’s no scale here.' },
           ],
-          explain: 'Your notes’ example of a double-barrelled item: “friendship developed because of nearness and shared experience.”',
+          explain: 'The course’s example of a double-barrelled item: “friendship developed because of nearness and shared experience.”',
         },
         {
           type: 'sort',
@@ -142,7 +142,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Think deeper',
-          prompt: 'Which of these are disadvantages of questionnaires listed in your notes?',
+          prompt: 'Which of these are disadvantages of questionnaires?',
           options: [
             { text: 'Reactivity: people give answers they think you want', correct: true, why: '**Reactivity** is listed.' },
             { text: 'Researcher’s imposition: your assumptions distort the concepts', correct: true, why: '**Researcher’s imposition** is listed.' },
@@ -208,7 +208,7 @@ export default {
             { text: 'Malinowski living among the Trobriand Islanders, openly as a researcher', bucket: 'po', why: '**Joining openly** is overt participant observation, the main method in ethnography.' },
             { text: 'A criminologist posing as a prisoner', bucket: 'pc', why: '**Hiding one’s identity** is covert, and conflicts with informed consent.' },
           ],
-          explain: 'Your notes add that people usually return to normal behaviour after about **3–6 months** of being observed.',
+          explain: 'The course adds that people usually return to normal behaviour after about **3–6 months** of being observed.',
         },
         {
           type: 'choice',
@@ -264,7 +264,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Why do your notes say that without historical documents, sociology “would be static”?',
+          prompt: 'Why does the course say that without historical documents, sociology “would be static”?',
           options: [
             { text: 'Because they are the cheapest source.', why: 'Cost isn’t the point.' },
             { text: 'Because they are needed to study social change over time.', correct: true, why: 'Without records of the past, you can only study the present.' },
@@ -330,7 +330,7 @@ export default {
           eyebrow: 'Case file · 3 of 5',
           prompt: 'In interviews, students say they eat at bukas for the taste. But when you watch, most choose whichever spot has the shortest queue. Which problem with interviews has observation revealed?',
           options: [
-            { text: 'Responses may be inaccurate: people can misremember or give socially acceptable answers.', correct: true, why: 'Your notes list inaccurate responses (lies, forgetting) as an interview weakness. Observation is harder to fake.' },
+            { text: 'Responses may be inaccurate: people can misremember or give socially acceptable answers.', correct: true, why: 'The course lists inaccurate responses (lies, forgetting) as an interview weakness. Observation is harder to fake.' },
             { text: 'Interviews are too expensive.', why: 'Cost isn’t what the contrast shows.' },
             { text: 'Observation is always wrong.', why: 'Here it caught something interviews missed.' },
             { text: 'The questionnaire was double-barrelled.', why: 'The contrast is between interviews and observation.' },
@@ -350,7 +350,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Case file · 5 of 5',
-          prompt: 'A teammate suggests sending the questionnaire only by e-mail to save time. Which concerns from your notes apply?',
+          prompt: 'A teammate suggests sending the questionnaire only by e-mail to save time. Which concerns apply?',
           options: [
             { text: 'It reaches only internet users.', correct: true, why: '**E-mail reaches only internet users.**' },
             { text: 'Return rates tend to be low.', correct: true, why: '**Low return** is listed for e-mail.' },

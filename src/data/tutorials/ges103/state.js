@@ -95,7 +95,7 @@ export default {
             'Modern government becomes big and technical, run by large bureaucracies.',
           ],
           hint: 'No hierarchy → complexity → government → direct democracy → representative democracy → bureaucracy.',
-          explain: 'As your notes put it: “One thing governments do is grow.”',
+          explain: 'As the saying goes: “One thing governments do is grow.”',
         },
         {
           type: 'bridge',
@@ -158,12 +158,12 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Somalia went years without a recognised government. Your notes also say no state can function without government. What follows?',
+          prompt: 'Somalia went years without a recognised government. The course also says no state can function without government. What follows?',
           options: [
-            { text: 'Somalia stopped being a state during those years.', why: 'Your notes say the opposite: Somalia kept its statehood.' },
+            { text: 'Somalia stopped being a state during those years.', why: 'The opposite: Somalia kept its statehood.' },
             { text: 'Somalia remained a state, but one that struggled to function, because statehood is permanent while governments are temporary.', correct: true, why: 'The state continues even when its government collapses. It just can’t act properly without one.' },
             { text: 'Somalia became a confederation.', why: 'Confederation is about how power is shared between levels (Chapter 2), not about losing a government.' },
-            { text: 'The notes contradict themselves.', why: 'They don’t. “Can’t function” and “stops existing” are different claims.' },
+            { text: 'The two statements contradict each other.', why: 'They don’t. “Can’t function” and “stops existing” are different claims.' },
           ],
         },
         {
@@ -332,7 +332,7 @@ export default {
           title: 'So, is the SUG a government?',
           body: 'Here’s how each answer from the start holds up.',
           rows: HOOK,
-          after: 'The SUG is the classic example from your notes: a **government without a state**.',
+          after: 'The SUG is the classic example: a **government without a state**.',
         },
         {
           type: 'story',

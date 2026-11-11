@@ -4,7 +4,7 @@ const HOOK = [
   ['A presidential democracy', 'Correct, but only one label', 'That describes how Nigeria’s organs relate and who rules. There are more criteria.'],
   ['A federal state', 'Correct, but only one label', 'That describes where power sits. There are more criteria.'],
   ['A capitalist country', 'Correct, but only one label', 'That describes the ideology. There are more criteria.'],
-  ['All of the above', 'The notes’ answer', 'Most countries combine forms. Nigeria today = a federal, capitalist, presidential democracy.'],
+  ['All of the above', 'The course’s answer', 'Most countries combine forms. Nigeria today = a federal, capitalist, presidential democracy.'],
 ];
 
 export default {
@@ -35,7 +35,7 @@ export default {
           prompt: 'How would you classify Nigeria’s government today?',
           options: HOOK.map(([text]) => ({ text })),
           pollTitle: 'Hold that thought.',
-          pollBody: 'There’s a precise answer in your notes. By the end of this lesson you’ll be able to build it yourself.',
+          pollBody: 'There’s a precise answer. By the end of this lesson you’ll be able to build it yourself.',
         },
         {
           type: 'reveal',
@@ -58,7 +58,7 @@ export default {
           ],
           items: [
             { text: 'Prices are set by markets, and businesses are privately owned.', bucket: 'k', why: '**Markets and private ownership** are capitalism.' },
-            { text: 'USA, Canada, Germany and Japan', bucket: 'k', why: '**These four** are the notes’ capitalist examples.' },
+            { text: 'USA, Canada, Germany and Japan', bucket: 'k', why: '**These four** are the course’s capitalist examples.' },
             { text: 'The state owns essential industries for equal opportunity.', bucket: 's', why: '**State ownership of essential industries** is socialism.' },
             { text: 'Remnants today: Cuba, Vietnam, Tanzania', bucket: 's', why: '**Cuba, Vietnam and Tanzania** are listed as socialist remnants.' },
             { text: 'Overthrow capitalism through a workers’ revolution.', bucket: 'c', why: '**Workers’ revolution** is the communist doctrine of Marx and Engels.' },
@@ -82,7 +82,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Your notes say Britain sits “midway between capitalism and socialism”. Why?',
+          prompt: 'Britain sits “midway between capitalism and socialism”. Why?',
           options: [
             { text: 'Because Britain has a monarch.', why: 'Monarchy is about who rules, not ideology.' },
             { text: 'Because it is a welfare state: a market economy with strong public provision.', correct: true, why: 'Private markets plus public welfare puts Britain between the two.' },
@@ -138,7 +138,7 @@ export default {
         {
           type: 'sort',
           eyebrow: 'Other forms',
-          prompt: 'Your notes list six other forms of government. Match each description.',
+          prompt: 'The course lists six other forms of government. Match each description.',
           buckets: [
             { id: 'fa', label: 'Fascism' },
             { id: 'fe', label: 'Feudalism' },
@@ -159,14 +159,14 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'What separates totalitarianism from an ordinary dictatorship, according to your notes?',
+          prompt: 'What separates totalitarianism from an ordinary dictatorship?',
           options: [
             { text: 'Totalitarian rulers are always elected.', why: 'They’re not.' },
             { text: 'It subordinates all social, economic, cultural and spiritual life to the rulers: a higher form of despotism.', correct: true, why: 'Total control of every sphere of life, usually through a dictator controlling a party, is what makes it totalitarian.' },
             { text: 'It only controls the army.', why: 'It controls far more than the army.' },
             { text: 'It allows many political parties.', why: 'It typically allows one party only.' },
           ],
-          note: 'Your notes list Egypt, Ethiopia and Liberia as never colonised. **Egypt** was under British control (a protectorate from 1882 to 1922), so the usual answer is **Ethiopia and Liberia**. Give the textbook answer in this course’s exam if asked.',
+          note: 'The course lists Egypt, Ethiopia and Liberia as never colonised. **Egypt** was under British control (a protectorate from 1882 to 1922), so the usual answer is **Ethiopia and Liberia**. Give the textbook answer in this course’s exam if asked.',
         },
         {
           type: 'bridge',
@@ -217,9 +217,9 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Your notes say most forms (aristocracy, oligarchy, fascism, feudalism, theocracy, colonialism and others) are now largely antiquated. What do most countries do instead?',
+          prompt: 'Most forms (aristocracy, oligarchy, fascism, feudalism, theocracy, colonialism and others) are now largely antiquated. What do most countries do instead?',
           options: [
-            { text: 'Pick one pure form and stick to it.', why: 'The notes say the opposite.' },
+            { text: 'Pick one pure form and stick to it.', why: 'The opposite is true.' },
             { text: 'Combine forms across the different criteria.', correct: true, why: 'A single country can be federal, capitalist and presidential all at once.' },
             { text: 'Return to Aristotle’s six forms only.', why: 'Aristotle’s scheme is just one of six criteria.' },
             { text: 'Avoid having any government type.', why: 'Every state has some form of government.' },
@@ -246,7 +246,7 @@ export default {
           title: 'So how do you classify Nigeria?',
           body: 'Here’s how each answer from the start holds up.',
           rows: HOOK,
-          after: 'The full answer from your notes: Nigeria today is a ==federal, capitalist, presidential democracy==.',
+          after: 'The full answer: Nigeria today is a ==federal, capitalist, presidential democracy==.',
         },
         {
           type: 'story',
@@ -258,10 +258,10 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Case file · 1 of 4',
-          prompt: 'Which labels together describe Nigeria today, according to your notes?',
+          prompt: 'Which labels together describe Nigeria today?',
           options: [
             { text: 'Federal', correct: true, why: '**Federal**: power divided between the FG, 36 states, 774 LGAs and the FCT.' },
-            { text: 'Capitalist', correct: true, why: '**Capitalist** is Nigeria’s ideology in the notes.' },
+            { text: 'Capitalist', correct: true, why: '**Capitalist** is Nigeria’s ideology.' },
             { text: 'Presidential', correct: true, why: '**Presidential**: one person is head of state and head of government.' },
             { text: 'Democracy', correct: true, why: '**Democracy**: government through elected representatives.' },
             { text: 'Confederal', why: '**Nigeria’s states are not sovereign**, so it isn’t confederal.' },

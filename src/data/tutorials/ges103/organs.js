@@ -1,7 +1,7 @@
 // GES 103 · Chapter 2 · Lesson 2: executive, legislature, judiciary (notes 2.5).
 
 const HOOK = [
-  ['The President', 'Executive', 'Always visible, even under military rule, but the notes call the legislature the paramount organ.'],
+  ['The President', 'Executive', 'Always visible, even under military rule, but the legislature is called the paramount organ.'],
   ['The National Assembly', 'Legislature', 'Garner: it “unquestionably occupies the paramount place”, the regulator of administration.'],
   ['The courts', 'Judiciary', 'The least harmful organ and “the last hope of the common man”, but not the most powerful.'],
   ['The army', 'Not an organ of government', 'The army falls under the executive. Ruling through it is a coup, not one of the three organs.'],
@@ -32,7 +32,7 @@ export default {
         {
           type: 'choice',
           poll: 'hook',
-          prompt: 'In a democracy, which organ do your notes say holds the paramount place?',
+          prompt: 'In a democracy, which organ does the course say holds the paramount place?',
           options: HOOK.map(([text]) => ({ text })),
           pollTitle: 'We’ll see.',
           pollBody: 'Most people guess the President. A political scientist named Garner had a different answer. Keep yours in mind.',
@@ -51,7 +51,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Apply it',
-          prompt: 'Which of these are functions of the executive, according to your notes?',
+          prompt: 'Which of these are functions of the executive?',
           options: [
             { text: 'General administration and law enforcement', correct: true, why: '**Administration and enforcement** are core executive functions.' },
             { text: 'External relations and defence', correct: true, why: '**External relations and defence** belong to the executive.' },
@@ -126,7 +126,7 @@ export default {
           ],
           items: [
             { text: 'Usually found in unitary or centralised states', bucket: 'u', why: '**Unitary states** tend to have one chamber.' },
-            { text: 'Uganda, Costa Rica, Portugal, Sweden', bucket: 'u', why: '**These four** are the notes’ unicameral examples.' },
+            { text: 'Uganda, Costa Rica, Portugal, Sweden', bucket: 'u', why: '**These four** are the course’s unicameral examples.' },
             { text: 'Quick, handles emergencies, cheaper', bucket: 'u', why: '**Speed and low cost** are the advantages of one chamber.' },
             { text: 'Risk of hasty laws; easy to manipulate', bucket: 'u', why: '**Hasty laws** are the weakness of one chamber.' },
             { text: 'Nigeria (Senate + House of Reps), Britain (Lords + Commons), USA', bucket: 'b', why: '**These** are bicameral examples.' },
@@ -189,7 +189,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Apply it',
-          prompt: 'The judiciary must be independent and impartial. Which of these are safeguards your notes list?',
+          prompt: 'The judiciary must be independent and impartial. Which of these are safeguards the course lists?',
           options: [
             { text: 'Guaranteed tenure for judges', correct: true, why: '**Guaranteed tenure** means judges can’t simply be sacked for unpopular rulings.' },
             { text: 'Appointment of competent judges', correct: true, why: '**Competent appointments** are listed.' },
@@ -230,7 +230,7 @@ export default {
           title: 'Which organ holds the paramount place?',
           body: 'Here’s how each answer from the start holds up.',
           rows: HOOK,
-          after: 'The executive is the most visible organ, but the notes, following Garner, give the paramount place to the legislature.',
+          after: 'The executive is the most visible organ, but the course, following Garner, gives the paramount place to the legislature.',
         },
         {
           type: 'story',
@@ -270,7 +270,7 @@ export default {
           eyebrow: 'Case file · 3 of 4',
           prompt: 'The Governor is furious and proposes cutting the judges’ salaries. Why can’t he easily do it?',
           options: [
-            { text: 'Judges are paid from the Consolidated Fund, one of the safeguards of judicial independence.', correct: true, why: 'That’s exactly the protection the notes describe.' },
+            { text: 'Judges are paid from the Consolidated Fund, one of the safeguards of judicial independence.', correct: true, why: 'That’s exactly the protection the course describes.' },
             { text: 'Judges work for the legislature.', why: 'Judges aren’t employees of the legislature.' },
             { text: 'The army protects judges’ pay.', why: 'Nothing to do with the army.' },
             { text: 'Governors have no control over money at all.', why: 'The executive does control the purse in general, which is why judges’ pay is shielded.' },

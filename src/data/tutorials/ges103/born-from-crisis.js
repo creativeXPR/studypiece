@@ -36,7 +36,7 @@ export default {
           prompt: 'Why do you think sociology was invented in the first place?',
           options: HOOK.map(([text]) => ({ text })),
           pollTitle: 'Interesting.',
-          pollBody: 'Your notes have a memorable one-line answer. You’ll see it in a few screens.',
+          pollBody: 'The course has a memorable one-line answer. You’ll see it in a few screens.',
         },
         {
           type: 'story',
@@ -106,7 +106,7 @@ export default {
         {
           type: 'choice',
           eyebrow: 'Think deeper',
-          prompt: 'Your notes call sociology “a discipline birthed from social crises to solve social crises.” What does that mean?',
+          prompt: 'The course calls sociology “a discipline birthed from social crises to solve social crises.” What does that mean?',
           options: [
             { text: 'Sociology causes social crises.', why: 'It’s the reverse: the crises came first.' },
             { text: 'It emerged because upheavals created social problems, and pioneers wanted scientific methods to understand and solve them.', correct: true, why: 'The crises created both the need and the purpose.' },
@@ -173,7 +173,7 @@ export default {
           options: [
             { text: 'Max Weber', why: 'Weber is linked to social action.' },
             { text: 'Émile Durkheim', correct: true, why: 'Durkheim studied social facts, and his book Suicide showed social patterns in a seemingly individual act.' },
-            { text: 'Herbert Spencer', why: 'Spencer isn’t linked to social facts in your notes.' },
+            { text: 'Herbert Spencer', why: 'Social facts are Durkheim’s idea, not Spencer’s.' },
             { text: 'Harriet Martineau', why: 'Martineau is listed as a British pioneer, not for social facts.' },
           ],
         },
@@ -304,7 +304,7 @@ export default {
             { text: 'Durkheim', why: 'Durkheim would study group patterns objectively, not personal meanings.' },
             { text: 'Weber', correct: true, why: 'Understanding the subjective meaning of action that takes account of others is Weber’s social action.' },
             { text: 'Comte', why: 'Comte looked for social laws.' },
-            { text: 'Martineau', why: 'Martineau isn’t linked to this approach in your notes.' },
+            { text: 'Martineau', why: 'Martineau isn’t linked to this approach.' },
           ],
         },
         {
@@ -321,7 +321,7 @@ export default {
         {
           type: 'multi',
           eyebrow: 'Case file · 4 of 4',
-          prompt: 'Lagos’s rapid change looks a lot like the 19th-century upheavals. Which parallels hold, according to your notes?',
+          prompt: 'Lagos’s rapid change looks a lot like the 19th-century upheavals. Which parallels hold?',
           options: [
             { text: 'Rural life giving way to city life', correct: true, why: '**Urbanisation** was one of the 19th-century changes.' },
             { text: 'New social problems like crime and poverty', correct: true, why: '**Crime and poverty** followed the upheavals.' },

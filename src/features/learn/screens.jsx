@@ -35,7 +35,7 @@ function Head({ s }) {
           <Art name={s.art} />
         </div>
       )}
-      {s.eyebrow && <p className="tut-eyebrow">{s.eyebrow}</p>}
+      {s.eyebrow && <p className="tut-eyebrow"><Inline text={s.eyebrow} /></p>}
       {(s.title || s.prompt) && (
         <h2 className="tut-title" tabIndex={-1}>
           <Inline text={s.title || s.prompt} />
@@ -380,7 +380,7 @@ function Sort({ s, index, api }) {
               }}
             >
               <button type="button" className="tut-bin-head" onClick={() => picked !== null && putIn(picked, b.id)}>
-                <strong>{b.label}</strong>
+                <strong><Inline text={b.label} /></strong>
                 {b.hint && <small>{b.hint}</small>}
               </button>
               <div className="tut-bin-body">{order.filter((i) => place[i] === b.id).map(chip)}</div>
@@ -502,11 +502,11 @@ function Reveal({ s, api }) {
             <span className="tut-flip-in">
               <span className="tut-face front">
                 {c.icon && <CardIcon name={c.icon} />}
-                <strong>{c.title}</strong>
+                <strong><Inline text={c.title} /></strong>
                 <small>Tap to reveal</small>
               </span>
               <span className="tut-face back">
-                <strong>{c.title}</strong>
+                <strong><Inline text={c.title} /></strong>
                 <span><Inline text={c.text} /></span>
               </span>
             </span>

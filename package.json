@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "check": "node scripts/checkQuestions.js",
+    "check": "node scripts/checkQuestions.js && node scripts/checkLessons.js",
     "icons": "node scripts/brandIcons.js",
     "preview": "vite preview"
   },
