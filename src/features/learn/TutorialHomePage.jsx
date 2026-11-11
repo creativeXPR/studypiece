@@ -114,7 +114,7 @@ export default function TutorialHomePage() {
                           <small className="muted">{l.covers}</small>
                         </span>
                         <span className={`learn-pill ${state}`}>
-                          {state === 'soon' ? 'Soon' : state === 'progress' ? `In progress · ${run.idx + 1}/${run.total}` : state === 'done' ? `${rec.best}/${rec.of}` : (
+                          {state === 'soon' ? 'Soon' : state === 'progress' ? `In progress · ${run.idx + 1}/${run.total}` : state === 'done' ? (rec.of >= rec.best && rec.of > 0 ? `${rec.best}/${rec.of}` : 'Done') : (
                             <>
                               <ClockIcon size={13} /> {l.minutes} min
                             </>

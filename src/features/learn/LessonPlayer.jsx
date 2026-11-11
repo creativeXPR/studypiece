@@ -136,12 +136,22 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
         buzz(opts.tone === 'good' ? 15 : opts.tone === 'bad' ? [30, 50, 30] : 0);
       },
       score() {
+        // Reviewing a lesson saved before per-question answers were kept: show the saved score.
+        // (A record damaged by an earlier review saved of = 0; count the lesson's questions instead.)
+        if (reviewing.current && !Object.keys(results.current).length && record?.best !== undefined) {
+          const right = Math.max(record.best ?? 0, record.score ?? 0);
+          const graded = record.of >= right && record.of > 0 ? record.of : askedSoFar(screens, total - 1, {}).length;
+          return { right, graded };
+        }
         const v = Object.values(results.current);
         return { right: v.filter(Boolean).length, graded: v.length };
       },
       complete() {
-        const { right, graded } = a.score();
-        saveProgress(courseSlug, lesson.id, right, graded, { results: results.current, mem: mem.current });
+        // A review is read-only: the finished attempt's record stays exactly as it was.
+        if (!reviewing.current) {
+          const { right, graded } = a.score();
+          saveProgress(courseSlug, lesson.id, right, graded, { results: results.current, mem: mem.current });
+        }
         clearRun(uid, courseSlug, lesson.id);
       },
       exit() {
@@ -164,7 +174,7 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
       },
     };
     return a;
-  }, [lesson, nextLesson, courseSlug, homeHref, navigate, total, persist, uid]);
+  }, [lesson, nextLesson, courseSlug, homeHref, navigate, total, persist, uid, record, screens]);
 
   // A lesson with code exercises wakes the Java runner early, while the learner reads.
   const hasCode = useMemo(() => screens.some((x) => x.type === 'code'), [screens]);
@@ -208,6 +218,13 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
   const cur = s.sec;
   const unlocked = lesson.sections.slice(0, cur + 1).filter((x) => x.terms?.length);
   const noteCount = unlocked.reduce((n, x) => n + x.terms.length, 0);
+  // Sections may also carry `steps` (a solving recipe) and `examples` ({ title, question, steps,
+  // answer }); like terms, they show in the notes drawer once the learner reaches their section.
+  const reached = lesson.sections.slice(0, cur + 1);
+  const hasSteps = lesson.sections.some((x) => x.steps?.length);
+  const hasExamples = lesson.sections.some((x) => x.examples?.length);
+  const guideSteps = reached.filter((x) => x.steps?.length);
+  const guideExamples = reached.flatMap((x) => x.examples ?? []);
   const openNotes = () => {
     setAsked(askedSoFar(screens, idx, results.current));
     setNotesOpen(true);
@@ -321,15 +338,63 @@ export default function LessonPlayer({ lesson, courseSlug, homeHref, nextLesson,
               </button>
             </div>
             <div className="tut-drawer-tabs" role="tablist" aria-label="Notes">
-              <button type="button" role="tab" aria-selected={notesTab === 'terms'} className={notesTab === 'terms' ? 'on' : ''} onClick={() => setNotesTab('terms')}>
-                Terms
-              </button>
-              <button type="button" role="tab" aria-selected={notesTab === 'questions'} className={notesTab === 'questions' ? 'on' : ''} onClick={() => setNotesTab('questions')}>
-                Questions{asked.length ? ` (${asked.length})` : ''}
-              </button>
+              {[
+                ['terms', 'Terms'],
+                ...(hasSteps ? [['steps', 'Steps']] : []),
+                ...(hasExamples ? [['examples', `Examples${guideExamples.length ? ` (${guideExamples.length})` : ''}`]] : []),
+                ['questions', `Questions${asked.length ? ` (${asked.length})` : ''}`],
+              ].map(([id, label]) => (
+                <button key={id} type="button" role="tab" aria-selected={notesTab === id} className={notesTab === id ? 'on' : ''} onClick={() => setNotesTab(id)}>
+                  {label}
+                </button>
+              ))}
             </div>
             <div className="tut-drawer-body">
-              {notesTab === 'questions' ? (
+              {notesTab === 'steps' ? (
+                guideSteps.length ? (
+                  guideSteps.map((x) => (
+                    <section key={x.name}>
+                      <h4>{x.name}</h4>
+                      <ol className="tut-guide-steps">
+                        {x.steps.map((st) => (
+                          <li key={st}>
+                            <Inline text={st} />
+                          </li>
+                        ))}
+                      </ol>
+                    </section>
+                  ))
+                ) : (
+                  <Rich text="The steps for solving appear here once the lesson shows them." className="tut-hint" />
+                )
+              ) : notesTab === 'examples' ? (
+                guideExamples.length ? (
+                  guideExamples.map((ex) => (
+                    <details key={ex.title} className="tut-guide-example">
+                      <summary>
+                        <Inline text={ex.title} />
+                      </summary>
+                      <p className="tut-guide-q">
+                        <Inline text={ex.question} />
+                      </p>
+                      <ol className="tut-guide-steps">
+                        {ex.steps.map((st) => (
+                          <li key={st}>
+                            <Inline text={st} />
+                          </li>
+                        ))}
+                      </ol>
+                      {ex.answer && (
+                        <p className="tut-guide-a">
+                          <Inline text={ex.answer} />
+                        </p>
+                      )}
+                    </details>
+                  ))
+                ) : (
+                  <Rich text="Worked examples appear here once you reach them." className="tut-hint" />
+                )
+              ) : notesTab === 'questions' ? (
                 asked.length ? (
                   <ol className="tut-asked">
                     {asked.map((q) => (

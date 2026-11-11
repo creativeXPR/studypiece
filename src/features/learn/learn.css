@@ -3562,3 +3562,12 @@ a.learn-les:active {
 .tut-asked li.right .tut-asked-q { color: var(--good); }
 .tut-asked li.wrong .tut-asked-q { color: var(--bad); }
 .tut-asked-a { color: var(--text-2); margin-top: 3px !important; }
+
+/* Notes drawer: Steps (solving recipe) and Examples (worked solutions, one per fold). */
+.tut-drawer-tabs { flex-wrap: wrap; }
+.tut-guide-steps { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; font-size: 0.92rem; }
+.tut-guide-example { border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; margin-bottom: 10px; background: var(--surface); }
+.tut-guide-example summary { cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+.tut-guide-example[open] summary { margin-bottom: 8px; }
+.tut-guide-q { margin: 0 0 8px; font-size: 0.92rem; color: var(--text-2); }
+.tut-guide-a { margin: 8px 0 0; font-weight: 600; color: var(--good); font-size: 0.92rem; }
