@@ -8,6 +8,11 @@ import errorPropagation from './error-propagation';
 import binomial from './binomial';
 import taylor from './taylor';
 import specialSeries from './special-series';
+import bisection from './bisection';
+import regulaFalsi from './regula-falsi';
+import linearIteration from './linear-iteration';
+import newtonRaphson from './newton-raphson';
+import secant from './secant';
 
 const soon = (id, title, covers) => ({ id, title, covers, minutes: 12 });
 
@@ -33,11 +38,11 @@ export default {
       title: 'Idea B: Finding Where Things Balance',
       by: 'Roots of equations, linear and non-linear systems',
       lessons: [
-        soon('bisection', 'Locating roots and bisection', 'Tables of signs and halving the bracket'),
-        soon('regula-falsi', 'Regula falsi', 'Cutting the bracket with a chord'),
-        soon('linear-iteration', 'Linear iteration', 'x = g(x) and when it converges'),
-        soon('newton-raphson', 'Newton-Raphson', 'Following the tangent'),
-        soon('secant', 'Secant, and comparing the methods', 'Newton without a derivative'),
+        bisection,
+        regulaFalsi,
+        linearIteration,
+        newtonRaphson,
+        secant,
         soon('matrix-inverse', 'Consistency and the matrix inverse', 'X = A⁻¹B'),
         soon('lu', 'LU factorisation', 'A = LU, then two easy solves'),
         soon('gaussian', 'Gaussian elimination', 'Eliminate, then back-substitute'),
