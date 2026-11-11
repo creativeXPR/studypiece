@@ -1,0 +1,68 @@
+// MTH 209 interactive tutorial, rebuilt (2026-11-11): every topic sits under one of four ideas, and
+// every lesson has two parts: understand it on a simple case, then apply it to an exam-sized one.
+// The plan, sources and template are in docs/mth209-rebuild.md. Lessons without `sections` show as
+// "Coming soon" until they are built.
+import courseMap from './course-map';
+import errorTypes from './error-types';
+
+const soon = (id, title, covers) => ({ id, title, covers, minutes: 12 });
+
+export default {
+  code: 'MTH 209',
+  title: 'Numerical Analysis',
+  chapters: [
+    { n: 0, title: 'The Map', by: 'Why we approximate, and how the four ideas connect', lessons: [courseMap] },
+    {
+      n: 1,
+      title: 'Idea A: How Wrong, and Why Approximating Works',
+      by: 'Errors and series',
+      lessons: [
+        errorTypes,
+        soon('error-propagation', 'Errors in sums, products and functions', 'Error propagation and round-off limits'),
+        soon('binomial', 'Binomial expansion', 'Expanding (1 + x)ⁿ for any n'),
+        soon('taylor', 'Taylor and Maclaurin series', 'Copying a function with a polynomial'),
+        soon('special-series', 'Exponential and special series', 'eˣ, 2ˣ, ln(1 + x), tan⁻¹x and matching coefficients'),
+      ],
+    },
+    {
+      n: 2,
+      title: 'Idea B: Finding Where Things Balance',
+      by: 'Roots of equations, linear and non-linear systems',
+      lessons: [
+        soon('bisection', 'Locating roots and bisection', 'Tables of signs and halving the bracket'),
+        soon('regula-falsi', 'Regula falsi', 'Cutting the bracket with a chord'),
+        soon('linear-iteration', 'Linear iteration', 'x = g(x) and when it converges'),
+        soon('newton-raphson', 'Newton-Raphson', 'Following the tangent'),
+        soon('secant', 'Secant, and comparing the methods', 'Newton without a derivative'),
+        soon('matrix-inverse', 'Consistency and the matrix inverse', 'X = A⁻¹B'),
+        soon('lu', 'LU factorisation', 'A = LU, then two easy solves'),
+        soon('gaussian', 'Gaussian elimination', 'Eliminate, then back-substitute'),
+        soon('simple-iteration', 'Simple iteration', 'X = CX + F and the α, β tests'),
+        soon('gauss-seidel', 'Gauss-Seidel', 'Using new values at once'),
+        soon('fixed-point-systems', 'Non-linear systems: fixed points', 'G(x) = x and the convergence condition'),
+        soon('newton-systems', 'Newton’s method for systems', 'The Jacobian and the stopping test'),
+      ],
+    },
+    {
+      n: 3,
+      title: 'Idea C: Rebuilding a Function from a Table',
+      by: 'Finite differences and interpolation',
+      lessons: [
+        soon('differences', 'Forward, backward and central differences', 'Difference tables'),
+        soon('operators', 'The operators E, Δ, ∇ and δ', 'Proving the operator identities'),
+        soon('linear-interpolation', 'Linear interpolation', 'A straight line between two points'),
+        soon('lagrange', 'Higher-degree interpolation', 'Lagrange polynomials and their error'),
+      ],
+    },
+    {
+      n: 4,
+      title: 'Idea D: Following Change Step by Step',
+      by: 'Initial value problems',
+      lessons: [
+        soon('ivp', 'IVPs and unique solutions', 'Definitions, Lipschitz and well-posedness'),
+        soon('euler', 'Euler’s method', 'Stepping along the slope'),
+      ],
+    },
+    { n: 5, title: 'Mock Exam', by: 'A timed paper in the lecturer’s style', lessons: [soon('mock-exam', 'Mock exam', 'Timed, lecturer-style paper')] },
+  ],
+};

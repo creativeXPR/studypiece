@@ -3571,3 +3571,7 @@ a.learn-les:active {
 .tut-guide-example[open] summary { margin-bottom: 8px; }
 .tut-guide-q { margin: 0 0 8px; font-size: 0.92rem; color: var(--text-2); }
 .tut-guide-a { margin: 8px 0 0; font-weight: 600; color: var(--good); font-size: 0.92rem; }
+@media (max-width: 440px) {
+  .tut-drawer-tabs { gap: 2px; padding: 0 10px 8px; }
+  .tut-drawer-tabs button { font-size: 0.82rem; padding: 6px 8px; }
+}
